@@ -2,27 +2,21 @@ body {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h2 {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
   }
-  
+
+  /* header */
+
   header.masthead {
     position: relative;
-    background-color: #343a40;
     background: url("image/splash-back.jpeg") no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
   }
   
+
+  /* header overlay  */
   header.masthead .overlay {
     position: absolute;
     background-color: #212529;
@@ -33,10 +27,9 @@ body {
     opacity: 0.3;
   }
   
-  header.masthead h1 {
-    font-size: 2rem;
-  }
-  
+
+   /* Only desktop view now, add more mobie view -  tabalt view  */
+
   @media (min-width: 400px) {
     header.masthead {
       padding-top: 12rem;
@@ -54,32 +47,37 @@ body {
     min-height: 30rem;
     background-size: cover;
   }
+
   
+  /*
   @media (min-width: 400px) {
     .showcase .showcase-text {
       padding: 7rem;
     }
   }
+
+  */
   
+
   .features-icons {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
   
   .features-icons .features-icons-item {
-    max-width: 20rem;
+    max-width: 300px;
   }
   
   .features-icons .features-icons-item .features-icons-icon {
-    height: 7rem;
+    height: 110px;
   }
   
   .features-icons .features-icons-item .features-icons-icon i {
-    font-size: 4.5rem;
+    font-size: 70px;
   }
   
   footer.footer {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 10px;
+    padding-bottom: 30px;
   }
   
