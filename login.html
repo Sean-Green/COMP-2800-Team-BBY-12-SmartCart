@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Smart Cart Login</title>
+   <meta charset="utf-8" />
+   <link rel="stylesheet" type="text/css" href="CSS/login.css">
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+   <!-- The firebase configuration for our project-->
+   <script src="Javascript/firebase_config.js"></script>
+   <script src="Javascript/login.js"></script>
+
+</head>
+
+<body>
+
+   <!--Header-->
+   <header>
+      <img src="image/logo.png" alt="logo">
+   </header>
+   <div id="firebaseui-auth-container"></div>
+
+   <script>
+      callForLogin();
+   </script>
+</body>
+
+</html>
