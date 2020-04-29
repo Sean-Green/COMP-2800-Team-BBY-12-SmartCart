@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Main Page</title>
+        <link rel="stylesheet" type="text/css" href="CSS/lists_list_page.css">
+        
+        <!----Bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
+    </head>
+    <body>
+        <!-- Nav bar-->
+        <nav class="navbar sticky-top" id="navbarPrimary">
+            <div id="logo">
+                <a href="main_page.html" id="logoName">SmartCart</a>
+            </div>
+            <div class="dropdown">
+                <button class="dropdownButton">Dropdown
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">Account</a>
+                  <a href="#">Lists</a>
+                  <a href="#">Logout</a>
+                </div>
+              </div>
+        </nav>
+        
+        <div class="card" id="mainCard">
+            <div class="card-body" id="mainBody">
+                <h2 class="card-title" id="cardTitle">Lets Get Shopping!</h2>
+                <div class="card">
+                    <!--<img class="card-img-top" id="mainCardImg" src="#">-->
+                    <div class="card" id="listCard">
+                        <div id="listButtons">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Saved Lists</button>  
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Lists</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>this is jsut a testing text</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!----Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="lists_list_page.html"></script>
+    </body>
+</html>
+
+
+
