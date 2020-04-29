@@ -11,6 +11,11 @@ body {
   a{
     color:white;
   }
+
+  li a{
+
+    color:black
+  }
   /* header */
 
   header.masthead {
