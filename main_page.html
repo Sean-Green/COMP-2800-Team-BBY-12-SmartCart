@@ -11,9 +11,9 @@
     </head>
     <body>
         <!-- Nav bar-->
-        <nav class="navbar navbar-expand-sm bg-light" id="navbarPrimary">
+        <nav class="navbar sticky-top" id="navbarPrimary">
             <div id="logo">
-                <a href="main_page.html" id="mainPage">SmartCart</a>
+                <a href="main_page.html" id="logoName">SmartCart</a>
             </div>
             <div class="dropdown">
                 <button class="dropdownButton">Dropdown
@@ -26,10 +26,31 @@
                 </div>
               </div>
         </nav>
-        <div id="listButtons">
-            <a class="btn btn-success" href="itemlist_page.html">Create A List</a>
-            <a class="btn btn-success" href="#">Saved Lists</a>
+        
+        <div class="card" id="mainCard">
+            <div class="card-body" id="mainBody">
+                <h2 class="card-title" id="cardTitle">Lets Get Shopping!</h2>
+                <div class="card">
+                    <!--<img class="card-img-top" id="mainCardImg" src="#">-->
+                    <div class="card-body">
+                        <h4 class="card-title" id="mainCard"></h4>
+                        <div id="locationButton">
+                            <h4>Choose a store!</h4>
+                            <a class="btn btn-success" href="#">Store</a>
+                        </div>
+                        <div class="card" id="listCard">
+                        <div id="listButtons">
+                            <h4>Create a list or choose from your saved lists!</h4>
+                            <a class="btn btn-success" href="itemlist_page.html">Create A List</a>
+                            <a class="btn btn-success" href="#">Saved Lists</a>
+                        </div> 
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+        
         <!----Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
