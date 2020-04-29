@@ -30,28 +30,40 @@
         <div class="card" id="mainCard">
             <div class="card-body" id="mainBody">
                 <h2 class="card-title" id="cardTitle">Lets Get Shopping!</h2>
-                <div class="card">
-                    <!--<img class="card-img-top" id="mainCardImg" src="#">-->
-                    <div class="card" id="listCard">
-                        <div id="listButtons">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Saved Lists</button>  
-                            <div class="modal fade" id="myModal" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Lists</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>this is jsut a testing text</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>  
-                                </div>
+                <div class="card" id="listCard">
+                    <div id="listButtons">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">My Lists</button>  
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title"> My Lists</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">List 1
+                                                <button type="button" class="btn btn-success" id="editListBtn">Edit List</button>
+                                            </li>
+                                            <li class="list-group-item">List 2
+                                                <button type="button" class="btn btn-success" id="editListBtn">Edit List</button>
+                                            </li>
+                                            <li class="list-group-item">List 3
+                                                <button type="button" class="btn btn-success" id="editListBtn">Edit List</button>                                                </li>
+                                            </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" id="createListBtn">
+                                            <a href="itemlist_page.html">Create a new list</a>
+                                        </button>
+                                        <button type="button" class="btn btn-default" id="deleteListBtn">
+                                            <a href="itemlist_page.html">Delete list</a>
+                                        </button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseBtn">Close</button>
+                                    </div>
+                                </div>  
                             </div>
-                        </div> 
-                    </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
