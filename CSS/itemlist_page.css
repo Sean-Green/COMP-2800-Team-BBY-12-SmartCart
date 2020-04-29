@@ -1,1 +1,312 @@
+/*** MEDIA QUERIES ***/
 
+/* for screen size less than 400px (Mobile View) */
+@media only screen and (max-width: 450px){
+
+    #maincontainer{
+        background-color: lightgreen;
+    }
+
+    .spacer{
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #listnamecontainer{
+        background-color:white;
+        padding: 3px;
+        border: 3px;
+        margin: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        border-style: solid;
+        border-color: green;
+    }
+
+    #listname1{
+        flex-grow: 0.4;
+    }
+
+    #listname2span{
+        font-size:20px;
+        padding: 14px 28px;
+        display: inline-block;
+        font-weight: bold;
+
+    }
+
+    .editbutton{
+        color: orange;
+    }
+
+    .editbutton:hover {
+        background-color:rgb(247, 115, 54);
+        border-radius: 5px;
+    }
+
+    .button {
+        border:none;
+        background-color:inherit;
+        padding: 14px 28px;
+        font-size:20px;
+        cursor: pointer;
+        display:inline-block;
+    }
+
+    #contentcontainer{
+        background-color: white;
+        margin: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color:  rgb(71, 163, 71);
+    }
+
+    #listcontainer{
+        display: grid;
+        grid-template-columns: 34% 37% 40%;
+        grid-template-rows: 40% 40% 40%;
+        grid-template-areas:
+        "one two three"
+        "four five six"
+        "seven eight nine";
+    }
+
+    #labelname1{
+        grid-area: one;
+        font-weight: bold;
+    }
+
+    #labelname2{
+        grid-area: two;
+        font-weight: bold;
+    }
+
+    #labelname3{
+        grid-area: three;
+        font-weight: bold;
+    }
+
+
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+        
+    }
+
+    #listitemcontainer{
+        grid-area: four;
+        grid-gap:10px 10px;
+    }
+
+    #listweightcontainer{
+        grid-area: five;
+        grid-gap:10px 10px;
+    }
+
+    #listavailabiltycontainer{
+        grid-area: six;
+        grid-gap:10px 10px;
+    }
+
+    .font{
+        font-size: 12px;
+    }
+
+    #twobuttoncontainer{
+        display:flex;
+        justify-content: space-around;
+        padding: 1px;
+        border: 2px;
+        border-color: lightgreen;
+        margin: 1px;
+        border-style: solid;
+        border-radius: 5px;
+        
+    }
+
+    .additembutton{
+        color: lightskyblue;
+    }
+
+    .additembutton:hover {
+        background-color:rgb(70, 107, 228);
+        border-radius: 5px;
+    }
+
+    .donebutton{
+        color: rgb(9, 184, 9);
+    }
+
+    .donebutton:hover {
+        background-color:rgb(37, 122, 15);
+        border-radius: 5px;
+    }
+
+
+
+    span{
+        font-weight: bold;
+    }
+}
+
+/* for screen size between 400 to 1024px (Tablet View) 
+@media screen and (min-width: 451px) and (max-width: 700px) {
+
+    
+}
+*/
+    
+/* when screen size is greater than 451px (Desktop View) */
+@media screen and (min-width: 451px){
+
+    #maincontainer{
+        background-color: lightgreen;
+    }
+
+    .spacer{
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #listnamecontainer{
+        background-color:white;
+        padding: 3px;
+        border: 3px;
+        margin: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        border-style: solid;
+        border-color: green;
+    }
+
+    #listname1{
+        flex-grow: 0.4;
+    }
+
+    #listname2span{
+        font-size:20px;
+        padding: 14px 28px;
+        display: inline-block;
+        font-weight: bold;
+
+    }
+
+    .editbutton{
+        color: orange;
+    }
+
+    .editbutton:hover {
+        background-color:rgb(247, 115, 54);
+        border-radius: 5px;
+    }
+
+    .button {
+        border:none;
+        background-color:inherit;
+        padding: 14px 28px;
+        font-size:20px;
+        cursor: pointer;
+        display:inline-block;
+    }
+
+    #contentcontainer{
+        background-color: white;
+        margin: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color:  rgb(71, 163, 71);
+    }
+
+    #listcontainer{
+        display: grid;
+        grid-template-columns: 34% 37% 40%;
+        grid-template-rows: 40% 40% 40%;
+        grid-template-areas:
+        "one two three"
+        "four five six"
+        "seven eight nine";
+    }
+
+    #labelname1{
+        grid-area: one;
+        font-weight: bold;
+    }
+
+    #labelname2{
+        grid-area: two;
+        font-weight: bold;
+    }
+
+    #labelname3{
+        grid-area: three;
+        font-weight: bold;
+    }
+
+
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+        
+    }
+
+    #listitemcontainer{
+        grid-area: four;
+        grid-gap:10px 10px;
+    }
+
+    #listweightcontainer{
+        grid-area: five;
+        grid-gap:10px 10px;
+    }
+
+    #listavailabiltycontainer{
+        grid-area: six;
+        grid-gap:10px 10px;
+    }
+
+    .font{
+        font-size: 12px;
+    }
+
+    #twobuttoncontainer{
+        display:flex;
+        justify-content: space-around;
+        padding: 1px;
+        border: 2px;
+        border-color: lightgreen;
+        margin: 1px;
+        border-style: solid;
+        border-radius: 5px;
+        
+    }
+
+    .additembutton{
+        color: lightskyblue;
+    }
+
+    .additembutton:hover {
+        background-color:rgb(70, 107, 228);
+        border-radius: 5px;
+    }
+
+    .donebutton{
+        color: rgb(9, 184, 9);
+    }
+
+    .donebutton:hover {
+        background-color:rgb(37, 122, 15);
+        border-radius: 5px;
+    }
+
+
+
+    span{
+        font-weight: bold;
+    }
+}

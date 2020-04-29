@@ -5,31 +5,102 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Item List Page</title>
         <link rel="stylesheet" type="text/css" href="CSS/itemlist_page.css">
+        <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
 
         <!----Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
     </head>
     <body>
-        <!-- Nav bar-->
-        <nav class="navbar navbar-expand-sm bg-light">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">test</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">test 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">test 3</a>
-              </li>
-            </ul>
-          </nav>
+      <!-- Nav bar from Maha -->
+      <nav class="navbar sticky-top" id="navbarPrimary">
+        <div id="logo">
+          <a href="main_page.html" id="logoName">SmartCart</a>
+        </div>
+        <div class="dropdown">
+          <button class="dropdownButton">Dropdown
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Lists</a>
+            <a href="#">Logout</a>
+          </div>
+        </div>
+      </nav>
 
-          
-
-
-
-
+      <!-- Add List Page-->
+      <div id="maincontainer">
+        <!-- spacer -->
+        <div class="spacer">
+          <br>
+        </div>
+        <!-- Label Section -->
+        <section id="listnamecontainer">
+          <article id ="listname1">
+          </article>
+          <article id="listname2">
+            <span id="listname2span">LIST 1</span>
+          </article>
+          <article id="listname3">
+            <button class="button editbutton">EDIT</button>
+          </article>
+        </section>
+        <!-- Content Section -->
+        <div id="contentcontainer">
+          <div id="listcontainer">
+            <!-- Labels -->
+            <section id="labelname1">
+              <article>Item</article>
+            </section>
+            <section id="labelname2">
+              <article>Weight</article>
+            </section>
+            <section id="labelname3">
+              <article>Availability</article>
+            </section>
+            <!-- Each Items, Weight, Availability -->
+            <section id="listitemcontainer">
+              <ul class="font list3">
+                <li>Apple</li>
+                <li>Eggs</li>
+              </ul>
+            </section>
+            <section id="listweightcontainer">
+              <ul class="font list2">
+                <li>Pack of 6</li>
+                <li>Pack of 12</li>
+              </ul>
+            </section>
+            <section id="listavailabiltycontainer">
+              <ul class="font list3">
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </section>
+          </div>
+          <!-- spacer-->
+          <div class="spacer">
+            <br>
+          </div>
+          <!-- Add Item and Done Button -->
+          <div id="twobuttoncontainer">
+            <div id="addnewlistbutton">
+              <article>
+                <button class="button additembutton">ADD ITEM</button>
+              </article>
+            </div>
+            <div id="donebutton">
+              <article>
+                <button class="button donebutton">DONE</button>
+              </article>
+            </div>
+          </div>
+        </div>
+        <!-- Spacer -->
+        <div class="spacer">
+          <br>
+        </div>
+      </div>
 
         <!----Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
