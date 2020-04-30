@@ -6,7 +6,10 @@
    <title>Smart Cart Login</title>
    <meta charset="utf-8" />
    <link rel="stylesheet" type="text/css" href="CSS/login.css">
-
+   <!--Jquery-->
+   <script type='text/javascript' src='Javascript/jquery-3.5.0.js'></script>
+   <!----Bootstrap-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
    <!-- Add Firebase products that you want to use -->
@@ -15,7 +18,7 @@
    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
    <!-- The firebase configuration for our project-->
-   <script src="Javascript/firebase_config.js"></script>
+   <script type='text/javascript' src="Javascript/firebase_config.js"></script>
    <script src="Javascript/login.js"></script>
 
 </head>
@@ -26,10 +29,18 @@
    <header>
       <img src="image/logo.png" alt="logo">
    </header>
-   <div id="firebaseui-auth-container"></div>
 
+   <!-- Div that will become our login on script call-->
+   <div id="firebaseui-auth-container"><input type="button" value="Hello" onclick="callForLogin()"></div>
+
+
+
+   <!----Bootstrap-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
    <script>
-      callForLogin();
+      // callForLogin();
    </script>
 </body>
 

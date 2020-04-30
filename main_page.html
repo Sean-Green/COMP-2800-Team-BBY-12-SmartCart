@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Main Page</title>
-        <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
 
-        <!----Bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
-    </head>
-    <body>
-        <!-- Nav bar-->
-        <nav class="navbar sticky-top" id="navbarPrimary">
-            <div id="logo">
-                <a href="main_page.html" id="logoName">SmartCart</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="javascript/firebase_config.js"></script>
+    <!--JS for this page-->
+    <script src="Javascript/main_page.js"></script>
+
+    <!----Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Nav bar-->
+    <nav class="navbar sticky-top" id="navbarPrimary">
+        <div id="logo">
+            <a href="main_page.html" id="logoName">SmartCart</a>
+        </div>
+        <div class="dropdown">
+            <button class="dropdownButton">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Account</a>
+                <a href="lists_list_page.html">Lists</a>
+                <a href="#">Logout</a>
             </div>
-            <div class="dropdown">
-                <button class="dropdownButton">Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                  <a href="#">Account</a>
-                  <a href="lists_list_page.html">Lists</a>
-                  <a href="#">Logout</a>
-                </div>
-              </div>
-        </nav>
-        
-        <div class="card" id="mainCard">
-            <div class="card-body" id="mainBody">
-                <h2 class="card-title" id="cardTitle">Lets Get Shopping!</h2>
-                <div class="card">
-                    <!--<img class="card-img-top" id="mainCardImg" src="#">-->
-                    <div class="card-body">
-                        <h4 class="card-title" id="mainCard"></h4>
-                        <div id="locationButton">
-                            <h4>Choose a store!</h4>
-                            <a class="btn btn-success" href="#">Store</a>
-                        </div>
-                        <div class="card" id="listCard">
+        </div>
+    </nav>
+
+    <div class="card" id="mainCard">
+        <div class="card-body" id="mainBody">
+            <h2 class="card-title" id="cardTitle">Lets Get Shopping!</h2>
+            <div class="card">
+                <!--<img class="card-img-top" id="mainCardImg" src="#">-->
+                <div class="card-body">
+                    <h4 class="card-title" id="mainCard"></h4>
+                    <div id="locationButton">
+                        <h4>Choose a store!</h4>
+                        <a class="btn btn-success" href="#">Store</a>
+                    </div>
+                    <div class="card" id="listCard">
                         <div id="listButtons">
                             <h4>Create a list or choose from your saved lists!</h4>
                             <a class="btn btn-success" href="itemlist_page.html">Create A List</a>
                             <a class="btn btn-success" href="#">Saved Lists</a>
-                        </div> 
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
-        
-        <!----Bootstrap-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </div>
+    <script>
+        createUser();
+    </script>
+    <!----Bootstrap-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
+
 </html>
-
-
-
