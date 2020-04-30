@@ -1,7 +1,7 @@
 /*** MEDIA QUERIES ***/
 
-/* for screen size less than 400px (Mobile View) */
-@media only screen and (max-width: 450px){
+/* for screen size less than 500px (Mobile View) */
+@media only screen and (max-width: 500px){
 
     #maincontainer{
         background-color: lightgreen;
@@ -159,8 +159,8 @@
 }
 */
     
-/* when screen size is greater than 451px (Desktop View) */
-@media screen and (min-width: 451px){
+/* when screen size is greater than 501px (Desktop View) */
+@media screen and (min-width: 501px){
 
     #maincontainer{
         background-color: lightgreen;
@@ -184,7 +184,7 @@
     }
 
     #listname1{
-        flex-grow: 0.4;
+        flex-grow: 0;
     }
 
     #listname2span{
