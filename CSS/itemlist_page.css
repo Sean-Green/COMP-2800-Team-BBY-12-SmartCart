@@ -106,7 +106,7 @@
         grid-gap:10px 10px;
     }
 
-    #listavailabiltycontainer{
+    #listquantitycontainer{
         grid-area: six;
         grid-gap:10px 10px;
     }
