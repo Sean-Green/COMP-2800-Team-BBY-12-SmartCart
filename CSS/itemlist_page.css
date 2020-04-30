@@ -64,9 +64,15 @@
     }
 
     #listcontainer{
+        border: 2px solid lightgreen;
+        padding: 2px;
+        border-radius: 5px;
+        overflow:scroll;
+        height: 200px;
+
         display: grid;
         grid-template-columns: 34% 37% 40%;
-        grid-template-rows: 40% 40% 40%;
+        grid-template-rows: 15% 40% 40%;
         grid-template-areas:
         "one two three"
         "four five six"
@@ -150,6 +156,7 @@
     span{
         font-weight: bold;
     }
+
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -223,9 +230,15 @@
     }
 
     #listcontainer{
+        border: 2px solid lightgreen;
+        padding: 2px;
+        border-radius: 5px;
+        overflow:scroll;
+        height: 200px;
+
         display: grid;
         grid-template-columns: 34% 37% 40%;
-        grid-template-rows: 40% 40% 40%;
+        grid-template-rows: 15% 40% 40%;
         grid-template-areas:
         "one two three"
         "four five six"
