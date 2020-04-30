@@ -30,3 +30,28 @@ h1, h2 {
     left: 0;
     opacity: 0.3;
   }
+  /** Modal css*/
+  .modal-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  #chooseStoreBtn {
+    border: solid grey;
+  }
+  #chooseStoreBtn:hover {
+    background-color: green;
+  }
+  #modalCloseBtn {
+    border: solid grey;
+  }
+  #modalCloseBtn:hover {
+    background-color: lightgray;
+  }
