@@ -1,4 +1,7 @@
 // Initialize the FirebaseUI Widget using Firebase.
+function splashLogin(){
+   $("firebaseui-auth-container").innerHTML = '';
+}
 function callForLogin(){
    var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
