@@ -44,8 +44,11 @@ body {
       padding-top: 12rem;
       padding-bottom: 12rem;
     }
-    header.masthead h1 {
+    header.masthead h3 {
       font-size: 3rem;
+    }
+    .firebaseui-auth-container{
+      font-size: 2rem;
     }
   }
   .showcase .showcase-text {
@@ -89,4 +92,5 @@ body {
     padding-top: 10px;
     padding-bottom: 30px;
   }
+
   
