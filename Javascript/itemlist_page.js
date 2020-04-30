@@ -21,7 +21,7 @@ $(document).ready(function(){
         p = "<li id=weightmagic" + id + ">" + itemname + "</li>";
         $('#listarea2').html(content + p);
         $('#input2').appendTo('#weightmagic' + id);
-        console.log("weight is" + itemname);
+        console.log("weight is is" + itemname);
         
 
         content =$('#listarea3').html();
@@ -36,6 +36,4 @@ $(document).ready(function(){
         
         id++;
     })
-
-    
 });

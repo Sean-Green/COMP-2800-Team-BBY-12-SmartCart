@@ -1,0 +1,298 @@
+<html>
+
+<head>
+    <!----Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type=text/javascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--icon bootstrap (Font Awesome Web Application Icons) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+
+    <!----Link css-->
+    <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
+
+
+
+
+</head>
+
+
+<body>
+
+    <!--top var - dropdown menu -->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand">Smartcart</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="#">Lists </a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">About us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--header-->
+    <header class="masthead text-white text-center">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    <h1 class="mb-4">Shopping </h1>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+
+    <!--middel body-->
+    <section>
+        <div class="container">
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th style="width:50%">Product</th>
+                        <th style="width:10%">Price</th>
+                        <th style="width:8%">Quantity</th>
+                        <th style="width:22%" class="text-center">Subtotal</th>
+                        <th style="width:10%"></th>
+                    </tr>
+                </thead>
+
+                <!--item list 1-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-9">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+               <!--item list 2-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+               <!--item list 3-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+
+               <!--item list 4-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+                
+                <!--item list 5-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+                
+                <!--item list 6-->
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100" alt="..."
+                                        class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Product 1</h4>
+                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">$150.00</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">150.00</td>
+                        <td class="actions" data-th="">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+
+
+                <tfoot>
+                    <tr class="visible-xs">
+                        <td class="text-center"><strong>Total 1.99</strong></td>
+
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                        </td>
+                        <td colspan="2" class="hidden-xs">
+                        </td>
+                        <td class="hidden-xs text-center"><strong>Total $150.00</strong>
+                        </td>
+                        <td><a href="#" class="btn btn-success"><i class="fa fa-angle-right"></i>Checkout</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+
+                            <!-- Team profile page - short description who we are -->
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - contact information -->
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - Terms of Use -->
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - Privacy Policy -->
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
