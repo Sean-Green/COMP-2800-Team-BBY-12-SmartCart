@@ -36,6 +36,15 @@
 
     }
 
+    .goshopbutton{
+        color: rgb(80, 160, 80);
+    }
+
+    .goshopbutton:hover {
+        background-color:rgb(47, 184, 129);
+        border-radius: 5px;
+    }
+
     .editbutton{
         color: orange;
     }
@@ -195,6 +204,15 @@
         display: inline-block;
         font-weight: bold;
 
+    }
+
+    .goshopbutton{
+        color: rgb(80, 160, 80);
+    }
+
+    .goshopbutton:hover {
+        background-color:rgb(47, 184, 129);
+        border-radius: 5px;
     }
 
     .editbutton{
