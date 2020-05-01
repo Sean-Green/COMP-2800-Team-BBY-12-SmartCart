@@ -38,6 +38,7 @@ h1, h2 {
   .list-group-item {
     display: flex;
     justify-content: space-between;
+    padding: 10px;
   }
   .modal-footer {
     display: flex;
@@ -54,4 +55,11 @@ h1, h2 {
   }
   #modalCloseBtn:hover {
     background-color: lightgray;
+  }
+  #yesAva:hover {
+    background-color: rgb(26, 180, 26);
+  }
+  .storeItemAvailiablity {
+    padding: 10px;
+
   }
