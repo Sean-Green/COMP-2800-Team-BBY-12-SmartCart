@@ -30,10 +30,10 @@ h1, h2 {
     left: 0;
     opacity: 0.3;
   }
+  
   /** Modal css*/
-  .modal-title {
+  .modal-header {
     display: flex;
-    justify-content: space-between;
   }
   .list-group-item {
     display: flex;
@@ -59,7 +59,18 @@ h1, h2 {
   #yesAva:hover {
     background-color: rgb(26, 180, 26);
   }
+  #noAva:hover {
+    background-color: red;
+  }
+  #medAva1 {
+    background-color: orange;
+  }
+  #noAva1 {
+    background-color: red;
+  }
+  #yesAva1 {
+    background-color: rgb(26, 180, 26);
+  }
   .storeItemAvailiablity {
     padding: 10px;
-
   }
