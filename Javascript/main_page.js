@@ -13,3 +13,12 @@ function createUser() {
        });
    });
 }
+
+// logs the user out, should be called from a link to the splash page.
+function logOut(){
+    firebase.auth().signOut().then(function() {
+        console.log("Logout succeeds");
+      }, function(error) {
+        console.log("logout fails: " + error);
+      });
+}
