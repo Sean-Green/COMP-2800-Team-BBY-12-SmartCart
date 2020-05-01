@@ -10,7 +10,6 @@
         <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
         <!----Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
-        <script src="Javascript/main_page.js"></script>
     </head>
     <body>
       
@@ -26,7 +25,7 @@
           <div class="dropdown-content">
             <a href="#">Account</a>
             <a href="#">Lists</a>
-            <a href="splash_page.html" on click="logout">Logout</a>
+            <a href="#">Logout</a>
           </div>
         </div>
       </nav>
@@ -40,17 +39,12 @@
         <!-- Label Section -->
         <section id="listnamecontainer">
           <article id ="listname1">
-            <div id="goshopbuttondiv">
-              <a class="button goshopbutton" href="store_page.html">GO SHOP</a>
-            </div>
           </article>
           <article id="listname2">
             <span id="listname2span">LIST 1</span>
           </article>
           <article id="listname3">
-            <div id="editbuttondiv">
-              <button class="button editbutton">EDIT</button>
-            </div>
+            <button class="button editbutton">EDIT</button>
           </article>
         </section>
         <!-- Content Section -->
@@ -69,17 +63,17 @@
             <!-- Each Items, Weight, Availability -->
             <section id="listitemcontainer">
               <ul id="listarea1" class="font list3">
-                <li id="input1"><input type='text' id="inputItem" class="theinput" size="7" placeholder="Item"></li>
+                <li id="input1"><input type='text' id="inputItem" size="7" placeholder="Item"></li>
               </ul>
             </section>
             <section id="listweightcontainer">
               <ul id="listarea2" class="font list2">
-                <li id="input2"><input type='text' id="inputWeight" class="theinput" size="7" placeholder="Weight"></li>
+                <li id="input2"><input type='text' id="inputWeight" size="7" placeholder="Weight"></li>
               </ul>
             </section>
             <section id="listquantitycontainer">
               <ul id="listarea3" class="font list3">
-                <li id="input3"><input type='number' id="inputQuantity" class="theinput" min="0" max="100000" placeholder="1"></li>
+                <li id="input3"><input type='number' id="inputQuantity" min="0" max="100" placeholder="1"></li>
               </ul>
             </section>
           </div>

@@ -36,15 +36,6 @@
 
     }
 
-    .goshopbutton{
-        color: rgb(80, 160, 80);
-    }
-
-    .goshopbutton:hover {
-        background-color:rgb(47, 184, 129);
-        border-radius: 5px;
-    }
-
     .editbutton{
         color: orange;
     }
@@ -63,40 +54,6 @@
         display:inline-block;
     }
 
-    .editbutton1{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(21, 119, 204);
-        font-weight: bold;
-    }
-
-    .editbutton1:hover{
-        background-color: rgb(82, 96, 245);
-        color: white;
-        border-radius: 5px;
-    }
-
-    .editbutton2{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(228, 70, 49);
-        font-weight: bold;
-    }
-
-    .editbutton2:hover{
-        background-color: rgb(226, 89, 89);
-        color: white;
-        border-radius: 5px;
-    }
-
     #contentcontainer{
         background-color: white;
         margin: 20px;
@@ -106,18 +63,10 @@
         border-color:  rgb(71, 163, 71);
     }
 
-    
-
     #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        height: 200px;
-
         display: grid;
         grid-template-columns: 34% 37% 40%;
-        grid-template-rows: 15% 40% 40%;
+        grid-template-rows: 40% 40% 40%;
         grid-template-areas:
         "one two three"
         "four five six"
@@ -138,6 +87,7 @@
         grid-area: three;
         font-weight: bold;
     }
+
 
 
     ul{
@@ -194,12 +144,11 @@
         background-color:rgb(37, 122, 15);
         border-radius: 5px;
     }
+
+
+
     span{
         font-weight: bold;
-    }
-
-    #newlistname {
-        border: 0;
     }
 }
 
@@ -246,15 +195,6 @@
 
     }
 
-    .goshopbutton{
-        color: rgb(80, 160, 80);
-    }
-
-    .goshopbutton:hover {
-        background-color:rgb(47, 184, 129);
-        border-radius: 5px;
-    }
-
     .editbutton{
         color: orange;
     }
@@ -273,42 +213,6 @@
         display:inline-block;
     }
 
-    .editbutton1{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(21, 119, 204);
-        font-weight: bold;
-    }
-
-    .editbutton1:hover{
-        background-color: rgb(82, 96, 245);
-        color: white;
-        border-radius: 5px;
-    }
-
-    .editbutton2{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(228, 70, 49);
-        font-weight: bold;
-    }
-
-    .editbutton2:hover{
-        background-color: rgb(226, 89, 89);
-        color: white;
-        border-radius: 5px;
-    }
-
-
-
     #contentcontainer{
         background-color: white;
         margin: 20px;
@@ -319,15 +223,9 @@
     }
 
     #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        height: 200px;
-
         display: grid;
         grid-template-columns: 34% 37% 40%;
-        grid-template-rows: 15% 40% 40%;
+        grid-template-rows: 40% 40% 40%;
         grid-template-areas:
         "one two three"
         "four five six"
@@ -406,11 +304,9 @@
         border-radius: 5px;
     }
 
+
+
     span{
         font-weight: bold;
-    }
-
-    #newlistname {
-        border: 0;
     }
 }
