@@ -71,6 +71,7 @@
         cursor: pointer;
         display:inline-block;
         color: rgb(21, 119, 204);
+        font-weight: bold;
     }
 
     .editbutton1:hover{
@@ -96,6 +97,7 @@
         cursor: pointer;
         display:inline-block;
         color: rgb(228, 70, 49);
+        font-weight: bold;
     }
 
     .editbutton2:hover{
@@ -193,6 +195,10 @@
     span{
         font-weight: bold;
     }
+
+    #newlistname {
+        border: 0;
+    }
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -273,6 +279,7 @@
         cursor: pointer;
         display:inline-block;
         color: rgb(21, 119, 204);
+        font-weight: bold;
     }
 
     .editbutton1:hover{
@@ -289,6 +296,7 @@
         cursor: pointer;
         display:inline-block;
         color: rgb(228, 70, 49);
+        font-weight: bold;
     }
 
     .editbutton2:hover{
@@ -396,9 +404,11 @@
         border-radius: 5px;
     }
 
-
-
     span{
         font-weight: bold;
+    }
+
+    #newlistname {
+        border: 0;
     }
 }

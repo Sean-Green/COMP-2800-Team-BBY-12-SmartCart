@@ -100,25 +100,4 @@ $(document).ready(function(){
         $("#editbuttondiv").html("<button class=editbutton>EDIT</button>");
         $(".editbutton").addClass("button"); 
     })
-
-    // CSS ON BUTTONS NOT WORKING
-    //css for confirm button (class editbutton1)
-    // $('.editbutton1').css({
-    //     'color': 'rgb(54, 132, 247)',
-    //     'border': 'none',
-    //     'background-color': 'inherit',
-    //     'padding': '14px 28px',
-    //     'font-size':'20px',
-    //     'cursor': 'pointer',
-    //     'display':'inline-block'
-    // });
-
-    // $('.editbutton1').hover(function(){
-    //     $('.editbutton1').css('background-color', '#164AF2')
-    // })
-
-    // $('.editbutton1').addClass("button");
-
-
-    //css for cancel button (class editbutton2)
 });
