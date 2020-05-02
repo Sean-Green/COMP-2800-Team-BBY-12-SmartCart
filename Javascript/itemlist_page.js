@@ -57,8 +57,8 @@ $(document).ready(function(){
         $("#listname2span").html('<input type="text" id="newlistname" size="7" placeholder="List Name">')
         let content = $('#listname3').html();
         //prebuilt buttons for confirm (class="editbuttonone") and cancel (class="editbuttontwo") 
-        let a = "<div><button class=editbutton" + one + ">Confirm</button></div>";
-        let b = "<div><button class=editbutton" + two +">Cancel</button></div>";
+        let a = "<div><button class=editbutton" + one + ">CONFIRM</button></div>";
+        let b = "<div><button class=editbutton" + two +">CANCEL</button></div>";
         //add the confirm button
         $('#listname3').html(content + a);
         //reinstantiate content for listname3 then add the cancel button to make it below
