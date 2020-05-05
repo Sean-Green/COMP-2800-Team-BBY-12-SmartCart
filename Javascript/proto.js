@@ -23,8 +23,8 @@ function getUserDetails() {
          console.log(user.displayName);
          console.log("Sign-in provider: " + user.providerId);
          ///////////// IMPORTANT ////////////////////////////////
-         console.log("  Provider-specific UID: " + user.uid); 
-         console.log("  Name: " + user.displayName); 
+         console.log("  Provider-specific UID: " + user.uid);
+         console.log("  Name: " + user.displayName);
          ////////////////////////////////////////////////////////
          console.log("  Email: " + user.email);
          console.log("  Photo URL: " + user.photoURL);
@@ -33,11 +33,34 @@ function getUserDetails() {
       }
    });
 };
+
+//Basic write function, note the list name in the header
+function createListFromName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      //Specify the base collection and then the doc path
+      db.collection("Users/").doc(user.uid + "/Lists/" + listName).set({
+         //Feed it JSON objects
+         "eggs": "12",
+         "bacon": "20",
+      }, {
+         //Set merge true if you want to add to a list, set false if you want to overwrite.
+         merge: true
+      });
+   });
+}
+
+//Delete list by name
+function deleteListByName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      //Specify the base collection and then the doc path
+      db.collection("Users/").doc(user.uid + "/Lists/" + listName).delete();
+   });
+}
 // Basic function reading user profile data and displaying it to a marked div.
 function getUserDisplayName() {
    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {         
-      $('#HelloUser').text("Hello " + user.displayName);
+      if (user) {
+         $('#HelloUser').text("Hello " + user.displayName);
       } else {
          console.log("user not signed in");
          name = 'fran';
