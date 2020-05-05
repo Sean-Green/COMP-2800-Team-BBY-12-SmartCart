@@ -35,22 +35,57 @@ body {
     left: 0;
     opacity: 0.3;
   }
-  
 
-   /* Only desktop view now, add more mobie view -  tabalt view  */
+  footer.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
 
-  @media (min-width: 400px) {
-    header.masthead {
-      padding-top: 12rem;
-      padding-bottom: 12rem;
+
+  header.masthead {
+    padding-top: 11rem;
+    padding-bottom:11rem;
+  }
+
+  header.masthead h3 {
+    font-size: 5rem;
+  }
+
+
+    .features-icons {
+      padding-top: 80px;
+      padding-bottom: 80px;
     }
+    
+    .features-icons .features-icons-item {
+      max-width: 300px;
+    }
+    
+    .features-icons .features-icons-item .features-icons-icon {
+      height: 100px;
+    }
+    
+    .features-icons .features-icons-item .features-icons-icon i {
+      font-size: 70px;
+    }
+
+
+   /* mobie view 0~426px  */
+
+   @media all and (max-width: 426px) {
+
+    header.masthead {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
     header.masthead h3 {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
     .firebaseui-auth-container{
       font-size: 2rem;
     }
-  }
+  
   .showcase .showcase-text {
     padding: 3rem;
   }
@@ -60,37 +95,31 @@ body {
     background-size: cover;
   }
 
-  
-  /*
-  @media (min-width: 400px) {
-    .showcase .showcase-text {
-      padding: 7rem;
-    }
-  }
-
-  */
-  
-
   .features-icons {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   
   .features-icons .features-icons-item {
-    max-width: 300px;
+    max-width: 280px;
   }
   
   .features-icons .features-icons-item .features-icons-icon {
-    height: 110px;
+    height: 90px;
   }
   
+   /* icon size  */
   .features-icons .features-icons-item .features-icons-icon i {
-    font-size: 70px;
+    font-size: 60px;
   }
   
-  footer.footer {
-    padding-top: 10px;
-    padding-bottom: 30px;
+  h2{
+
+    font-size: 25px;
   }
 
-  
+  h3{
+    padding-top: 20px;
+  }
+
+   }
