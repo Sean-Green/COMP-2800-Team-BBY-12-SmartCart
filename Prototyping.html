@@ -19,7 +19,8 @@
    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
    <!-- The firebase configuration for our project-->
    <script type='text/javascript' src="Javascript/firebase_config.js"></script>
-   <script src="Javascript/login.js"></script>
+   <!-- Prototyping Javascript file -->
+   <script src="Javascript/proto.js"></script>
 
 </head>
 
@@ -35,11 +36,7 @@
 
 
    <script>
-      var userId = firebase.auth().currentUser.uid;
-      return firebase.database().ref('/Users/' + userId).once('value').then(function (snapshot) {
-         var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-         $('#HelloUser').html('Hello ' + username);
-      });
+      console.log(db.auth().currentUser.uid);
    </script>
 </body>
 
