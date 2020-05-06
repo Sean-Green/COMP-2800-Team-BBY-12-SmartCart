@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>ProtoType Functions</title>
+   <meta charset="utf-8" />
+   <link rel="stylesheet" type="text/css" href="CSS/login.css">
+   <!--link jquery by CDN-->
+   <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+   <!----Bootstrap-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+   <!-- The firebase configuration for our project-->
+   <script type='text/javascript' src="Javascript/firebase_config.js"></script>
+   <!-- Prototyping Javascript file -->
+   <script src="Javascript/proto.js"></script>
+
+</head>
+
+<body>
+
+   <!--Header-->
+   <header>
+      <img src="image/logo.png" alt="logo">
+      <h1>Prototyping Read Write Functions</h1>
+   </header>
+
+   <div id="HelloUser"></div>
+   <input type="button" value="Add list to profile" onclick="createListFromName('Thelist')">
+   <input type="button" value="Delete list" onclick="deleteListByName('Thelist')">
+
+
+   <script>
+      getUserDetails();
+      getUserDisplayName();
+   </script>
+</body>
+
+</html>
