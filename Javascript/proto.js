@@ -1,3 +1,4 @@
+//test
 // Function that creates a new document in the users collection
 function createUser() {
    // if the current user logged in user
