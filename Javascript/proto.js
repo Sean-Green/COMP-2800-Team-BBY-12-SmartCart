@@ -62,7 +62,7 @@ function readListByName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
       db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
          $('#ListItems').text("eggs: " + doc.get("eggs"));
-        
+
       });
    });
 }
@@ -84,4 +84,24 @@ function logOut() {
    }, function (error) {
       console.log("logout fails: " + error);
    });
+}
+// Builds a list of items from a name
+function buildListByName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
+         console.log(JSON.stringify(doc.data()));
+      });
+   });
+}
+
+function buildList() {
+   $(document).ready(function () {
+      firebase.auth().onAuthStateChanged(function (user) {
+         db.collection("Items").onSnapshot(function (doc) {
+            doc.forEach(function (item) {
+               $('#ListItems').append('<li>' + item.get('name') + '</li>');
+            });
+         });
+      });
+   })
 }
