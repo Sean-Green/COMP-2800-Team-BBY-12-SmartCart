@@ -1,0 +1,80 @@
+/** Navbar and logo css*/
+#navbarPrimary {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+#logoName {
+    color: green;
+    letter-spacing: 1px;
+    font-size: xx-large;
+}
+/** navbar dropdown css*/
+.dropdownButton {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}  
+.dropdown {
+    position: relative;
+    float: right;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: green;
+    min-width: 160px;
+    z-index: 1;
+    right: 0;
+}
+.dropdown-content a {
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: darkgrey;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropdownButton {
+    background-color: #1b421c;
+}
+/** Card css*/
+#mainCard {
+    text-align: center;
+    /**width: fit-content; */
+    /**height: fit-content;*/
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#listCard {
+    text-align: center;
+    height: fit-content;
+    /** width: fit-content; */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: lightgreen solid;
+}
+#mainBody {
+    background-color: lightgreen;
+}
+#heading1 {
+    padding-top: 5px;
+    margin-bottom: 0px;
+}
+
+/** Buttons css */
+#locationButtons {
+    margin: 10px;
+}
+#listButton {
+    margin: 10px;
+}
