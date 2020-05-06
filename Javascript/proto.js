@@ -39,7 +39,7 @@ function createListFromName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
       //Specify the base collection and then the doc path
       db.collection("Users/").doc(user.uid + "/Lists/" + listName).set({
-         //Feed it JSON objects
+         //Give it JSON objects
          "eggs": "12",
          "bacon": "20",
       }, {
@@ -49,11 +49,20 @@ function createListFromName(listName) {
    });
 }
 
-//Delete list by name
+//Delete list by name string
 function deleteListByName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
       //Specify the base collection and then the doc path
       db.collection("Users/").doc(user.uid + "/Lists/" + listName).delete();
+   });
+}
+//Read a list from DB by name string
+function readListByName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
+         $('#ListItems').text("eggs: " + doc.get("eggs"));
+        
+      });
    });
 }
 // Basic function reading user profile data and displaying it to a marked div.
