@@ -242,14 +242,12 @@ $(document).ready(function(){
     })
 
 
-    $(document).on("click", "#testButton", function(){
+
         db.collection("Items").get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
-                //renderItemList(doc);
-                $("#inputItem").append('<option value="'+ doc.get("name") +'">'+ doc.get("name") + " " + doc.get("size") + " " + doc.get("units") + '</option>');
+                $("#inputItem").append('<option value="'+ doc.get("name") +'">'+ doc.get("name") 
+                    + " " + doc.get("size") + " " + doc.get("units") + '</option>');
                 console.log(doc.data())
             })
-        })
-    })
-    
+        })  
 });
