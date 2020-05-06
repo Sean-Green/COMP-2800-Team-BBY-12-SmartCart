@@ -1,4 +1,4 @@
-// Function that creates a new document in the users collection
+// Fucntion that creates a new document in the users collection
 function createUser() {
    // if the current user logged in user
    // is authenticated, then grab "uid" "displayName" and "email"
@@ -21,3 +21,15 @@ function logOut(){
         console.log("logout fails: " + error);
       });
 }
+
+// get User name from db
+function getUserDisplayName() {
+    firebase.auth().onAuthStateChanged(function (user) {
+       if (user) {
+          $('#userName').text("Welcome " + user.displayName + "!");
+       } else {
+          console.log("user not signed in");
+          name = 'fran';
+       }
+    });
+ };
