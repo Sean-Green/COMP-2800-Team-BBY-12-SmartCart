@@ -88,12 +88,19 @@ function logOut() {
 function buildListByName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
       db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
-            console.log(JSON.stringify(doc.data()));
+         console.log(JSON.stringify(doc.data()));
       });
    });
 }
 
-// snapshot.forEach(function (childSnapshot) {
-//    var key = childSnapshot.key; 
-//    console.log(key);
-// });
+function buildList() {
+   $(document).ready(function () {
+      firebase.auth().onAuthStateChanged(function (user) {
+         db.collection("Items").onSnapshot(function (doc) {
+            doc.forEach(function (item) {
+               $('#ListItems').append('<li>' + item.get('name') + '</li>');
+            });
+         });
+      });
+   })
+}
