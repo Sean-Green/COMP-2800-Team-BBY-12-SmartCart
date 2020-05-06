@@ -5,8 +5,8 @@
     <!-- Branch dev -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" href="CSS/about_us_page.css">
     <link rel="icon" type="image/png" href="/image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
@@ -16,7 +16,7 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="javascript/firebase_config.js"></script>
     <!--JS for this page-->
-    <script src="Javascript/main_page.js"></script>
+    <script src="Javascript/main_page.js"></script> <!--dunno about this for about us pg-->
 
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -42,29 +42,41 @@
 
     <div class="card" id="mainCard">
         <div class="card-body" id="mainBody">
-            <h2 class="card-title" id="cardTitle">Welcome <span id="userName">nameplaceholder</span>!</h2>
-            <div class="card">
-                <h4 id="heading1">Your Lists!</h4>
-                <!--<img class="card-img-top" id="mainCardImg" src="#">-->
-                <div class="card-body">
-                    <div class="card" id="listCard">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> <span id="listName">List placeholder</span></a>
-                                </li>
-                                <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> List placeholder</a>
-                                </li>
-                                <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> List placeholder</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="listButton">
-                            <a class="btn btn-success" href="itemlist_page.html">Create A New List</a>
-                        </div>
-                    </div>
+            <h2 class="card-title" id="cardTitle">The Team Behind SmartCart!</h2>
+            <div class="card" id="teamCard">
+                <div id="teamIN">
+                    <img class="card-img-top" id="teamIcon" src="image/logo.png">
+                    <h4 id="teamMem">Sean Green</h4>
+                </div>
+                <div class="card-body" id="teamText">
+                    <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" id="teamCard">
+                <div id="teamIN">
+                    <img class="card-img-top" id="teamIcon" src="image/logo.png">
+                    <h4 id="teamMem">Jason Lee</h4>
+                </div>
+                <div class="card-body" id="teamText">
+                    <p class="card-text"></p>Quick sample text to create the card title and make up the body of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" id="teamCard">
+                <div id="teamIN">
+                    <img class="card-img-top" id="teamIcon" src="image/logo.png">
+                    <h4 id="teamMem">Donggyun Kim</h4>
+                </div>
+                <div class="card-body" id="teamText">
+                    <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" id="teamCard">
+                <div id="teamIN">
+                    <img class="card-img-top" id="teamIcon" src="image/logo.png">
+                    <h4 id="teamMem">Maha Rehal</h4>
+                </div>
+                <div class="card-body" id="teamText">
+                    <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
                 </div>
             </div>
         </div>

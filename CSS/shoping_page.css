@@ -1,33 +1,105 @@
  h1, h2 {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: white;
-  }
+   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-weight: 700;
+   color: white;
+ }
 
+ footer.footer {
+   padding-top: 10px;
+   padding-bottom: 30px;
+ }
 
-  footer.footer {
-    padding-top: 10px;
-    padding-bottom: 30px;
-  }
-  
-   /* header */
+ /* header */
 
-   header.masthead {
-    position: relative;
-    background: url("image/splash-back.jpeg") no-repeat center center;
-    background-size: cover;
-    padding-top: 30px;
-  }
-  
+ header.masthead {
+   position: relative;
+   background: url("image/splash-back.jpeg") no-repeat center center;
+   background-size: cover;
+   padding-top: 30px;
+ }
 
-  /* header overlay  */
-  header.masthead .overlay {
-    position: absolute;
-    background-color: #212529;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-  }
+ /* header overlay  */
 
+ header.masthead .overlay {
+   position: absolute;
+   background-color: #212529;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   opacity: 0.3;
+ }
+
+ /* table  */
+
+ th.product {
+   width: 50%
+ }
+
+ th.space {
+   width: 10%
+ }
+
+ th.quantity {
+   width: 20%
+ }
+
+ th.text-center {
+   width: 10%
+ }
+
+ ul.mybuttons {
+   padding: 5px;
+   list-style: none;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr;
+   gap: 1px 1px;
+ }
+
+ h4.nomargin{
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: 500;
+}
+ /* mobie view 0~426px  */
+
+ @media all and (max-width: 426px) {
+   ul.mybuttons {
+     list-style: none;
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr 1fr;
+   }
+   li.table-button1 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   #warning-button, #primary-button, #success-button {
+     padding-left: auto;
+     padding-right: auto;
+     width: 300px;
+   }
+   li.table-button2 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   li.table-button3 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   th.product {
+     width: 30%
+   }
+
+   th.quantity {
+     width: 5%
+   }
+   th.space {
+     padding: 8.5%;
+   }
+   h4.nomargin{
+     padding-left: 5px;
+     font-size: 20px;
+   }
+ }
