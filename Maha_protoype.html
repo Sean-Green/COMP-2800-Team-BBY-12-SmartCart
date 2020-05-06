@@ -1,0 +1,49 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="CSS/Maha_prototype.css">
+        <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+        <script src="/Javascript/Maha_prototype.js"></script>
+    </head>
+    <body>
+        <section>
+            <section>
+                <label>List Name: <input type="text" id="nameInput"></label>
+            </section>
+            <section>
+                <label>Num of Times: <input type="number" id="numInput"></label>
+                <section>
+                    <button class="editButton">Save list!</button> 
+                </section>
+            </section>
+        </section>
+
+        <div class="card" id="mainCard">
+            <div class="card-body" id="mainBody">
+                <h2 class="card-title" id="cardTitle">Welcome <span id="userName">nameplaceholder</span>!</h2>
+                <div class="card">
+                    <h4 id="heading1">Your Lists!</h4>
+                    <!--<img class="card-img-top" id="mainCardImg" src="#">-->
+                    <div class="card-body">
+                        <div class="card" id="listCard">
+                            <div class="card">
+                                <ul class="list-group list-group-flush" id="myList">
+                                    <li class="list-group-item">
+                                        <span id="listName">List placeholder</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="listButton">
+                                <a class="btn btn-success" href="itemlist_page.html">Create A New List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    </html>
