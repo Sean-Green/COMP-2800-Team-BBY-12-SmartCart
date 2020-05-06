@@ -36,11 +36,23 @@
    <input type="button" value="Add list to profile" onclick="createListFromName('Thelist')">
    <input type="button" value="Delete list" onclick="deleteListByName('Thelist')">
    <input type="button" value="Display List" onclick="readListByName('Thelist')">
-   <div id="ListItems"></div>
+   <input type="button" value="Build List" onclick="buildListByName('Thelist')">
+
+   <div id="ListItems">
+   </div>
 
    <script>
-      getUserDetails();
-      getUserDisplayName();
+      // getUserDetails();
+      // getUserDisplayName();
+      $(document).ready(function () {
+         firebase.auth().onAuthStateChanged(function (user) {
+            db.collection("Items").onSnapshot(function (doc) {
+               doc.forEach(function (item) {
+                  console.log(item.get('name'));
+               });
+            });
+         });
+      })
    </script>
 </body>
 
