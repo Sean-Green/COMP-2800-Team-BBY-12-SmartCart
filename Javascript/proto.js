@@ -113,10 +113,17 @@ function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
       // First grab a snapshot of the item specified.
       db.doc("Items/" + itemName).onSnapshot(function (item) {
-         console.log(item.data());
-         // Then save it under a specified list.
-         db.collection("Users/" + user.uid + "/" + listName).add(item.data());
-         
+         console.log("Item data being saved: " + item.data());
+         // Now save it under a specified list, .then() get the reference id
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function(docRef){
+            console.log("Document reference id: " + docRef.id);
+            //
+            db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
+               "qty" : qty
+            }, {
+               merge : true
+            });
+         });
       });
    });   
 }
