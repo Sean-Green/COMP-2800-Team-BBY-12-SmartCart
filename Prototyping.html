@@ -33,15 +33,17 @@
    </header>
 
    <div id="HelloUser"></div>
-   <input type="button" value="Add list to profile" onclick="createListFromName('Thelist')">
-   <input type="button" value="Delete list" onclick="deleteListByName('Thelist')">
+   <!-- <input type="button" value="Add list to profile" onclick="createListFromName('Thelist')"> -->
+   <!-- <input type="button" value="Delete list" onclick="deleteListByName('Thelist')">
    <input type="button" value="Display List" onclick="readListByName('Thelist')">
-   <input type="button" value="Build List" onclick="buildListByName('Thelist')">
+   <input type="button" value="Build List" onclick="buildListByName('Thelist')"> -->
+   <input type="button" value="Display List" onclick="saveItemToList('Apple', 'List of Apples')">
 
    <ul id="ListItems">
    </ul>
 
    <script>
+      createUser();
       // getUserDetails();
       // getUserDisplayName();
       buildList();
