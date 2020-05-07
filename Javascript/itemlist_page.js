@@ -241,8 +241,6 @@ $(document).ready(function(){
         }
     })
 
-
-        
     db.collection("Items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             let listOfItems = '<option value="'+ doc.get("name") +'">'+ doc.get("name") 
@@ -250,5 +248,5 @@ $(document).ready(function(){
             $("#inputItem").append(listOfItems);
             console.log(doc.data())
         })
-    })  
+    })
 });
