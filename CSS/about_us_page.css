@@ -62,9 +62,11 @@
     margin-bottom: 5px;
 }
 #teamIcon {
+    padding:.25em;
     height: 7em;
     width: 7em;
     align-self: center;
+    border-radius: 3em;
 }
 #teamText {
     text-align: left;

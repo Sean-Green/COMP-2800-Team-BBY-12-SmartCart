@@ -6,6 +6,13 @@
         <title>Item List Page</title>
         <link rel="stylesheet" type="text/css" href="CSS/itemlist_page.css">
         <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <script src="javascript/firebase_config.js"></script>
         <!--link jquery by CDN-->
         <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
         <!----Bootstrap-->
@@ -76,10 +83,6 @@
                 <li id="input1">
                   <select id="inputItem">
                     <option value="Empty">Select Item</option>
-                    <option value="Egg">Eggs</option>
-                    <option value="2% Milk">Milk</option>
-                    <option value="Toilet Paper">Toilet Paper</option>
-                    <option value="N95 Masks">N95 Masks</option>
                   </select>
                 </li>
               </ul>
@@ -121,7 +124,10 @@
           <br>
         </div>
       </div>
+<<<<<<< HEAD
+=======
 
+>>>>>>> Maha_dbAddSave
         <!----Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
