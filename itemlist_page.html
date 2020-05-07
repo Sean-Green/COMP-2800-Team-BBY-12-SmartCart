@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
         <script src="Javascript/main_page.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="Javascript/proto.js"></script>
     </head>
     <body>
       
@@ -109,7 +110,8 @@
                 <button id ="theaddbutton" class="button additembutton">ADD ITEM</button>
               </article>
               <article>
-                <button id ="thesavelistbutton" class="button savelistbutton">SAVE LIST</button>
+                <button id ="thesavelistbutton" class="button savelistbutton" onclick="saveItemToList('Beans', 'List of Apples', 3)">SAVE LIST</button>
+                <!-- <input type="button" value="SAVE LIST" onclick="saveItemToList('Beans', 'List of Apples', 3)"> -->
               </article>
             </div>
             <div id="donebutton">
