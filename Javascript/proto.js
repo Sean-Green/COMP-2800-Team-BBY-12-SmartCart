@@ -1,3 +1,4 @@
+//test
 // Function that creates a new document in the users collection
 function createUser() {
    // if the current user logged in user
@@ -39,13 +40,13 @@ function getUserDetails() {
 function createListFromName(listName) {
    //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      //enter the user document and check that the listname doesnt already exist
+      //Get a reference to the collection which will serve as our list
       listRef = db.collection("Users/" + user.uid + "/" + listName);
-      //for each item in the /Items/ collection
+      //Get a snapshot of all the item documents in the Items collection
       db.collection("Items").onSnapshot(function (docS) {
-         //each 'item' is a doc with item details
+         // for each document in the item collect
          docS.forEach(function (item) {
-            // creates a new document that is a copy of the item document.
+            // make a copy of it in the users list.
             listRef.add(item.data());
          });
       });
@@ -62,7 +63,7 @@ function deleteListByName(listName) {
 //Read a list from DB by name string
 function readListByName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
-      db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
+      db.doc("Users/" + user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
          $('#ListItems').text("eggs: " + doc.get("eggs"));
 
       });
@@ -98,31 +99,41 @@ function buildListByName(listName) {
 
 function buildList() {
    $(document).ready(function () {
-      firebase.auth().onAuthStateChanged(function (user) {
+         // READ Collection
          db.collection("Items").onSnapshot(function (doc) {
             doc.forEach(function (item) {
                $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
             });
          });
-      });
+     
    })
 }
 
 function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
+      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.
       db.doc("Items/" + itemName).onSnapshot(function (item) {
-         console.log("Item data being saved: " + item.data());
+         console.log(item.data());
+         // Save list under user listNames array
+         db.doc("Users/" + user.uid).set({
+            "listNames":[listName]
+         }, {
+            merge: true
+         });
+         // GOOD CODE SHOULD GO HERE
+
          // Now save it under a specified list, .then() get the reference id
-         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function(docRef){
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
             console.log("Document reference id: " + docRef.id);
-            //
+            // WRITE set ONLY WORKS ON DOCS 
+            // Using that docRef we can set the items qty
             db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
-               "qty" : qty
+               "qty": qty
             }, {
-               merge : true
+               merge: true
             });
          });
       });
-   });   
+   });
 }
