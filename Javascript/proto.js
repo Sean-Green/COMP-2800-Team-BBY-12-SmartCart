@@ -1,20 +1,22 @@
 //test
 // Function that creates a new document in the users collection
-function createUser() {
-   // if the current user logged in user
-   // is authenticated, then grab "uid" "displayName" and "email"
-   // use "set()" with merge (if document did not exist it will be created)
+function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
-      // var ref = db.ref("Users/" + user.uid);
-      // ref.once("value").then(function(snapshot) {
-      //    console.log(snapshot.data());
-      // });
-      db.collection("Users").doc(user.uid).set({
-         "name": user.displayName,
-         "email": user.email,
-         //             "listNames": []
-      }, {
-         merge: true
+      db.doc("Users/" + user.uid).get().then(function (doc) {
+         if (doc.exists) {
+            console.log("User Exists:", doc.data());
+         } else {
+            db.collection("Users").doc(user.uid).set({
+               "name": user.displayName,
+               "email": user.email,
+               "listNames": []
+            }, {
+               merge: true
+            });
+            console.log("User Added");
+         }
+      }).catch(function (error) {
+         console.log("Error getting document:", error);
       });
    });
 }
@@ -112,18 +114,17 @@ function buildList() {
 
    })
 }
-
+/* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
       // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).onSnapshot(function (item) {
-         // console.log(item.data());
-         // check listNames array for listname
-         ////////////////////////////////////////////////////////////////////////////////////////////
-         db.doc("Users/" + user.uid).onSnapshot(function (userDoc) {
+      db.doc("Items/" + itemName).get().then(function (item) {
+         console.log(item.data());
+         // check listNames array for listname////////////////////////////////////////
+         db.doc("Users/" + user.uid).get().then(function (userDoc) {
             var userLists = userDoc.get("listNames");
-            console.log(userLists); //////////////
+            console.log(userLists); 
             var nameExists = false;
             for (i = 0; i < userLists.length && !nameExists; i++) {
                if (userLists[i] == listName) {

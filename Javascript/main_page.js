@@ -1,17 +1,25 @@
 // Fucntion that creates a new document in the users collection
-function createUser() {
-   // if the current user logged in user
-   // is authenticated, then grab "uid" "displayName" and "email"
-   // use "set()" with merge (if document did not exist it will be created)
-   firebase.auth().onAuthStateChanged(function (user) {
-       db.collection("Users").doc(user.uid).set({
-           "name": user.displayName,
-           "email": user.email,
-       }, {
-           merge: true
+// Function that creates a new document in the users collection
+function manageUser() {
+    firebase.auth().onAuthStateChanged(function (user) {
+       db.doc("Users/" + user.uid).get().then(function (doc) {
+          if (doc.exists) {
+             console.log("User Exists:", doc.data());
+          } else {
+             db.collection("Users").doc(user.uid).set({
+                "name": user.displayName,
+                "email": user.email,
+                "listNames": []
+             }, {
+                merge: true
+             });
+             console.log("User Added");
+          }
+       }).catch(function (error) {
+          console.log("Error getting document:", error);
        });
-   });
-}
+    });
+ }
 
 // logs the user out, should be called from a link to the splash page.
 function logOut(){
