@@ -90,6 +90,7 @@
         border-radius: 5px;
     }
 
+
     #contentcontainer{
         background-color: white;
         margin: 20px;
@@ -115,6 +116,17 @@
         color: white;
         border-radius: 5px;
     } */
+
+    #contentcontainer{
+        background-color: white;
+        margin: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color:  rgb(71, 163, 71);
+    }
+
+    
 
     #listcontainer{
         border: 2px solid lightgreen;

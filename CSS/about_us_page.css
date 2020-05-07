@@ -54,27 +54,27 @@
     margin-right: auto;
     display: block;
 }
-#listCard {
-    text-align: center;
-    height: fit-content;
-    /** width: fit-content; */
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    border: lightgreen solid;
-}
 #mainBody {
     background-color: lightgreen;
 }
-#heading1 {
-    padding-top: 5px;
-    margin-bottom: 0px;
+#teamCard {
+    border: solid 2px green;
+    margin-bottom: 5px;
 }
-
-/** Buttons css */
-#locationButtons {
-    margin: 10px;
+#teamIcon {
+    padding:.25em;
+    height: 7em;
+    width: 7em;
+    align-self: center;
+    border-radius: 3em;
 }
-#listButton {
-    margin: 10px;
+#teamText {
+    text-align: left;
+}
+#teamIN {
+    display: flex;
+    justify-content: start;
+}
+#teamMem {
+    padding-top: 1.5em;
 }
