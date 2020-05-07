@@ -40,7 +40,7 @@ $(document).ready(function () {
             $('#listarea3').html(content + p);
             $('#quantitymagic' + id).appendTo('#listarea3');
             // quantityholder.push(itemname);
-            quantityholder.push(0);
+            quantityholder.push(itemname);
             //console.log("quantity is" + itemname);
             id++;
         }
@@ -179,7 +179,7 @@ $(document).ready(function () {
         }
 
         //incrementation
-        newholder[id] = newholder[id] + 1;
+        newholder[id]++;
         //not sure if we need this code below but doesnt look like it keep for now though
         // newholder[id] = quantityholder[id];
 

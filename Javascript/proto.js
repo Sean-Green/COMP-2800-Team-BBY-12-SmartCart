@@ -8,6 +8,7 @@ function createUser() {
       db.collection("Users").doc(user.uid).set({
          "name": user.displayName,
          "email": user.email,
+         "listNames": []
       }, {
          merge: true
       });
@@ -35,17 +36,19 @@ function getUserDetails() {
    });
 };
 
-//Basic write function, note the list name in the header
+// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
 function createListFromName(listName) {
+   //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      //Specify the base collection and then the doc path
-      db.doc("Users/" + user.uid + "/Lists/" + listName).set({
-         //Give it JSON objects
-         "eggs": "12",
-         "bacon": "20",
-      }, {
-         //Set merge true if you want to add to a list, set false if you want to overwrite.
-         merge: true
+      //Get a reference to the collection which will serve as our list
+      listRef = db.collection("Users/" + user.uid + "/" + listName);
+      //Get a snapshot of all the item documents in the Items collection
+      db.collection("Items").onSnapshot(function (docS) {
+         // for each document in the item collect
+         docS.forEach(function (item) {
+            // make a copy of it in the users list.
+            listRef.add(item.data());
+         });
       });
    });
 }
@@ -99,9 +102,28 @@ function buildList() {
       firebase.auth().onAuthStateChanged(function (user) {
          db.collection("Items").onSnapshot(function (doc) {
             doc.forEach(function (item) {
-               $('#ListItems').append('<li>' + item.get('name') + '</li>');
+               $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
             });
          });
       });
    })
+}
+
+function saveItemToList(itemName, listName, qty) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      // First grab a snapshot of the item specified.
+      db.doc("Items/" + itemName).onSnapshot(function (item) {
+         console.log("Item data being saved: " + item.data());
+         // Now save it under a specified list, .then() get the reference id
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function(docRef){
+            console.log("Document reference id: " + docRef.id);
+            //
+            db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
+               "qty" : qty
+            }, {
+               merge : true
+            });
+         });
+      });
+   });   
 }
