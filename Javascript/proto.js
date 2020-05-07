@@ -107,3 +107,15 @@ function buildList() {
       });
    })
 }
+
+function saveItemToList(itemName, listName, qty) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      // First grab a snapshot of the item specified.
+      db.doc("Items/" + itemName).onSnapshot(function (item) {
+         console.log(item.data());
+         // Then save it under a specified list.
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data());
+         
+      });
+   });   
+}
