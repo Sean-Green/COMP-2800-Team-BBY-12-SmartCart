@@ -32,4 +32,11 @@ function getUserDisplayName() {
           name = 'fran';
        }
     });
+
+    $("#editListBtn").on("click", function(){
+        let p = "<li class='list-group-item' id='myList'><a href='itemlist_page.html'><span id='listName' class=removebutton>&#10060;&nbsp;</span><span>List placeholder</span></a></li>"
+        $("#ulList").html(p);
+    })
+
+
  };
