@@ -99,31 +99,37 @@ function buildListByName(listName) {
 
 function buildList() {
    $(document).ready(function () {
-      firebase.auth().onAuthStateChanged(function (user) {
+         // READ Collection
          db.collection("Items").onSnapshot(function (doc) {
             doc.forEach(function (item) {
                $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
             });
          });
-      });
+     
    })
 }
 
 function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
+      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.
       db.doc("Items/" + itemName).onSnapshot(function (item) {
-         console.log("Item data being saved: " + item.data());
+         console.log(item.data());
+         // Save list under user listNames array
+
+         // GOOD CODE SHOULD GO HERE
+
          // Now save it under a specified list, .then() get the reference id
-         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function(docRef){
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
             console.log("Document reference id: " + docRef.id);
-            //
+            // WRITE set ONLY WORKS ON DOCS 
+            // Using that docRef we can set the items qty
             db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
-               "qty" : qty
+               "qty": qty
             }, {
-               merge : true
+               merge: true
             });
          });
       });
-   });   
+   });
 }
