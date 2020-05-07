@@ -39,7 +39,7 @@ function getUserDetails() {
 function createListFromName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
       //Specify the base collection and then the doc path
-      db.collection("Users/").doc(user.uid + "/Lists/" + listName).set({
+      db.doc("Users/" + user.uid + "/Lists/" + listName).set({
          //Give it JSON objects
          "eggs": "12",
          "bacon": "20",
@@ -60,7 +60,7 @@ function deleteListByName(listName) {
 //Read a list from DB by name string
 function readListByName(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
-      db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
+      db.doc("Users/" + user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
          $('#ListItems').text("eggs: " + doc.get("eggs"));
 
       });
