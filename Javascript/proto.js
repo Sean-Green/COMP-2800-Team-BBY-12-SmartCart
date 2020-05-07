@@ -101,7 +101,7 @@ function buildList() {
       firebase.auth().onAuthStateChanged(function (user) {
          db.collection("Items").onSnapshot(function (doc) {
             doc.forEach(function (item) {
-               $('#List').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
+               $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
             });
          });
       });
