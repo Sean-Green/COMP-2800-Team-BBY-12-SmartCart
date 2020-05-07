@@ -119,10 +119,10 @@ function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
       // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).onSnapshot(function (item) {
-         // console.log(item.data());
+      db.doc("Items/" + itemName).get().then(function (item) {
+         console.log(item.data());
          // check listNames array for listname////////////////////////////////////////
-         db.doc("Users/" + user.uid).onSnapshot(function (userDoc) {
+         db.doc("Users/" + user.uid).get().then(function (userDoc) {
             var userLists = userDoc.get("listNames");
             console.log(userLists); 
             var nameExists = false;
