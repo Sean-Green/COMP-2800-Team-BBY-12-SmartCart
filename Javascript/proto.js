@@ -116,7 +116,11 @@ function saveItemToList(itemName, listName, qty) {
       db.doc("Items/" + itemName).onSnapshot(function (item) {
          console.log(item.data());
          // Save list under user listNames array
-
+         db.doc("Users/" + user.uid).set({
+            "listNames":[listName]
+         }, {
+            merge: true
+         });
          // GOOD CODE SHOULD GO HERE
 
          // Now save it under a specified list, .then() get the reference id
