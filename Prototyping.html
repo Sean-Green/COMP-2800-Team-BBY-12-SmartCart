@@ -37,13 +37,15 @@
    <!-- <input type="button" value="Delete list" onclick="deleteListByName('Thelist')">
    <input type="button" value="Display List" onclick="readListByName('Thelist')">
    <input type="button" value="Build List" onclick="buildListByName('Thelist')"> -->
-   <input type="button" value="Display List" onclick="saveItemToList('Detergent', 'List of Apples', 3)">
+   <input type="button" value="Add Detergent to DetergentList" onclick="saveItemToList('Detergent', 'DetergentList', 3)">
+   <input type="button" value="Add Apples to AppleList" onclick="saveItemToList('Apple', 'AppleList', 5)">
+   <input type="button" value="Add Eggs to EggList" onclick="saveItemToList('Eggs', 'EggList', 12)">
 
    <ul id="ListItems">
    </ul>
 
    <script>
-      createUser();
+      manageUser();
       // getUserDetails();
       // getUserDisplayName();
       buildList();

@@ -55,20 +55,15 @@
                 <div class="card-body">
                     <div class="card" id="listCard">
                         <div class="card">
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush" id="ulList">
                                 <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> <span id="listName">List placeholder</span></a>
-                                </li>
-                                <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> List placeholder</a>
-                                </li>
-                                <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> List placeholder</a>
+                                    <a href="itemlist_page.html"> <span id="listName" class=removebutton>&#10060;&nbsp;List placeholder</span></a>
                                 </li>
                             </ul>
                         </div>
                         <div id="listButton">
                             <a class="btn btn-success" href="itemlist_page.html">Create A New List</a>
+                            <a class="btn btn-success" id="editListsBtn">Edit Lists</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +71,7 @@
         </div>
     </div>
     <script>
-        createUser();
+        manageUser();
         getUserDisplayName();
     </script>
     <!----Bootstrap-->
