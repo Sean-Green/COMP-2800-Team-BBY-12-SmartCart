@@ -7,6 +7,7 @@ function createUser() {
       db.collection("Users").doc(user.uid).set({
          "name": user.displayName,
          "email": user.email,
+         "listNames": []
       }, {
          merge: true
       });
@@ -34,17 +35,19 @@ function getUserDetails() {
    });
 };
 
-//Basic write function, note the list name in the header
+// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
 function createListFromName(listName) {
+   //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      //Specify the base collection and then the doc path
-      db.collection("Users/").doc(user.uid + "/Lists/" + listName).set({
-         //Give it JSON objects
-         "eggs": "12",
-         "bacon": "20",
-      }, {
-         //Set merge true if you want to add to a list, set false if you want to overwrite.
-         merge: true
+      //enter the user document and check that the listname doesnt already exist
+      listRef = db.collection("Users/" + user.uid + "/" + listName);
+      //for each item in the /Items/ collection
+      db.collection("Items").onSnapshot(function (docS) {
+         //each 'item' is a doc with item details
+         docS.forEach(function (item) {
+            // creates a new document that is a copy of the item document.
+            listRef.add(item.data());
+         });
       });
    });
 }
@@ -98,7 +101,7 @@ function buildList() {
       firebase.auth().onAuthStateChanged(function (user) {
          db.collection("Items").onSnapshot(function (doc) {
             doc.forEach(function (item) {
-               $('#ListItems').append('<li>' + item.get('name') + " "+ item.get('size') + item.get('units') + '</li>');
+               $('#List').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
             });
          });
       });
