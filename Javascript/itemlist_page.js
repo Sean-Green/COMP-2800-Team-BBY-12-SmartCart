@@ -259,8 +259,8 @@ $(document).ready(function () {
     
 
     $("#theaddbutton").on("click",function(){
-        let x = "list of apples";
-        let y = "Apple";
+        let x = "list of apples"
+        let y = "apple"
         let z = 1;
         saveItemToList(y,x,z);
     });

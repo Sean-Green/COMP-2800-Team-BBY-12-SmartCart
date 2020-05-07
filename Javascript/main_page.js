@@ -33,10 +33,37 @@ function getUserDisplayName() {
        }
     });
 
-    $("#editListBtn").on("click", function(){
-        let p = "<li class='list-group-item' id='myList'><a href='itemlist_page.html'><span id='listName' class=removebutton>&#10060;&nbsp;</span><span>List placeholder</span></a></li>"
-        $("#ulList").html(p);
-    })
 
+    
+
+    // $("#editListBtn").on("click", function(){
+    //     let p = "<li class='list-group-item' id='myList'><a href='itemlist_page.html'><span id='listName' class=removebutton>&#10060;&nbsp;</span><span>List placeholder</span></a></li>"
+    //     $("#ulList").html(p);
+    // })
+
+    // db.ref("/Users" + user.uid).get().then(function(snapshot) {
+    //     snapshot.docs.forEach(doc => {
+    //         let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ doc.get("ListNames") + '</span></a></li>'
+    //         $("#inputItem").append(listOfLists);
+    //         console.log(doc.data())
+    //     })
+    // })
 
  };
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.doc("Users/" + user.uid).get().then((snapshot) => {
+        var userLists = userList.get("listNames");
+        console.log(userLists); 
+        var nameExists = false;
+        for (i = 0; i < userLists.length && !nameExists; i++) {
+           if (userLists[i] == listName) {
+              nameExists = true;
+           }
+        }
+    })
+        
+    })
+
+    
+// let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ doc.get("ListNames") + '</span></a></li>'
+            // $("#inputItem").append(listOfLists);
