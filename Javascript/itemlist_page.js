@@ -218,7 +218,11 @@ $(document).ready(function () {
         }
     })
 
+<<<<<<< HEAD
     //maha code to link database item selection to our items
+=======
+    //get list of items from database and append them to the drop down menu. 
+>>>>>>> dev
     db.collection("Items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             let listOfItems = '<option value="' + doc.get("name") + '">' + doc.get("name") +
@@ -227,4 +231,18 @@ $(document).ready(function () {
             console.log(doc.data())
         })
     })
+
+    //get the item name when you click add item 
+    let itemNameInList = $(".additembutton").on("click", function(){
+                            let x = $("#inputItem").val();
+                            console.log(x);
+                        })
+    
+
+    $("#theaddbutton").on("click",function(){
+        let x = "list of apples";
+        let y = "Apple";
+        let z = 1;
+        saveItemToList(y,x,z);
+    });
 });

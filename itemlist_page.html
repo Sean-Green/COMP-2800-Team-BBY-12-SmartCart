@@ -6,6 +6,7 @@
         <title>Item List Page</title>
         <link rel="stylesheet" type="text/css" href="CSS/itemlist_page.css">
         <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+        <link rel="icon" type="image/png" href="/image/SCfavicon.png">
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
         <!-- Add Firebase products that you want to use -->
@@ -18,6 +19,7 @@
         <!----Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
         <script src="Javascript/main_page.js"></script>
+        <script src="Javascript/proto.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="Javascript/proto.js"></script>
     </head>
@@ -26,17 +28,17 @@
       <!-- Nav bar from Maha -->
       <nav class="navbar sticky-top" id="navbarPrimary">
         <div id="logo">
-          <a href="main_page.html" id="logoName">SmartCart</a>
+            <a href="main_page.html" id="logoName">SmartCart</a>
         </div>
         <div class="dropdown">
-          <button class="dropdownButton">Dropdown
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="#">Account</a>
-            <a href="#">Lists</a>
-            <a href="splash_page.html" on click="logout">Logout</a>
-          </div>
+            <button class="dropdownButton">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="itemlist_page.html">Lists</a>
+                <a href="about_us_page.html">About Us</a>
+                <a href="splash_page.html" on click="logout">Logout</a>
+            </div>
         </div>
       </nav>
 
