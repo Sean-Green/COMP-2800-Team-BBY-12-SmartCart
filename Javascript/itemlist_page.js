@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     //item list page click add button to list the inputted Item Weight Quantity
     let id = 0;
+
     $('#theaddbutton').on('click', function () {
         if (addchecker[0] == true) {
             let content = $('#listarea1').html();
@@ -50,6 +51,7 @@ $(document).ready(function () {
             //console.log("weight is" + itemname);
 
 
+
             content = $('#listarea3').html();
             itemname = $('#inputQuantity').val();
             if (!$('#inputQuantity').val()) {
@@ -64,6 +66,7 @@ $(document).ready(function () {
             //console.log("quantity is" + itemname);
             id++;
         }
+
     })
 
 
@@ -359,4 +362,5 @@ $(document).ready(function () {
             $(".goshopbutton").css("color", "green");
         }
     });
+
 });

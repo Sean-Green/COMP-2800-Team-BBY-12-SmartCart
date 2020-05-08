@@ -1,4 +1,4 @@
-// Fucntion that creates a new document in the users collection
+
 // Function that creates a new document in the users collection
 function manageUser() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -83,3 +83,4 @@ $(document).on("click","#editListsBtn", function(){
     editMode = !editMode;
 })
     
+
