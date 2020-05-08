@@ -95,16 +95,12 @@ function saveItemToList(itemName, listName, qty) {
                });
             }
             // Now save it under a specified list and .then() get the reference id
-            db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
-               // console.log("Document reference id: " + docRef.id);
-               // WRITE set ONLY WORKS ON DOCS 
-               // Using that docRef we can set the items qty
-               db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
-                  "qty": qty
-               }, {
-                  merge: true
-               });
-            });
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({
+               "qty": qty
+            }, {
+               merge: true
+            })
          });
       });
    });
@@ -112,6 +108,7 @@ function saveItemToList(itemName, listName, qty) {
 
 //Delete list by name string
 function deleteListByName(listName) {
+   listName += "";
    firebase.auth().onAuthStateChanged(function (user) {
       //Delete the listName from the array
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
@@ -139,6 +136,23 @@ function deleteListByName(listName) {
    });
 }
 
+function compareUserToStoreList(userList, storeName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      const USER = db.collection('Users/' + user.uid + "/" + userList).orderBy("name");
+      const STORE = db.collection('Stores/' + storeName + "/unavailable").orderBy("name");
+      unavailableItems = {};
+      i = 0;
+      USER.get().then((userItems) => {
+         STORE.get().then((storeItems) => {
+            userItems.forEach((uItem) => {
+               itemName = uItem.get("name");
+
+            });
+         });
+      });
+   });
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
 //////////////////////////////////////////////////////////////////////////////////
@@ -150,15 +164,28 @@ function deleteListByName(listName) {
 function createFullList(listName) {
    //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      //Get a reference to the collection which will serve as our list
-      listRef = db.collection("Users/" + user.uid + "/" + listName);
-      //Get a snapshot of all the item documents in the Items collection
-      db.collection("Items").get().then(function (docS) {
-         // for each document in the item collect
-         qty = 1;
-         docS.forEach(function (item) {
-            // make a copy of it in the users list.
-            saveItemToList(item.get("name"), listName, qty++);
+      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
+      // First grab a snapshot of the item specified.`
+      db.doc("Items/" + itemName).onSnapshot(function (item) {
+         console.log(item.data());
+         // Save list under user listNames array
+         db.doc("Users/" + user.uid).set({
+            "listNames": [listName]
+         }, {
+            merge: true
+         });
+         // GOOD CODE SHOULD GO HERE
+
+         // Now save it under a specified list, .then() get the reference id
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
+            console.log("Document reference id: " + docRef.id);
+            // WRITE set ONLY WORKS ON DOCS 
+            // Using that docRef we can set the items qty
+            db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
+               "qty": qty
+            }, {
+               merge: true
+            });
          });
       });
    });
@@ -171,10 +198,11 @@ function createRandomShopShortageList(shopName) {
    //Get a snapshot of all the item documents in the Items collection
    db.collection("Items").get().then(function (docS) {
       // for each document in the item collect
-      qty = 1;
       docS.forEach(function (item) {
          // make a copy of it in the users list.
-         saveItemToList(item.get("name"), listName, qty++);
+         if (getRandomInt(1, 3) == 2) {
+            listRef.doc(item.get("name")).set(item.data());
+         }
       });
    });
 
@@ -190,3 +218,11 @@ function buildList() {
       });
    })
 }
+
+//helper
+function getRandomInt(min, max) {
+   min = Math.ceil(min);
+   max = Math.floor(max);
+   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
