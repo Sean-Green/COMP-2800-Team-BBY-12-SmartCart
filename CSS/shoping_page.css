@@ -1,33 +1,231 @@
+ /** Navbar and logo css*/
+#navbarPrimary {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+}
+#logoName {
+  color: green;
+  letter-spacing: 1px;
+  font-size: xx-large;
+}
+/** navbar dropdown css*/
+.dropdownButton {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}  
+.dropdown {
+  position: relative;
+  float: right;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: green;
+  min-width: 160px;
+  z-index: 1;
+  right: 0;
+}
+.dropdown-content a {
+  color: white;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: darkgrey;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropdownButton {
+  background-color: #1b421c;
+}
+ 
+
+
+ul.countbutton {
+  padding: 5px;
+  list-style: none;
+  display: flex;
+}
+
+
+.onoffswitch {
+  position: relative; width: 123px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  display: none;
+}
+.onoffswitch-label {
+  display: block; overflow: hidden; cursor: pointer;
+  border: 2px solid #999999; border-radius: 23px;
+}
+.onoffswitch-inner {
+  display: block; width: 200%; margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block; float: left; width: 50%; height: 35px; padding: 0; line-height: 35px;
+  font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+  content: "Available";
+  padding-left: 8px;
+  background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+  content: "Unavailable";
+  padding-right: 8px;
+  background-color: #F03E3E; color: #FFFFFF;
+  text-align: right;
+}
+.onoffswitch-switch {
+  display: block; width: 18px; margin: 8.5px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 84px;
+  border: 2px solid #999999; border-radius: 23px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; 
+}
+
+
+
  h1, h2 {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: white;
-  }
+   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-weight: 700;
+   color: white;
+ }
+
+ footer.footer {
+   padding-top: 10px;
+   padding-bottom: 30px;
+ }
+
+ /* header */
+
+ header.masthead {
+   position: relative;
+   background: url("image/splash-back.jpeg") no-repeat center center;
+   background-size: cover;
+   padding-top: 30px;
+ }
+
+ /* header overlay  */
+
+ header.masthead .overlay {
+   position: absolute;
+   background-color: #212529;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   opacity: 0.3;
+ }
+
+ /* table  */
+
+ th.product {
+   width: 50%
+ }
+
+ th.space {
+   width: 10%
+ }
+
+ th.quantity {
+   width: 20%
+ }
+
+ th.text-center {
+   width: 10%
+ }
+
+ ul.mybuttons {
+   padding: 5px;
+   list-style: none;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr;
+   gap: 1px 1px;
+ }
+
+ li.table-button1 {
+  margin-left: 10%;
+  margin-bottom: 20px;
+}
+#warning-button, #primary-button, #success-button {
+  padding-left: auto;
+  padding-right: auto;
+  width: 300px;
+}
+li.table-button2 {
+  margin-left: 20%;
+  margin-bottom: 20px;
+}
+li.table-button3 {
+  margin-left: 20%;
+  margin-bottom: 20px;
+}
 
 
-  footer.footer {
-    padding-top: 10px;
-    padding-bottom: 30px;
-  }
-  
-   /* header */
+ h4.nomargin{
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: 500;
+}
 
-   header.masthead {
-    position: relative;
-    background: url("image/splash-back.jpeg") no-repeat center center;
-    background-size: cover;
-    padding-top: 30px;
-  }
-  
 
-  /* header overlay  */
-  header.masthead .overlay {
-    position: absolute;
-    background-color: #212529;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-  }
+ /* mobie view 0~426px  */
 
+ @media all and (max-width: 426px) {
+   ul.mybuttons {
+     list-style: none;
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr 1fr;
+   }
+   li.table-button1 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   #warning-button, #primary-button, #success-button {
+     padding-left: auto;
+     padding-right: auto;
+     width: 300px;
+   }
+   li.table-button2 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   li.table-button3 {
+     margin-left: 10%;
+     margin-bottom: 20px;
+   }
+   th.product {
+     width: 30%
+   }
+
+   th.quantity {
+     width: 5%
+   }
+   th.space {
+     padding: 8.5%;
+   }
+   h4.nomargin{
+     padding-left: 5px;
+     font-size: 20px;
+   }
+ }

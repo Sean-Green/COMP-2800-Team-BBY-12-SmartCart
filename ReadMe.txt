@@ -6,3 +6,6 @@ Authors :
    Sean Green
    Donggyun Kim
    Maha Rehal
+   
+   
+   Host Link : https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html

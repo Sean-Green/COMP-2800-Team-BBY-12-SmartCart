@@ -3,6 +3,10 @@
 /* for screen size less than 500px (Mobile View) */
 @media only screen and (max-width: 500px){
 
+    #inputQuantity{
+        height: 18px !important;
+    }
+
     #maincontainer{
         background-color: lightgreen;
     }
@@ -25,7 +29,7 @@
     }
 
     #listname1{
-        flex-grow: 0.4;
+        flex-grow: 0;
     }
 
     #listname2span{
@@ -33,8 +37,36 @@
         padding: 14px 28px;
         display: inline-block;
         font-weight: bold;
-
     }
+
+    #inputWeight{
+        visibility: hidden;
+    }
+
+
+    .goshopbutton{
+        color: rgb(169, 175, 168);
+        border:none;
+        background-color:inherit;
+        padding: 14px 28px;
+        font-size:60px;
+        cursor: pointer;
+        display:inline-block;
+       
+    }
+
+    .goshopbutton:hover {
+        background-color:rgb(144, 146, 144);
+        color: rgb(200, 200, 200);
+        border-radius: 5px;
+    }
+
+    .backbutton:hover {
+        background-color:rgb(146, 155, 179);
+        color: white;
+        border-radius: 5px;
+    }
+
 
     .editbutton{
         color: orange;
@@ -42,6 +74,7 @@
 
     .editbutton:hover {
         background-color:rgb(247, 115, 54);
+        color: white;
         border-radius: 5px;
     }
 
@@ -54,6 +87,49 @@
         display:inline-block;
     }
 
+    .editbutton1{
+        border: none;
+        background-color: inherit;
+        padding: 14px 28px;
+        font-size:20px;
+        cursor: pointer;
+        display:inline-block;
+        color: rgb(230, 124, 228);
+    }
+
+    .editbutton1:hover{
+        background-color: rgb(233, 32, 116);
+        color: white;
+        border-radius: 5px;
+    }
+
+
+    #contentcontainer{
+        background-color: white;
+        margin: 20px;
+        padding: 30px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color:  rgb(71, 163, 71);
+    }
+
+    /* .editbutton2{
+        border: none;
+        background-color: inherit;
+        padding: 4px 8px;
+        font-size:15px;
+        cursor: pointer;
+        display:inline-block;
+        color: rgb(228, 70, 49);
+        font-weight: bold;
+    }
+
+    .editbutton2:hover{
+        background-color: rgb(226, 89, 89);
+        color: white;
+        border-radius: 5px;
+    } */
+
     #contentcontainer{
         background-color: white;
         margin: 20px;
@@ -65,12 +141,30 @@
 
     #listcontainer{
         display: grid;
-        grid-template-columns: 34% 37% 40%;
-        grid-template-rows: 40% 40% 40%;
+
+        grid-template-columns: 40% 20% 40%;
+        grid-template-rows: 15% 40% 40%;
+
         grid-template-areas:
         "one two three"
         "four five six"
         "seven eight nine";
+    }
+
+    .fakedelete{
+        opacity: 0;
+    }
+
+    .removebutton{
+        display: none;
+    }
+
+    .incrementbutton{
+        display: none;
+    }
+
+    .decrementbutton{
+        display: none;
     }
 
     #labelname1{
@@ -115,6 +209,31 @@
         font-size: 12px;
     }
 
+    #listarea1 > li {
+        text-align: center;
+    }
+
+    #labelname1 > article {
+        text-align: center;
+    }
+
+    #listarea2 > li {
+        text-align: center;
+    }
+
+    #labelname2 > article {
+        text-align: center;
+    }
+
+    #listarea3 > li {
+        text-align: center;
+    }
+
+    #labelname3 > article {
+        text-align: center;
+    }
+
+
     #twobuttoncontainer{
         display:flex;
         justify-content: space-around;
@@ -150,6 +269,21 @@
     span{
         font-weight: bold;
     }
+
+    #newlistname {
+        border: 0;
+    }
+
+    #thesavelistbutton {
+        color: rgb(162, 113, 240);
+    }
+
+    #thesavelistbutton:hover {
+        background-color:rgb(253, 49, 94);
+        color: pink;
+        border-radius: 5px;
+    }
+
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -162,6 +296,8 @@
 /* when screen size is greater than 501px (Desktop View) */
 @media screen and (min-width: 501px){
 
+
+
     #maincontainer{
         background-color: lightgreen;
     }
@@ -169,6 +305,10 @@
     .spacer{
         margin: 10px;
         padding: 10px;
+    }
+
+    #inputWeight{
+        visibility: hidden;
     }
 
     #listnamecontainer{
@@ -195,12 +335,38 @@
 
     }
 
+
+    .goshopbutton{
+        color: rgb(169, 175, 168);
+        border:none;
+        background-color:inherit;
+        padding: 14px 28px;
+        font-size:60px;
+        cursor: pointer;
+        display:inline-block;
+       
+    }
+
+    .goshopbutton:hover {
+        background-color:rgb(144, 146, 144);
+        color: rgb(200, 200, 200);
+        border-radius: 5px;
+    }
+
+    .backbutton:hover {
+        background-color:rgb(146, 155, 179);
+        color: white;
+        border-radius: 5px;
+    }
+
+
     .editbutton{
         color: orange;
     }
 
     .editbutton:hover {
         background-color:rgb(247, 115, 54);
+        color: white;
         border-radius: 5px;
     }
 
@@ -212,6 +378,43 @@
         cursor: pointer;
         display:inline-block;
     }
+
+
+    .editbutton1{
+        border: none;
+        background-color: inherit;
+        padding: 14px 28px;
+        font-size:20px;
+        cursor: pointer;
+        display:inline-block;
+        color: rgb(230, 124, 228);
+    }
+
+    .editbutton1:hover{
+        background-color: rgb(233, 32, 116);
+        color: white;
+        border-radius: 5px;
+    }
+
+    /* .editbutton2{
+        border: none;
+        background-color: inherit;
+        padding: 4px 8px;
+        font-size:15px;
+        cursor: pointer;
+        display:inline-block;
+        color: rgb(228, 70, 49);
+        font-weight: bold;
+    }
+
+    .editbutton2:hover{
+        background-color: rgb(226, 89, 89);
+        color: white;
+        border-radius: 5px;
+    } */
+
+
+
 
     #contentcontainer{
         background-color: white;
@@ -230,6 +433,22 @@
         "one two three"
         "four five six"
         "seven eight nine";
+    }
+
+    .fakedelete{
+        opacity: 0;
+    }
+
+    .removebutton{
+        display: none;
+    }
+
+    .incrementbutton{
+        display: none;
+    }
+
+    .decrementbutton{
+        display: none;
     }
 
     #labelname1{
@@ -274,6 +493,30 @@
         font-size: 12px;
     }
 
+    #listarea1 > li {
+        text-align: center;
+    }
+
+    #labelname1 > article {
+        text-align: center;
+    }
+
+    #listarea2 > li {
+        text-align: center;
+    }
+
+    #labelname2 > article {
+        text-align: center;
+    }
+
+    #listarea3 > li {
+        text-align: center;
+    }
+
+    #labelname3 > article {
+        text-align: center;
+    }
+
     #twobuttoncontainer{
         display:flex;
         justify-content: space-around;
@@ -309,4 +552,20 @@
     span{
         font-weight: bold;
     }
+
+
+    #newlistname {
+        border: 0;
+    }
+
+    #thesavelistbutton {
+        color: rgb(162, 113, 240);
+    }
+
+    #thesavelistbutton:hover {
+        background-color:rgb(253, 49, 94);
+        color: pink;
+        border-radius: 5px;
+    }
+
 }

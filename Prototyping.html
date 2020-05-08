@@ -3,11 +3,11 @@
 
 <head>
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title>Smart Cart Login</title>
+   <title>ProtoType Functions</title>
    <meta charset="utf-8" />
    <link rel="stylesheet" type="text/css" href="CSS/login.css">
-   <!--Jquery-->
-   <script type='text/javascript' src='Javascript/jquery-3.5.0.js'></script>
+   <!--link jquery by CDN-->
+   <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
    <!----Bootstrap-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -19,7 +19,8 @@
    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
    <!-- The firebase configuration for our project-->
    <script type='text/javascript' src="Javascript/firebase_config.js"></script>
-   <script src="Javascript/login.js"></script>
+   <!-- Prototyping Javascript file -->
+   <script src="Javascript/proto.js"></script>
 
 </head>
 
@@ -28,19 +29,27 @@
    <!--Header-->
    <header>
       <img src="image/logo.png" alt="logo">
+      <h1>Prototyping Read Write Functions</h1>
    </header>
 
-   <!-- Div that will become our login on script call-->
-   <div id="firebaseui-auth-container"><input type="button" value="Hello" onclick="callForLogin()"></div>
+   <div id="HelloUser"></div>
+   <input type="button" value="Add all groceries to list" onclick="createFullList('All Groceries')">
+   <input type="button" value="Delete list" onclick="deleteListByName('All Groceries')">
+   <input type="button" value="Add Detergent to DetergentList" onclick="saveItemToList('Detergent', 'DetergentList', 3)">
+   <input type="button" value="Add Apples to AppleList" onclick="saveItemToList('Apple', 'AppleList', 5)">
+   <input type="button" value="Add Eggs to EggList" onclick="saveItemToList('Eggs', 'EggList', 12)">
+   <input type="button" value="Abbostford Food Shortage" onclick="createRandomShopShortageList('Abbotsford Supermarket')">
+   <input type="button" value="Compare" onclick="compareUserToStoreList('userList', 'storeList')">
 
+   
+   <ul id="ListItems">
+   </ul>
 
-
-   <!----Bootstrap-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
    <script>
-      // callForLogin();
+      manageUser();
+      // getUserDetails();
+      // getUserDisplayName();
+      buildList();
    </script>
 </body>
 
