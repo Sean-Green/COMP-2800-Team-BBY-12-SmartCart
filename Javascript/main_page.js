@@ -42,16 +42,42 @@ function getUserDisplayName() {
     });
  };
 
+
  // get user lists and display them for the user
-firebase.auth().onAuthStateChanged(function (user) {
+ let editMode = false;
+ //let names = "";
+ function getUserLists (editState){
+    firebase.auth().onAuthStateChanged(function (user) {
     db.doc("Users/" + user.uid).get().then((snapshot) => {
         let userLists = snapshot.get("listNames"); 
-        for (i = 0; i < userLists.length; i++) {
-            let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ userLists[i] + '</span></a></li>'
+        $("#listName").html("");
+        for (i = 0; i < userLists.length; i++) {  
+            let listOfLists = '<li class="list-group-item" id="myList"><div><a><span id="listName'+ i +'">'+ userLists[i] + '</span></a></div><div class="btn btn-danger" id="removeButton'+ i +'">X</div></li>'
+            //names = userLists[i];
+            $("#removeButton" + i).on("click", function(){
+                let x = $("listName" + i).text().trim();
+                console.log(x);
+            })
             $("#listName").append(listOfLists);
+            if (!editState){
+                $("#removeButton" + i).remove();
+            }
             console.log(listOfLists);
         }
-    })   
-})
+        })   
+    })
+ }
 
+ $("#listName").text();
+
+// function to add/remove the remove buttons
+$(document).on("click","#editListsBtn", function(){
+    if(!editMode){
+        getUserLists(true);
+    }
+    else {
+        getUserLists(false);
+    }
+    editMode = !editMode;
+})
     
