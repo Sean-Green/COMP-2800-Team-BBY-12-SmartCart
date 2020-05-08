@@ -1,8 +1,12 @@
 $(document).ready(function () {
 
-    //if true you can use the add button else no
+    //if true you can use the add button else no (only using addchecker[0] as boolean checker)
+    //this is the global array that check boolean that checks if you are valid to add or not
+    //during edit mode you cant add therefore set to false
+    //during done mode you can add therefore set to true 
     var addchecker = [];
     addchecker[0] = true;
+    //this is global array that holds the increments and decrements for item quantity
     var quantityholder = [];
 
     //item list page click add button to list the inputted Item Weight Quantity
@@ -33,7 +37,7 @@ $(document).ready(function () {
             content = $('#listarea3').html();
             itemname = $('#inputQuantity').val();
             if (!$('#inputQuantity').val()) {
-                itemname = 0
+                itemname = 1
             }
             p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
                 "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
@@ -111,26 +115,6 @@ $(document).ready(function () {
         addchecker[0] = true;
     })
 
-    //might remove this function***
-    // //function when click the cancel button for item list name
-    // $(document).on('click', ".editbutton2", function() {
-    //     //reinput the saved string from array[0] as the title
-    //     $("#listname2span").html(array[0]);
-    //     //delete textbox
-    //     $('#newlistname').remove();
-    //     //delete confirm 
-    //     $('.editbutton1').remove();
-    //     //delete cancel
-    //     $('.editbutton2').remove();
-    //     //add edit button
-    //     $("#editbuttondiv").html("<button class=editbutton>EDIT</button>");
-    //     $(".editbutton").addClass("button"); 
-    //     //removes the X remove button
-    //     $('.removebutton').hide();
-    //     //set add checker back to true to allow adds
-    //     addchecker[0] = true;
-    // })
-
     //function that removes the whole line of item on the item list page
     $(document).on('click', ".removebutton", function () {
         let clickedid = $(this).attr('id').replace(/button/, '');
@@ -146,7 +130,6 @@ $(document).ready(function () {
         $("#quantitymagic" + id).remove();
     })
 
-
     //function that increments our quantity item.
     $(document).on('click', ".incrementbutton", function () {
         //Obtains the ID number based from the idname you clicked
@@ -158,30 +141,24 @@ $(document).ready(function () {
                 id = id + clickedid[position];
             }
         }
-        // console.log("id number is " + id);
+        // console.log("From Increment Function - id number is: " + id + " quantity is: " + quantityholder[id]);
 
         //get the current value from the array quantityholder[id](global) which is created when we added the item
         var currentvalue = quantityholder[id];
-        console.log("quantityholder is " + quantityholder[id]);
-        console.log("currentvalue is " + quantityholder[id]);
+        // console.log("quantityholder is " + quantityholder[id]);
+        // console.log("currentvalue is " + currentvalue);
+
         //Only if current value is 0 which means it is the first time incrementing, we will grab the 
-        // quantity information using jquery for the source code
+        //quantity information using jquery for the source code
         //otherwise it will always grab the quantity number from the global array.
         if (currentvalue === 0) {
             currentvalue = $("#quantitymagic" + id).val();
         }
         //created placeholder array because quantityholder array is undefined when used in a if statement to compare
         var newholder = quantityholder;
-        //if the newholder placeholder array isn't equal to currentvalue. it would mean that 
-        //quantityholder[id](global array) is not up to date, therefore this statement will update it.
-        if (newholder[id] !== currentvalue) {
-            quantityholder[id] = currentvalue;
-        }
 
-        //incrementation
-        newholder[id]++;
-        //not sure if we need this code below but doesnt look like it keep for now though
-        // newholder[id] = quantityholder[id];
+        //incrementation (for future reference dont use newholder[id] = newholder[id] + 1)
+        newholder[id]++
 
         //this is our item quantity code that we will dynamically update with each increment.
         p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + newholder[id] +
@@ -241,7 +218,7 @@ $(document).ready(function () {
         }
     })
 
-    //get list of items from database and append them to the drop down menu. 
+    //maha code to link database item selection to our items
     db.collection("Items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             let listOfItems = '<option value="' + doc.get("name") + '">' + doc.get("name") +
@@ -251,17 +228,53 @@ $(document).ready(function () {
         })
     })
 
-    //get the item name when you click add item 
-    let itemNameInList = $(".additembutton").on("click", function(){
-                            let x = $("#inputItem").val();
-                            console.log(x);
-                        })
+    // //get the item name when you click add item 
+    // let itemNameInList = $(".additembutton").on("click", function(){
+    //                         let x = $("#inputItem").val();
+    //                         console.log(x);
+    //                     })
     
 
-    $("#theaddbutton").on("click",function(){
-        let x = "list of apples"
-        let y = "apple"
-        let z = 1;
-        saveItemToList(y,x,z);
+    // $("#theaddbutton").on("click",function(){
+    //     let x = "list of apples";
+    //     let y = "Apple";
+    //     let z = 1;
+    //     saveItemToList(y,x,z);
+    // });
+
+    //function that writes our 
+    $(document).on('click', ".savelistbutton", function () {
+        
+        let listname = array[0].trim();
+        console.log("listname is " + listname);
+        console.log(listname);
+        if(listname === 'Friday'){
+            console.log("fire!!!")
+        }
+        for(let position2 = 0; position2 < 4; position2++){
+            if(position2 == 0){
+                deleteListByName(listname);
+                break;
+            }
+        }
+        
+        let betaitem;
+        let item;
+        let betaquantity;
+        let quantity;
+        let check;
+        
+        for(let position = 0; position <= id; position++){
+            check = $("#magicitem" + position).text()
+            if (check !== ''){
+                betaitem = $("#magicitem" + position).text().trim();
+                betaquantity = $("#quantitymagic" + position).text().trim();
+                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                console.log("quantity is " + quantity);
+                item = betaitem.substring(2);
+                console.log("item is " + item);
+                saveItemToList(item, listname, quantity);
+            } 
+        }
     });
 });

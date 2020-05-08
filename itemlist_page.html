@@ -6,7 +6,7 @@
         <title>Item List Page</title>
         <link rel="stylesheet" type="text/css" href="CSS/itemlist_page.css">
         <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
-        <link rel="icon" type="image/png" href="/image/SCfavicon.png">
+        <link rel="icon" type="image/png" href="image/SCfavicon.png">
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
         <!-- Add Firebase products that you want to use -->
@@ -21,6 +21,7 @@
         <script src="Javascript/main_page.js"></script>
         <script src="Javascript/proto.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="Javascript/proto.js"></script>
     </head>
     <body>
       
@@ -84,7 +85,7 @@
                 <!-- <li id="input1"><input type='text' id="inputItem" class="theinput" size="7" placeholder="Item"></li> -->
                 <li id="input1">
                   <select id="inputItem">
-                    <option value="Empty">Select Item</option>
+                    <!-- <option value="Empty">Select Item</option> -->
                   </select>
                 </li>
               </ul>
@@ -111,7 +112,8 @@
                 <button id ="theaddbutton" class="button additembutton">ADD ITEM</button>
               </article>
               <article>
-                <button id ="theaddbutton" class="button additembutton">SAVE LIST</button>
+                <button id ="thesavelistbutton" class="button savelistbutton">SAVE LIST</button>
+                <!-- <input type="button" value="SAVE LIST" onclick="saveItemToList('Beans', 'List of Apples', 3)"> -->
               </article>
             </div>
             <div id="donebutton">
