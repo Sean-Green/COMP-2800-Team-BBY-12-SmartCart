@@ -29,7 +29,8 @@ function manageUser() {
             db.collection("Users").doc(user.uid).set({
                "name": user.displayName,
                "email": user.email,
-               "listNames": []
+               "listNames": [],
+               "shoppingList": ""
             }, {
                merge: true
             });
