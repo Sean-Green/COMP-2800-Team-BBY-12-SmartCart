@@ -1,20 +1,3 @@
-//test
-// Function that creates a new document in the users collection
-function createUser() {
-   // if the current user logged in user
-   // is authenticated, then grab "uid" "displayName" and "email"
-   // use "set()" with merge (if document did not exist it will be created)
-   firebase.auth().onAuthStateChanged(function (user) {
-      db.collection("Users").doc(user.uid).set({
-         "name": user.displayName,
-         "email": user.email,
-         "listNames": []
-      }, {
-         merge: true
-      });
-   });
-}
-
 //How to get details about the current user, from the firebase API:
 //   We want 2 main things from this: 
 //             .displayName and 
@@ -36,39 +19,37 @@ function getUserDetails() {
    });
 };
 
-// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
-function createListFromName(listName) {
-   //get user info, we need this for the user.uid
+// Function that creates a new document in the users collection
+function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
-      //Get a reference to the collection which will serve as our list
-      listRef = db.collection("Users/" + user.uid + "/" + listName);
-      //Get a snapshot of all the item documents in the Items collection
-      db.collection("Items").onSnapshot(function (docS) {
-         // for each document in the item collect
-         docS.forEach(function (item) {
-            // make a copy of it in the users list.
-            listRef.add(item.data());
-         });
+      db.doc("Users/" + user.uid).get().then(function (doc) {
+         if (doc.exists) {
+            console.log("User Exists:", doc.data());
+         } else {
+            db.collection("Users").doc(user.uid).set({
+               "name": user.displayName,
+               "email": user.email,
+               "listNames": []
+            }, {
+               merge: true
+            });
+            console.log("User Added");
+         }
+      }).catch(function (error) {
+         console.log("Error getting document:", error);
       });
    });
 }
 
-//Delete list by name string
-function deleteListByName(listName) {
-   firebase.auth().onAuthStateChanged(function (user) {
-      //Specify the base collection and then the doc path
-      db.collection("Users/").doc(user.uid + "/Lists/" + listName).delete();
+// logs the user out, should be called from a link to the splash page.
+function logOut() {
+   firebase.auth().signOut().then(function () {
+      console.log("Logout succeeds");
+   }, function (error) {
+      console.log("logout fails: " + error);
    });
 }
-//Read a list from DB by name string
-function readListByName(listName) {
-   firebase.auth().onAuthStateChanged(function (user) {
-      db.doc("Users/" + user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
-         $('#ListItems').text("eggs: " + doc.get("eggs"));
 
-      });
-   });
-}
 // Basic function reading user profile data and displaying it to a marked div.
 function getUserDisplayName() {
    firebase.auth().onAuthStateChanged(function (user) {
@@ -80,58 +61,78 @@ function getUserDisplayName() {
       }
    });
 };
-// logs the user out, should be called from a link to the splash page.
-function logOut() {
-   firebase.auth().signOut().then(function () {
-      console.log("Logout succeeds");
-   }, function (error) {
-      console.log("logout fails: " + error);
-   });
-}
-// Builds a list of items from a name
-function buildListByName(listName) {
-   firebase.auth().onAuthStateChanged(function (user) {
-      db.collection("Users").doc(user.uid + "/Lists/" + listName).onSnapshot(function (doc) {
-         console.log(JSON.stringify(doc.data()));
-      });
-   });
-}
 
-function buildList() {
-   $(document).ready(function () {
-         // READ Collection
-         db.collection("Items").onSnapshot(function (doc) {
-            doc.forEach(function (item) {
-               $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
-            });
-         });
-     
-   })
-}
 
+//////////////////////////////////////////////////////////////////////////////////
+//                      IMPORTANT READ AND WRITE FUNCTIONS:
+//////////////////////////////////////////////////////////////////////////////////
+
+/* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
       // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).onSnapshot(function (item) {
+      db.doc("Items/" + itemName).get().then(function (item) {
          console.log(item.data());
-         // Save list under user listNames array
+         // check listNames array for listname////////////////////////////////////////
+         db.doc("Users/" + user.uid).get().then(function (userDoc) {
+            var userLists = userDoc.get("listNames");
+            var nameExists = false;
+            for (i = 0; i < userLists.length && !nameExists; i++) {
+               if (userLists[i] == listName) {
+                  nameExists = true;
+               }
+            }
+            if (!nameExists) {
+               userLists.push(listName);
+               // console.log("Adding list to listNames")
+               // console.log(userLists); //////////
+               //Add the list lists
+               db.doc("Users/" + user.uid).set({
+                  "listNames": userLists
+               }, {
+                  merge: true
+               });
+            }
+            // Now save it under a specified list and .then() get the reference id
+            db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
+               // console.log("Document reference id: " + docRef.id);
+               // WRITE set ONLY WORKS ON DOCS 
+               // Using that docRef we can set the items qty
+               db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
+                  "qty": qty
+               }, {
+                  merge: true
+               });
+            });
+         });
+      });
+   });
+}
+
+//Delete list by name string
+function deleteListByName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      //Delete the listName from the array
+      db.doc("Users/" + user.uid).get().then(function (userDoc) {
+         //copy the listName array, skip the list to be deleted
+         var userLists = userDoc.get("listNames");
+         var amendedLists = [];
+         for (i = 0, j = 0; i < userLists.length; i++) {
+            if (userLists[i] != listName) {
+               amendedLists[j++] = userLists[i]
+            }
+         }
+         //update the array in the db
          db.doc("Users/" + user.uid).set({
-            "listNames":[listName]
+            "listNames": amendedLists
          }, {
             merge: true
          });
-         // GOOD CODE SHOULD GO HERE
-
-         // Now save it under a specified list, .then() get the reference id
-         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
-            console.log("Document reference id: " + docRef.id);
-            // WRITE set ONLY WORKS ON DOCS 
-            // Using that docRef we can set the items qty
-            db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
-               "qty": qty
-            }, {
-               merge: true
+         //Delete the list
+         db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
+            listItems.forEach(function (item) {
+               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
             });
          });
       });
@@ -166,5 +167,4 @@ function savelistfunction(itemName, listName, qty) {
       });
    });
 }
-
 
