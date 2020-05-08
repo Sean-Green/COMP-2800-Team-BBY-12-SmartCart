@@ -29,7 +29,8 @@ function manageUser() {
             db.collection("Users").doc(user.uid).set({
                "name": user.displayName,
                "email": user.email,
-               "listNames": []
+               "listNames": [],
+               "shoppingList": ""
             }, {
                merge: true
             });
@@ -226,3 +227,4 @@ function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
+// this is a test!

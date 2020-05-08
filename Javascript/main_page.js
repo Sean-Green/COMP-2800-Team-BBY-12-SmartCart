@@ -47,18 +47,18 @@ function getUserDisplayName() {
  let editMode = false;
  function getUserLists (editState){
     firebase.auth().onAuthStateChanged(function (user) {
-    db.doc("Users/" + user.uid).get().then((snapshot) => {
+    db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
         let userLists = snapshot.get("listNames"); 
         $("#listName").html("");
         for (i = 0; i < userLists.length; i++) {  
-            let listOfLists = '<li class="list-group-item" id="myList"><div><a><span id="listName'+ i +'">'+ userLists[i] + '</span></a></div>'
+            let listOfLists = '<li class="list-group-item" id="myList" id="listNameCheck'+ i + '"><div><a><span id="listName'+ i +'">'+ userLists[i] + '</span></a></div>'
             let y = $(listOfLists).text();
             y = y.trim();
             console.log(y);
             listOfLists += '<span class="btn btn-danger" id="removeButton'+ i +'">X</span></li>'
-            $("#removeButton" + i).on("click", function(){
-                deleteListByName(y);
-                getUserLists();
+            $(document).on("click", "#removeButton" + i, function(){
+               console.log(y);
+               deleteListByName(y);
             })
             $("#listName").append(listOfLists);
             if (!editState){
