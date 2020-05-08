@@ -58,7 +58,7 @@ function getUserDisplayName() {
             listOfLists += '<span class="btn btn-danger" id="removeButton'+ i +'">X</span></li>'
             $("#removeButton" + i).on("click", function(){
                 deleteListByName(y);
-                getUserLists();
+                getUserLists(editState);
             })
             $("#listName").append(listOfLists);
             if (!editState){
