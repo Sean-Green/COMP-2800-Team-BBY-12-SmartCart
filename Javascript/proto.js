@@ -68,34 +68,7 @@ function createListFromName(listName) {
    });
 }
 
-//Delete list by name string
-function deleteListByName(listName) {
-   firebase.auth().onAuthStateChanged(function (user) {
-      //Delete the listName from the array
-      db.doc("Users/" + user.uid).get().then(function (userDoc) {
-         //copy the listName array, skip the list to be deleted
-         var userLists = userDoc.get("listNames");
-         var amendedLists = [];
-         for (i = 0, j = 0; i < userLists.length; i++) {
-            if (userLists[i] != listName) {
-               amendedLists[j++] = userLists[i]
-            }
-         }
-         //update the array in the db
-         db.doc("Users/" + user.uid).set({
-            "listNames": amendedLists
-         }, {
-            merge: true
-         });
-         //Delete the list
-         db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
-            listItems.forEach(function (item) {
-               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
-            });
-         });
-      });
-   });
-}
+
 
 // Basic function reading user profile data and displaying it to a marked div.
 function getUserDisplayName() {
@@ -165,6 +138,35 @@ function saveItemToList(itemName, listName, qty) {
                }, {
                   merge: true
                });
+            });
+         });
+      });
+   });
+}
+
+//Delete list by name string
+function deleteListByName(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      //Delete the listName from the array
+      db.doc("Users/" + user.uid).get().then(function (userDoc) {
+         //copy the listName array, skip the list to be deleted
+         var userLists = userDoc.get("listNames");
+         var amendedLists = [];
+         for (i = 0, j = 0; i < userLists.length; i++) {
+            if (userLists[i] != listName) {
+               amendedLists[j++] = userLists[i]
+            }
+         }
+         //update the array in the db
+         db.doc("Users/" + user.uid).set({
+            "listNames": amendedLists
+         }, {
+            merge: true
+         });
+         //Delete the list
+         db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
+            listItems.forEach(function (item) {
+               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
             });
          });
       });
