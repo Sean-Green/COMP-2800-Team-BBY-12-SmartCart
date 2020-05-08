@@ -41,34 +41,14 @@ function manageUser() {
    });
 }
 
-//////////////////////////////////////////////////////////////
-// Functions that play with list are below:
-//////////////////////////////////////////////////////////////
-
-
-
-
-
-
-// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
-function createListFromName(listName) {
-   //get user info, we need this for the user.uid
-   firebase.auth().onAuthStateChanged(function (user) {
-      //Get a reference to the collection which will serve as our list
-      listRef = db.collection("Users/" + user.uid + "/" + listName);
-      //Get a snapshot of all the item documents in the Items collection
-      db.collection("Items").get().then(function (docS) {
-         // for each document in the item collect
-         qty = 1;
-         docS.forEach(function (item) {
-            // make a copy of it in the users list.
-            saveItemToList(item.get("name"), listName, qty++);
-         });
-      });
+// logs the user out, should be called from a link to the splash page.
+function logOut() {
+   firebase.auth().signOut().then(function () {
+      console.log("Logout succeeds");
+   }, function (error) {
+      console.log("logout fails: " + error);
    });
 }
-
-
 
 // Basic function reading user profile data and displaying it to a marked div.
 function getUserDisplayName() {
@@ -81,26 +61,12 @@ function getUserDisplayName() {
       }
    });
 };
-// logs the user out, should be called from a link to the splash page.
-function logOut() {
-   firebase.auth().signOut().then(function () {
-      console.log("Logout succeeds");
-   }, function (error) {
-      console.log("logout fails: " + error);
-   });
-}
 
 
-function buildList() {
-   $(document).ready(function () {
-      // READ Collection
-      db.collection("Items").get().then(function (itemCollection) {
-         itemCollection.forEach(function (item) {
-            $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
-         });
-      });
-   })
-}
+//////////////////////////////////////////////////////////////////////////////////
+//                      IMPORTANT READ AND WRITE FUNCTIONS:
+//////////////////////////////////////////////////////////////////////////////////
+
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
@@ -171,4 +137,56 @@ function deleteListByName(listName) {
          });
       });
    });
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// Functions that play with lists for testing are below:
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
+function createFullList(listName) {
+   //get user info, we need this for the user.uid
+   firebase.auth().onAuthStateChanged(function (user) {
+      //Get a reference to the collection which will serve as our list
+      listRef = db.collection("Users/" + user.uid + "/" + listName);
+      //Get a snapshot of all the item documents in the Items collection
+      db.collection("Items").get().then(function (docS) {
+         // for each document in the item collect
+         qty = 1;
+         docS.forEach(function (item) {
+            // make a copy of it in the users list.
+            saveItemToList(item.get("name"), listName, qty++);
+         });
+      });
+   });
+}
+
+// Create a random list of unavailable items in a shop of your specification.
+function createRandomShopShortageList(shopName) {
+   //Get a reference to the collection which will serve as our list
+   listRef = db.collection("Stores/" + shopName + "/unavailable");
+   //Get a snapshot of all the item documents in the Items collection
+   db.collection("Items").get().then(function (docS) {
+      // for each document in the item collect
+      qty = 1;
+      docS.forEach(function (item) {
+         // make a copy of it in the users list.
+         saveItemToList(item.get("name"), listName, qty++);
+      });
+   });
+
+}
+//builds the list on the prototype page
+function buildList() {
+   $(document).ready(function () {
+      // READ Collection
+      db.collection("Items").get().then(function (itemCollection) {
+         itemCollection.forEach(function (item) {
+            $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
+         });
+      });
+   })
 }
