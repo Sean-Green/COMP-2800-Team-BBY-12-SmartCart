@@ -78,3 +78,8 @@
 #listButton {
     margin: 10px;
 }
+#removeButton{
+    margin:none;
+    padding: none;
+    
+}

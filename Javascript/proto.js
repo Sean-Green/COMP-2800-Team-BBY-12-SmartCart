@@ -130,6 +130,23 @@ function deleteListByName(listName) {
    });
 }
 
+function compareUserToStoreList(userList, storeName){
+   firebase.auth().onAuthStateChanged(function (user) {
+      const USER = db.collection('Users/' + user.uid + "/" + userList).orderBy("name");
+      const STORE = db.collection('Stores/' + storeName + "/unavailable").orderBy("name");
+      unavailableItems = {};
+      i = 0;
+      USER.get().then((userItems)=>{
+         STORE.get().then((storeItems)=>{
+            userItems.forEach((uItem)=>{
+               itemName = uItem.get("name");
+               
+            });
+         });
+      });
+   });
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
 //////////////////////////////////////////////////////////////////////////////////

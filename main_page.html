@@ -15,10 +15,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="javascript/firebase_config.js"></script>
+    <!--link jquery by CDN-->
+    <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
     <!--JS for this page-->
     <script src="Javascript/main_page.js"></script>
     <script src="Javascript/proto.js"></script>
-
+    <script>
+        // deleteListByName(x);
+    </script>
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -58,7 +62,7 @@
                         <div class="card">
                             <ul class="list-group list-group-flush" id="ulList">
                                 <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> <span id="listName"></span></a>
+                                    <a><span id="listName"></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -80,12 +84,11 @@
     <script>
         manageUser();
         getUserDisplayName();
+        getUserLists(false);
     </script>
     <!----Bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
