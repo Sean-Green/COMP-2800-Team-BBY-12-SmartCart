@@ -137,8 +137,34 @@ function saveItemToList(itemName, listName, qty) {
       });
    });
 }
-//Jason's mega write Function 
-function bigboywrite(itemName, listName, qty) {
-   
+//Jason's Demo with Sean's Prototype (Don't Remove) 
+function savelistfunction(itemName, listName, qty) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
+      // First grab a snapshot of the item specified.
+      db.doc("Items/" + itemName).onSnapshot(function (item) {
+         console.log(item.data());
+         // Save list under user listNames array
+         db.doc("Users/" + user.uid).set({
+            "listNames":[listName]
+         }, {
+            merge: true
+         });
+         // GOOD CODE SHOULD GO HERE
+
+         // Now save it under a specified list, .then() get the reference id
+         db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
+            console.log("Document reference id: " + docRef.id);
+            // WRITE set ONLY WORKS ON DOCS 
+            // Using that docRef we can set the items qty
+            db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
+               "qty": qty
+            }, {
+               merge: true
+            });
+         });
+      });
+   });
 }
+
 

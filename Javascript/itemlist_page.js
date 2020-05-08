@@ -218,11 +218,7 @@ $(document).ready(function () {
         }
     })
 
-<<<<<<< HEAD
     //maha code to link database item selection to our items
-=======
-    //get list of items from database and append them to the drop down menu. 
->>>>>>> dev
     db.collection("Items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             let listOfItems = '<option value="' + doc.get("name") + '">' + doc.get("name") +
@@ -232,17 +228,39 @@ $(document).ready(function () {
         })
     })
 
-    //get the item name when you click add item 
-    let itemNameInList = $(".additembutton").on("click", function(){
-                            let x = $("#inputItem").val();
-                            console.log(x);
-                        })
+    // //get the item name when you click add item 
+    // let itemNameInList = $(".additembutton").on("click", function(){
+    //                         let x = $("#inputItem").val();
+    //                         console.log(x);
+    //                     })
     
 
-    $("#theaddbutton").on("click",function(){
-        let x = "list of apples";
-        let y = "Apple";
-        let z = 1;
-        saveItemToList(y,x,z);
+    // $("#theaddbutton").on("click",function(){
+    //     let x = "list of apples";
+    //     let y = "Apple";
+    //     let z = 1;
+    //     saveItemToList(y,x,z);
+    // });
+
+    //function that writes our 
+    $(document).on('click', ".savelistbutton", function () {
+        let betaitem;
+        let item;
+        let betaquantity;
+        let quantity;
+        let check;
+        let listname;
+        for(let position = 0; position <= id; position++){
+            check = $("#magicitem" + position).text()
+            if (check !== ''){
+                betaitem = $("#magicitem" + position).text().trim();
+                betaquantity = $("#quantitymagic" + position).text().trim();
+                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                console.log("quantity is " + quantity);
+                item = betaitem.substring(2);
+                listname = array[0];
+                savelistfunction(item, listname, quantity);
+            } 
+        }
     });
 });
