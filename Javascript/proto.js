@@ -96,6 +96,11 @@ function saveItemToList(itemName, listName, qty) {
             }
             // Now save it under a specified list and .then() get the reference id
             db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({
+               "qty": qty
+            }, {
+               merge: true
+            })
          });
       });
    });
@@ -131,17 +136,17 @@ function deleteListByName(listName) {
    });
 }
 
-function compareUserToStoreList(userList, storeName){
+function compareUserToStoreList(userList, storeName) {
    firebase.auth().onAuthStateChanged(function (user) {
       const USER = db.collection('Users/' + user.uid + "/" + userList).orderBy("name");
       const STORE = db.collection('Stores/' + storeName + "/unavailable").orderBy("name");
       unavailableItems = {};
       i = 0;
-      USER.get().then((userItems)=>{
-         STORE.get().then((storeItems)=>{
-            userItems.forEach((uItem)=>{
+      USER.get().then((userItems) => {
+         STORE.get().then((storeItems) => {
+            userItems.forEach((uItem) => {
                itemName = uItem.get("name");
-               
+
             });
          });
       });
@@ -165,7 +170,7 @@ function createFullList(listName) {
          console.log(item.data());
          // Save list under user listNames array
          db.doc("Users/" + user.uid).set({
-            "listNames":[listName]
+            "listNames": [listName]
          }, {
             merge: true
          });

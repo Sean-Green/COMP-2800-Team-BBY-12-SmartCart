@@ -273,7 +273,7 @@ $(document).ready(function () {
                 console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
                 console.log("item is " + item);
-                savelistfunction(item, listname, quantity);
+                saveItemToList(item, listname, quantity);
             } 
         }
     });
