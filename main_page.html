@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
-    <link rel="icon" type="image/png" href="/image/SCfavicon.png">
+    <link rel="icon" type="image/png" href="image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -17,6 +17,7 @@
     <script src="javascript/firebase_config.js"></script>
     <!--JS for this page-->
     <script src="Javascript/main_page.js"></script>
+    <script src="Javascript/proto.js"></script>
 
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -57,7 +58,7 @@
                         <div class="card">
                             <ul class="list-group list-group-flush" id="ulList">
                                 <li class="list-group-item" id="myList">
-                                    <a href="itemlist_page.html"> <span id="listName" class=removebutton>&#10060;&nbsp;List placeholder</span></a>
+                                    <a href="itemlist_page.html"> <span id="listName"></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -67,6 +68,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="spacer">
+                    <br>
+                </div>
+            </div>
+            <div class="spacer">
+                <br>
             </div>
         </div>
     </div>
