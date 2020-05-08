@@ -95,16 +95,7 @@ function saveItemToList(itemName, listName, qty) {
                });
             }
             // Now save it under a specified list and .then() get the reference id
-            db.collection("Users/" + user.uid + "/" + listName).add(item.data()).then(function (docRef) {
-               // console.log("Document reference id: " + docRef.id);
-               // WRITE set ONLY WORKS ON DOCS 
-               // Using that docRef we can set the items qty
-               db.doc("Users/" + user.uid + "/" + listName + "/" + docRef.id).set({
-                  "qty": qty
-               }, {
-                  merge: true
-               });
-            });
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
          });
       });
    });
@@ -112,6 +103,7 @@ function saveItemToList(itemName, listName, qty) {
 
 //Delete list by name string
 function deleteListByName(listName) {
+   listName += "";
    firebase.auth().onAuthStateChanged(function (user) {
       //Delete the listName from the array
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
@@ -138,8 +130,34 @@ function deleteListByName(listName) {
       });
    });
 }
-//Jason's Demo with Sean's Prototype (Don't Remove) 
-function savelistfunction(itemName, listName, qty) {
+
+function compareUserToStoreList(userList, storeName){
+   firebase.auth().onAuthStateChanged(function (user) {
+      const USER = db.collection('Users/' + user.uid + "/" + userList).orderBy("name");
+      const STORE = db.collection('Stores/' + storeName + "/unavailable").orderBy("name");
+      unavailableItems = {};
+      i = 0;
+      USER.get().then((userItems)=>{
+         STORE.get().then((storeItems)=>{
+            userItems.forEach((uItem)=>{
+               itemName = uItem.get("name");
+               
+            });
+         });
+      });
+   });
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// Functions that play with lists for testing are below:
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// Basic read function that reads all the item documents out of the list collection, and adds them to a custom user list
+function createFullList(listName) {
+   //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
       // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.`
@@ -168,3 +186,37 @@ function savelistfunction(itemName, listName, qty) {
    });
 }
 
+// Create a random list of unavailable items in a shop of your specification.
+function createRandomShopShortageList(shopName) {
+   //Get a reference to the collection which will serve as our list
+   listRef = db.collection("Stores/" + shopName + "/unavailable");
+   //Get a snapshot of all the item documents in the Items collection
+   db.collection("Items").get().then(function (docS) {
+      // for each document in the item collect
+      docS.forEach(function (item) {
+         // make a copy of it in the users list.
+         if (getRandomInt(1, 3) == 2) {
+            listRef.doc(item.get("name")).set(item.data());
+         }
+      });
+   });
+
+}
+//builds the list on the prototype page
+function buildList() {
+   $(document).ready(function () {
+      // READ Collection
+      db.collection("Items").get().then(function (itemCollection) {
+         itemCollection.forEach(function (item) {
+            $('#ListItems').append('<li>' + item.get('name') + " " + item.get('size') + item.get('units') + '</li>');
+         });
+      });
+   })
+}
+
+//helper
+function getRandomInt(min, max) {
+   min = Math.ceil(min);
+   max = Math.floor(max);
+   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
