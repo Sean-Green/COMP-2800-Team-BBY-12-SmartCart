@@ -3,6 +3,10 @@
 /* for screen size less than 500px (Mobile View) */
 @media only screen and (max-width: 500px){
 
+    #inputQuantity{
+        height: 18px !important;
+    }
+
     #maincontainer{
         background-color: lightgreen;
     }
@@ -35,24 +39,30 @@
         font-weight: bold;
     }
 
+    #inputWeight{
+        visibility: hidden;
+    }
+
     .goshopbutton{
-        color: rgb(80, 160, 80);
+        color: rgb(169, 175, 168);
         border:none;
         background-color:inherit;
         padding: 14px 28px;
         font-size:60px;
         cursor: pointer;
         display:inline-block;
+       
     }
 
     .goshopbutton:hover {
-        background-color:rgb(47, 184, 129);
+        background-color:rgb(144, 146, 144);
+        color: rgb(200, 200, 200);
         border-radius: 5px;
     }
 
     .backbutton:hover {
         background-color:rgb(146, 155, 179);
-        color: rgb(40, 43, 52);
+        color: white;
         border-radius: 5px;
     }
 
@@ -62,6 +72,7 @@
 
     .editbutton:hover {
         background-color:rgb(247, 115, 54);
+        color: white;
         border-radius: 5px;
     }
 
@@ -136,7 +147,7 @@
         height: 200px;
 
         display: grid;
-        grid-template-columns: 25% 40% 25%;
+        grid-template-columns: 40% 20% 40%;
         grid-template-rows: 15% 40% 40%;
         grid-template-areas:
         "one two three"
@@ -262,6 +273,17 @@
     #newlistname {
         border: 0;
     }
+
+    #thesavelistbutton {
+        color: rgb(162, 113, 240);
+    }
+
+    #thesavelistbutton:hover {
+        background-color:rgb(253, 49, 94);
+        color: pink;
+        border-radius: 5px;
+    }
+    
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -274,6 +296,8 @@
 /* when screen size is greater than 501px (Desktop View) */
 @media screen and (min-width: 501px){
 
+
+
     #maincontainer{
         background-color: lightgreen;
     }
@@ -281,6 +305,10 @@
     .spacer{
         margin: 10px;
         padding: 10px;
+    }
+
+    #inputWeight{
+        visibility: hidden;
     }
 
     #listnamecontainer{
@@ -308,7 +336,7 @@
     }
 
     .goshopbutton{
-        color: rgb(80, 160, 80);
+        color: rgb(169, 175, 168);
         border:none;
         background-color:inherit;
         padding: 14px 28px;
@@ -319,7 +347,14 @@
     }
 
     .goshopbutton:hover {
-        background-color:rgb(47, 184, 129);
+        background-color:rgb(144, 146, 144);
+        color: rgb(200, 200, 200);
+        border-radius: 5px;
+    }
+
+    .backbutton:hover {
+        background-color:rgb(146, 155, 179);
+        color: white;
         border-radius: 5px;
     }
 
@@ -329,6 +364,7 @@
 
     .editbutton:hover {
         background-color:rgb(247, 115, 54);
+        color: white;
         border-radius: 5px;
     }
 
@@ -519,5 +555,15 @@
 
     #newlistname {
         border: 0;
+    }
+
+    #thesavelistbutton {
+        color: rgb(162, 113, 240);
+    }
+
+    #thesavelistbutton:hover {
+        background-color:rgb(253, 49, 94);
+        color: pink;
+        border-radius: 5px;
     }
 }
