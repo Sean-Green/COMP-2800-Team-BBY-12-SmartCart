@@ -263,7 +263,7 @@ $(document).ready(function () {
         let betaquantity;
         let quantity;
         let check;
-        
+        console.log("hi");
         for(let position = 0; position <= id; position++){
             check = $("#magicitem" + position).text()
             if (check !== ''){
