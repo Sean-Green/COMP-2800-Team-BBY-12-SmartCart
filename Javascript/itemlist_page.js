@@ -37,7 +37,7 @@ $(document).ready(function () {
             content = $('#listarea3').html();
             itemname = $('#inputQuantity').val();
             if (!$('#inputQuantity').val()) {
-                itemname = 0
+                itemname = 1
             }
             p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
                 "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
@@ -244,12 +244,26 @@ $(document).ready(function () {
 
     //function that writes our 
     $(document).on('click', ".savelistbutton", function () {
+        
+        let listname = array[0].trim();
+        console.log("listname is " + listname);
+        console.log(listname);
+        if(listname === 'Friday'){
+            console.log("fire!!!")
+        }
+        for(let position2 = 0; position2 < 4; position2++){
+            if(position2 == 0){
+                deleteListByName(listname);
+                break;
+            }
+        }
+        
         let betaitem;
         let item;
         let betaquantity;
         let quantity;
         let check;
-        let listname;
+        
         for(let position = 0; position <= id; position++){
             check = $("#magicitem" + position).text()
             if (check !== ''){
@@ -258,7 +272,7 @@ $(document).ready(function () {
                 quantity = betaquantity.substring(3,betaquantity.length - 3);
                 console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
-                listname = array[0];
+                console.log("item is " + item);
                 savelistfunction(item, listname, quantity);
             } 
         }

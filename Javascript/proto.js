@@ -142,7 +142,7 @@ function deleteListByName(listName) {
 function savelistfunction(itemName, listName, qty) {
    firebase.auth().onAuthStateChanged(function (user) {
       // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
-      // First grab a snapshot of the item specified.
+      // First grab a snapshot of the item specified.`
       db.doc("Items/" + itemName).onSnapshot(function (item) {
          console.log(item.data());
          // Save list under user listNames array
