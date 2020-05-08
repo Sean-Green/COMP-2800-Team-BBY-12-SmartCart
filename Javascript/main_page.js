@@ -40,38 +40,18 @@ function getUserDisplayName() {
           name = 'fran';
        }
     });
-
-
-    
-
-    // $("#editListBtn").on("click", function(){
-    //     let p = "<li class='list-group-item' id='myList'><a href='itemlist_page.html'><span id='listName' class=removebutton>&#10060;&nbsp;</span><span>List placeholder</span></a></li>"
-    //     $("#ulList").html(p);
-    // })
-
-    // db.ref("/Users" + user.uid).get().then(function(snapshot) {
-    //     snapshot.docs.forEach(doc => {
-    //         let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ doc.get("ListNames") + '</span></a></li>'
-    //         $("#inputItem").append(listOfLists);
-    //         console.log(doc.data())
-    //     })
-    // })
-
  };
-    firebase.auth().onAuthStateChanged(function (user) {
-        db.doc("Users/" + user.uid).get().then((snapshot) => {
-        var userLists = userList.get("listNames");
-        console.log(userLists); 
-        var nameExists = false;
-        for (i = 0; i < userLists.length && !nameExists; i++) {
-           if (userLists[i] == listName) {
-              nameExists = true;
-           }
+
+ // get user lists and display them for the user
+firebase.auth().onAuthStateChanged(function (user) {
+    db.doc("Users/" + user.uid).get().then((snapshot) => {
+        let userLists = snapshot.get("listNames"); 
+        for (i = 0; i < userLists.length; i++) {
+            let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ userLists[i] + '</span></a></li>'
+            $("#listName").append(listOfLists);
+            console.log(listOfLists);
         }
-    })
-        
-    })
+    })   
+})
 
     
-// let listOfLists = '<li class="list-group-item" id="myList"><a href="itemlist_page.html"> <span id="listName">'+ doc.get("ListNames") + '</span></a></li>'
-            // $("#inputItem").append(listOfLists);
