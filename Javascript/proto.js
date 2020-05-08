@@ -103,6 +103,7 @@ function saveItemToList(itemName, listName, qty) {
 
 //Delete list by name string
 function deleteListByName(listName) {
+   listName += "";
    firebase.auth().onAuthStateChanged(function (user) {
       //Delete the listName from the array
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
