@@ -6,6 +6,8 @@ $(document).ready(function () {
     //during done mode you can add therefore set to true 
     var addchecker = [];
     addchecker[0] = true;
+    var namechecker = [];
+    namechecker[0] = false;
     //this is global array that holds the increments and decrements for item quantity
     var quantityholder = [];
 
@@ -21,14 +23,28 @@ $(document).ready(function () {
             let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
             $('#listarea1').html(content + p);
             $('#magicitem' + id).appendTo("#listarea1");
-            //console.log("item is" + itemname);
+            console.log("99 item is" + itemname);
 
-            content = $('#listarea2').html();
-            itemname = $('#inputWeight').val();
-            if (!$('#inputWeight').val()) {
-                itemname = "Empty"
+            //ghetto way to get size and unit from database item
+            let position = 0;
+            let weight = "";
+            //passing the gloabl name size and unit array into these local array to be able to use without error
+            let namearray2 = namearray;
+            let sizearray2 = sizearray;
+            let unitarray2 = unitarray;
+
+            for(position = 0; position < namearray2.length; position++){
+                if(namearray2[position] === itemname){
+                    weight = weight + " " + sizearray2[position] + " " + unitarray2[position];
+                    console.log(weight);
+                }
             }
-            p = "<li id=weightmagic" + id + ">" + itemname + "</li>";
+            content = $('#listarea2').html();
+            // itemname = $('#inputWeight').val();
+            // if (!$('#inputWeight').val()) {
+            //     itemname = "Empty"
+            // }
+            p = "<li id=weightmagic" + id + ">" + weight + "</li>";
             $('#listarea2').html(content + p);
             $('#weightmagic' + id).appendTo("#listarea2");
             //console.log("weight is" + itemname);
@@ -88,17 +104,26 @@ $(document).ready(function () {
         $('.decrementbutton').show();
         //set add checker back to false to prevent adds
         addchecker[0] = false;
+
     })
 
+    $(document).on('click', "#newlistname", function () {
+        namechecker[0] = true;
+    })
 
 
     //function when click the DONE button for item list name
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
         //edit the title
-        let userinput = $('#newlistname').val();
-        $("#listname2span").html(userinput);
-        $('#newlistname').remove();
+        if(namechecker[0] === true) {
+            let userinput = $('#newlistname').val();
+            $("#listname2span").html(userinput);
+            $('#newlistname').remove();
+        } else {
+            $("#listname2span").html(array[0]);
+            $('#newlistname').remove();
+        }
         //delete the confirm and cancel button and replace with edit button
         $('.editbutton1').remove();
         $('.editbutton2').remove();
@@ -113,6 +138,7 @@ $(document).ready(function () {
         $('.decrementbutton').hide();
         //set add checker back to true to allow adds
         addchecker[0] = true;
+        namechecker[0] = false;
     })
 
     //function that removes the whole line of item on the item list page
@@ -218,32 +244,39 @@ $(document).ready(function () {
         }
     })
 
+    //using arrays to access database information for item's name, size and unit
+    var namearray = [];
+    var sizearray = [];
+    var unitarray = [];
+    let databaseitemamount = 0;
     //maha code to link database item selection to our items
     db.collection("Items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
-            let listOfItems = '<option value="' + doc.get("name") + '">' + doc.get("name") +
-                " " + doc.get("size") + " " + doc.get("units") + '</option>'
+            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
             $("#inputItem").append(listOfItems);
             console.log(doc.data())
+            //ghetto way to get access database items name, size , and units
+            namearray.push(doc.get("name"));
+            sizearray.push(doc.get("size"));
+            unitarray.push(doc.get("units"));
+            databaseitemamount++;
         })
     })
 
-    // //get the item name when you click add item 
-    // let itemNameInList = $(".additembutton").on("click", function(){
-    //                         let x = $("#inputItem").val();
-    //                         console.log(x);
-    //                     })
-    
+    var validshopping = 0;
 
-    // $("#theaddbutton").on("click",function(){
-    //     let x = "list of apples";
-    //     let y = "Apple";
-    //     let z = 1;
-    //     saveItemToList(y,x,z);
-    // });
-
-    //function that writes our 
+    //function that writes our items name, item quantity and item weight to the database
+    //after pressing it you remain on the same page incase you need to edit.
     $(document).on('click', ".savelistbutton", function () {
+
+        validshopping = 1;
+        $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
+        $(".goshopbutton").hover(function () {
+            $(this).css("background-color", "rgb(84, 218, 66)");
+        }, function () {
+            $(this).css("background-color", "white");
+        });
+        $(".goshopbutton").css("color", "green");
         
         let listname = array[0].trim();
         console.log("listname is " + listname);
@@ -263,18 +296,67 @@ $(document).ready(function () {
         let betaquantity;
         let quantity;
         let check;
-        console.log("hi");
+        // console.log("hi");
         for(let position = 0; position <= id; position++){
             check = $("#magicitem" + position).text()
             if (check !== ''){
                 betaitem = $("#magicitem" + position).text().trim();
                 betaquantity = $("#quantitymagic" + position).text().trim();
                 quantity = betaquantity.substring(3,betaquantity.length - 3);
-                console.log("quantity is " + quantity);
+                // console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
-                console.log("item is " + item);
+                // console.log("item is " + item);
                 saveItemToList(item, listname, quantity);
             } 
+        }
+    });
+
+    //function that write our item name, item quantity and item weight to the database
+    //same functionality as the save list button but you will not stay on the same page instead it will
+    //take you directly to the stores page to find the right stores for the user.
+    $(document).on('click', ".goshopbutton", function () {
+        
+        let listname = array[0].trim();
+        console.log("listname is " + listname);
+        console.log(listname);
+        if(listname === 'Friday'){
+            console.log("fire!!!")
+        }
+        for(let position2 = 0; position2 < 4; position2++){
+            if(position2 == 0){
+                deleteListByName(listname);
+                break;
+            }
+        }
+        
+        let betaitem;
+        let item;
+        let betaquantity;
+        let quantity;
+        let check;
+        // console.log("hi");
+        for(let position = 0; position <= id; position++){
+            check = $("#magicitem" + position).text()
+            if (check !== ''){
+                betaitem = $("#magicitem" + position).text().trim();
+                betaquantity = $("#quantitymagic" + position).text().trim();
+                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                // console.log("quantity is " + quantity);
+                item = betaitem.substring(2);
+                // console.log("item is " + item);
+                saveItemToList(item, listname, quantity);
+            } 
+        }
+
+        if(validshopping === 0){
+            console.log("validshopping is " + validshopping);
+            $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
+            $(".goshopbutton").hover(function () {
+                $(this).css("background-color", "rgb(84, 218, 66)");
+            }, function () {
+                $(this).css("background-color", "white");
+            });
+            $(".goshopbutton").css("color", "green");
         }
     });
 });
