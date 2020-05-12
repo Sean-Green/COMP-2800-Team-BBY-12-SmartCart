@@ -74,7 +74,7 @@ body {
 
   header.masthead {
     position: relative;
-    background: url("/image/splash-back.jpeg") no-repeat center center;
+    background: url("image/splash-back.jpeg") no-repeat center center;
     background-size: cover;
   }
   
