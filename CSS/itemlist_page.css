@@ -48,7 +48,7 @@
         border:none;
         background-color:inherit;
         padding: 14px 28px;
-        font-size:60px;
+        font-size:30px;
         cursor: pointer;
         display:inline-block;
        
@@ -251,6 +251,7 @@
 
     .additembutton{
         color: lightskyblue;
+        font-size: 30px;
     }
 
     .additembutton:hover {
@@ -340,7 +341,7 @@
         border:none;
         background-color:inherit;
         padding: 14px 28px;
-        font-size:60px;
+        font-size:40px;
         cursor: pointer;
         display:inline-block;
        
@@ -533,6 +534,7 @@
 
     .additembutton{
         color: lightskyblue;
+        font-size: 40px;
     }
 
     .additembutton:hover {
