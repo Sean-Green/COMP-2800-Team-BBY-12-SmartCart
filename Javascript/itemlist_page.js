@@ -34,8 +34,8 @@ $(document).ready(function () {
             let sizearray2 = sizearray;
             let unitarray2 = unitarray;
 
-            for(position = 0; position < namearray2.length; position++){
-                if(namearray2[position] === itemname){
+            for (position = 0; position < namearray2.length; position++) {
+                if (namearray2[position] === itemname) {
                     weight = weight + " " + sizearray2[position] + " " + unitarray2[position];
                     console.log(weight);
                 }
@@ -119,7 +119,7 @@ $(document).ready(function () {
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
         //edit the title
-        if(namechecker[0] === true) {
+        if (namechecker[0] === true) {
             let userinput = $('#newlistname').val();
             $("#listname2span").html(userinput);
             $('#newlistname').remove();
@@ -253,18 +253,27 @@ $(document).ready(function () {
     var unitarray = [];
     let databaseitemamount = 0;
     //maha code to link database item selection to our items
-    db.collection("Items").get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
-            $("#inputItem").append(listOfItems);
-            console.log(doc.data())
-            //ghetto way to get access database items name, size , and units
-            namearray.push(doc.get("name"));
-            sizearray.push(doc.get("size"));
-            unitarray.push(doc.get("units"));
-            databaseitemamount++;
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+            let path = "Items";
+            if (snapshot.get("DoomsDayMode")) {
+                path = "Doomsday";
+            }
+            db.collection(path).get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
+                    $("#inputItem").append(listOfItems);
+                    console.log(doc.data())
+                    //ghetto way to get access database items name, size , and units
+                    namearray.push(doc.get("name"));
+                    sizearray.push(doc.get("size"));
+                    unitarray.push(doc.get("units"));
+                    databaseitemamount++;
+                })
+
+            })
         })
-    })
+    });
 
     var validshopping = 0;
 
@@ -280,37 +289,37 @@ $(document).ready(function () {
             $(this).css("background-color", "white");
         });
         $(".goshopbutton").css("color", "green");
-        
+
         let listname = array[0].trim();
         console.log("listname is " + listname);
         console.log(listname);
-        if(listname === 'Friday'){
+        if (listname === 'Friday') {
             console.log("fire!!!")
         }
-        for(let position2 = 0; position2 < 4; position2++){
-            if(position2 == 0){
+        for (let position2 = 0; position2 < 4; position2++) {
+            if (position2 == 0) {
                 deleteListByName(listname);
                 break;
             }
         }
-        
+
         let betaitem;
         let item;
         let betaquantity;
         let quantity;
         let check;
         // console.log("hi");
-        for(let position = 0; position <= id; position++){
+        for (let position = 0; position <= id; position++) {
             check = $("#magicitem" + position).text()
-            if (check !== ''){
+            if (check !== '') {
                 betaitem = $("#magicitem" + position).text().trim();
                 betaquantity = $("#quantitymagic" + position).text().trim();
-                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                quantity = betaquantity.substring(3, betaquantity.length - 3);
                 // console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
                 // console.log("item is " + item);
                 saveItemToList(item, listname, quantity);
-            } 
+            }
         }
     });
 
@@ -318,40 +327,40 @@ $(document).ready(function () {
     //same functionality as the save list button but you will not stay on the same page instead it will
     //take you directly to the stores page to find the right stores for the user.
     $(document).on('click', ".goshopbutton", function () {
-        
+
         let listname = array[0].trim();
         console.log("listname is " + listname);
         console.log(listname);
-        if(listname === 'Friday'){
+        if (listname === 'Friday') {
             console.log("fire!!!")
         }
-        for(let position2 = 0; position2 < 4; position2++){
-            if(position2 == 0){
+        for (let position2 = 0; position2 < 4; position2++) {
+            if (position2 == 0) {
                 deleteListByName(listname);
                 break;
             }
         }
-        
+
         let betaitem;
         let item;
         let betaquantity;
         let quantity;
         let check;
         // console.log("hi");
-        for(let position = 0; position <= id; position++){
+        for (let position = 0; position <= id; position++) {
             check = $("#magicitem" + position).text()
-            if (check !== ''){
+            if (check !== '') {
                 betaitem = $("#magicitem" + position).text().trim();
                 betaquantity = $("#quantitymagic" + position).text().trim();
-                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                quantity = betaquantity.substring(3, betaquantity.length - 3);
                 // console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
                 // console.log("item is " + item);
                 saveItemToList(item, listname, quantity);
-            } 
+            }
         }
 
-        if(validshopping === 0){
+        if (validshopping === 0) {
             console.log("validshopping is " + validshopping);
             $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
             $(".goshopbutton").hover(function () {
