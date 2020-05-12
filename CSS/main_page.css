@@ -49,7 +49,7 @@
 /** Header */
 header.masthead {
     position: relative;
-    background: url("image/splash-back.jpeg") no-repeat center center;
+    background: url("/image/splash-back.jpeg") no-repeat center center;
     background-size: cover;
     padding-top: 30px;
 }
