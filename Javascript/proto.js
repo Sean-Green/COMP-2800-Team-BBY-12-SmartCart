@@ -143,21 +143,37 @@ function compareUserToStoreList(userListName, storeName) {
    firebase.auth().onAuthStateChanged(function (user) {
       // Call the stores list of unavailable items and the for Each through them
       db.collection('Stores/' + storeName + "/unavailable").orderBy("name").get().then((itemsSnapshot) => {
-         var itemsUnavailable = [];
-            var index = 0;
-         itemsSnapshot.forEach((storeItem) => {            
+         var storeItem = itemsSnapshot.docs;
+         for (i = 0; i < storeItem.length; i++) {
             // For each item:
             // Check if it exists in the user list then do something with it.
-            db.doc('Users/' + user.uid + "/" + userListName + "/" + storeItem.get("name")).get().then((userItem) => {
+            db.doc('Users/' + user.uid + "/" + userListName + "/" + storeItem[i].get("name")).get().then((userItem) => {
                if (userItem.get("name")) {
                   //Do something with it
                   console.log(userItem.get("name"));
                }
-            })         
+            })
+
+         }
       });
    });
-});
 }
+// function compareUserToStoreList(userListName, storeName) {
+//    //Array to hold our list of items.
+
+//    firebase.auth().onAuthStateChanged(function (user) {
+//       // Call the stores list of unavailable items and the for Each through them
+//       db.collection('Stores/' + storeName + "/unavailable").orderBy("name").get().then((itemsSnapshot) => {
+//          var itemsUnavailable = [];
+//          var index = 0;
+//          for (i = 0; i < itemsSnapshot.docs.length; i++) {
+//             console.log(itemsSnapshot.docs[i].get("name"));
+//          }
+
+
+//       });
+//    });
+// }
 
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
