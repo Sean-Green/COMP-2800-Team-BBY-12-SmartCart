@@ -159,17 +159,17 @@
         opacity: 0;
     }
 
-    .removebutton{
+    /* .removebutton{
         display: none;
-    }
+    } */
 
-    .incrementbutton{
+    /* .incrementbutton{
         display: none;
-    }
+    } */
 
-    .decrementbutton{
+    /* .decrementbutton{
         display: none;
-    }
+    } */
 
     #labelname1{
         grid-area: one;
@@ -442,7 +442,7 @@
         opacity: 0;
     }
 
-    .removebutton{
+    /* .removebutton{
         display: none;
     }
 
@@ -452,7 +452,7 @@
 
     .decrementbutton{
         display: none;
-    }
+    } */
 
     #labelname1{
         grid-area: one;
