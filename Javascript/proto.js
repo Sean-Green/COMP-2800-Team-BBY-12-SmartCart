@@ -129,9 +129,10 @@ function deleteListByName(listName) {
          });
          //Delete the list
          db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
-            listItems.forEach(function (item) {
-               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
-            });
+            var item = listItems.docs;
+            for (i = 0; i < item.length; i++) {
+               db.doc("Users/" + user.uid + "/" + listName + "/" + item[i].id).delete();
+            }
          });
       });
    });
