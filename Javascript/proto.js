@@ -23,7 +23,7 @@ function getUserDetails() {
 function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (doc) {
-         if (doc.exists) {
+         if (doc.exists) { //   <-- Doc exists example
             // console.log("User Exists:", doc.data());
          } else {
             db.collection("Users").doc(user.uid).set({
@@ -70,13 +70,15 @@ function getUserDisplayName() {
 
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
+   var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
-      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
-      // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).get().then(function (item) {
-         console.log(item.data());
-         // check listNames array for listname////////////////////////////////////////
-         db.doc("Users/" + user.uid).get().then(function (userDoc) {
+      db.doc("Users/" + user.uid).get().then(function (userDoc) {                      //read
+         if (userDoc.get('DoomsDayMode')){
+            path = "Doomsday/";
+         }
+         db.doc(path + itemName).get().then(function (item) {                          //read
+            console.log(item.data());
+
             var userLists = userDoc.get("listNames");
             var nameExists = false;
             for (i = 0; i < userLists.length && !nameExists; i++) {
@@ -89,15 +91,17 @@ function saveItemToList(itemName, listName, qty) {
                // console.log("Adding list to listNames")
                // console.log(userLists); //////////
                //Add the list lists
-               db.doc("Users/" + user.uid).set({
+               db.doc("Users/" + user.uid).set({                                     //write
                   "listNames": userLists
                }, {
                   merge: true
                });
             }
-            // Now save it under a specified list and .then() get the reference id
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({
+            // Now save it under a specified list and .then() get the reference id           
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({     //write
+               "name" : item.get("name"),
+               "size": item.get("size"),
+               "units" : item.get("units"),                                                 
                "qty": qty
             }, {
                merge: true
@@ -129,9 +133,10 @@ function deleteListByName(listName) {
          });
          //Delete the list
          db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
-            listItems.forEach(function (item) {
-               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
-            });
+            var item = listItems.docs;
+            for (i = 0; i < item.length; i++) {
+               db.doc("Users/" + user.uid + "/" + listName + "/" + item[i].id).delete();
+            }
          });
       });
    });
@@ -158,22 +163,6 @@ function compareUserToStoreList(userListName, storeName) {
       });
    });
 }
-// function compareUserToStoreList(userListName, storeName) {
-//    //Array to hold our list of items.
-
-//    firebase.auth().onAuthStateChanged(function (user) {
-//       // Call the stores list of unavailable items and the for Each through them
-//       db.collection('Stores/' + storeName + "/unavailable").orderBy("name").get().then((itemsSnapshot) => {
-//          var itemsUnavailable = [];
-//          var index = 0;
-//          for (i = 0; i < itemsSnapshot.docs.length; i++) {
-//             console.log(itemsSnapshot.docs[i].get("name"));
-//          }
-
-
-//       });
-//    });
-// }
 
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
@@ -221,7 +210,7 @@ function createRandomShopShortageList(shopName) {
    db.collection("Items").get().then(function (docS) {
       // for each document in the item collect
       docS.forEach(function (item) {
-         // make a copy of it in the users list.
+         // make a copy of it in the shops unavailable list.
          if (getRandomInt(1, 3) == 2) {
             listRef.doc(item.get("name")).set(item.data());
          }
