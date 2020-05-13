@@ -73,8 +73,8 @@ function saveItemToList(itemName, listName, qty) {
    var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
-         if (userDoc.get('DomsDayMode')){
-            path = "Doomsday/"
+         if (userDoc.get('DoomsDayMode')){
+            path = "Doomsday/";
          }
          db.doc(path + itemName).get().then(function (item) {
             console.log(item.data());
