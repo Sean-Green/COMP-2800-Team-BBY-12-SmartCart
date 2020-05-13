@@ -91,9 +91,14 @@ header.masthead {
 #listButton {
     margin: 10px;
 }
-#removeButton{
+#removeButton { 
     margin:none;
     padding: none;
+}
+.listNameBtn {
+    text-decoration: none;
+    border: none;
+    background-color: white;
 }
 
 /** Footer */
@@ -122,7 +127,7 @@ header.masthead {
     display: none;
 }
 #doomExplosion {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    position: absolute;
+    margin: auto;
+    width: 75%;
 }
