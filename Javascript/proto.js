@@ -72,11 +72,11 @@ function getUserDisplayName() {
 function saveItemToList(itemName, listName, qty) {
    var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
-      db.doc("Users/" + user.uid).get().then(function (userDoc) {
+      db.doc("Users/" + user.uid).get().then(function (userDoc) {                      //read
          if (userDoc.get('DoomsDayMode')){
             path = "Doomsday/";
          }
-         db.doc(path + itemName).get().then(function (item) {
+         db.doc(path + itemName).get().then(function (item) {                          //read
             console.log(item.data());
 
             var userLists = userDoc.get("listNames");
@@ -91,15 +91,17 @@ function saveItemToList(itemName, listName, qty) {
                // console.log("Adding list to listNames")
                // console.log(userLists); //////////
                //Add the list lists
-               db.doc("Users/" + user.uid).set({
+               db.doc("Users/" + user.uid).set({                                     //write
                   "listNames": userLists
                }, {
                   merge: true
                });
             }
-            // Now save it under a specified list and .then() get the reference id
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({
+            // Now save it under a specified list and .then() get the reference id           
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({     //write
+               "name" : item.get("name"),
+               "size": item.get("size"),
+               "units" : item.get("units"),                                                 
                "qty": qty
             }, {
                merge: true
@@ -226,15 +228,6 @@ function buildList() {
          });
       });
    })
-}
-
-function shortEverything() {
-   createRandomShopShortageList('Abbotsford Supermarket');
-   createRandomShopShortageList('IGA Richmond');
-   createRandomShopShortageList('Safeway Langley');
-   createRandomShopShortageList('Superstore');
-   createRandomShopShortageList('T&T Supermarket');
-   createRandomShopShortageList('Walmart Supercentre');
 }
 
 //helper

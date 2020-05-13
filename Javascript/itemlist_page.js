@@ -263,7 +263,7 @@ $(document).ready(function () {
                 snapshot.docs.forEach(doc => {
                     let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
                     $("#inputItem").append(listOfItems);
-                    console.log(doc.data())
+                    // console.log(doc.data())
                     //ghetto way to get access database items name, size , and units
                     namearray.push(doc.get("name"));
                     sizearray.push(doc.get("size"));
