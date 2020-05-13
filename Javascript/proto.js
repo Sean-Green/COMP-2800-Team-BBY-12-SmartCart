@@ -23,7 +23,7 @@ function getUserDetails() {
 function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (doc) {
-         if (doc.exists) {
+         if (doc.exists) { //   <-- Doc exists example
             // console.log("User Exists:", doc.data());
          } else {
             db.collection("Users").doc(user.uid).set({
@@ -70,13 +70,15 @@ function getUserDisplayName() {
 
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
+   var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
-      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
-      // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).get().then(function (item) {
-         console.log(item.data());
-         // check listNames array for listname////////////////////////////////////////
-         db.doc("Users/" + user.uid).get().then(function (userDoc) {
+      db.doc("Users/" + user.uid).get().then(function (userDoc) {
+         if (userDoc.get('DomsDayMode')){
+            path = "Doomsday/"
+         }
+         db.doc(path + itemName).get().then(function (item) {
+            console.log(item.data());
+
             var userLists = userDoc.get("listNames");
             var nameExists = false;
             for (i = 0; i < userLists.length && !nameExists; i++) {
@@ -226,7 +228,7 @@ function buildList() {
    })
 }
 
-function shortEverything(){
+function shortEverything() {
    createRandomShopShortageList('Abbotsford Supermarket');
    createRandomShopShortageList('IGA Richmond');
    createRandomShopShortageList('Safeway Langley');
