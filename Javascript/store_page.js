@@ -1,21 +1,26 @@
-function storelists() {
-    $(document).ready(function () {
+$(document).ready(function () {
+
+
+    storelists();
+
+    function storelists() {
         //get user info
         firebase.auth().onAuthStateChanged(function (user) {
             //get user doc
             db.doc('Users/' + user.uid).get().then((userDoc) => {
-                db.collection("Stores").get().then(function (storeDocs) {
-                    //for each store in the DB
-                    var idNum = 0;
-                    storeDocs.forEach(function (store) {
-                        var shoppingList;
-                        var unavail;
-                        var pageHTML;
-                        var itemCount;
-                        //get the users list of items, and the stores list of unavailables
-                        db.collection('Users/' + user.uid + "/" + userDoc.get("shoppingList")).get().then((userItems) => {
+
+                db.collection('Users/' + user.uid + "/" + userDoc.get("shoppingList")).get().then((userItems) => {
+                    db.collection("Stores").get().then(function (storeDocs) {
+                        //for each store in the DB
+                        var idNum = 0;
+                        var shoppingList = userItems.docs;;
+                        storeDocs.forEach(function (store) {
+
+                            var unavail;
+                            var pageHTML;
+                            var itemCount;
+                            //get the users list of items, and the stores list of unavailables
                             db.collection('Stores/' + store.get('name') + '/unavailable').get().then((unavailItems) => {
-                                shoppingList = userItems.docs;
                                 itemCount = shoppingList.length;
                                 unavail = unavailItems.docs;
                                 //store card with modal //////////////////////////////////////////
@@ -54,9 +59,7 @@ function storelists() {
 
             });
         });
-    })
-
-};
+    }
 
 
-storelists();
+});
