@@ -159,22 +159,6 @@ function compareUserToStoreList(userListName, storeName) {
       });
    });
 }
-// function compareUserToStoreList(userListName, storeName) {
-//    //Array to hold our list of items.
-
-//    firebase.auth().onAuthStateChanged(function (user) {
-//       // Call the stores list of unavailable items and the for Each through them
-//       db.collection('Stores/' + storeName + "/unavailable").orderBy("name").get().then((itemsSnapshot) => {
-//          var itemsUnavailable = [];
-//          var index = 0;
-//          for (i = 0; i < itemsSnapshot.docs.length; i++) {
-//             console.log(itemsSnapshot.docs[i].get("name"));
-//          }
-
-
-//       });
-//    });
-// }
 
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
@@ -222,7 +206,7 @@ function createRandomShopShortageList(shopName) {
    db.collection("Items").get().then(function (docS) {
       // for each document in the item collect
       docS.forEach(function (item) {
-         // make a copy of it in the users list.
+         // make a copy of it in the shops unavailable list.
          if (getRandomInt(1, 3) == 2) {
             listRef.doc(item.get("name")).set(item.data());
          }
@@ -240,6 +224,15 @@ function buildList() {
          });
       });
    })
+}
+
+function shortEverything(){
+   createRandomShopShortageList('Abbotsford Supermarket');
+   createRandomShopShortageList('IGA Richmond');
+   createRandomShopShortageList('Safeway Langley');
+   createRandomShopShortageList('Superstore');
+   createRandomShopShortageList('T&T Supermarket');
+   createRandomShopShortageList('Walmart Supercentre');
 }
 
 //helper
