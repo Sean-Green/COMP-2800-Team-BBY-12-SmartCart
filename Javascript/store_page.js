@@ -1,5 +1,9 @@
-function storelists() {
-    $(document).ready(function () {
+$(document).ready(function () {
+
+
+    storelists();
+
+    function storelists() {
         //get user info
         firebase.auth().onAuthStateChanged(function (user) {
             //get user doc
@@ -55,9 +59,7 @@ function storelists() {
 
             });
         });
-    })
-
-};
+    }
 
 
-storelists();
+});
