@@ -126,24 +126,6 @@ function doomsDayMode() {
                merge: true
             })
             doomsDayState();
-
-            // parse through the db and print the user's lists
-            for (i = 0; i < userLists.length; i++) {
-               let listOfLists = '<li class="list-group-item" id="myList" id="listNameCheck' + i + '"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
-               let listText = $(listOfLists).text();
-               listText = listText.trim();
-               console.log(listText);
-   
-               // remove button in edit mode
-               listOfLists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
-               $(document).on("click", "#removeButton" + i, function () {
-                  console.log(listText);
-                  deleteListByName(listText);
-               })
-   
-               // appending the lists
-               $("#listName").append(listOfLists);
-            }
          })
       })
 
@@ -177,6 +159,13 @@ function setShoppingList(listName) {
          shoppingList: shopListName
       }, {
          merge: true
+      }).then((success) => {
+         redirect();
       })
    })
+}
+
+// Redirecting the lists to the list page.
+function redirect() {
+   window.location = "itemlist_page.html";
 }
