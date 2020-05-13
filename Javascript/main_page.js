@@ -54,26 +54,26 @@ function getUserLists(editState) {
          let userLists = snapshot.get("listNames");
          $("#listName").html("");
          for (i = 0; i < userLists.length; i++) {
-            let listOfLists = '<li class="list-group-item" id="myList" id="listNameCheck' + i + '"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
-            let listText = $(listOfLists).text();
+            let lists = '<li class="list-group-item" id="myList" id="listNameCheck' + i + '"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
+            let listText = $(lists).text();
             listText = listText.trim();
             console.log(listText);
 
             // remove button in edit mode
-            listOfLists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
+            lists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
             $(document).on("click", "#removeButton" + i, function () {
                console.log(listText);
                deleteListByName(listText);
             })
 
             // appending the lists
-            $("#listName").append(listOfLists);
+            $("#listName").append(lists);
 
             // removing the remove buttons once edit mode is off
             if (!editState) {
                $("#removeButton" + i).remove();
             }
-            console.log(listOfLists);
+            console.log(lists);
 
             // setting the shopping list name to the list name that is clicked
             $(document).on("click", "#listName" + i, function(){
