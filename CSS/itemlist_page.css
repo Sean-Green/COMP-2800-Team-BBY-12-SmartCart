@@ -107,7 +107,7 @@
 
     .editbutton{
         color: orange;
-        opacity: 0;
+        /* opacity: 0; */
     }
 
     .editbutton:hover {
@@ -304,9 +304,9 @@
 
     #newlistname {
         border: 0;
-        height: 60px;
+        /* height: 60px;
         width: 140px; 
-        text-align: center;
+        text-align: center; */
     }
 
     #thesavelistbutton {
@@ -430,7 +430,7 @@
 
     .editbutton{
         color: orange;
-        opacity: 0;
+        /* opacity: 0; */
     }
 
     .editbutton:hover {

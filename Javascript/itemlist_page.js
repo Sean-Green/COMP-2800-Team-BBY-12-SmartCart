@@ -143,38 +143,30 @@ $(document).ready(function () {
     array[0] = "null";
 
 
-    //function when click the edit button for item list name
-    // $('.editbutton').on('click', function() {
-    // $(document).on('click', ".editbutton", function () {
-    //     let one = 1;
-    //     let two = 2;
-    //     //before you replace the content of the span list name save the name
-    //     //when edit is clicked old name is saved in array check position 1
-    //     array[0] = $("#listname2").text();
-    //     //replace the default list name with a text box for user input
-    //     $("#listname2span").html('<input type="text" id="newlistname" size="7" placeholder="List Name">')
-    //     let content = $('#listname3').html();
-    //     //prebuilt buttons for confirm (class="editbuttonone") and cancel (class="editbuttontwo") 
-    //     let a = "<div><button class=editbutton" + one + ">DONE</button></div>";
-    //     // let b = "<div><button class=editbutton" + two +">CANCEL</button></div>";
-    //     //add the confirm button
-    //     $('#listname3').html(content + a);
-    //     //reinstantiate content for listname3 then add the cancel button to make it below
-    //     //might remove cancel button therefore commented it out
-    //     // content = $('#listname3').html();
-    //     // $('#listname3').html(content + b);
-    //     //remove the edit button
-    //     $('.editbutton').remove();
-    //     //shows the X remove button
-    //     $('.removebutton').show();
-    //     //shows the increment button on item quantity
-    //     $('.incrementbutton').show();
-    //     //shows the decrement button on item quantity
-    //     $('.decrementbutton').show();
-    //     //set add checker back to false to prevent adds
-    //     addchecker[0] = false;
-
-    // })
+    // function when click the edit button for item list name
+    $(document).on('click', ".editbutton", function () {
+        let one = 1;
+        let two = 2;
+        //before you replace the content of the span list name save the name
+        //when edit is clicked old name is saved in array check position 1
+        array[0] = $("#listname2").text();
+        //replace the default list name with a text box for user input
+        $("#listname2span").html('<input type="text" id="newlistname" size="7" placeholder="List Name">')
+        let content = $('#listname3').html();
+        //prebuilt buttons for confirm (class="editbuttonone") and cancel (class="editbuttontwo") 
+        let a = "<div><button class=editbutton" + one + ">DONE</button></div>";
+        // let b = "<div><button class=editbutton" + two +">CANCEL</button></div>";
+        //add the confirm button
+        $('#listname3').html(content + a);
+        //reinstantiate content for listname3 then add the cancel button to make it below
+        //might remove cancel button therefore commented it out
+        // content = $('#listname3').html();
+        // $('#listname3').html(content + b);
+        //remove the edit button
+        $('.editbutton').remove();
+        //set add checker back to false to prevent adds
+        addchecker[0] = false;
+    })
 
     //CHANGE LIST NAME FUNCTION [contains 3 parts]
     //[function details]
@@ -183,35 +175,38 @@ $(document).ready(function () {
     //the old name.
     //In addition if you decide to leave the input box empty and click outside it will give you the 
 
-    //global variable to hold the old list name
-    var oldlistname;
-    //[part 1] - replaces the list name with an empty text box to enter new name in
-    $('#listname2span').on('click', function() {
-        oldlistname = $("#listname2").text().trim();
-        console.log("oldlistname " + oldlistname);
-        $("#listname2").html('<input type="text" id="newlistname" size="7" placeholder="Enter List Name">')
+    // //global variable to hold the old list name
+    // var oldlistname;
+    // //[part 1] - replaces the list name with an empty text box to enter new name in
+    // // $(document).on('click', "#listname2span", function () {
+    // $('#listname2span').click(function() {
+    //     oldlistname = $("#listname2").text().trim();
+    //     console.log("oldlistname " + oldlistname);
+    //     $("#listname2").html('<input type="text" id="newlistname" size="7" placeholder="Enter List Name">')
+    //     namechecker[0] = true;
+    // })
+    // //[part - 2] - this function will trigger when clicked outside set area from part 3
+    // $(document).click(function() {
+    //     if(namechecker[0] === true){
+    //         let userinput = $('#newlistname').val();
+    //         if (userinput === ''){
+    //             userinput = oldlistname;
+    //         }
+    //         // $("#listname2span").html(userinput);
+    //         $("#listname2").html('<span id="listname2span">' + userinput + '</span>');
+    //         namechecker[0] = false;
+    //     }
+    //     // alert('clicked outside');
+    // });
+    // //[part - 3] - sets the area, if you click outside the area it will trigger above event
+    // $("#listname2").click(function(event) {
+    //     // alert('clicked inside');
+    //     event.stopPropagation();
+    // });
+
+    $(document).on('click', "#newlistname", function () {
         namechecker[0] = true;
     })
-
-    //[part - 2] - this function will trigger when clicked outside set area from part 3
-    $(document).click(function() {
-        if(namechecker[0] === true){
-            let userinput = $('#newlistname').val();
-            if (userinput === ''){
-                userinput = oldlistname;
-            }
-            $("#listname2span").html(userinput);
-            $("#listname2").html('<span id="listname2span">' + userinput + '</span>')
-            namechecker[0] = false;
-        }
-        // alert('clicked outside');
-    });
-    //[part - 3] - sets the area, if you click outside the area it will trigger above event
-    $("#listname2").click(function(event) {
-        // alert('clicked inside');
-        event.stopPropagation();
-    });
-
 
     //function when click the DONE button for item list name
     //class added dynamically therefore use event delegation
@@ -231,12 +226,6 @@ $(document).ready(function () {
         $("#editbuttondiv").html("<button class=editbutton>EDIT</button>");
         $(".editbutton").addClass("button");
         array[0] = $("#listname2").text();
-        //removes the X remove button
-        $('.removebutton').hide();
-        //removes the increment button on item quantity
-        $('.incrementbutton').hide();
-        //removes the decrement button on item quantity
-        $('.decrementbutton').hide();
         //set add checker back to true to allow adds
         addchecker[0] = true;
         namechecker[0] = false;
@@ -449,7 +438,8 @@ $(document).ready(function () {
             }
         }
 
-        if (validshopping === 0) {
+        if(validshopping === 0){
+            validshopping = 1;
             console.log("validshopping is " + validshopping);
             // $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
             $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><span id="goshopstatus3">[READY]</span><span id="goshopstatus4"> GO SHOP</span></a>')
