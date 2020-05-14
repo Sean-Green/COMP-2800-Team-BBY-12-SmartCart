@@ -1,7 +1,7 @@
 let count = [];
 let unavilableCount = [];
 
-
+/*
 function countItem() {
     $(document).ready(function () {
         firebase.auth().onAuthStateChanged(function (user) {
@@ -32,9 +32,103 @@ function countItem() {
 }
 
 countItem();
+*/
 
 
+$(document).ready(() => {
 
+    function displayList() {
+        $(document).ready(function () {
+           
+            firebase.auth().onAuthStateChanged(function (user) {
+                db.doc("Users/" + user.uid).get().then(function (userDoc) {
+                    let currentStore = userDoc.get("currentStore");
+                    let shoppingList = userDoc.get("shoppingList");
+                    let listHTML = "";
+                    $('#storename').prepend('<h3>'+'Your Store : ' + currentStore + '</h3>');
+
+                    db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                        let item = userList.docs;
+                        for (i = 0; i < item.length; i++) {
+     
+                    listHTML += '<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com">'
+                    + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
+                               
+                    let itemName = item[i].get("name");
+                    console.log(itemName);
+                    listHTML += '</td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button></td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></li>';
+                
+                            
+                            $('#itemList').append(listHTML);
+                            listHTML = "";
+                            $(document).on('click', "#remove" + i, () => {
+                                console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+                                removeItemFromUnavailable(itemName);
+                            });
+                            $(document).on('click', "#add" + i, () => {
+
+                                console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                                addItemToUnavailable(itemName);
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    }
+    displayList();
+
+});
+
+function edit(){
+    window.location = "itemlist_page.html";
+}
+
+/*
+function edit(){
+    $('#itemList').empty();
+    firebase.auth().onAuthStateChanged(function (user) {
+      
+        db.doc("Users/" + user.uid).get().then(function (userDoc) {
+         
+            let shoppingList = userDoc.get("shoppingList");
+   
+            let listHTML = "";
+            
+            db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                let item = userList.docs;
+                for (i = 0; i < item.length; i++) {
+
+                    listHTML += '<tr><td data-th="Product"><div class="row"><button>&#10060;&nbsp;</button><a href="https://placeholder.com">'
+                    + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
+                   
+                  
+                    let itemName = item[i].get("name");
+                    console.log(itemName);
+                    listHTML += '<button id="remove' + i + '">&#9989;</button></td><td class="actions" data-th=""><button id="add' + i + '">&#10060;</button></li>';
+                
+                   
+                    $('#itemList').append(listHTML);
+                    listHTML = "";
+                    $(document).on('click', "#remove" + i, () => {
+                        console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+                        removeItemFromUnavailable(itemName);
+                    });
+                    $(document).on('click', "#add" + i, () => {
+
+                        console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                        addItemToUnavailable(itemName);
+                    });
+                }
+            });
+        });
+    });
+
+
+}
+*/
+
+/*
 let id = 0;
 firebase.auth().onAuthStateChanged(function (user) {
     db.doc("Users/" + user.uid).get().then(function (userDoc) {
@@ -53,33 +147,13 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
 });
 
-function Edit() {
-
-    $('#products').empty();
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        db.doc("Users/" + user.uid).get().then(function (userDoc) {
-            db.collection('Users/' + user.uid + '/' + userDoc.get('shoppingList')).get().then(function (userlist) {
-
-                userlist.forEach(function (item) {
-
-
-
-                    $('#products').append('<tr><td data-th="Product"><div class="row"><span>&#10060;&nbsp;</span><a href="https://placeholder.com/"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td id="availableBtnArea" class="text-center"><a class="btn btn-success" id="avaliableBtn">Avaliable</a></td><td id="unavailableBtnArea" class="text-center"><a class="btn btn-danger" id="unavaliableBtn">Unavaliable</a></td><td class="actions" data-th=""></td></tr>');
-
-
-
-                })
-            });
-        });
-    });
-
-}
+*/
 
 
 
 
 
+/*
 let unavailablestate = false;
 
 function toggleOffByInput() {
@@ -99,3 +173,4 @@ function toggleOffByInput() {
 
     unavailablestate = true;
 }
+*/

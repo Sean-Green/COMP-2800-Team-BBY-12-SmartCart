@@ -21,7 +21,7 @@
 
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
-    <link rel="icon" type="image/png" href="image/SCfavicon.png">
+    <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -36,7 +36,7 @@
 
     <!-- Link javascript-->
     <script src="Javascript/shoping_page.js"></script>
-
+    <script src="Javascript/proto.js"></script>
 
 </head>
 
@@ -80,6 +80,14 @@
     <!--middel body-->
     <section>
         <div class="container">
+
+
+            <br>
+            <div class="alert alert-info" role="alert">
+                <div id="storename"></div>
+            </div>
+
+            <button class="btn btn-success" onclick="edit()">Edit</button>
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                     <tr>
@@ -103,11 +111,10 @@
 
 
 -->
-                <ul class="countbutton">
-                    <li><button class="btn btn-success" onclick="Edit()">Edit</button></li>
-                   
 
-                    <!--
+
+
+                <!--
                          <li><button class="btn btn-danger" onclick="toggleOffByInput()">See unavailable items</button></li>
                     <li>
                         <div class="onoffswitch">
@@ -122,24 +129,11 @@
 
                     </li>
 -->
-                </ul>
 
 
-                <tbody id="products">
-
-                    <!--
-                    <button class="btn btn-info btn-sm">
-                        <i class="fa fa-refresh"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm">
-                        <i class="fa fa-trash-o">
-
-                        </i>
-                    </button>
+                <tbody id="itemList">
 
 
-                </tbody>
--->
 
         </div>
 
@@ -154,9 +148,18 @@
         </tfoot>
         </table>
 
-        <ul class="mybuttons" >
-        <li class="table-button2" id="itemUnavailable"></li>
-        <li class="table-button2"><a href="main_page.html" id="primary-button" class="btn btn-primary">Done shopping</a></li>
+        <ul class="mybuttons">
+            <li class="table-button1">
+                <a href="itemlist_page.html" id="warning-button" class="btn btn-warning">Create List</a>
+            </li>
+            <li class="table-button2">
+                <a href="main_page.html" id="primary-button" class="btn btn-primary">Done shopping</a>
+            </li>
+            <li class="table-button3">
+                <a href="store_page.html" id="success-button" class="btn btn-success">Shop with this</a>
+            </li>
+        </ul>
+
 
         </ul>
 
