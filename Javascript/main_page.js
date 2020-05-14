@@ -54,33 +54,50 @@ function getUserLists(editState) {
          let userLists = snapshot.get("listNames");
          $("#listName").html("");
          for (i = 0; i < userLists.length; i++) {
-            let listOfLists = '<li class="list-group-item" id="myList" id="listNameCheck' + i + '"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
-            let listText = $(listOfLists).text();
+            let lists = '<li class="list-group-item" id="myList"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
+            let listText = $(lists).text();
             listText = listText.trim();
-            console.log(listText);
+            //console.log(listText);
 
             // remove button in edit mode
-            listOfLists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
+            lists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
             $(document).on("click", "#removeButton" + i, function () {
-               console.log(listText);
                deleteListByName(listText);
+               //console.log(listText);
             })
 
             // appending the lists
-            $("#listName").append(listOfLists);
+            $("#listName").append(lists);
 
             // removing the remove buttons once edit mode is off
             if (!editState) {
                $("#removeButton" + i).remove();
             }
-            console.log(listOfLists);
+            console.log(lists);
 
             // setting the shopping list name to the list name that is clicked
             $(document).on("click", "#listName" + i, function(){
                console.log(listText);
                setShoppingList(listText);
             })
+
+            let defaultName = "";
+            $(document).on("click", "#createListBtn", function(){
+               setBaseShoppingList(defaultName);
+            })
          }
+      })
+   })
+}
+
+function setBaseShoppingList(defaultListName){
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.doc("Users/" + user.uid).set({
+         shoppingList: defaultListName
+      }, {
+         merge:true
+      }).then((success) => {
+         redirect();
       })
    })
 }
@@ -102,10 +119,10 @@ function doomsDayState() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then((snapshot) => {
          if (snapshot.get("DoomsDayMode")) {
-            $("#createListBtn").html('<a class="btn btn-danger" href="itemlist_page.html">Create A New Doomsday List</a>');
+            $("#createListBtn").html('<a class="btn btn-danger">Create A New Doomsday List</a>');
             $("#footerNote").html('<p id="footerNote">Copyright of SmartCart ltd, To return back to normal mode<span><button id="doomsDayBtn">Click Me</button></span></p>');
          } else {
-            $("#createListBtn").html('<a class="btn btn-success" href="itemlist_page.html">Create A New List</a>');
+            $("#createListBtn").html('<a class="btn btn-success">Create A New List</a>');
             $("#footerNote").html('<p id="footerNote">Copyright of SmartCart ltd, Inorder to prepare for the end of the world<span><button id="doomsDayBtn">DONOT Click Me</button></span></p>');
          }
       })
@@ -164,6 +181,7 @@ function setShoppingList(listName) {
       })
    })
 }
+
 
 // Redirecting the lists to the list page.
 function redirect() {
