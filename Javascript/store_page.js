@@ -24,10 +24,10 @@ $(document).ready(function () {
                                 itemCount = shoppingList.length;
                                 unavail = unavailItems.docs;
                                 //store card with modal //////////////////////////////////////////
-                                pageHTML = '<div class="col-md-4"><div class="card mb-4 shadow-sm"><svg class="bd-placeholder-img card-img-top" width="100%" height="225"xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"dy=".3em">Backgroud image</text></svg><div class="card-body"><h4>'
-                                    // set store details
+                                pageHTML = '<div class="col-md-4"><div class="card mb-4 shadow-sm"><svg class="bd-placeholder-img card-img-top" width="100%" height="225"xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"dy=".3em">Backgroud image</text></svg><div class="card-body">'
+                                    // set store name and store id num
                                     +
-                                    store.get("name") + '</h4><p class="card-text">' + store.get("address") + '</p><div class="d-flex justify-content-between align-stores-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
+                                    '<h4 id="storeName' + idNum + '">' + store.get("name") + '</h4><p class="card-text">' + store.get("address") + '</p><div class="d-flex justify-content-between align-stores-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
                                     // set modal id#
                                     +
                                     idNum + '">Store detail</button><div class="modal fade" id="myModal' + idNum + '" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Item</h3><h4 class="storeItemCount" id="storeItemCount' +
@@ -43,12 +43,19 @@ $(document).ready(function () {
                                         }
                                     }
                                 }
-                                pageHTML += '</ul></div><div class="modal-footer"><button type="button" class="btn btn-default" id="chooseStoreBtn"><a href="shoping_page.html">Go Shopping!</a></button><button type="button" class="btn btn-default" data-dismiss="modal"id="modalCloseBtn">Close</button></div></div></div> </div></div><small class="text-muted">9 mins(Track gps - add later)</small></div></div></div></div>'
+                                pageHTML += '</ul></div><div class="modal-footer"><button type="button" class="btn btn-default" id="chooseStoreBtn">'
+                                    //set go shopping button id
+                                    +
+                                    '<a id="takeThemShopping' + idNum + '">Go Shopping!</a></button><button type="button" class="btn btn-default" data-dismiss="modal"id="modalCloseBtn">Close</button></div></div></div> </div></div><small class="text-muted">9 mins(Track gps - add later)</small></div></div></div></div>'
                                 $('#stores').append(pageHTML);
                                 $('#storeItemCount' + idNum).text(itemCount + "/" + shoppingList.length);
                                 if (itemCount === shoppingList.length) {
                                     $('#itemList' + idNum).append('<li>ALL ITEMS IN STOCK</li>');
                                 }
+                                $('#takeThemShopping'+ idNum).click(()=>{
+                                    let storeName = $('#storeName'+ idNum).text();
+                                    console.log(storeName + "");
+                                })
                                 idNum++;
                             });
 
