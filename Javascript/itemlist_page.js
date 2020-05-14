@@ -1,32 +1,47 @@
 $(document).ready(function () {
-        //using arrays to access database information for item's name, size and unit
-        var namearray = [];
-        var sizearray = [];
-        var unitarray = [];
-        let databaseitemamount = 0;
-        //maha code to link database item selection to our items
-        firebase.auth().onAuthStateChanged(function (user) {
-            db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
-                let path = "Items";
-                if (snapshot.get("DoomsDayMode")) {
-                    path = "Doomsday";
-                }
-                db.collection(path).get().then((snapshot) => {
-                    snapshot.docs.forEach(doc => {
-                        let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
-                        $("#inputItem").append(listOfItems);
-                        // console.log(doc.data())
-                        //ghetto way to get access database items name, size , and units
-                        namearray.push(doc.get("name"));
-                        sizearray.push(doc.get("size"));
-                        unitarray.push(doc.get("units"));
-                        databaseitemamount++;
-                        databasestatus = true;
+
+    var buildsaveliststatus = false;
+    console.log(buildsaveliststatus);
+    $(document).on('click', ".listNameBtn", function () {
+        buildsaveliststatus = true;
+        console.log(buildsaveliststatus);
+    })
+    console.log("round two" + buildsaveliststatus);
+
+
+
+
+
+    //class listNameBtn
+
+            //using arrays to access database information for item's name, size and unit
+            var namearray = [];
+            var sizearray = [];
+            var unitarray = [];
+            let databaseitemamount = 0;
+            //maha code to link database item selection to our items
+            firebase.auth().onAuthStateChanged(function (user) {
+                db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+                    let path = "Items";
+                    if (snapshot.get("DoomsDayMode")) {
+                        path = "Doomsday";
+                    }
+                    db.collection(path).get().then((snapshot) => {
+                        snapshot.docs.forEach(doc => {
+                            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
+                            $("#inputItem").append(listOfItems);
+                            // console.log(doc.data())
+                            //ghetto way to get access database items name, size , and units
+                            namearray.push(doc.get("name"));
+                            sizearray.push(doc.get("size"));
+                            unitarray.push(doc.get("units"));
+                            databaseitemamount++;
+                            databasestatus = true;
+                        })
+
                     })
-    
                 })
-            })
-        });
+            });
 
     //if true you can use the add button else no (only using addchecker[0] as boolean checker)
     //this is the global array that check boolean that checks if you are valid to add or not
@@ -240,7 +255,7 @@ $(document).ready(function () {
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
         //edit the title
-        if (namechecker[0] === true) {
+        if(namechecker[0] === true) {
             let userinput = $('#newlistname').val();
             $("#listname2span").html(userinput);
             $('#newlistname').remove();
