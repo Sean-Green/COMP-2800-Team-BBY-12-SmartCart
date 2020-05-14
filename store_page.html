@@ -24,7 +24,7 @@
 
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/store_page.css">
-    <link rel="icon" type="image/png" href="image/SCfavicon.png">
+    <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
@@ -45,21 +45,18 @@
 <body>
 
     <!--top var - dropdown menu -->
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand">Smartcart</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="#">Lists </a>
-                    <a class="dropdown-item" href="#">Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">About us</a>
-                </div>
+    <nav class="navbar sticky-top" id="navbarPrimary">
+        <div id="logo">
+            <a href="main_page.html" id="logoName">SmartCart</a>
+        </div>
+        <div class="dropdown">
+            <button class="dropdownButton">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="main_page.html">My Lists</a>
+                <a href="about_us_page.html">About Us</a>
+                <a href="splash_page.html" on click="logout">Logout</a>
             </div>
         </div>
     </nav>
@@ -70,16 +67,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <h1 class="mb-4">Find the stores </h1>
-                    <h2 class="mb-4"> Find store anywehre anytime!</h2>
+                    <h1 class="mb-4">Choose a Store</h1>
+                    <h2 class="mb-4">Click Details to See and Set a store!</h2>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <form>
                         <div class="form-row">
                             <div class="col-12 col-md-12">
 
-                                <!-- Search form -->
+
+                                <!-- Search form
                                 <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                -->
+
+
                             </div>
                         </div>
                     </form>
@@ -93,10 +94,14 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
+
             <div id="stores" class="row">
-                
+
+
             </div>
         </div>
+
+    </div>
     </div>
 
 
@@ -110,7 +115,7 @@
                         <li class="list-inline-item">
 
                             <!-- Team profile page - short description who we are -->
-                            <a href="#">About</a>
+                            <a href="about_us_page.html">About</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
@@ -128,7 +133,8 @@
                             <a href="#">Privacy Policy</a>
                         </li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights
+                        Reserved.</p>
                 </div>
             </div>
         </div>

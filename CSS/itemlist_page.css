@@ -43,6 +43,7 @@
         visibility: hidden;
     }
 
+
     .goshopbutton{
         color: rgb(169, 175, 168);
         border:none;
@@ -102,6 +103,7 @@
         color: white;
         border-radius: 5px;
     }
+
 
     .editbutton{
         color: orange;
@@ -175,18 +177,13 @@
         border-color:  rgb(71, 163, 71);
     }
 
-    
-
     #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        height: 200px;
+        display: grid;
 
         display: grid;
         grid-template-columns: 45% 20% 40%;
         grid-template-rows: 15% 40% 40%;
+
         grid-template-areas:
         "one two three"
         "four five six"
@@ -223,6 +220,7 @@
         grid-area: three;
         font-weight: bold;
     }
+
 
 
     ul{
@@ -297,6 +295,9 @@
         background-color:rgb(37, 122, 15);
         border-radius: 5px;
     }
+
+
+
     span{
         font-weight: bold;
     }
@@ -317,7 +318,7 @@
         color: pink;
         border-radius: 5px;
     }
-    
+
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -447,6 +448,7 @@
         display:inline-block;
     }
 
+
     .editbutton1{
         border: none;
         background-color: inherit;
@@ -482,6 +484,7 @@
 
 
 
+
     #contentcontainer{
         background-color: white;
         margin: 20px;
@@ -492,12 +495,6 @@
     }
 
     #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        height: 200px;
-
         display: grid;
         grid-template-columns: 34% 37% 37%;
         grid-template-rows: 15% 40% 40%;
@@ -610,9 +607,12 @@
         border-radius: 5px;
     }
 
+
+
     span{
         font-weight: bold;
     }
+
 
     #newlistname {
         border: 0;
@@ -630,4 +630,5 @@
         color: pink;
         border-radius: 5px;
     }
+
 }

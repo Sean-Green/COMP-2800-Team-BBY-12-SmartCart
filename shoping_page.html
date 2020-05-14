@@ -24,21 +24,21 @@
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
     <link rel="icon" type="image/png" href="image/SCfavicon.png">
-
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-<!-- The firebase configuration for our project-->
-<script type='text/javascript' src="Javascript/firebase_config.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <!-- The firebase configuration for our project-->
+    <script type='text/javascript' src="Javascript/firebase_config.js"></script>
 
 
 
     <!-- Link javascript-->
     <script src="Javascript/shoping_page.js"></script>
+
 
 </head>
 
@@ -46,25 +46,21 @@
 <body>
 
     <!--top var - dropdown menu -->
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand">Smartcart</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="#">Lists </a>
-                    <a class="dropdown-item" href="#">Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">About us</a>
-                </div>
+    <nav class="navbar sticky-top" id="navbarPrimary">
+        <div id="logo">
+            <a href="main_page.html" id="logoName">SmartCart</a>
+        </div>
+        <div class="dropdown">
+            <button class="dropdownButton">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="main_page.html">My Lists</a>
+                <a href="about_us_page.html">About Us</a>
+                <a href="splash_page.html" on click="logout">Logout</a>
             </div>
         </div>
     </nav>
-
 
     <!--header-->
     <header class="masthead text-white text-center">
@@ -87,40 +83,77 @@
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                     <tr>
+
                         <th class="product">Product</th>
                         <th class="space"></th>
                         <th class="quantity">Quantity</th>
-                        <th class="text-center">Price</th>
+                        <th class="text-center">Size</th>
                         <th class="space"></th>
                     </tr>
                 </thead>
 
-               
-                <tbody id="products">
-                 
-                </tbody>
 
-              
-    </div>
+                <br>
+                <div id="count" class="alert alert-success" role="alert">
+                </div>
+                <div id="unavilableCount" class="alert alert-danger" role="alert">
+                </div>
+
+                <ul class="countbutton">
+                    <li><button class="btn btn-success" onclick="toggleOnByInput()">See available items</button></li>
+                    <li><button class="btn btn-danger" onclick="toggleOffByInput()">See unavailable items</button></li>
+
+                    <li>
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                                checked>
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+
+
+                    </li>
+-->
+                </ul>
+
+
+                <tbody id="products">
+
+
+
+                    <!--
+                    <button class="btn btn-info btn-sm">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash-o">
+
+                        </i>
+                    </button>
+
+
+                </tbody>
+-->
+
+
+        </div>
 
         <!--table footer-->
         <tfoot>
             <tr class="visible-xs">
 
-                <td></td>
-                <td colspan="2" class="hidden-xs">
-                <td class="text-center"><strong>Total : 600.00$ </strong></td>
-
+                <td>
                 </td>
             </tr>
-
-
 
         </tfoot>
         </table>
 
 
-        <ul class="mybuttons">
+
+        <ul class="mybuttons" >
             <li class="table-button1">
                 <a href="itemlist_page.html" id="warning-button" class="btn btn-warning">Create List</a>
             </li>
@@ -128,12 +161,13 @@
                 <a href="main_page.html" id="primary-button" class="btn btn-primary">Done shopping</a>
             </li>
             <li class="table-button3">
-                <a href="lists_list_page.html" id="success-button" class="btn btn-success">Shop with this</a>
+                <a href="store_page.html" id="success-button" class="btn btn-success">Shop with this</a>
             </li>
         </ul>
 
 
-        </div>
+
+
 
     </section>
 
@@ -146,7 +180,7 @@
                         <li class="list-inline-item">
 
                             <!-- Team profile page - short description who we are -->
-                            <a href="#">About</a>
+                            <a href="about_us_page.html">About</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">

@@ -1,4 +1,32 @@
 $(document).ready(function () {
+        //using arrays to access database information for item's name, size and unit
+        var namearray = [];
+        var sizearray = [];
+        var unitarray = [];
+        let databaseitemamount = 0;
+        //maha code to link database item selection to our items
+        firebase.auth().onAuthStateChanged(function (user) {
+            db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+                let path = "Items";
+                if (snapshot.get("DoomsDayMode")) {
+                    path = "Doomsday";
+                }
+                db.collection(path).get().then((snapshot) => {
+                    snapshot.docs.forEach(doc => {
+                        let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
+                        $("#inputItem").append(listOfItems);
+                        // console.log(doc.data())
+                        //ghetto way to get access database items name, size , and units
+                        namearray.push(doc.get("name"));
+                        sizearray.push(doc.get("size"));
+                        unitarray.push(doc.get("units"));
+                        databaseitemamount++;
+                        databasestatus = true;
+                    })
+    
+                })
+            })
+        });
 
     //if true you can use the add button else no (only using addchecker[0] as boolean checker)
     //this is the global array that check boolean that checks if you are valid to add or not
@@ -15,6 +43,7 @@ $(document).ready(function () {
 
     //item list page click add button to list the inputted Item Weight Quantity
     let id = 0;
+
     $('#theaddbutton').on('click', function () {
 
         //instantiate a variable to hold the [id] of the item if for a double of the item when it runs through
@@ -211,7 +240,7 @@ $(document).ready(function () {
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
         //edit the title
-        if(namechecker[0] === true) {
+        if (namechecker[0] === true) {
             let userinput = $('#newlistname').val();
             $("#listname2span").html(userinput);
             $('#newlistname').remove();
@@ -337,25 +366,7 @@ $(document).ready(function () {
 
     })
 
-    //using arrays to access database information for item's name, size and unit
-    var namearray = [];
-    var sizearray = [];
-    var unitarray = [];
-    let databaseitemamount = 0;
-    //maha code to link database item selection to our items
-    db.collection("Items").get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
-            $("#inputItem").append(listOfItems);
-            console.log(doc.data())
-            //ghetto way to get access database items name, size , and units
-            namearray.push(doc.get("name"));
-            sizearray.push(doc.get("size"));
-            unitarray.push(doc.get("units"));
-            databaseitemamount++;
-            databasestatus = true;
-        })
-    })
+
 
     //if valid shopping = 0 you cannot press go shopping
     //if valid shopping = 1 you can press go shopping
@@ -403,7 +414,7 @@ $(document).ready(function () {
     //same functionality as the save list button but you will not stay on the same page instead it will
     //take you directly to the stores page to find the right stores for the user.
     $(document).on('click', ".goshopbutton", function () {
-        
+
         let listname = array[0].trim();
         console.log("listname is " + listname);
         console.log(listname);
@@ -415,17 +426,17 @@ $(document).ready(function () {
         let quantity;
         let check;
         // console.log("hi");
-        for(let position = 0; position <= id; position++){
+        for (let position = 0; position <= id; position++) {
             check = $("#magicitem" + position).text()
-            if (check !== ''){
+            if (check !== '') {
                 betaitem = $("#magicitem" + position).text().trim();
                 betaquantity = $("#quantitymagic" + position).text().trim();
-                quantity = betaquantity.substring(3,betaquantity.length - 3);
+                quantity = betaquantity.substring(3, betaquantity.length - 3);
                 // console.log("quantity is " + quantity);
                 item = betaitem.substring(2);
                 // console.log("item is " + item);
                 saveItemToList(item, listname, quantity);
-            } 
+            }
         }
 
         if(validshopping === 0){
@@ -442,4 +453,5 @@ $(document).ready(function () {
             alert('LIST SAVED! CLICK AGAIN TO SHOP');
         }
     });
+
 });

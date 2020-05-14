@@ -5,14 +5,14 @@
 function getUserDetails() {
    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-         console.log(user.displayName);
-         console.log("Sign-in provider: " + user.providerId);
+         // console.log(user.displayName);
+         // console.log("Sign-in provider: " + user.providerId);
          ///////////// IMPORTANT ////////////////////////////////
-         console.log("  Provider-specific UID: " + user.uid);
-         console.log("  Name: " + user.displayName);
+         // console.log("  Provider-specific UID: " + user.uid);
+         // console.log("  Name: " + user.displayName);
          ////////////////////////////////////////////////////////
-         console.log("  Email: " + user.email);
-         console.log("  Photo URL: " + user.photoURL);
+         //    console.log("  Email: " + user.email);
+         //    console.log("  Photo URL: " + user.photoURL);
       } else {
          console.log("user not signed in");
       }
@@ -23,13 +23,14 @@ function getUserDetails() {
 function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (doc) {
-         if (doc.exists) {
-            console.log("User Exists:", doc.data());
+         if (doc.exists) { //   <-- Doc exists example
+            // console.log("User Exists:", doc.data());
          } else {
             db.collection("Users").doc(user.uid).set({
                "name": user.displayName,
                "email": user.email,
-               "listNames": []
+               "listNames": [],
+               "shoppingList": ""
             }, {
                merge: true
             });
@@ -69,13 +70,15 @@ function getUserDisplayName() {
 
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
+   var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
-      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
-      // First grab a snapshot of the item specified.
-      db.doc("Items/" + itemName).get().then(function (item) {
-         console.log(item.data());
-         // check listNames array for listname////////////////////////////////////////
-         db.doc("Users/" + user.uid).get().then(function (userDoc) {
+      db.doc("Users/" + user.uid).get().then(function (userDoc) { //read
+         if (userDoc.get('DoomsDayMode')) {
+            path = "Doomsday/";
+         }
+         db.doc(path + itemName).get().then(function (item) { //read
+            console.log(item.data());
+
             var userLists = userDoc.get("listNames");
             var nameExists = false;
             for (i = 0; i < userLists.length && !nameExists; i++) {
@@ -88,15 +91,17 @@ function saveItemToList(itemName, listName, qty) {
                // console.log("Adding list to listNames")
                // console.log(userLists); //////////
                //Add the list lists
-               db.doc("Users/" + user.uid).set({
+               db.doc("Users/" + user.uid).set({ //write
                   "listNames": userLists
                }, {
                   merge: true
                });
             }
-            // Now save it under a specified list and .then() get the reference id
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set(item.data());
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({
+            // Now save it under a specified list and .then() get the reference id           
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({ //write
+               "name": item.get("name"),
+               "size": item.get("size"),
+               "units": item.get("units"),
                "qty": qty
             }, {
                merge: true
@@ -128,31 +133,65 @@ function deleteListByName(listName) {
          });
          //Delete the list
          db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
-            listItems.forEach(function (item) {
-               db.doc("Users/" + user.uid + "/" + listName + "/" + item.id).delete();
-            });
+            var item = listItems.docs;
+            for (i = 0; i < item.length; i++) {
+               db.doc("Users/" + user.uid + "/" + listName + "/" + item[i].id).delete();
+            }
          });
       });
    });
 }
 
-function compareUserToStoreList(userList, storeName) {
+function compareUserToStoreList(userListName, storeName) {
+   //Array to hold our list of items.
+
    firebase.auth().onAuthStateChanged(function (user) {
-      const USER = db.collection('Users/' + user.uid + "/" + userList).orderBy("name");
-      const STORE = db.collection('Stores/' + storeName + "/unavailable").orderBy("name");
-      unavailableItems = {};
-      i = 0;
-      USER.get().then((userItems) => {
-         STORE.get().then((storeItems) => {
-            userItems.forEach((uItem) => {
-               itemName = uItem.get("name");
+      // Call the stores list of unavailable items and the for Each through them
+      db.collection('Stores/' + storeName + "/unavailable").orderBy("name").get().then((itemsSnapshot) => {
+         var storeItem = itemsSnapshot.docs;
+         for (i = 0; i < storeItem.length; i++) {
+            // For each item:
+            // Check if it exists in the user list then do something with it.
+            db.doc('Users/' + user.uid + "/" + userListName + "/" + storeItem[i].get("name")).get().then((userItem) => {
+               if (userItem.get("name")) {
+                  //Do something with it
+                  console.log(userItem.get("name"));
+               }
+            })
 
-            });
-         });
+         }
       });
    });
 }
+// removes an item from a stores unavailable list
+function removeItemFromUnavailable(itemName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.doc("Users/" + user.uid).get().then(userDoc => {
 
+
+         // Call the stores list of unavailable items and the for Each through them
+         db.doc('Stores/' + userDoc.get("currentStore") + "/unavailable/" + itemName).delete();
+      })
+   })
+}
+
+// Adds an item to the unavailable list of  currentStore of the users
+function addItemToUnavailable(itemName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      var path = "Items/"
+      db.doc("Users/" + user.uid).get().then((userDoc) => {
+         if (userDoc.get('DoomsDayMode')) {
+            path = "Doomsday/";
+         }
+         // Call the stores list of unavailable items and the for Each through them
+         db.doc(path + itemName).get().then((itemsSnapshot) => {
+            db.doc("Stores/" + userDoc.get("currentStore") + "/unavailable/" + itemName).set(itemsSnapshot.data());
+         });
+
+      })
+   });
+
+}
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
 //////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +238,7 @@ function createRandomShopShortageList(shopName) {
    db.collection("Items").get().then(function (docS) {
       // for each document in the item collect
       docS.forEach(function (item) {
-         // make a copy of it in the users list.
+         // make a copy of it in the shops unavailable list.
          if (getRandomInt(1, 3) == 2) {
             listRef.doc(item.get("name")).set(item.data());
          }
@@ -226,3 +265,4 @@ function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
+// this is a test!

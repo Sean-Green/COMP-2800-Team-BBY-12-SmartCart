@@ -45,6 +45,19 @@
 .dropdown:hover .dropdownButton {
     background-color: #1b421c;
 }
+
+/** Header */
+header.masthead {
+    position: relative;
+    background: url("image/splash-back.jpeg") no-repeat center center;
+    background-size: cover;
+    padding-top: 30px;
+}
+/**.mb-4 {
+    text-dec;
+}*/
+
+
 /** Card css*/
 #mainCard {
     text-align: center;
@@ -63,12 +76,12 @@
     display: block;
     border: lightgreen solid;
 }
-#mainBody {
-    background-color: lightgreen;
-}
 #heading1 {
     padding-top: 5px;
     margin-bottom: 0px;
+}
+#userName {
+    color: black;
 }
 
 /** Buttons css */
@@ -78,8 +91,43 @@
 #listButton {
     margin: 10px;
 }
-#removeButton{
+#removeButton { 
     margin:none;
     padding: none;
-    
+}
+.listNameBtn {
+    text-decoration: none;
+    border: none;
+    background-color: white;
+}
+
+/** Footer */
+#footerNote {
+    font-size: x-small;
+}
+#doomsDayBtn {
+    background-color: white;
+    text-decoration: underline;
+    border: none;
+    padding: none;
+    margin: none;
+}
+
+/** Doomsday css */
+#doomsDayL {
+    border: black solid 2px;
+    border-radius: 5px;
+    background-color: red;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.hidden{
+    display: none;
+}
+#doomExplosion {
+    position: absolute;
+    margin: auto;
+    width: 75%;
 }
