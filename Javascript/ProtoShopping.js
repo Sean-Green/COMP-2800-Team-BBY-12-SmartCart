@@ -17,32 +17,43 @@ $(document).ready(() => {
                     // lets you know on the page what store you will be writing to
                     $('#itemListContainer').prepend('<b>' + currentStore + '</b>');
 
-                     //////////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////
                     //          BUILDS A LIST FROM THE DATABASE INTO HTML               //
-                   //////////////////////////////////////////////////////////////////////
-                    db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-                        let item = userList.docs;
-                        for (i = 0; i < item.length; i++) {
-                            listHTML += '<li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
-                            let itemName = item[i].get("name");
-                            console.log(itemName);
-                            listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></li>';
-                            $('#itemList').append(listHTML);
-                            listHTML = "";
-                            $(document).on('click', "#remove" + i, () => {
-                                console.log("removing " + itemName + " from " + currentStore + " unavailable list");
-                                removeItemFromUnavailable(itemName);
-                            });
-                            $(document).on('click', "#add" + i, () => {
+                    //////////////////////////////////////////////////////////////////////
+                    // this reads the collection of user items from the database and stores it in userList
+                    try {
+                        db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                            // we turn the documents into an array
+                            let item = userList.docs;
+                            console.log(item);
+                            // loop through the array and add an <li> item for each item
+                            for (i = 0; i < item.length; i++) {
+                                listHTML += '<div id="itemContainer' + i + '"><li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
+                                let itemName = item[i].get("name");
+                                let containerName = "#itemContainer" + i;
+                                console.log(itemName);
+                                listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></div></li>';
 
-                                console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-                                addItemToUnavailable(itemName);
-                            });
-                        }
-                    });
+                                $('#itemList').append(listHTML);
+                                listHTML = "";
+                                $(document).on('click', "#remove" + i, () => {                                    
+                                    $(containerName).css("background-color","green");
+                                    console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+                                    removeItemFromUnavailable(itemName);
+                                });
+                                $(document).on('click', "#add" + i, () => {
+                                    $(containerName).css("background-color","red");
+                                    console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                                    addItemToUnavailable(itemName);
+                                });
+                            }
+                        });
+                    } catch {
+                        console.log("no List selected");
+                    }
                     ////////////////////////////////////////////////////////////////////////
-                   ////////////////////////////////////////////////////////////////////////
-                  ////////////////////////////////////////////////////////////////////////
+                    ////////////////////////////////////////////////////////////////////////
+                    ////////////////////////////////////////////////////////////////////////
                 });
             });
         });
