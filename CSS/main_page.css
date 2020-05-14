@@ -53,9 +53,9 @@ header.masthead {
     background-size: cover;
     padding-top: 30px;
 }
-/**.mb-4 {
-    text-dec;
-}*/
+#mainPageTitle {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 
 /** Card css*/
