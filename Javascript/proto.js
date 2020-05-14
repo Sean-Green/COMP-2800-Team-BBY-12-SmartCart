@@ -72,11 +72,11 @@ function getUserDisplayName() {
 function saveItemToList(itemName, listName, qty) {
    var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
-      db.doc("Users/" + user.uid).get().then(function (userDoc) {                      //read
-         if (userDoc.get('DoomsDayMode')){
+      db.doc("Users/" + user.uid).get().then(function (userDoc) { //read
+         if (userDoc.get('DoomsDayMode')) {
             path = "Doomsday/";
          }
-         db.doc(path + itemName).get().then(function (item) {                          //read
+         db.doc(path + itemName).get().then(function (item) { //read
             console.log(item.data());
 
             var userLists = userDoc.get("listNames");
@@ -91,17 +91,17 @@ function saveItemToList(itemName, listName, qty) {
                // console.log("Adding list to listNames")
                // console.log(userLists); //////////
                //Add the list lists
-               db.doc("Users/" + user.uid).set({                                     //write
+               db.doc("Users/" + user.uid).set({ //write
                   "listNames": userLists
                }, {
                   merge: true
                });
             }
             // Now save it under a specified list and .then() get the reference id           
-            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({     //write
-               "name" : item.get("name"),
+            db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({ //write
+               "name": item.get("name"),
                "size": item.get("size"),
-               "units" : item.get("units"),                                                 
+               "units": item.get("units"),
                "qty": qty
             }, {
                merge: true
@@ -163,7 +163,35 @@ function compareUserToStoreList(userListName, storeName) {
       });
    });
 }
+// removes an item from a stores unavailable list
+function removeItemFromUnavailable(itemName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.doc("Users/" + user.uid).get().then(userDoc => {
 
+
+         // Call the stores list of unavailable items and the for Each through them
+         db.doc('Stores/' + userDoc.get("currentStore") + "/unavailable/" + itemName).delete();
+      })
+   })
+}
+
+// Adds an item to the unavailable list of  currentStore of the users
+function addItemToUnavailable(itemName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      var path = "Items/"
+      db.doc("Users/" + user.uid).get().then((userDoc) => {
+         if (userDoc.get('DoomsDayMode')) {
+            path = "Doomsday/";
+         }
+         // Call the stores list of unavailable items and the for Each through them
+         db.doc(path + itemName).get().then((itemsSnapshot) => {
+            db.doc("Stores/" + userDoc.get("currentStore") + "/unavailable/" + itemName).set(itemsSnapshot.data());
+         });
+
+      })
+   });
+
+}
 //////////////////////////////////////////////////////////////////////////////////
 // Functions that play with lists for testing are below:
 //////////////////////////////////////////////////////////////////////////////////
