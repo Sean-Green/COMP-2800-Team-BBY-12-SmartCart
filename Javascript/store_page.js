@@ -78,12 +78,12 @@ function setCurrentStore(storeName) {
        }, {
           merge: true
        }).then((success) => {
-          redirect();
+          redirectToShop();
        })
     })
  }
  
  // Redirecting the lists to the list page.
- function redirect() {
+ function redirectToShop() {
     window.location = "shoping_page.html";
  }
