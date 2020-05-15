@@ -213,7 +213,8 @@ $(document).ready(function () {
                 if (!$('#inputItem').val()) {
                     itemname = "Empty";
                 }
-                let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
+      
+                let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
                 $('#listarea1').html(content + p);
                 $('#magicitem' + id).appendTo("#listarea1");
                 console.log("99 item is" + itemname);
@@ -237,7 +238,7 @@ $(document).ready(function () {
                 // if (!$('#inputWeight').val()) {
                 //     itemname = "Empty"
                 // }
-                p = "<li id=weightmagic" + id + ">" + weight + "</li>";
+                p = "<li class='customListStyle' id=weightmagic" + id + ">" + weight + "</li>";
                 $('#listarea2').html(content + p);
                 $('#weightmagic' + id).appendTo("#listarea2");
                 //console.log("weight is" + itemname);
@@ -248,7 +249,7 @@ $(document).ready(function () {
                 if (!$('#inputQuantity').val()) {
                     itemname = 1
                 }
-                p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
+                p = "<li class='customListStyle' id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
                     "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
                 $('#listarea3').html(content + p);
                 $('#quantitymagic' + id).appendTo('#listarea3');
