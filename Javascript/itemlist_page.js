@@ -515,7 +515,7 @@ $(document).ready(function () {
     //same functionality as the save list button but you will not stay on the same page instead it will
     //take you directly to the stores page to find the right stores for the user.
     $(document).on('click', ".goshopbutton", function () {
-
+        if(validshopping === 0){
         let listname = array[0].trim();
 
         if(saveliststatus === true){
@@ -545,7 +545,9 @@ $(document).ready(function () {
             }
         }
 
-        if(validshopping === 0){
+        setShoppingList(listname);
+
+        
             validshopping = 1;
             console.log("validshopping is " + validshopping);
             // $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
@@ -559,5 +561,20 @@ $(document).ready(function () {
             alert('LIST SAVED! CLICK AGAIN TO SHOP');
         }
     });
+
+    // Giving shopping list a name
+    function setShoppingList(listName) {
+        firebase.auth().onAuthStateChanged(function (user) {
+            let shopListName = listName;
+            db.doc("Users/" + user.uid).set({
+                shoppingList: shopListName
+            }, {
+                merge: true
+            })
+        })
+    }
+
+
+    
 
 });
