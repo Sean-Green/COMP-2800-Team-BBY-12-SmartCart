@@ -39,34 +39,38 @@ $(document).ready(() => {
 
     function displayList() {
         $(document).ready(function () {
-           
+
             firebase.auth().onAuthStateChanged(function (user) {
                 db.doc("Users/" + user.uid).get().then(function (userDoc) {
                     let currentStore = userDoc.get("currentStore");
                     let shoppingList = userDoc.get("shoppingList");
                     let listHTML = "";
-                    $('#storename').prepend('<h3>'+'Your Store : ' + currentStore + '</h3>');
+                    $('#storename').prepend('<h3>' + 'Your Store : ' + currentStore + '</h3>');
 
                     db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
                         let item = userList.docs;
                         for (i = 0; i < item.length; i++) {
-     
-                    listHTML += '<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com">'
-                    + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
-                               
-                    let itemName = item[i].get("name");
-                    console.log(itemName);
-                    listHTML += '</td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button></td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></li>';
-                
-                            
+                           
+                            listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product"><a href="https://placeholder.com">'
+                                + '<img src="https://via.placeholder.com/100"></a>'
+                                + '<h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></td>'
+                                + '<td data-th=""></td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button>'
+                                + '</td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></div></tr>';
+
+                                let itemName = item[i].get("name");
+                                let containerName = "#itemContainer" + i;
+                                
                             $('#itemList').append(listHTML);
                             listHTML = "";
                             $(document).on('click', "#remove" + i, () => {
+                                $(containerName).css("background-color", "green");
                                 console.log("removing " + itemName + " from " + currentStore + " unavailable list");
                                 removeItemFromUnavailable(itemName);
                             });
-                            $(document).on('click', "#add" + i, () => {
 
+
+                            $(document).on('click', "#add" + i, () => {
+                                $(containerName).css("background-color", "red");
                                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
                                 addItemToUnavailable(itemName);
                             });
@@ -80,34 +84,35 @@ $(document).ready(() => {
 
 });
 
-function edit(){
+function edit() {
     window.location = "itemlist_page.html";
 }
+
 
 /*
 function edit(){
     $('#itemList').empty();
     firebase.auth().onAuthStateChanged(function (user) {
-      
+
         db.doc("Users/" + user.uid).get().then(function (userDoc) {
-         
+
             let shoppingList = userDoc.get("shoppingList");
-   
+
             let listHTML = "";
-            
+
             db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
                 let item = userList.docs;
                 for (i = 0; i < item.length; i++) {
 
                     listHTML += '<tr><td data-th="Product"><div class="row"><button>&#10060;&nbsp;</button><a href="https://placeholder.com">'
                     + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
-                   
-                  
+
+
                     let itemName = item[i].get("name");
                     console.log(itemName);
                     listHTML += '<button id="remove' + i + '">&#9989;</button></td><td class="actions" data-th=""><button id="add' + i + '">&#10060;</button></li>';
-                
-                   
+
+
                     $('#itemList').append(listHTML);
                     listHTML = "";
                     $(document).on('click', "#remove" + i, () => {

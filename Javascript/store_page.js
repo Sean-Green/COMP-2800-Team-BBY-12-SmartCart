@@ -68,7 +68,7 @@ function storelists() {
                 });
             } catch {
                 console.log('no list selected');
-                let pageHTML = '<div id="noListContainer"><h1>No List Selected!</h1><a class="btn btn-success">Create A New List</a></div>';
+                let pageHTML = '<div id="noListContainer"><h1>No List Selected!</h1><a href="itemlist_page.html" class="btn btn-success">Create A New List</a></div>';
                 $('#stores').append(pageHTML);
             }
 
