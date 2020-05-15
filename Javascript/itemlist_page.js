@@ -259,9 +259,10 @@ $(document).ready(function () {
                 id++;
             }
         }
-        
 
-        
+        // $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        // validshopping = 0;
+
     })
 
 
@@ -269,7 +270,9 @@ $(document).ready(function () {
     $('.theinput').css('border-radius', '3px');
 
     var array = [];
-    array[0] = "null";
+    array[0] = "null again";
+    
+    
 
 
     // function when click the edit button for item list name
@@ -574,7 +577,5 @@ $(document).ready(function () {
         })
     }
 
-
-    
 
 });
