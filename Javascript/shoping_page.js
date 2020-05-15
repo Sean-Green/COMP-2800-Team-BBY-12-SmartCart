@@ -51,8 +51,6 @@ $(document).ready(() => {
                         let item = userList.docs;
                         for (i = 0; i < item.length; i++) {
                            
-                            
-
                             listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product"><a href="https://placeholder.com">'
                                 + '<img src="https://via.placeholder.com/100"></a>'
                                 + '<h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></td>'
@@ -61,8 +59,7 @@ $(document).ready(() => {
 
                                 let itemName = item[i].get("name");
                                 let containerName = "#itemContainer" + i;
-
-
+                                
                             $('#itemList').append(listHTML);
                             listHTML = "";
                             $(document).on('click', "#remove" + i, () => {
@@ -90,6 +87,7 @@ $(document).ready(() => {
 function edit() {
     window.location = "itemlist_page.html";
 }
+
 
 /*
 function edit(){
