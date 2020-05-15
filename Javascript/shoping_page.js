@@ -88,6 +88,7 @@ function edit() {
     window.location = "itemlist_page.html";
 }
 
+
 /*
 function edit(){
     $('#itemList').empty();
