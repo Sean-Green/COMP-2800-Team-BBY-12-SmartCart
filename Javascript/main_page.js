@@ -57,7 +57,8 @@ function getUserLists(editState) {
             let lists = '<li class="list-group-item" id="myList"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
             let listText = $(lists).text();
             listText = listText.trim();
-            //console.log(listText);
+           // console.log(listText);
+            console.log(userLists);
 
             // remove button in edit mode
             lists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
@@ -79,17 +80,20 @@ function getUserLists(editState) {
             $(document).on("click", "#listName" + i, function(){
                console.log(listText);
                setShoppingList(listText);
-            })
+            }) 
+         }
 
-            let defaultName = "";
+         // set the list name as blank when the user clicks on create list button
+         let defaultName = "";
             $(document).on("click", "#createListBtn", function(){
                setBaseShoppingList(defaultName);
             })
-         }
       })
    })
 }
 
+
+// function to have the name as blank when clicked
 function setBaseShoppingList(defaultListName){
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).set({
