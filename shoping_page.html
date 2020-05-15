@@ -19,11 +19,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
-
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
-    <link rel="icon" type="image/png" href="image/SCfavicon.png">
+    <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -38,10 +36,9 @@
 
     <!-- Link javascript-->
     <script src="Javascript/shoping_page.js"></script>
-
+    <script src="Javascript/proto.js"></script>
 
 </head>
-
 
 <body>
 
@@ -56,11 +53,15 @@
             </button>
             <div class="dropdown-content">
                 <a href="main_page.html">My Lists</a>
+                <a href="itemlist_page.html">Edit List</a>
+                <a href="store_page.html">Stores</a>
+                <a href="shoping_page.html">Shopping Mode</a>
                 <a href="about_us_page.html">About Us</a>
                 <a href="splash_page.html" on click="logout">Logout</a>
             </div>
         </div>
     </nav>
+
 
     <!--header-->
     <header class="masthead text-white text-center">
@@ -68,7 +69,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <h1 class="mb-4">Shopping </h1>
+                    <h1 class="mb-4" id="shoppingHeader">Shopping </h1>
                 </div>
 
             </div>
@@ -76,83 +77,40 @@
     </header>
 
 
-
     <!--middel body-->
     <section>
         <div class="container">
+
+
+            <br>
+            <div class="alert alert-info" role="alert">
+                <div id="storename"></div>
+            </div>
+
+            <button class="btn btn-success" onclick="edit()">Edit</button>
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                     <tr>
 
                         <th class="product">Product</th>
                         <th class="space"></th>
-                        <th class="quantity">Quantity</th>
-                        <th class="text-center">Size</th>
-                        <th class="space"></th>
+                        <th class="quantity">available</th>
+                        <th class="text-center">unavailable</th>
                     </tr>
                 </thead>
 
-
                 <br>
-                <div id="count" class="alert alert-success" role="alert">
-                </div>
-                <div id="unavilableCount" class="alert alert-danger" role="alert">
-                </div>
 
-                <ul class="countbutton">
-                    <li><button class="btn btn-success" onclick="toggleOnByInput()">See available items</button></li>
-                    <li><button class="btn btn-danger" onclick="toggleOffByInput()">See unavailable items</button></li>
-
-
-                    <li>
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                                checked>
-                            <label class="onoffswitch-label" for="myonoffswitch">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-
-
-                    </li>
-
-                </ul>
-
-
-                <tbody id="products">
-
-
-
-                    <!--
-                    <button class="btn btn-info btn-sm">
-                        <i class="fa fa-refresh"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm">
-                        <i class="fa fa-trash-o">
-
-                        </i>
-                    </button>
-
-
+                <tbody id="itemList">
                 </tbody>
--->
-
 
         </div>
 
-        <!--table footer-->
         <tfoot>
-            <tr class="visible-xs">
-
-                <td>
-                </td>
-            </tr>
+            <tr class="visible-xs"></tr>
 
         </tfoot>
         </table>
-
-
 
         <ul class="mybuttons">
             <li class="table-button1">
@@ -167,8 +125,7 @@
         </ul>
 
 
-
-
+        </ul>
 
     </section>
 

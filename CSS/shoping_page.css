@@ -46,6 +46,9 @@
   background-color: #1b421c;
 }
  
+#shoppingHeader {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 
 ul.countbutton {
@@ -187,7 +190,6 @@ li.table-button3 {
   font-weight: 500;
 }
 
-
  /* mobie view 0~426px  */
 
  @media all and (max-width: 426px) {
@@ -228,4 +230,13 @@ li.table-button3 {
      padding-left: 5px;
      font-size: 20px;
    }
+   h3{
+     font-size: 20px;
+   }
+
+   
+#action{
+
+  text-align: center;
+}
  }

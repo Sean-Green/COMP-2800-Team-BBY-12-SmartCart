@@ -1,8 +1,6 @@
 <html>
 
-
 <head>
-
 
     <!--Meta tag-->
     <meta charset="UTF-8">
@@ -22,10 +20,10 @@
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 
-    <!----Link css-->
-    <link rel="stylesheet" type="text/css" href="CSS/store_page.css">
-    <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
 
+    <!----Link css-->
+    <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
+    <link rel="icon" type="image/png" href="image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -37,14 +35,19 @@
     <script type='text/javascript' src="Javascript/firebase_config.js"></script>
 
 
+
     <!-- Link javascript-->
-    <script src="Javascript/store_page.js"></script>
+    <script src="Javascript/proto.js"></script>
+    <script src="Javascript/ProtoShopping.js"></script>
+    <!--link jquery by CDN-->
+    <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+
 
 </head>
 
-<body>
 
-    <!--top var - dropdown menu -->
+<body>
+    <!-- NavBar --> 
     <nav class="navbar sticky-top" id="navbarPrimary">
         <div id="logo">
             <a href="main_page.html" id="logoName">SmartCart</a>
@@ -64,50 +67,61 @@
         </div>
     </nav>
 
-    <!--search store-->
+    <!--header-->
     <header class="masthead text-white text-center">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <h1 class="mb-4" id="storeHeader1">Choose a Store</h1>
-                    <h2 class="mb-4" id="storeHeader2">Click Details to See and Set a store!</h2>
+                    <h1 class="mb-4">Shopping </h1>
                 </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-12 col-md-12">
 
-
-                                <!-- Search form
-                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                                -->
-
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </header>
 
 
-    <!--store list-->
 
-    <div class="album py-5 bg-light">
-        <div class="container">
+    <!--middel body-->
+    <section>
+        <div id="itemListContainer">
+            <ul id="itemList">
 
-            <div id="stores" class="row">
+            </ul>
 
-
-            </div>
         </div>
 
-    </div>
-    </div>
+
+        <!--table footer-->
+        <tfoot>
+            <tr class="visible-xs">
+
+                <td>
+                </td>
+            </tr>
+
+        </tfoot>
+        </table>
 
 
+
+        <ul class="mybuttons">
+            <li class="table-button1">
+                <a href="itemlist_page.html" id="warning-button" class="btn btn-warning">Create List</a>
+            </li>
+            <li class="table-button2">
+                <a href="main_page.html" id="primary-button" class="btn btn-primary">Done shopping</a>
+            </li>
+            <li class="table-button3">
+                <a href="store_page.html" id="success-button" class="btn btn-success">Shop with this</a>
+            </li>
+        </ul>
+
+
+
+
+
+    </section>
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -136,12 +150,12 @@
                             <a href="#">Privacy Policy</a>
                         </li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights
-                        Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
+
 
 
 </body>
