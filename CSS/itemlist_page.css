@@ -7,8 +7,9 @@
         height: 18px !important;
     }
 
-    #maincontainer{
-        background-color: white;
+    .halfSpacer {
+        margin: 5px;
+        padding: 5px;
     }
 
     .spacer{
@@ -25,7 +26,23 @@
         display: flex;
         justify-content: space-between;
         border-style: solid;
-        border-color: green;
+        border-color: lightgreen;
+    }
+
+    #inputItem {
+        padding: 6px 8px 6px 0px;
+        border: solid 1px green;
+        border-radius: 3px;
+        overflow:scroll;
+        
+    }
+    #inputWeight {
+        padding: 6px 8px 8px 0px;
+    }
+
+    input[type=number] {
+        padding: 14.75px;
+        border: solid 1px green;
     }
 
     #listname1{
@@ -42,7 +59,6 @@
     #inputWeight{
         visibility: hidden;
     }
-
 
     .goshopbutton{
         color: rgb(169, 175, 168);
@@ -103,7 +119,6 @@
         color: white;
         border-radius: 5px;
     }
-
 
     .editbutton{
         color: orange;
@@ -171,23 +186,35 @@
     #contentcontainer{
         background-color: white;
         margin: 20px;
-        padding: 30px;
+        padding: 15px;
         border-radius: 10px;
         border-style: solid;
         border-color:  rgb(71, 163, 71);
     }
 
+    
+
     #listcontainer{
-        display: grid;
+        border: 2px solid lightgreen;
+        padding: 2px;
+        border-radius: 5px;
+        overflow:scroll;
+        min-height: 200px;
+        max-height: 500px;
+        overflow:auto;
 
         display: grid;
-        grid-template-columns: 45% 20% 40%;
+        grid-template-columns: 45% 20% 35%;
         grid-template-rows: 15% 40% 40%;
-
         grid-template-areas:
         "one two three"
         "four five six"
         "seven eight nine";
+    }
+
+    .customListStyle {
+        padding: 3px;
+        margin: 3px;
     }
 
     .fakedelete{
@@ -222,7 +249,6 @@
     }
 
 
-
     ul{
         list-style-type: none;
         padding: 0;
@@ -249,7 +275,7 @@
     }
 
     #listarea1 > li {
-        text-align: center;
+        text-align: justify;
     }
 
     #labelname1 > article {
@@ -295,9 +321,6 @@
         background-color:rgb(37, 122, 15);
         border-radius: 5px;
     }
-
-
-
     span{
         font-weight: bold;
     }
@@ -318,7 +341,7 @@
         color: pink;
         border-radius: 5px;
     }
-
+    
 }
 
 /* for screen size between 400 to 1024px (Tablet View) 
@@ -331,10 +354,9 @@
 /* when screen size is greater than 501px (Desktop View) */
 @media screen and (min-width: 501px){
 
-
-
-    #maincontainer{
-        background-color: lightgreen;
+    .halfSpacer {
+        margin: 5px;
+        padding: 5px;
     }
 
     .spacer{
@@ -355,8 +377,24 @@
         display: flex;
         justify-content: space-between;
         border-style: solid;
-        border-color: green;
+        border-color: lightgreen;
     }
+    #inputItem {
+        padding: 6px 8px 6px 0px;
+        border: solid 1px green;
+        border-radius: 3px;
+        overflow:scroll;
+        
+    }
+    #inputWeight {
+        padding: 6px 8px 8px 0px;
+    }
+
+    input[type=number] {
+        padding: 7px;
+        border: solid 1px green;
+    }
+
 
     #listname1{
         flex-grow: 0;
@@ -448,7 +486,6 @@
         display:inline-block;
     }
 
-
     .editbutton1{
         border: none;
         background-color: inherit;
@@ -484,17 +521,24 @@
 
 
 
-
     #contentcontainer{
         background-color: white;
         margin: 20px;
-        padding: 30px;
+        padding: 15px;
         border-radius: 10px;
         border-style: solid;
         border-color:  rgb(71, 163, 71);
     }
 
     #listcontainer{
+        border: 2px solid lightgreen;
+        padding: 2px;
+        border-radius: 5px;
+        overflow:scroll;
+        min-height: 200px;
+        max-height: 500px;
+        overflow:auto;
+
         display: grid;
         grid-template-columns: 34% 37% 37%;
         grid-template-rows: 15% 40% 40%;
@@ -502,6 +546,10 @@
         "one two three"
         "four five six"
         "seven eight nine";
+    }
+    .customListStyle {
+        padding: 3px;
+        margin: 3px;
     }
 
     .fakedelete{
@@ -561,7 +609,11 @@
     }
 
     #listarea1 > li {
-        text-align: center;
+        text-align: left;
+    }
+
+    #listarea1 {
+        padding-left: 100px;
     }
 
     #labelname1 > article {
@@ -607,18 +659,15 @@
         border-radius: 5px;
     }
 
-
-
     span{
         font-weight: bold;
     }
 
-
     #newlistname {
         border: 0;
-        height: 60px;
+        /* height: 60px;
         width: 140px; 
-        text-align: center;
+        text-align: center; */
     }
 
     #thesavelistbutton {
@@ -630,5 +679,4 @@
         color: pink;
         border-radius: 5px;
     }
-
 }

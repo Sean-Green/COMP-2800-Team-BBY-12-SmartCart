@@ -1,32 +1,132 @@
 $(document).ready(function () {
-        //using arrays to access database information for item's name, size and unit
-        var namearray = [];
-        var sizearray = [];
-        var unitarray = [];
-        let databaseitemamount = 0;
-        //maha code to link database item selection to our items
-        firebase.auth().onAuthStateChanged(function (user) {
-            db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
-                let path = "Items";
-                if (snapshot.get("DoomsDayMode")) {
-                    path = "Doomsday";
-                }
-                db.collection(path).get().then((snapshot) => {
-                    snapshot.docs.forEach(doc => {
-                        let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
-                        $("#inputItem").append(listOfItems);
-                        // console.log(doc.data())
-                        //ghetto way to get access database items name, size , and units
-                        namearray.push(doc.get("name"));
-                        sizearray.push(doc.get("size"));
-                        unitarray.push(doc.get("units"));
-                        databaseitemamount++;
-                        databasestatus = true;
-                    })
-    
-                })
-            })
+
+
+    var saveliststatus = false;
+    var savelistname = "Placeholder";
+    //get the user details
+    firebase.auth().onAuthStateChanged(function (user) {
+                //use the users ID to access their file
+                db.doc("Users/" + user.uid).get().then(function (userDoc) {
+
+                            // set user current shopping list
+                            var shoppingList = userDoc.get("shoppingList");
+
+                            console.log("Happy feet " + shoppingList);
+                            if (userDoc.get("shoppingList") === '') {
+                                console.log("row row row the boat");
+                            } else {
+                                db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                                    // we turn the documents into an array
+                                    let item = userList.docs;
+                                    saveliststatus = true;
+                                    console.log(item);
+                                    console.log("list name is " + shoppingList);
+                                    savelistname = shoppingList;
+                                    console.log("size of this List is: " + item.length);
+                                    $("#listname2span").html(shoppingList);
+
+                                    // loop through the array and add an <li> item for each item
+                                    for (i = 0; i < item.length; i++) {
+                                        let content = $('#listarea1').html();
+                                        let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
+                                        $('#listarea1').html(content + p);
+                                        $('#magicitem' + id).appendTo("#listarea1");
+
+                                        content = $('#listarea2').html();
+                                        let theweight = item[i].get("size") + " " + item[i].get("units");
+                                        p = "<li id=weightmagic" + id + ">" + theweight + "</li>";
+                                        $('#listarea2').html(content + p);
+                                        $('#weightmagic' + id).appendTo("#listarea2");
+
+                                        content = $('#listarea3').html();
+                                        p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
+                                            "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
+                                        $('#listarea3').html(content + p);
+                                        $('#quantitymagic' + id).appendTo('#listarea3');
+                                        quantityholder.push(item[i].get("qty"));
+                                        id++
+                                    }
+                                });
+
+           
+            // lets you know on the page what store you will be writing to
+            // $('#itemListContainer').prepend('<b>' + currentStore + '</b>');
+
+            //////////////////////////////////////////////////////////////////////
+            //          BUILDS A LIST FROM THE DATABASE INTO HTML               //
+            //////////////////////////////////////////////////////////////////////
+            // this reads the collection of user items from the database and stores it in userList
+
+            // try {
+            //     db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+            //         // we turn the documents into an array
+            //         let item = userList.docs;
+            //         console.log(item);
+            //         // loop through the array and add an <li> item for each item
+            //         for (i = 0; i < item.length; i++) {
+            //             listHTML += '<li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
+            //             let itemName = item[i].get("name");
+            //             console.log(itemName);
+            //             listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></li>';
+            //             $('#itemList').append(listHTML);
+            //             listHTML = "";
+            //             $(document).on('click', "#remove" + i, () => {
+            //                 console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+            //                 removeItemFromUnavailable(itemName);
+            //             });
+            //             $(document).on('click', "#add" + i, () => {
+
+            //                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+            //                 addItemToUnavailable(itemName);
+            //             });
+            //         }
+            //     });
+            // } catch {
+            //     console.log("no List selected");
+            // }
+
+            }
+
+            ////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////
         });
+    });
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+            //using arrays to access database information for item's name, size and unit
+            var namearray = [];
+            var sizearray = [];
+            var unitarray = [];
+            let databaseitemamount = 0;
+            //maha code to link database item selection to our items
+            firebase.auth().onAuthStateChanged(function (user) {
+                db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+                    let path = "Items";
+                    if (snapshot.get("DoomsDayMode")) {
+                        path = "Doomsday";
+                    }
+                    db.collection(path).get().then((snapshot) => {
+                        snapshot.docs.forEach(doc => {
+                            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
+                            $("#inputItem").append(listOfItems);
+                            // console.log(doc.data())
+                            //ghetto way to get access database items name, size , and units
+                            namearray.push(doc.get("name"));
+                            sizearray.push(doc.get("size"));
+                            unitarray.push(doc.get("units"));
+                            databaseitemamount++;
+                            databasestatus = true;
+                        })
+
+                    })
+                })
+            });
 
     //if true you can use the add button else no (only using addchecker[0] as boolean checker)
     //this is the global array that check boolean that checks if you are valid to add or not
@@ -113,7 +213,8 @@ $(document).ready(function () {
                 if (!$('#inputItem').val()) {
                     itemname = "Empty";
                 }
-                let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
+      
+                let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
                 $('#listarea1').html(content + p);
                 $('#magicitem' + id).appendTo("#listarea1");
                 console.log("99 item is" + itemname);
@@ -137,7 +238,7 @@ $(document).ready(function () {
                 // if (!$('#inputWeight').val()) {
                 //     itemname = "Empty"
                 // }
-                p = "<li id=weightmagic" + id + ">" + weight + "</li>";
+                p = "<li class='customListStyle' id=weightmagic" + id + ">" + weight + "</li>";
                 $('#listarea2').html(content + p);
                 $('#weightmagic' + id).appendTo("#listarea2");
                 //console.log("weight is" + itemname);
@@ -148,7 +249,7 @@ $(document).ready(function () {
                 if (!$('#inputQuantity').val()) {
                     itemname = 1
                 }
-                p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
+                p = "<li class='customListStyle' id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + itemname +
                     "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
                 $('#listarea3').html(content + p);
                 $('#quantitymagic' + id).appendTo('#listarea3');
@@ -240,7 +341,7 @@ $(document).ready(function () {
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
         //edit the title
-        if (namechecker[0] === true) {
+        if(namechecker[0] === true) {
             let userinput = $('#newlistname').val();
             $("#listname2span").html(userinput);
             $('#newlistname').remove();
@@ -416,6 +517,11 @@ $(document).ready(function () {
     $(document).on('click', ".goshopbutton", function () {
 
         let listname = array[0].trim();
+
+        if(saveliststatus === true){
+            listname = savelistname;
+            saveliststatus = false;
+        }
         console.log("listname is " + listname);
         console.log(listname);
         deleteListByName(listname);
