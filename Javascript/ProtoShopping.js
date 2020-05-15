@@ -28,18 +28,21 @@ $(document).ready(() => {
                             console.log(item);
                             // loop through the array and add an <li> item for each item
                             for (i = 0; i < item.length; i++) {
-                                listHTML += '<li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
+                                listHTML += '<div id="itemContainer' + i + '"><li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
                                 let itemName = item[i].get("name");
+                                let containerName = "#itemContainer" + i;
                                 console.log(itemName);
-                                listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></li>';
+                                listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></div></li>';
+
                                 $('#itemList').append(listHTML);
                                 listHTML = "";
-                                $(document).on('click', "#remove" + i, () => {
+                                $(document).on('click', "#remove" + i, () => {                                    
+                                    $(containerName).css("background-color","green");
                                     console.log("removing " + itemName + " from " + currentStore + " unavailable list");
                                     removeItemFromUnavailable(itemName);
                                 });
                                 $(document).on('click', "#add" + i, () => {
-
+                                    $(containerName).css("background-color","red");
                                     console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
                                     addItemToUnavailable(itemName);
                                 });
