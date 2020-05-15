@@ -1,17 +1,54 @@
 $(document).ready(function () {
 
+
+    var saveliststatus = false;
+    var savelistname = "Placeholder";
     //get the user details
     firebase.auth().onAuthStateChanged(function (user) {
-        //use the users ID to access their file
-        db.doc("Users/" + user.uid).get().then(function (userDoc) {
-            // set the store we will access to the users current store
-            var currentStore = userDoc.get("currentStore");
-            // set user current shopping list
-            var shoppingList = userDoc.get("shoppingList");
-            // html variable which we will append
-            var listHTML = "";
+                //use the users ID to access their file
+                db.doc("Users/" + user.uid).get().then(function (userDoc) {
 
-            console.log("Happy feet " + shoppingList);
+                            // set user current shopping list
+                            var shoppingList = userDoc.get("shoppingList");
+
+                            console.log("Happy feet " + shoppingList);
+                            if (userDoc.get("shoppingList") === '') {
+                                console.log("row row row the boat");
+                            } else {
+                                db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                                    // we turn the documents into an array
+                                    let item = userList.docs;
+                                    saveliststatus = true;
+                                    console.log(item);
+                                    console.log("list name is " + shoppingList);
+                                    savelistname = shoppingList;
+                                    console.log("size of this List is: " + item.length);
+                                    $("#listname2span").html(shoppingList);
+
+                                    // loop through the array and add an <li> item for each item
+                                    for (i = 0; i < item.length; i++) {
+                                        let content = $('#listarea1').html();
+                                        let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
+                                        $('#listarea1').html(content + p);
+                                        $('#magicitem' + id).appendTo("#listarea1");
+
+                                        content = $('#listarea2').html();
+                                        let theweight = item[i].get("size") + " " + item[i].get("units");
+                                        p = "<li id=weightmagic" + id + ">" + theweight + "</li>";
+                                        $('#listarea2').html(content + p);
+                                        $('#weightmagic' + id).appendTo("#listarea2");
+
+                                        content = $('#listarea3').html();
+                                        p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
+                                            "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
+                                        $('#listarea3').html(content + p);
+                                        $('#quantitymagic' + id).appendTo('#listarea3');
+                                        quantityholder.push(item[i].get("qty"));
+                                        id++
+                                    }
+                                });
+
+           
             // lets you know on the page what store you will be writing to
             // $('#itemListContainer').prepend('<b>' + currentStore + '</b>');
 
@@ -47,6 +84,8 @@ $(document).ready(function () {
             // } catch {
             //     console.log("no List selected");
             // }
+
+            }
 
             ////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////
@@ -477,6 +516,11 @@ $(document).ready(function () {
     $(document).on('click', ".goshopbutton", function () {
 
         let listname = array[0].trim();
+
+        if(saveliststatus === true){
+            listname = savelistname;
+            saveliststatus = false;
+        }
         console.log("listname is " + listname);
         console.log(listname);
         deleteListByName(listname);
