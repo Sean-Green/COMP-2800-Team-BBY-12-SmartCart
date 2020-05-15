@@ -84,6 +84,7 @@ function saveItemToList(itemName, listName, qty) {
             for (i = 0; i < userLists.length && !nameExists; i++) {
                if (userLists[i] == listName) {
                   nameExists = true;
+
                }
             }
             if (!nameExists) {
@@ -91,12 +92,13 @@ function saveItemToList(itemName, listName, qty) {
                // console.log("Adding list to listNames")
                // console.log(userLists); //////////
                //Add the list lists
-               db.doc("Users/" + user.uid).set({ //write
-                  "listNames": userLists
-               }, {
-                  merge: true
-               });
             }
+            db.doc("Users/" + user.uid).set({ //write
+               "listNames": userLists
+            }, {
+               merge: true
+            });
+
             // Now save it under a specified list and .then() get the reference id           
             db.doc("Users/" + user.uid + "/" + listName + "/" + item.get("name")).set({ //write
                "name": item.get("name"),
