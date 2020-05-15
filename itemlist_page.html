@@ -13,19 +13,15 @@
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        
-        <script type='text/javascript' src="Javascript/firebase_config.js"></script>
-
+        <script src="javascript/firebase_config.js"></script>
         <!--link jquery by CDN-->
         <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
         <!----Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
-
         <script src="Javascript/main_page.js"></script>
         <script src="Javascript/proto.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="Javascript/proto.js"></script>
-
     </head>
     <body>
       
@@ -35,7 +31,6 @@
             <a href="main_page.html" id="logoName">SmartCart</a>
         </div>
         <div class="dropdown">
-
             <button class="dropdownButton">Dropdown
                 <i class="fa fa-caret-down"></i>
             </button>
@@ -47,7 +42,6 @@
               <a href="about_us_page.html">About Us</a>
               <a href="splash_page.html" on click="logout">Logout</a>
             </div>
-
         </div>
       </nav>
 
@@ -67,17 +61,17 @@
         <!-- Label Section -->
         <section id="listnamecontainer">
           <article id ="listname1">
-
             <div id="goshopbuttondiv">
               <a class="button backbutton" href="main_page.html">BACK</a>
             </div>
-
           </article>
           <article id="listname2">
             <span id="listname2span">LIST 1</span>
           </article>
           <article id="listname3">
-            <button class="button editbutton">EDIT</button>
+            <div id="editbuttondiv">
+              <button class="button editbutton">EDIT</button>
+            </div>
           </article>
         </section>
         <!-- Content Section -->
@@ -98,27 +92,23 @@
             <!-- Each Items, Weight, Availability -->
             <section id="listitemcontainer">
               <ul id="listarea1" class="font list3">
-
                 <!-- <li id="input1"><input type='text' id="inputItem" class="theinput" size="7" placeholder="Item"></li> -->
                 <li id="input1">
                   <select id="inputItem">
                     <!-- <option value="Empty">Select Item</option> -->
                   </select>
                 </li>
-
               </ul>
             </section>
             <section id="listweightcontainer">
               <ul id="listarea2" class="font list2">
-
                 <!-- <li id="input2"><input type='text' id="inputWeight" class="theinput" size="7" placeholder="Weight"></li> -->
                 <li id="input2"><article id="inputWeight" class="theinput">weight</article></li>
-
               </ul>
             </section>
             <section id="listquantitycontainer">
               <ul id="listarea3" class="font list3">
-                <li id="input3"><input type='number' id="inputQuantity" min="0" max="100" placeholder="1"></li>
+                <li id="input3"><input type='number' id="inputQuantity" class="theinput" min="0" max="100000" placeholder="1"></li>
               </ul>
             </section>
           </div>
