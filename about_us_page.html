@@ -7,18 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About Us</title>
     <link rel="stylesheet" type="text/css" href="CSS/about_us_page.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
     <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> 
     <script type='text/javascript' src="Javascript/firebase_config.js"></script>
+    <!--link jquery by CDN-->
+    <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
     <!--JS for this page-->
     <script src="Javascript/main_page.js"></script>
-    <!--dunno about this for about us pg-->
+    <script src="Javascript/about_us.js"></script>
+    <script src="Javascript/proto.js"></script>
 
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -44,20 +47,25 @@
             </div>
         </div>
     </nav>
+    <header class="masthead text-white text-center">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    <h1 class="mb-4" id="mainPageTitle">The Team Behind SmartCart!</h1>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="card" id="mainCard">
         <div class="card-body" id="mainBody">
-            <h2 class="card-title" id="cardTitle">The Team Behind SmartCart!</h2>
             <div class="card" id="teamCard">
                 <div id="teamIN">
                     <img class="card-img-top" id="teamIcon" src="CSS/image/sean_hs.jpg">
                     <h4 id="teamMem">Sean Green</h4>
                 </div>
-                <div class="card-body" id="teamText">
-                    <p class="card-text">I'm a term 2 student in CST, currently facing our projects term. Before coming
-                        to BCIT I had 10 years experience in the workforce in retail sales, as a delivery driver,
-                        warehouse worker, and electrical apprentice. I hope my experience at BCIT can one day lead to a
-                        job in games development.</p>
+                <div class="card-body" id="teamText0">
                 </div>
             </div>
             <div class="card" id="teamCard">
@@ -65,12 +73,7 @@
                     <img class="card-img-top" id="teamIcon" src="CSS/image/jaysunsun.jpg">
                     <h4 id="teamMem">Jason Lee</h4>
                 </div>
-                <div class="card-body" id="teamText">
-                    <p class="card-text">
-                        Jason is a 2nd term CST student at BCIT. During his spare he enjoys playing video games like League of Legends
-                        and conversing with his fellow collegues about Object Oriented Programming concepts. Jason's huge passion for coding is only 
-                        second to his love for home brewed Tim Hortons coffee.
-                    </p>
+                <div class="card-body" id="teamText1">
                 </div>
             </div>
             <div class="card" id="teamCard">
@@ -78,11 +81,7 @@
                     <img class="card-img-top" id="teamIcon" src="CSS/image/Kim.jpg">
                     <h4 id="teamMem">Donggyun Kim</h4>
                 </div>
-                <div class="card-body" id="teamText">
-                    <p class="card-text">
-                        Our team aims to “work hardly and get as much effort as we can”. Projects are evolving day by
-                        day, with great teams working hardly and helping each other.
-                    </p>
+                <div class="card-body" id="teamText2">
                 </div>
             </div>
             <div class="card" id="teamCard">
@@ -90,12 +89,7 @@
                     <img class="card-img-top" id="teamIcon" src="CSS/image/maha_aboutus.png">
                     <h4 id="teamMem">Maha Rehal</h4>
                 </div>
-                <div class="card-body" id="teamText">
-                    <p class="card-text">
-                        I am a term 1 student at BCIT. Before BCIT, I graduated from SFU with a Bsc in Health Science and Business.
-                        I am enjoying the comp-sci field alot, my favourite tasks while working on projects would be the 
-                        front end. Outside of comp-sci, I enjoy activities such as sports, gaming and enterpreneurship meet and greets.
-                    </p>
+                <div class="card-body" id="teamText3">
                 </div>
             </div>
             <div class="card" id="teamCard">
@@ -103,16 +97,19 @@
                     <img class="card-img-top" id="teamIcon" src="CSS/image/logo.png">
                     <h4 id="teamMem">Team 12 Coffees</h4>
                 </div>
-                <div class="card-body" id="teamText">
-                    <p class="card-text">
-                        We are a group of Students in the BCIT CST program working on Smart Cart for our pojects term! When we are not coding or sleeping we are playing Team Fight Tactics or bot matches in League of Legends! For any questions or to 1v1 us in League, our email is coffee12@gmail.com.
-                    </p>
+                <div class="card-body" id="teamText4">
                 </div>
             </div>
         </div>
+        <footer>
+            <p id="footerNote"><span><button id="doomsDayBtn"></button></span></p>
+            <audio id="doom" src="CSS/sound/Oh_No_No_No_Laugh.mp3"></audio>
+            <img src="https://media.giphy.com/media/hvGKQL8lasDvIlWRBC/giphy.gif" class="hidden" id="doomExplosion">
+        </footer>
     </div>
     <script>
         manageUser();
+        doomsDayMode(false);
     </script>
     <!----Bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -120,5 +117,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
