@@ -33,16 +33,13 @@ function storelists() {
                                     // set modal id#
 
                                     +
-                                    idNum + '">Store detail</button><div class="modal fade" id="myModal' + idNum + '" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Item</h3><h4 class="storeItemCount" id="storeItemCount' +
-                                    idNum + '"> items</h4></div><div class="modal-body"><ul id="itemList' + idNum + '"class="list-group list-group-flush">'
+                                    idNum + '">Click for Details</button><div class="modal fade" id="myModal' + idNum + '" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h3 id="UnavailableCount' 
+                                    + idNum + '" class="modal-title">Unavailable Items</h3>'
+                                    +'<h4></h4></div><div class="modal-body"><ul id="itemList' 
+                                    + idNum + '"class="list-group list-group-flush">'
 
 
-                                  $('#image0').attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
-                                  $('#image1').attr('src', 'CSS/storeimage/IGA Richmond.jpg');
-                                  $('#image2').attr('src', 'CSS/storeimage/Safeway Langley.jpg');
-                                  $('#image3').attr('src', 'CSS/storeimage/Superstore.png');
-                                  $('#image4').attr('src', 'CSS/storeimage/T&T Supermarket.png');
-                                  $('#image5').attr('src', 'CSS/storeimage/Walmart.png');
+                           
 
 
                                 for (i = 0; i < shoppingList.length; i++) {
@@ -59,9 +56,11 @@ function storelists() {
                                 pageHTML += '</ul></div><div class="modal-footer"><button type="button" class="btn btn-default" id="chooseStoreBtn">'
                                     //set go shopping button id
                                     +
-                                    '<a id="takeThemShopping' + idNum + '">Go Shopping!</a></button><button type="button" class="btn btn-default" data-dismiss="modal"id="modalCloseBtn">Close</button></div></div></div> </div></div><small class="text-muted">9 mins(Track gps - add later)</small></div></div></div></div>'
+                                    '<a id="takeThemShopping' + idNum + '">Shop Here!</a></button><button type="button" class="btn btn-default" data-dismiss="modal"id="modalCloseBtn">Close</button></div></div></div> </div></div>'
+                                    +'<small class="storeItemCount'+ idNum + '" class="text-muted"></small></div></div></div></div>'
                                 $('#stores').append(pageHTML);
-                                $('#storeItemCount' + idNum).text(itemCount + "/" + shoppingList.length);
+                                $('.storeItemCount' + idNum).text(itemCount + "/" + shoppingList.length + " Items Available");
+                                $('#UnavailableCount' + idNum).text(itemCount + " Items Out of Stock");
                                 if (itemCount === shoppingList.length) {
                                     $('#itemList' + idNum).append('<li>ALL ITEMS IN STOCK</li>');
                                 }
@@ -75,6 +74,14 @@ function storelists() {
                                 })
 
                                 console.log(idNum++);
+                                // we could also get these images from the database,
+                                // but because we have a read write limit we have chosen to hard code them
+                                $('#image0').attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
+                                $('#image1').attr('src', 'CSS/storeimage/IGA Richmond.jpg');
+                                $('#image2').attr('src', 'CSS/storeimage/Safeway Langley.jpg');
+                                $('#image3').attr('src', 'CSS/storeimage/Superstore.png');
+                                $('#image4').attr('src', 'CSS/storeimage/T&T Supermarket.png');
+                                $('#image5').attr('src', 'CSS/storeimage/Walmart.png');
                             });
 
                         })
