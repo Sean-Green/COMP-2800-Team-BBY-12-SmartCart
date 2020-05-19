@@ -1,15 +1,19 @@
 /** Navbar and logo css*/
+
 #navbarPrimary {
   display: flex;
   justify-content: space-between;
   background-color: black;
 }
+
 #logoName {
   color: green;
   letter-spacing: 1px;
   font-size: xx-large;
 }
+
 /** navbar dropdown css*/
+
 .dropdownButton {
   background-color: green;
   color: white;
@@ -17,11 +21,13 @@
   font-size: 16px;
   border-radius: 5px;
   border: none;
-}  
+}
+
 .dropdown {
   position: relative;
   float: right;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -30,150 +36,227 @@
   z-index: 1;
   right: 0;
 }
+
 .dropdown-content a {
   color: white;
   padding: 10px 10px;
   text-decoration: none;
   display: block;
 }
+
 .dropdown-content a:hover {
   background-color: darkgrey;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 .dropdown:hover .dropdownButton {
   background-color: #1b421c;
 }
- 
-
 
 body {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  h1,
-  h2 {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-  }
-
-
-  a{
-    color:white;
-  }
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
 
 
-  li a{
+/* header */
 
-    color:black
-  }
+header.masthead {
+  background-size: cover;
+  height: 95%;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("image/splash-back.jpeg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  text-align: center;
 
+}
 
-  /* header */
+header.masthead {
+  padding-top: 11rem;
+  padding-bottom: 11rem;
+}
 
-  header.masthead {
-    position: relative;
-    background: url("image/splash-back.jpeg") no-repeat center center;
-    background-size: cover;
-  }
+header.masthead h3 {
+  font-size: 5rem;
+}
+
+h1 {
+  font-family: "Copperplate Gothic Light";
   
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  font-size: 2rem;
+  display: inline-block;
+  padding: 1rem;
+  font-weight: 1000;
+  position: relative;
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.5s ease, opacity 1s ease;
+}
 
-  /* header overlay  */
-  header.masthead .overlay {
-    position: absolute;
-    background-color: #212529;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-  }
+.is-loading h1 {
+  transform: scale(0.9);
+  opacity: 0;
+}
 
-  footer.footer {
-    padding-top: 10px;
-    padding-bottom: 30px;
-  }
+h1:before, h1:after {
+  height: 2px;
+  width: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  transition: width 0.4s ease;
+  transition-delay: 0.8s;
+}
+
+h1:before {
+  top: 0;
+  left: 0;
+}
+
+h1:after {
+  bottom: 0;
+  right: 0;
+}
+
+.is-loading h1:before, .is-loading h1:after {
+  width: 0;
+}
 
 
+/** icons */
+
+.features-icons {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.features-icons .features-icons-item {
+  max-width: 300px;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 100px;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 70px;
+}
+
+
+
+/**image showcase */
+
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 28rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 45%;
+}
+
+
+/** testmoials */
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+
+/** footer */
+footer.footer {
+
+  
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.social {
+  list-style-type:none;
+  font-size: 160%;
+  padding-left: 0;
+}
+
+.social li {
+  display: inline;
+}
+
+
+li#follow {
+  font-family: fantasy;
+  color:rgb(0, 123, 254);
+}
+
+
+
+
+
+/* mobie view 0~426px  */
+
+@media all and (max-width: 426px) {
   header.masthead {
-    padding-top: 11rem;
-    padding-bottom:11rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
-
   header.masthead h3 {
-    font-size: 5rem;
+    font-size: 2.5rem;
   }
-
-
-    .features-icons {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-    
-    .features-icons .features-icons-item {
-      max-width: 300px;
-    }
-    
-    .features-icons .features-icons-item .features-icons-icon {
-      height: 100px;
-    }
-    
-    .features-icons .features-icons-item .features-icons-icon i {
-      font-size: 70px;
-    }
-
-
-   /* mobie view 0~426px  */
-
-   @media all and (max-width: 426px) {
-
-    header.masthead {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-    }
-
-    header.masthead h3 {
-      font-size: 2.5rem;
-    }
-    .firebaseui-auth-container{
-      font-size: 2rem;
-    }
-  
+  .firebaseui-auth-container {
+    font-size: 2rem;
+  }
   .showcase .showcase-text {
     padding: 3rem;
   }
-  
   .showcase .showcase-img {
     min-height: 30rem;
     background-size: cover;
   }
-
   .features-icons {
     padding-top: 30px;
     padding-bottom: 30px;
   }
-  
   .features-icons .features-icons-item {
     max-width: 280px;
   }
-  
   .features-icons .features-icons-item .features-icons-icon {
     height: 90px;
   }
-  
-   /* icon size  */
+  /* icon size  */
   .features-icons .features-icons-item .features-icons-icon i {
     font-size: 60px;
   }
-  
-  h2{
-
+  h2 {
     font-size: 25px;
   }
-
-  h3{
+  h3 {
     padding-top: 20px;
   }
-
-   }
+}

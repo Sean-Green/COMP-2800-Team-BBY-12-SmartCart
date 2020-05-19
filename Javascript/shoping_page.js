@@ -50,20 +50,22 @@ $(document).ready(() => {
                     db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
                         let item = userList.docs;
                         for (i = 0; i < item.length; i++) {
-                           
-                            listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product"><a href="https://placeholder.com">'
-                                + '<img src="https://via.placeholder.com/100"></a>'
-                                + '<h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></td>'
-                                + '<td data-th=""></td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button>'
-                                + '</td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></div></tr>';
 
-                                let itemName = item[i].get("name");
-                                let containerName = "#itemContainer" + i;
-                                
+                            listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product"><a href="https://placeholder.com">' +
+                                '<img src="https://via.placeholder.com/100"></a>' +
+                                '<h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></td>' +
+                                '<td data-th=""></td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button>' +
+                                '</td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></div></tr>';
+
+                            let itemName = item[i].get("name");
+                            let containerName = "#itemContainer" + i;
+                            let nameId = '#itemName' + i;
+
                             $('#itemList').append(listHTML);
                             listHTML = "";
                             $(document).on('click', "#remove" + i, () => {
                                 $(containerName).css("background-color", "green");
+                                $(nameId).removeClass('unavailable');
                                 console.log("removing " + itemName + " from " + currentStore + " unavailable list");
                                 removeItemFromUnavailable(itemName);
                             });
@@ -71,6 +73,7 @@ $(document).ready(() => {
 
                             $(document).on('click', "#add" + i, () => {
                                 $(containerName).css("background-color", "red");
+                                $(nameId).addClass('unavailable');
                                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
                                 addItemToUnavailable(itemName);
                             });
@@ -83,6 +86,43 @@ $(document).ready(() => {
     displayList();
 
 });
+
+function createUnavailableList() {
+    var unavailableListName = new Date().toString().substring(0, 25).trim();
+    deleteListByName(unavailableListName);
+    var unavailableItems = $('.unavailable').toArray();
+
+    new Promise((resolve, reject) => {
+        for (i = 0; i < unavailableItems.length; i++) {
+            console.log(unavailableItems[i].innerHTML);
+            saveItemToList(unavailableItems[i].innerHTML, unavailableListName, 1);
+            if (i + 1 === unavailableItems.length) {
+                setTimeout(() => {
+                    resolve("success");
+                }, 500);
+            }
+        }
+
+    }).then((success) => {
+        setShoppingList(unavailableListName);
+    })
+
+
+
+}
+
+function setShoppingList(listName) {
+    firebase.auth().onAuthStateChanged(function (user) {
+        let shopListName = listName;
+        db.doc("Users/" + user.uid).set({
+            shoppingList: shopListName
+        }, {
+            merge: true
+        }).then((success) => {
+            window.location = 'itemlist_page.html';
+        })
+    })
+}
 
 function edit() {
     window.location = "itemlist_page.html";

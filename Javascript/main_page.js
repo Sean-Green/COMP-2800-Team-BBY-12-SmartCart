@@ -63,6 +63,7 @@ function getUserLists(editState) {
             // remove button in edit mode
             lists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
             $(document).on("click", "#removeButton" + i, function () {
+               console.log("handing over" + listText);
                deleteListByName(listText);
                //console.log(listText);
             })
