@@ -69,7 +69,7 @@ function storelists() {
                                     $('#itemList' + idNum).append('<li class="list-group-item">All items Available</li>');
                                 }
                                 if (itemCount / shoppingList.length === 1) {
-                                    $('#storeCard' + idNum + ", .detailsbtn").addClass('fullyStocked');
+                                    $('#storeCard' + idNum).addClass('fullyStocked');
                                 } else if (itemCount / shoppingList.length === 0){
                                     $('#storeCard' + idNum).addClass('notStocked');
                                 } else {
