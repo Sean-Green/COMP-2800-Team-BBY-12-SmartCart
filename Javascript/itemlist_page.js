@@ -28,18 +28,18 @@ $(document).ready(function () {
                     // loop through the array and add an <li> item for each item
                     for (i = 0; i < item.length; i++) {
                         let content = $('#listarea1').html();
-                        let p = "<li id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
+                        let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
                         $('#listarea1').html(content + p);
                         $('#magicitem' + id).appendTo("#listarea1");
 
                         content = $('#listarea2').html();
                         let theweight = item[i].get("size") + " " + item[i].get("units");
-                        p = "<li id=weightmagic" + id + ">" + theweight + "</li>";
+                        p = "<li class='customListStyle' id=weightmagic" + id + ">" + theweight + "</li>";
                         $('#listarea2').html(content + p);
                         $('#weightmagic' + id).appendTo("#listarea2");
 
                         content = $('#listarea3').html();
-                        p = "<li id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
+                        p = "<li class='customListStyle' id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
                             "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
                         $('#listarea3').html(content + p);
                         $('#quantitymagic' + id).appendTo('#listarea3');
@@ -126,7 +126,10 @@ $(document).ready(function () {
 
             })
         })
-    });
+
+    })
+
+
 
     //if true you can use the add button else no (only using addchecker[0] as boolean checker)
     //this is the global array that check boolean that checks if you are valid to add or not
@@ -145,6 +148,9 @@ $(document).ready(function () {
     let id = 0;
 
     $('#theaddbutton').on('click', function () {
+
+
+
 
         //instantiate a variable to hold the [id] of the item if for a double of the item when it runs through
         //the forloop to check the item list [note: ignore the -1 it means nothing]
@@ -203,6 +209,9 @@ $(document).ready(function () {
                 $('.decrementbutton').show();
             }
         } else {
+
+            $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+            validshopping = 0;
             //if maha's code is fully loaded then run the following code
             if (databasestatus == true) {
                 //this else statement will run and add a new item to the item list which means it has checked
@@ -222,10 +231,16 @@ $(document).ready(function () {
                 //ghetto way to get size and unit from database item
                 let position = 0;
                 let weight = "";
+                let otherweight = "";
+                let sizeerrorcount = 0;
                 //passing the gloabl name size and unit array into these local array to be able to use without error
                 let namearray2 = namearray;
                 let sizearray2 = sizearray;
                 let unitarray2 = unitarray;
+
+                console.log("size of the name array = " + namearray2);
+                console.log("size of the size array = " + sizearray2);
+                console.log("size of the unit array = " + unitarray2);
 
                 for (position = 0; position < namearray2.length; position++) {
                     if (namearray2[position] === itemname) {
@@ -238,9 +253,20 @@ $(document).ready(function () {
                 // if (!$('#inputWeight').val()) {
                 //     itemname = "Empty"
                 // }
-                p = "<li class='customListStyle' id=weightmagic" + id + ">" + weight + "</li>";
-                $('#listarea2').html(content + p);
-                $('#weightmagic' + id).appendTo("#listarea2");
+
+                if (validshopping === 1) {
+                    //     p = "<li class='customListStyle' id=weightmagic" + id + ">" + otherweight + "</li>";
+                    //     $('#listarea2').html(content + p);
+                    //     $('#weightmagic' + id).appendTo("#listarea2");
+
+                    console.log("yolo valid shopping is 1");
+                } else if (validshopping === 0) {
+                    p = "<li class='customListStyle' id=weightmagic" + id + ">" + weight + "</li>";
+                    $('#listarea2').html(content + p);
+                    $('#weightmagic' + id).appendTo("#listarea2");
+                }
+
+
                 //console.log("weight is" + itemname);
 
 
@@ -343,6 +369,8 @@ $(document).ready(function () {
     //function when click the DONE button for item list name
     //class added dynamically therefore use event delegation
     $(document).on('click', ".editbutton1", function () {
+        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        validshopping = 0;
         //edit the title
         if (namechecker[0] === true) {
             let userinput = $('#newlistname').val();
@@ -365,6 +393,10 @@ $(document).ready(function () {
 
     //function that removes the whole line of item on the item list page
     $(document).on('click', ".removebutton", function () {
+        //Resets the button
+        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        validshopping = 0;
+        //
         let clickedid = $(this).attr('id').replace(/button/, '');
         let tempid = "";
         let position = 0;
@@ -380,6 +412,8 @@ $(document).ready(function () {
 
     //function that increments our quantity item.
     $(document).on('click', ".incrementbutton", function () {
+        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        validshopping = 0;
         console.log("button works");
         //Obtains the ID number based from the idname you clicked
         let clickedid = $(this).attr('id').replace(/button/, '');
@@ -423,7 +457,8 @@ $(document).ready(function () {
 
     //function that decrement our quantity item.
     $(document).on('click', ".decrementbutton", function () {
-
+        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        validshopping = 0;
         //Obtains the ID number based from the idname you clicked
         let clickedid = $(this).attr('id').replace(/button/, '');
         let tempid = "";
@@ -519,7 +554,7 @@ $(document).ready(function () {
     //take you directly to the stores page to find the right stores for the user.
     $(document).on('click', ".goshopbutton", function () {
         if (validshopping === 0) {
-            let listname = array[0].trim();
+            let listname = $('#listname2span').text();
 
             if (saveliststatus === true) {
                 listname = savelistname;
@@ -549,7 +584,7 @@ $(document).ready(function () {
                     }
                 }
 
-                setShoppingList(listname);
+                setShoppingList($('#listname2span').text());
 
 
                 validshopping = 1;
