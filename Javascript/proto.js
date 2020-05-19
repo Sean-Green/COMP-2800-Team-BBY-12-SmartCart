@@ -116,23 +116,32 @@ function saveItemToList(itemName, listName, qty) {
 //Delete list by name string
 function deleteListByName(listName) {
    listName += "";
+   console.log("/" + listName + "/")
    firebase.auth().onAuthStateChanged(function (user) {
       //Delete the listName from the array
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
          //copy the listName array, skip the list to be deleted
          var userLists = userDoc.get("listNames");
          var amendedLists = [];
-         for (i = 0, j = 0; i < userLists.length; i++) {
-            if (userLists[i] != listName) {
-               amendedLists[j++] = userLists[i]
+         new Promise((resolve, reject) => {
+            for (i = 0, j = 0; i < userLists.length; i++) {
+               if (userLists[i] !== listName) {
+                  amendedLists[j++] = userLists[i];
+               }
+               if (i + 1 === userLists.length){
+                  resolve("success");
+               }
             }
-         }
-         //update the array in the db
-         db.doc("Users/" + user.uid).set({
-            "listNames": amendedLists
-         }, {
-            merge: true
+         }).then((success) => {
+            //update the array in the db
+            db.doc("Users/" + user.uid).set({
+               "listNames": amendedLists
+            }, {
+               merge: true
+            });
          });
+
+
          //Delete the list
          db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
             var item = listItems.docs;
