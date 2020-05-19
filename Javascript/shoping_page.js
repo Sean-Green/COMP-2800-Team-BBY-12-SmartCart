@@ -147,7 +147,7 @@ $(document).ready(() => {
                               if (array.includes("Tylenol")) {
                                 $('#image'+[i]).attr('src', 'CSS/itemimage/Tylenol.jpg');
                             }
-                              if (array.includes("Uno Card Game.")){
+                              if (array.includes("Uno Card Game")){
                         
                                 $('#image'+[i]).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
                             }
@@ -155,7 +155,6 @@ $(document).ready(() => {
                         
                                 $('#image'+[i]).attr('src', 'CSS/itemimage/Vitamin.jpg');
                             }
-
                         }
                         console.log(array);
                         
