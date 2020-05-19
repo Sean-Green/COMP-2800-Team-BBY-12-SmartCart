@@ -30,6 +30,7 @@
         <div id="logo">
             <a href="main_page.html" id="logoName">SmartCart</a>
         </div>
+        <!--Drop down menu-->
         <div class="dropdown">
             <button class="dropdownButton">Dropdown
                 <i class="fa fa-caret-down"></i>
@@ -45,6 +46,7 @@
         </div>
     </nav>
 
+    <!--Image header-->
     <header class="masthead text-white text-center">
         <div class="overlay"></div>
         <div class="container">
@@ -56,46 +58,48 @@
         </div>
     </header>
 
+    <!--Main body-->
     <div class="card" id="mainCard">
-            <!--<h2 class="card-title" id="cardTitle"><span id="userName"></span></h2>-->
-            <div class="spacer">
-                <br>
+        <div class="spacer">
+            <br>
+        </div>
+        <h3><span id="userName"></span></h3>
+        <h4 class="heading1">Your Lists!</h4>
+        <div class="card-body">
+            <div class="card" id="listCard">
+                <div class="card">
+                    <ul class="list-group list-group-flush" class="ulList">
+                        <li class="list-group-item" id="myList">
+                            <a><span id="listName"></span></a>
+                            <a><span id="doomsDaySpan"></span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="listButtonArea">
+                    <a id="createListBtn"></a>
+                    <div class="btn btn-edit" id="editListsBtn"><span>EDIT LISTS</span></div>
+                </div>
             </div>
-                <h3><span id="userName"></span></h3>
-                <h4 id="heading1">Your Lists!</h4>
-                <!--<img class="card-img-top" id="mainCardImg" src="#">-->
-                <div class="card-body">
-                    <div class="card" id="listCard">
-                        <div class="card">
-                            <ul class="list-group list-group-flush" id="ulList">
-                                <li class="list-group-item" id="myList">
-                                    <a><span id="listName"></span></a>
-                                    <a><span id="doomsDaySpan"></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="listButton">
-                            <a id="createListBtn"></a>
-                            <a class="btn btn-warning" id="editListsBtn">Edit Lists</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="spacer">
-                    <br>
-                </div>
-                <footer>
-                    <p id="footerNote"></p>
-                </footer>
+        <footer>
+            <p id="footerNote"></p>
+        </footer>
+        </div>
     </div>
+    <div class="card" id="userIndiLists">
+    </div>
+
+    <!--Function calls from js pages-->
     <script>
         manageUser();
         getUserDisplayName();
         getUserLists(false);
         //doomsDayMode(false);
     </script>
+
     <!----Bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

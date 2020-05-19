@@ -1,4 +1,4 @@
-/** Navbar and logo css*/
+/** Navbar and logo CSS*/
 #navbarPrimary {
     display: flex;
     justify-content: space-between;
@@ -9,7 +9,7 @@
     letter-spacing: 1px;
     font-size: xx-large;
 }
-/** navbar dropdown css*/
+/** navbar dropdown CSS*/
 .dropdownButton {
     background-color: green;
     color: white;
@@ -58,14 +58,15 @@ header.masthead {
 }
 
 
-/** Card css*/
+/** Card CSS*/
 #mainCard {
     text-align: center;
     /**width: fit-content; */
-    /**height: fit-content;*/
+    /**height: fit-content;*/   
     margin-left: auto;
     margin-right: auto;
     display: block;
+    background-color: lightgreen;
 }
 #listCard {
     text-align: center;
@@ -76,29 +77,16 @@ header.masthead {
     display: block;
     border: lightgreen solid;
 }
-#heading1 {
+.heading1 {
     padding-top: 5px;
     margin-bottom: 0px;
 }
 #userName {
     color: black;
 }
-
-/** Buttons css */
-#locationButtons {
-    margin: 10px;
-}
-#listButton {
-    margin: 10px;
-}
-#removeButton { 
-    margin:none;
-    padding: none;
-}
-.listNameBtn {
-    text-decoration: none;
-    border: none;
-    background-color: white;
+#myList {
+    display: flex;
+    justify-content: center;
 }
 
 /** Footer */
@@ -113,7 +101,7 @@ header.masthead {
     margin: none;
 }
 
-/** Doomsday css */
+/** Doomsday CSS */
 #doomsDayL {
     border: black solid 2px;
     border-radius: 5px;
@@ -130,4 +118,119 @@ header.masthead {
     position: absolute;
     margin: auto;
     width: 75%;
+}
+
+/** Buttons CSS */
+#locationButtons {
+    margin: 10px;
+}
+#listButtonArea {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+#removeButton { 
+    margin:none;
+    padding: none;
+}
+.listNameBtn {
+    text-decoration: none;
+    border: none;
+    background-color: white;
+}
+
+/** Bootstrap button CSS */
+/** create list, edit list, remove list */
+.btn-create, 
+.btn-edit, 
+.btn-remove {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
+}
+.btn-create::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(35, 219, 112, 0.432);
+    transition: all 0.3s;
+}
+.btn-create::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgb(41, 197, 41);
+    transform: scale(1.2,1.2);
+}
+.btn-edit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(231, 217, 10, 0.432);
+    transition: all 0.3s;
+}
+.btn-edit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgb(233, 233, 27);
+    transform: scale(1.2,1.2);
+}
+.btn-remove::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(230, 13, 5, 0.514);
+    transition: all 0.3s;
+}
+.btn-remove::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgb(233, 233, 27);
+    transform: scale(1.2,1.2);
+}
+.btn-create:hover::before,
+.btn-edit:hover::before,
+.btn-remove:hover::before
+ {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+}
+.btn-create:hover::after,
+.btn-edit:hover::after,
+.btn-remove:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
 }
