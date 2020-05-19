@@ -199,14 +199,41 @@ function edit() {
 }
 
 
+function nomallistimage(){
 
+    
+    if (array.includes("Apple")) {
+        $('#image'+[i]).attr('src', 'CSS/itemimage/apple.jpg');
+    }
+     if (array.includes("Beans")) {
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Beans.jpg');
+    }
+     if (array.includes("Canned Vegetables")){
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
+    }
+     if (array.includes("Detergent")) {
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Detergent.jpg');
+    } 
+      if (array.includes("Disinfectant Wipes")) {
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
+    } 
+      if (array.includes("Eggs")) {
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Eggs.jpg');
+    } 
+      if (array.includes("Face Masks")){
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
+    } 
+      if (array.includes("Ground Beef")) {
 
+        $('#image'+[i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
+    } 
+     if (array.includes("Hand Sanitizer")) {
 
 
 function createUnavailableList(editListFlag) {
