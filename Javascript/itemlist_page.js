@@ -180,6 +180,8 @@ $(document).ready(function () {
         //if the item is a copy of something on the list run the following code that will
         //increment the quantity instead of adding an same item again on the item list
         if (uniquecheck === true) {
+            $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+            validshopping = 0;
             for (let repeat = 0; repeat < userinputquantity; repeat++) {
                 //get the current value from the array quantityholder[id](global) which is created when we added the item
                 var currentvalue1 = quantityholder[trueidposition];
