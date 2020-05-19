@@ -297,6 +297,19 @@
      text-align: center;
    }
  }
+/* tweet button */
+ #tweet1{
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+}
 
+.twitter-share-button{
+  margin-top: 10px;
+}
+
+#jasonedit{
+  margin-left: -40px
+}
 
  /* Edit Mode */
