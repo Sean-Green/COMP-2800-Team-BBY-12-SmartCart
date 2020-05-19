@@ -33,7 +33,8 @@ function storelists() {
                                     '<h4 id="storeName' + idNum + '">' + store.get("name") + '</h4><p class="card-text">' + store.get("address") + '</p>'
 
                                     +
-                                    '<div class="d-flex justify-content-between align-stores-center"><div class="btn-group"><button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
+                                    '<div class="d-flex justify-content-between align-stores-center"><div class="btn-group">'
+                                    +'<button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
                                     // set modal id#
 
                                     +
