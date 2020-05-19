@@ -87,7 +87,7 @@ $(document).ready(() => {
 
 });
 
-function createUnavailableList() {
+function createUnavailableList(editListFlag) {
     var unavailableListName = new Date().toString().substring(0, 25).trim();
     deleteListByName(unavailableListName);
     var unavailableItems = $('.unavailable').toArray();
@@ -104,25 +104,26 @@ function createUnavailableList() {
         }
 
     }).then((success) => {
-        setShoppingList(unavailableListName);
-    })
-
-
-
-}
-
-function setShoppingList(listName) {
-    firebase.auth().onAuthStateChanged(function (user) {
-        let shopListName = listName;
-        db.doc("Users/" + user.uid).set({
-            shoppingList: shopListName
-        }, {
-            merge: true
-        }).then((success) => {
-            window.location = 'itemlist_page.html';
+        firebase.auth().onAuthStateChanged(function (user) {
+            let shopListName = unavailableListName;
+            db.doc("Users/" + user.uid).set({
+                shoppingList: shopListName
+            }, {
+                merge: true
+            }).then((success) => {
+                if (editListFlag) {
+                    window.location = 'itemlist_page.html';
+                } else {
+                    window.location = 'store_page.html';
+                }
+            })
         })
     })
+
+
+
 }
+
 
 function edit() {
     window.location = "itemlist_page.html";
