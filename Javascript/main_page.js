@@ -46,6 +46,7 @@ function getUserDisplayName() {
 
 // get user lists and display them for the user
 let editMode = false;
+
 function getUserLists(editState) {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
@@ -57,12 +58,15 @@ function getUserLists(editState) {
             let lists = '<li class="list-group-item" id="myList"><div><span><button class="listNameBtn" id="listName' + i + '">' + userLists[i] + '</button></span></div>'
             let listText = $(lists).text();
             listText = listText.trim();
-           // console.log(listText);
+            // console.log(listText);
             console.log(userLists);
 
             // remove button in edit mode
-            lists += '<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
+
+            lists += '<span class="btn btn-remove" id="removeButton' + i + '">X</span></li>'
+            //'<span class="btn btn-danger" id="removeButton' + i + '">X</span></li>'
             $(document).on("click", "#removeButton" + i, function () {
+               console.log("handing over" + listText);
                deleteListByName(listText);
                //console.log(listText);
             })
@@ -77,97 +81,32 @@ function getUserLists(editState) {
             console.log(lists);
 
             // setting the shopping list name to the list name that is clicked
-            $(document).on("click", "#listName" + i, function(){
+            $(document).on("click", "#listName" + i, function () {
                console.log(listText);
                setShoppingList(listText);
-            }) 
+            })
          }
 
          // set the list name as blank when the user clicks on create list button
          let defaultName = "";
-            $(document).on("click", "#createListBtn", function(){
-               setBaseShoppingList(defaultName);
-            })
+         $(document).on("click", "#createListBtn", function () {
+            setBaseShoppingList(defaultName);
+         })
       })
    })
 }
 
 
 // function to have the name as blank when clicked
-function setBaseShoppingList(defaultListName){
+function setBaseShoppingList(defaultListName) {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).set({
          shoppingList: defaultListName
       }, {
-         merge:true
+         merge: true
       }).then((success) => {
          redirect();
       })
-   })
-}
-
-
-// function to add/remove the remove buttons
-$(document).on("click", "#editListsBtn", function () {
-   if (!editMode) {
-      getUserLists(true);
-   } else {
-      getUserLists(false);
-   }
-   editMode = !editMode;
-})
-
-
-// Doomsday feature
-function doomsDayState() {
-   firebase.auth().onAuthStateChanged(function (user) {
-      db.doc("Users/" + user.uid).get().then((snapshot) => {
-         if (snapshot.get("DoomsDayMode")) {
-            $("#createListBtn").html('<a class="btn btn-danger">Create A New Doomsday List</a>');
-            $("#footerNote").html('<p id="footerNote">Copyright of SmartCart ltd, To return back to normal mode<span><button id="doomsDayBtn">Click Me</button></span></p>');
-         } else {
-            $("#createListBtn").html('<a class="btn btn-success">Create A New List</a>');
-            $("#footerNote").html('<p id="footerNote">Copyright of SmartCart ltd, Inorder to prepare for the end of the world<span><button id="doomsDayBtn">DONOT Click Me</button></span></p>');
-         }
-      })
-   })
-}
-doomsDayState();
-
-
-// Doomsday mode that sets the mode on and off
-function doomsDayMode() {
-   $(document).on("click", "#doomsDayBtn", function () {
-      firebase.auth().onAuthStateChanged(function (user) {
-         db.doc("Users/" + user.uid).get().then((snapshot) => {
-            let doomTest = !snapshot.get("DoomsDayMode");
-            db.doc("Users/" + user.uid).set({
-               DoomsDayMode: doomTest
-            }, {
-               merge: true
-            })
-            doomsDayState();
-         })
-      })
-
-      // audio for button click
-      let doomAudio = $("#doom")[0];
-      doomAudio.play();
-
-      // positioning for the image
-      $.fn.center = function () {
-         this.css("position", "absolute");
-         this.css("top", Math.floor((($(window).height() - $(this).outerHeight()) / 5) + $(window).scrollTop()) + "px");
-         this.css("left", Math.floor((($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
-         return this;
-      }
-
-      // making the image fade in and then fade out after 2 seconds
-      $("#doomExplosion").fadeIn().center();
-      setTimeout(function () {
-         $("#doomExplosion").fadeOut()
-      }, 2000);
-
    })
 }
 
@@ -191,3 +130,76 @@ function setShoppingList(listName) {
 function redirect() {
    window.location = "itemlist_page.html";
 }
+
+
+// function to add/remove the remove buttons
+$(document).on("click", "#editListsBtn", function () {
+   if (!editMode) {
+      getUserLists(true);
+   } else {
+      getUserLists(false);
+   }
+   editMode = !editMode;
+})
+
+
+// Doomsday feature button change
+function doomsDayState() {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.doc("Users/" + user.uid).get().then((snapshot) => {
+         if (snapshot.get("DoomsDayMode")) {
+            $("#createListBtn").html('<a class="btn btn-danger">Create A New Doomsday List</a>');
+            $("#footerNote").html("To go back to normal mode, visit About Us page.")
+         } else {
+            $("#createListBtn").html('<div class="btn btn-create"><span>CREATE A NEW LIST</span></div>');
+         }
+      })
+   })
+}
+doomsDayState();
+
+
+// Function to print user's list contents
+function listSnapShots() {
+   firebase.auth().onAuthStateChanged(function (user) {
+      db.doc('Users/' + user.uid).get().then((userDoc) => {
+         let userIndividualLists = userDoc.get("listNames");
+         $("#userIndiLists").html("");
+
+         for (i = 0; i < userIndividualLists.length; i++) {
+            let nameOfLists = userIndividualLists[i];
+            db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
+
+               console.log("this is list name " + nameOfLists);
+
+               let userItemArray = userListItems.docs;
+         
+               let itemCardMat = '<div id="newOne' + i + '">' + nameOfLists + '<div id="listing' + i + '"></div></div>'
+               console.log(itemCardMat);
+                  //'<div class="card" id="mainListCard"><h4 class="heading1">' + nameOfLists + '</h4>' +
+                  //'<div class="card-body"><div class="card" class="listingCard">' +
+                  //'<div class="card"><ul class="list-group list-group-flush" class="ulList" id="listing' + i + '"></ul>'
+                  //</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
+                  //'<span>EDIT LISTS</span></div></div></div></div></div>';
+
+               $("#userIndiLists").append(itemCardMat);
+               console.log(userItemArray.length);
+
+               let itemCardMat2 = "";
+               for (j = 0; j < userItemArray.length; j++) {
+                  let itemName = userItemArray[j].get("name");
+                  itemCardMat2 += itemName;
+                  //'<li class="list-group-item" id="theList' + j + '"><div><span><button class="listNameBtn" id="listName' + j + '">' + itemName + '</button></span></div>'
+                  console.log("this is name " + itemName)
+               }
+               $("#listing" + i).append(itemCardMat2);
+            
+            })
+         }
+      })
+   })
+}
+listSnapShots();
+//'<li class="list-group-item" id="myList"><div><span id="itemName' + i + '">' + userItemArray + '</span></div>'
+
+//'<li class="list-group-item" id="myList"><div><span id="itemName' + j + '">' + itemName + '</span></div>'

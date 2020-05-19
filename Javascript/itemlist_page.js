@@ -5,85 +5,85 @@ $(document).ready(function () {
     var savelistname = "Placeholder";
     //get the user details
     firebase.auth().onAuthStateChanged(function (user) {
-                //use the users ID to access their file
-                db.doc("Users/" + user.uid).get().then(function (userDoc) {
+        //use the users ID to access their file
+        db.doc("Users/" + user.uid).get().then(function (userDoc) {
 
-                            // set user current shopping list
-                            var shoppingList = userDoc.get("shoppingList");
+            // set user current shopping list
+            var shoppingList = userDoc.get("shoppingList");
 
-                            console.log("Happy feet " + shoppingList);
-                            if (userDoc.get("shoppingList") === '') {
-                                console.log("row row row the boat");
-                            } else {
-                                db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-                                    // we turn the documents into an array
-                                    let item = userList.docs;
-                                    saveliststatus = true;
-                                    console.log(item);
-                                    console.log("list name is " + shoppingList);
-                                    savelistname = shoppingList;
-                                    console.log("size of this List is: " + item.length);
-                                    $("#listname2span").html(shoppingList);
+            console.log("Happy feet " + shoppingList);
+            if (userDoc.get("shoppingList") === '') {
+                console.log("row row row the boat");
+            } else {
+                db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                    // we turn the documents into an array
+                    let item = userList.docs;
+                    saveliststatus = true;
+                    console.log(item);
+                    console.log("list name is " + shoppingList);
+                    savelistname = shoppingList;
+                    console.log("size of this List is: " + item.length);
+                    $("#listname2span").html(shoppingList);
 
-                                    // loop through the array and add an <li> item for each item
-                                    for (i = 0; i < item.length; i++) {
-                                        let content = $('#listarea1').html();
-                                        let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
-                                        $('#listarea1').html(content + p);
-                                        $('#magicitem' + id).appendTo("#listarea1");
+                    // loop through the array and add an <li> item for each item
+                    for (i = 0; i < item.length; i++) {
+                        let content = $('#listarea1').html();
+                        let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + item[i].get("name") + "</li>";
+                        $('#listarea1').html(content + p);
+                        $('#magicitem' + id).appendTo("#listarea1");
 
-                                        content = $('#listarea2').html();
-                                        let theweight = item[i].get("size") + " " + item[i].get("units");
-                                        p = "<li class='customListStyle' id=weightmagic" + id + ">" + theweight + "</li>";
-                                        $('#listarea2').html(content + p);
-                                        $('#weightmagic' + id).appendTo("#listarea2");
+                        content = $('#listarea2').html();
+                        let theweight = item[i].get("size") + " " + item[i].get("units");
+                        p = "<li class='customListStyle' id=weightmagic" + id + ">" + theweight + "</li>";
+                        $('#listarea2').html(content + p);
+                        $('#weightmagic' + id).appendTo("#listarea2");
 
-                                        content = $('#listarea3').html();
-                                        p = "<li class='customListStyle' id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
-                                            "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
-                                        $('#listarea3').html(content + p);
-                                        $('#quantitymagic' + id).appendTo('#listarea3');
-                                        quantityholder.push(item[i].get("qty"));
-                                        id++
-                                    }
-                                });
+                        content = $('#listarea3').html();
+                        p = "<li class='customListStyle' id=quantitymagic" + id + "><span id=minus" + id + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + item[i].get("qty") +
+                            "<span id=plus" + id + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span></li>";
+                        $('#listarea3').html(content + p);
+                        $('#quantitymagic' + id).appendTo('#listarea3');
+                        quantityholder.push(item[i].get("qty"));
+                        id++
+                    }
+                });
 
-           
-            // lets you know on the page what store you will be writing to
-            // $('#itemListContainer').prepend('<b>' + currentStore + '</b>');
 
-            //////////////////////////////////////////////////////////////////////
-            //          BUILDS A LIST FROM THE DATABASE INTO HTML               //
-            //////////////////////////////////////////////////////////////////////
-            // this reads the collection of user items from the database and stores it in userList
+                // lets you know on the page what store you will be writing to
+                // $('#itemListContainer').prepend('<b>' + currentStore + '</b>');
 
-            // try {
-            //     db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-            //         // we turn the documents into an array
-            //         let item = userList.docs;
-            //         console.log(item);
-            //         // loop through the array and add an <li> item for each item
-            //         for (i = 0; i < item.length; i++) {
-            //             listHTML += '<li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
-            //             let itemName = item[i].get("name");
-            //             console.log(itemName);
-            //             listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></li>';
-            //             $('#itemList').append(listHTML);
-            //             listHTML = "";
-            //             $(document).on('click', "#remove" + i, () => {
-            //                 console.log("removing " + itemName + " from " + currentStore + " unavailable list");
-            //                 removeItemFromUnavailable(itemName);
-            //             });
-            //             $(document).on('click', "#add" + i, () => {
+                //////////////////////////////////////////////////////////////////////
+                //          BUILDS A LIST FROM THE DATABASE INTO HTML               //
+                //////////////////////////////////////////////////////////////////////
+                // this reads the collection of user items from the database and stores it in userList
 
-            //                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-            //                 addItemToUnavailable(itemName);
-            //             });
-            //         }
-            //     });
-            // } catch {
-            //     console.log("no List selected");
-            // }
+                // try {
+                //     db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                //         // we turn the documents into an array
+                //         let item = userList.docs;
+                //         console.log(item);
+                //         // loop through the array and add an <li> item for each item
+                //         for (i = 0; i < item.length; i++) {
+                //             listHTML += '<li><span id="itemName' + i + '">' + item[i].get("name") + '</span>';
+                //             let itemName = item[i].get("name");
+                //             console.log(itemName);
+                //             listHTML += '<button id="remove' + i + '">&#9989;</button><button id="add' + i + '">&#10060;</button></li>';
+                //             $('#itemList').append(listHTML);
+                //             listHTML = "";
+                //             $(document).on('click', "#remove" + i, () => {
+                //                 console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+                //                 removeItemFromUnavailable(itemName);
+                //             });
+                //             $(document).on('click', "#add" + i, () => {
+
+                //                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                //                 addItemToUnavailable(itemName);
+                //             });
+                //         }
+                //     });
+                // } catch {
+                //     console.log("no List selected");
+                // }
 
             }
 
@@ -98,36 +98,38 @@ $(document).ready(function () {
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-            //using arrays to access database information for item's name, size and unit
-            var namearray = [];
-            var sizearray = [];
-            var unitarray = [];
-            let databaseitemamount = 0;
-            //maha code to link database item selection to our items
-            firebase.auth().onAuthStateChanged(function (user) {
-                db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
-                    let path = "Items";
-                    if (snapshot.get("DoomsDayMode")) {
-                        path = "Doomsday";
-                    }
-                    db.collection(path).get().then((snapshot) => {
-                        snapshot.docs.forEach(doc => {
-                            let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
-                            $("#inputItem").append(listOfItems);
-                            // console.log(doc.data())
-                            //ghetto way to get access database items name, size , and units
-                            namearray.push(doc.get("name"));
-                            sizearray.push(doc.get("size"));
-                            unitarray.push(doc.get("units"));
-                            console.log("doo doo");
-                            databaseitemamount++;
-                            databasestatus = true;
-                        })
-
-                    })
+    /////////////////////////////////////////////////////////////////////////////////////
+    //using arrays to access database information for item's name, size and unit
+    var namearray = [];
+    var sizearray = [];
+    var unitarray = [];
+    let databaseitemamount = 0;
+    //maha code to link database item selection to our items
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+            let path = "Items";
+            if (snapshot.get("DoomsDayMode")) {
+                path = "Doomsday";
+            }
+            db.collection(path).get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    let listOfItems = '<option id=itemoption value="' + doc.get("name") + '">' + doc.get("name") + '</option>'
+                    $("#inputItem").append(listOfItems);
+                    // console.log(doc.data())
+                    //ghetto way to get access database items name, size , and units
+                    namearray.push(doc.get("name"));
+                    sizearray.push(doc.get("size"));
+                    unitarray.push(doc.get("units"));
+                    databaseitemamount++;
+                    databasestatus = true;
                 })
-            });
+
+            })
+        })
+
+    })
+
+
 
     //if true you can use the add button else no (only using addchecker[0] as boolean checker)
     //this is the global array that check boolean that checks if you are valid to add or not
@@ -147,7 +149,7 @@ $(document).ready(function () {
 
     $('#theaddbutton').on('click', function () {
 
-        
+
 
 
         //instantiate a variable to hold the [id] of the item if for a double of the item when it runs through
@@ -158,7 +160,7 @@ $(document).ready(function () {
         //the user input number for quantity so that we know how many times to increment the double item
         let userinputquantity = $('#inputQuantity').val();
         //if the input box has no input assume increment by 1
-        if(userinputquantity == ''){
+        if (userinputquantity == '') {
             userinputquantity = 1;
         }
         console.log("repeat is " + userinputquantity);
@@ -172,12 +174,14 @@ $(document).ready(function () {
                     uniquecheck = true;
                     trueidposition = position2;
                 }
-            }  
+            }
         }
 
         //if the item is a copy of something on the list run the following code that will
         //increment the quantity instead of adding an same item again on the item list
         if (uniquecheck === true) {
+            $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+            validshopping = 0;
             for (let repeat = 0; repeat < userinputquantity; repeat++) {
                 //get the current value from the array quantityholder[id](global) which is created when we added the item
                 var currentvalue1 = quantityholder[trueidposition];
@@ -220,7 +224,7 @@ $(document).ready(function () {
                 if (!$('#inputItem').val()) {
                     itemname = "Empty";
                 }
-      
+
                 let p = "<li class='customListStyle' id=magicitem" + id + "> <span id=removeid" + id + " class=removebutton>&#10060;&nbsp;</span>" + itemname + "</li>";
                 $('#listarea1').html(content + p);
                 $('#magicitem' + id).appendTo("#listarea1");
@@ -252,13 +256,13 @@ $(document).ready(function () {
                 //     itemname = "Empty"
                 // }
 
-                if(validshopping === 1){
-                //     p = "<li class='customListStyle' id=weightmagic" + id + ">" + otherweight + "</li>";
-                //     $('#listarea2').html(content + p);
-                //     $('#weightmagic' + id).appendTo("#listarea2");
-                    
+                if (validshopping === 1) {
+                    //     p = "<li class='customListStyle' id=weightmagic" + id + ">" + otherweight + "</li>";
+                    //     $('#listarea2').html(content + p);
+                    //     $('#weightmagic' + id).appendTo("#listarea2");
+
                     console.log("yolo valid shopping is 1");
-                }else if (validshopping === 0){
+                } else if (validshopping === 0) {
                     p = "<li class='customListStyle' id=weightmagic" + id + ">" + weight + "</li>";
                     $('#listarea2').html(content + p);
                     $('#weightmagic' + id).appendTo("#listarea2");
@@ -295,8 +299,8 @@ $(document).ready(function () {
 
     var array = [];
     array[0] = "null again";
-    
-    
+
+
 
 
     // function when click the edit button for item list name
@@ -370,7 +374,7 @@ $(document).ready(function () {
         $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
         //edit the title
-        if(namechecker[0] === true) {
+        if (namechecker[0] === true) {
             let userinput = $('#newlistname').val();
             $("#listname2span").html(userinput);
             $('#newlistname').remove();
@@ -391,8 +395,10 @@ $(document).ready(function () {
 
     //function that removes the whole line of item on the item list page
     $(document).on('click', ".removebutton", function () {
+        //Resets the button
         $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
+        //
         let clickedid = $(this).attr('id').replace(/button/, '');
         let tempid = "";
         let position = 0;
@@ -490,7 +496,7 @@ $(document).ready(function () {
 
             //this is our item quantity code that we will dynamically update with each increment.
             p = "<span id=minus" + tempid + " class=decrementbutton>&#9664;&nbsp;&nbsp;</span>" + newholder[tempid] +
-            "<span id=plus" + tempid + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span>";
+                "<span id=plus" + tempid + "  class=incrementbutton>&nbsp;&nbsp;&#9654;</span>";
 
             //this is implement and replace our old item quantity code with the new stored within variable p
             $("#quantitymagic" + tempid).html(p);
@@ -519,12 +525,12 @@ $(document).ready(function () {
     //         $(this).css("background-color", "white");
     //     });
     //     $(".goshopbutton").css("color", "green");
-        
+
     //     let listname = array[0].trim();
     //     console.log("listname is " + listname);
     //     console.log(listname);
     //     deleteListByName(listname);
-        
+
     //     let betaitem;
     //     let item;
     //     let betaquantity;
@@ -549,50 +555,52 @@ $(document).ready(function () {
     //same functionality as the save list button but you will not stay on the same page instead it will
     //take you directly to the stores page to find the right stores for the user.
     $(document).on('click', ".goshopbutton", function () {
-        if(validshopping === 0){
-        let listname = array[0].trim();
+        if (validshopping === 0) {
+            let listname = $('#listname2span').text();
 
-        if(saveliststatus === true){
-            listname = savelistname;
-            saveliststatus = false;
-        }
-        console.log("listname is " + listname);
-        console.log(listname);
-        deleteListByName(listname);
-        
-        let betaitem;
-        let item;
-        let betaquantity;
-        let quantity;
-        let check;
-        // console.log("hi");
-        for (let position = 0; position <= id; position++) {
-            check = $("#magicitem" + position).text()
-            if (check !== '') {
-                betaitem = $("#magicitem" + position).text().trim();
-                betaquantity = $("#quantitymagic" + position).text().trim();
-                quantity = betaquantity.substring(3, betaquantity.length - 3);
-                // console.log("quantity is " + quantity);
-                item = betaitem.substring(2);
-                // console.log("item is " + item);
-                saveItemToList(item, $("#listname2span").text(), quantity);
+            if (saveliststatus === true) {
+                listname = savelistname;
+                saveliststatus = false;
             }
-        }
+            console.log("listname is " + listname);
+            console.log(listname);
 
-        setShoppingList(listname);
+            deleteListByName(listname);
+            setTimeout(() => {
+                let betaitem;
+                let item;
+                let betaquantity;
+                let quantity;
+                let check;
+                // console.log("hi");
+                for (let position = 0; position <= id; position++) {
+                    check = $("#magicitem" + position).text()
+                    if (check !== '') {
+                        betaitem = $("#magicitem" + position).text().trim();
+                        betaquantity = $("#quantitymagic" + position).text().trim();
+                        quantity = betaquantity.substring(3, betaquantity.length - 3);
+                        // console.log("quantity is " + quantity);
+                        item = betaitem.substring(2);
+                        // console.log("item is " + item);
+                        saveItemToList(item, $('#listname2span').text(), quantity);
+                    }
+                }
 
-        
-            validshopping = 1;
-            console.log("validshopping is " + validshopping);
-            // $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
-            $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><span id="goshopstatus3">[READY]</span><span id="goshopstatus4"> GO SHOP</span></a>')
-            $(".goshopbutton").hover(function () {
-                $(this).css("background-color", "rgb(84, 218, 66)");
-            }, function () {
-                $(this).css("background-color", "white");
-            });
-            $(".goshopbutton").css("color", "green");
-            alert('LIST SAVED! CLICK AGAIN TO SHOP');
+                setShoppingList($('#listname2span').text());
+
+
+                validshopping = 1;
+                console.log("validshopping is " + validshopping);
+                // $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a>')
+                $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><span id="goshopstatus3">[READY]</span><span id="goshopstatus4"> GO SHOP</span></a>')
+                $(".goshopbutton").hover(function () {
+                    $(this).css("background-color", "rgb(84, 218, 66)");
+                }, function () {
+                    $(this).css("background-color", "white");
+                });
+                $(".goshopbutton").css("color", "green");
+                alert('LIST SAVED! CLICK AGAIN TO SHOP');
+            }, 1000);
         }
     });
 
