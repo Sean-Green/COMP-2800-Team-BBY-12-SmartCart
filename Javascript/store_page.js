@@ -37,14 +37,6 @@ function storelists() {
                                     idNum + '"> items</h4></div><div class="modal-body"><ul id="itemList' + idNum + '"class="list-group list-group-flush">'
 
 
-                                  $('#image0').attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
-                                  $('#image1').attr('src', 'CSS/storeimage/IGA Richmond.jpg');
-                                  $('#image2').attr('src', 'CSS/storeimage/Safeway Langley.jpg');
-                                  $('#image3').attr('src', 'CSS/storeimage/Superstore.png');
-                                  $('#image4').attr('src', 'CSS/storeimage/T&T Supermarket.png');
-                                  $('#image5').attr('src', 'CSS/storeimage/Walmart.png');
-
-
                                 for (i = 0; i < shoppingList.length; i++) {
                                     for (j = 0; j < unavail.length; j++) {
                                         // if the item is unavailable
@@ -75,6 +67,14 @@ function storelists() {
                                 })
 
                                 console.log(idNum++);
+
+                                
+                                $('#image0').attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
+                                $('#image1').attr('src', 'CSS/storeimage/IGA Richmond.jpg');
+                                $('#image2').attr('src', 'CSS/storeimage/Safeway Langley.jpg');
+                                $('#image3').attr('src', 'CSS/storeimage/Superstore.png');
+                                $('#image4').attr('src', 'CSS/storeimage/T&T Supermarket.png');
+                                $('#image5').attr('src', 'CSS/storeimage/Walmart.png');
                             });
 
                         })
