@@ -241,6 +241,11 @@
     #labelname2{
         grid-area: two;
         font-weight: bold;
+        display: none;
+    }
+
+    #listarea2{
+        display: none;
     }
 
     #labelname3{
@@ -576,6 +581,11 @@
     #labelname2{
         grid-area: two;
         font-weight: bold;
+        display:none;
+    }
+
+    #listarea2{
+        display: none;
     }
 
     #labelname3{
