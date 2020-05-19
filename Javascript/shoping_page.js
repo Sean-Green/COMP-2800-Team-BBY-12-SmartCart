@@ -34,6 +34,7 @@ function countItem() {
 countItem();
 */
 
+let array = [];
 
 $(document).ready(() => {
 
@@ -51,8 +52,8 @@ $(document).ready(() => {
                         let item = userList.docs;
                         for (i = 0; i < item.length; i++) {
 
-                            listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product"><a href="https://placeholder.com">' +
-                                '<img src="https://via.placeholder.com/100"></a>' +
+                            listHTML = '<tr id="itemContainer' + i + '"><td data-th="Product">' +
+                                '<image id="image'+i+'" width="100px "height="100" >' +
                                 '<h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></td>' +
                                 '<td data-th=""></td><td class="actions" id="action"><button class="btn btn-success" id="remove' + i + '"><i class="fa fa-check"></i></button>' +
                                 '</td><td class="actions" id="action"><button class="btn btn-danger" id="add' + i + '" ><i class="fas fa-times"></i></button></div></tr>';
@@ -60,6 +61,11 @@ $(document).ready(() => {
                             let itemName = item[i].get("name");
                             let containerName = "#itemContainer" + i;
                             let nameId = '#itemName' + i;
+
+                            let str = itemName.toString();
+                            array.push(str);
+                           
+
 
                             $('#itemList').append(listHTML);
                             listHTML = "";
@@ -77,7 +83,82 @@ $(document).ready(() => {
                                 console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
                                 addItemToUnavailable(itemName);
                             });
+
+  
+                            if (array.includes("Apple")) {
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/apple.jpg');
+                            }
+                             if (array.includes("Beans")) {
+    
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Beans.jpg');
+                            }
+                             if (array.includes("Canned Vegetables")){
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
+                            }
+                             if (array.includes("Detergent")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Detergent.jpg');
+                            } 
+                              if (array.includes("Disinfectant Wipes")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
+                            } 
+                              if (array.includes("Eggs")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Eggs.jpg');
+                            } 
+                              if (array.includes("Face Masks")){
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
+                            } 
+                              if (array.includes("Ground Beef")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
+                            } 
+                             if (array.includes("Hand Sanitizer")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Hand Sanitizer.jpg');
+                            }
+                              if (array.includes("Orange")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Orange.jpg');
+                            }
+                              if (array.includes("Pasta")){
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Pasta.jpg');
+                            }
+                               if (array.includes("Potato")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Potato.jpg');
+                            }
+                              if (array.includes("Rice")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Rice.jpg');
+                            }
+                              if (array.includes("Soap")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Soap.jpg');
+                            }
+                              if (array.includes("Toilet Paper")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Toilet Paper.jpg');
+                            }
+                              if (array.includes("Tylenol")) {
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Tylenol.jpg');
+                            }
+                              if (array.includes("Uno Card Game")){
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
+                            }
+                             if (array.includes("Vitamin")) {
+                        
+                                $('#image'+[i]).attr('src', 'CSS/itemimage/Vitamin.jpg');
+                            }
                         }
+                        console.log(array);
+                        
+
                     });
                 });
             });
@@ -87,7 +168,20 @@ $(document).ready(() => {
 
 });
 
-function createUnavailableList() {
+console.log(array);
+
+
+
+
+
+
+
+
+
+
+
+
+function createUnavailableList(editListFlag) {
     var unavailableListName = new Date().toString().substring(0, 25).trim();
     deleteListByName(unavailableListName);
     var unavailableItems = $('.unavailable').toArray();
@@ -104,25 +198,26 @@ function createUnavailableList() {
         }
 
     }).then((success) => {
-        setShoppingList(unavailableListName);
-    })
-
-
-
-}
-
-function setShoppingList(listName) {
-    firebase.auth().onAuthStateChanged(function (user) {
-        let shopListName = listName;
-        db.doc("Users/" + user.uid).set({
-            shoppingList: shopListName
-        }, {
-            merge: true
-        }).then((success) => {
-            window.location = 'itemlist_page.html';
+        firebase.auth().onAuthStateChanged(function (user) {
+            let shopListName = unavailableListName;
+            db.doc("Users/" + user.uid).set({
+                shoppingList: shopListName
+            }, {
+                merge: true
+            }).then((success) => {
+                if (editListFlag) {
+                    window.location = 'itemlist_page.html';
+                } else {
+                    window.location = 'store_page.html';
+                }
+            })
         })
     })
+
+
+
 }
+
 
 function edit() {
     window.location = "itemlist_page.html";
