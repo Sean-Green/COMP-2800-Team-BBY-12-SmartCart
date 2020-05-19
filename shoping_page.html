@@ -86,8 +86,34 @@
             <div class="alert alert-info" role="alert">
                 <div id="storename"></div>
             </div>
+            <ul id="tweet1">
+                <li>
+                    <button id="jasonedit" class="btn btn-success" onclick="edit()">Edit</button>
+                </li>
+                <li>
+                    <div>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </li>
+            </ul>
+            <style>
+                #tweet1{
+                    display: flex;
+                    list-style-type: none;
+                    justify-content: space-between;
+                }
 
-            <button class="btn btn-success" onclick="edit()">Edit</button>
+                .twitter-share-button{
+                    margin-top: 10px;
+                }
+
+                #jasonedit{
+                    margin-left: -40px
+                }
+            </style>
+            
+            
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                     <tr>
