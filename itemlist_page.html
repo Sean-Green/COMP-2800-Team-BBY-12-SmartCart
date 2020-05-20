@@ -7,6 +7,7 @@
   <title>Item List Page</title>
   <link rel="stylesheet" type="text/css" href="CSS/itemlist_page.css">
   <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+  <link rel="stylesheet" type="text/css" href="CSS/loading.css">
   <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
@@ -106,8 +107,8 @@
         </section>
         <!-- <section id="listweightcontainer">
           <ul id="listarea2" class="font list2">
-            <!-- <li id="input2"><input type='text' id="inputWeight" class="theinput" size="7" placeholder="Weight"></li> -->
-            <!-- <li id="input2">
+            <li id="input2"><input type='text' id="inputWeight" class="theinput" size="7" placeholder="Weight"></li>
+            <li id="input2">
               <article id="inputWeight" class="theinput">weight</article>
             </li>
           </ul>
@@ -142,17 +143,15 @@
           </article>
         </div>
       </div>
-    <!--</div>-->
-    <!-- Spacer -->
-    <!-- <div class="spacer">
-      <br>
-    </div> -->
-  </div>
-  <!----Bootstrap-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="Javascript/itemlist_page.js"></script>
-</body>
-
+      <!-- Credits to Red Stapler
+      Link: https://redstapler.co/add-loading-animation-to-website/ -->
+      <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+      </div>
+        <!----Bootstrap-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="Javascript/itemlist_page.js"></script>
+    </body>
 </html>
