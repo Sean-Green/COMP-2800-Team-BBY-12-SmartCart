@@ -218,7 +218,7 @@ function redirectToShop() {
     $(window).on("load", function () {
         delay(function () {
             $(".loader-wrapper").fadeOut("slow");
-        }, 800);
+        }, 2000);
     });
 
     /**
