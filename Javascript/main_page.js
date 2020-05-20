@@ -159,59 +159,6 @@ function doomsDayState() {
 doomsDayState();
 
 
-// // Function to print user's list contents
-// function listSnapShots() {
-//    firebase.auth().onAuthStateChanged(function (user) {
-//       db.doc('Users/' + user.uid).get().then((userDoc) => {
-//          let userIndividualLists = userDoc.get("listNames");
-//          $("#userIndiLists").html("");
-
-//          for (i = 0; i < userIndividualLists.length; i++) {
-//             let nameOfLists = userIndividualLists[i];
-
-//             // let theOne = "newOne" + i;
-//             // console.log("this is it " + theOne);
-//             // let theListing = "listing" + i;
-//             // console.log("this is listing "+ theListing);
-
-//             let itemCardMat = '<div id="newOne' + i + '">' + nameOfLists + '<div id="listing' + i + '"></div></div>'
-//                console.log(itemCardMat);
-//                   //'<div class="card" id="mainListCard"><h4 class="heading1">' + nameOfLists + '</h4>' +
-//                   //'<div class="card-body"><div class="card" class="listingCard">' +
-//                   //'<div class="card"><ul class="list-group list-group-flush" class="ulList" id="listing' + i + '"></ul>'
-//                   //</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
-//                   //'<span>EDIT LISTS</span></div></div></div></div></div>';
-
-//                $("#userIndiLists").append(itemCardMat);
-
-//                console.log("this is list name " + nameOfLists);
-
-//             db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
-//                let userItemArray = userListItems.docs;
-
-//                console.log(userItemArray.length);
-
-//                let itemCardMat2 = "";
-//                for (j = 0; j < userItemArray.length; j++) {
-//                   let itemName = userItemArray[j].get("name");
-//                   itemCardMat2 += itemName;
-//                   //'<li class="list-group-item" id="theList' + j + '"><div><span><button class="listNameBtn" id="listName' + j + '">' + itemName + '</button></span></div>'
-//                   console.log("this is name " + itemName)
-
-//                }
-//                $("#listing" + i).append(itemCardMat2);
-//                //console.log(itemCardMat2);
-//             })
-//          }
-//       })
-//    })
-// }
-// listSnapShots();
-//'<li class="list-group-item" id="myList"><div><span id="itemName' + i + '">' + userItemArray + '</span></div>'
-
-//'<li class="list-group-item" id="myList"><div><span id="itemName' + j + '">' + itemName + '</span></div>'
-
-
 // Function to print user's list contents
 function listSnapShots() {
    firebase.auth().onAuthStateChanged(function (user) {
@@ -227,65 +174,28 @@ function listSnapShots() {
             db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
 
                console.log(listName);
-               let itemCardMat = '<div id="newOne' + i + '">' + listName + '<div id="'+ listID + '"></div></div>';
+               let itemCardMat = '<div class="card" id="mainListCard">' +
+                  '<h4 class="heading1">' + listName + '</h4>' +
+                  '<div class="card-body"><div class="card" class="listingCard">' +
+                  '<ul class="list-group list-group-flush" class="ulList" id="' + listID + '"></ul>' +
+                  '</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
+                  '<span>EDIT LIST</span></div></div></div></div><div class="halfSpacer"></div>';
                $("#userIndiLists").append(itemCardMat);
                let itemCardMat2 = "";
 
                for (j = 0; j < userListItems.docs.length; j++) {
                   let itemName = userListItems.docs[j].get("name");
-                  itemCardMat2 += itemName + " ";
+                  itemCardMat2 += '<li class="list-group-item" id="theList"><div><span>' + itemName + '</span></div>'
                   console.log(itemCardMat2);
                }
-               
+
                console.log(listID);
                let appension = itemCardMat2 + "";
                console.log(appension);
-               $('#' +listID).append(appension);
-               
+               $('#' + listID).append(appension);
+
             })
          }
-
-         // let i = 0;
-
-         // db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
-         //    for (i = 0; i < userIndividualLists.length; i++) {
-         //       let nameOfLists = userIndividualLists[i];
-
-         //       // let theOne = "newOne" + i;
-         //       // console.log("this is it " + theOne);
-         //       // let theListing = "listing" + i;
-         //       // console.log("this is listing " + theListing);
-         //       console.log("this is list name " + nameOfLists);
-
-         //       let userItemArray = userListItems.docs;
-
-         //       let itemCardMat = '<div id="newOne' + i + '">' + nameOfLists + '<div id="listing' + i + '"></div></div>'
-
-         //       console.log(itemCardMat);
-         //       console.log("maha" + i);
-         //       console.log(userItemArray.length);
-         //       //'<div class="card" id="mainListCard"><h4 class="heading1">' + nameOfLists + '</h4>' +
-         //       //'<div class="card-body"><div class="card" class="listingCard">' +
-         //       //'<div class="card"><ul class="list-group list-group-flush" class="ulList" id="listing' + i + '"></ul>'
-         //       //</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
-         //       //'<span>EDIT LISTS</span></div></div></div></div></div>';
-
-         //       $("#userIndiLists").append(itemCardMat);
-
-
-         //       let itemCardMat2 = "";
-         //       for (j = 0; j < userItemArray.length; j++) {
-         //          let itemName = userItemArray[j].get("name");
-         //          itemCardMat2 += itemName;
-         //          //'<li class="list-group-item" id="theList' + j + '"><div><span><button class="listNameBtn" id="listName' + j + '">' + itemName + '</button></span></div>'
-         //          console.log("this is name " + itemName)
-
-         //       }
-         //       $("#listing" + i).append(itemCardMat2);
-         //       //console.log(itemCardMat2);
-         //    }
-         // })
-
       })
    })
 }
