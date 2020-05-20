@@ -7,7 +7,7 @@ Detail: All css code is for the loading screen and is from the website above
 
 $(window).on('load', function() { 
     $('#status').fadeOut(); 
-    $('#preloader').delay(350).fadeOut('slow'); 
-    $('body').delay(350).css({'overflow':'visible'});
+    $('#preloader').delay(1000).fadeOut('slow'); 
+    $('body').delay(100).css({'overflow':'visible'});
   })
  
