@@ -1,10 +1,7 @@
-/*
 body {
   overflow: hidden;
 }
 
-/* Preloader */
-/*
 #preloader {
   position: fixed;
   top: 0;
@@ -38,9 +35,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-*/
-
 
 
 

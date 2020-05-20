@@ -98,8 +98,20 @@ $(document).ready(() => {
                             addItemToUnavailable(itemName);
                         });
 
-                        appendImage(str, imageId);
+                        let booleanVariable = userDoc.get("DoomsDayMode");
+                                
+                        console.log(booleanVariable);   
+
+                    if (booleanVariable){
                         appendImageDoomsday(str, imageId);
+
+                    }
+                    else{
+                        appendImage(str, imageId);
+                    }
+                        
+                        appendImage(str, imageId);
+                        
                     }
 
 
