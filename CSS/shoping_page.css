@@ -1,4 +1,5 @@
  /** Navbar and logo css*/
+
  #navbarPrimary {
    display: flex;
    justify-content: space-between;
@@ -12,6 +13,7 @@
  }
 
  /** navbar dropdown css*/
+
  .dropdownButton {
    background-color: green;
    color: white;
@@ -58,13 +60,11 @@
    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
  }
 
-
  ul.countbutton {
    padding: 5px;
    list-style: none;
    display: flex;
  }
-
 
  .onoffswitch {
    position: relative;
@@ -93,8 +93,7 @@
    transition: margin 0.3s ease-in 0s;
  }
 
- .onoffswitch-inner:before,
- .onoffswitch-inner:after {
+ .onoffswitch-inner:before, .onoffswitch-inner:after {
    display: block;
    float: left;
    width: 50%;
@@ -145,10 +144,7 @@
    right: 0px;
  }
 
-
-
- h1,
- h2 {
+ h1, h2 {
    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
    font-weight: 700;
    color: white;
@@ -181,7 +177,10 @@
  }
 
  /* table  */
+.thead{
 
+  font-size: 25px;
+}
  th.product {
    width: 50%
  }
@@ -199,11 +198,12 @@
  }
 
  ul.mybuttons {
-   padding: 5px;
+   padding: 0px;
    list-style: none;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    grid-template-rows: 1fr;
+   justify-content: center;
    gap: 1px 1px;
  }
 
@@ -212,9 +212,7 @@
    margin-bottom: 20px;
  }
 
- #warning-button,
- #primary-button,
- #success-button {
+ #warning-button, #primary-button, #success-button {
    padding-left: auto;
    padding-right: auto;
    width: 300px;
@@ -230,7 +228,6 @@
    margin-bottom: 20px;
  }
 
-
  h4.nomargin {
    padding-left: 20px;
    font-size: 30px;
@@ -239,77 +236,102 @@
 
  /* mobie view 0~426px  */
 
- @media all and (max-width: 426px) {
+ @media only screen and (max-width: 426px) {
+
+  .thead{
+
+    font-size: 15px;
+  }
+
    ul.mybuttons {
      list-style: none;
      display: grid;
      grid-template-columns: 1fr;
      grid-template-rows: 1fr 1fr 1fr;
    }
-
    li.table-button1 {
      margin-left: 10%;
      margin-bottom: 20px;
    }
 
-   #warning-button,
-   #primary-button,
-   #success-button {
+   #warning-button, #primary-button, #success-button {
      padding-left: auto;
      padding-right: auto;
      width: 300px;
    }
-
    li.table-button2 {
      margin-left: 10%;
      margin-bottom: 20px;
    }
-
    li.table-button3 {
      margin-left: 10%;
      margin-bottom: 20px;
    }
-
    th.product {
      width: 30%
    }
-
    th.quantity {
      width: 5%
    }
-
    th.space {
      padding: 8.5%;
    }
-
    h4.nomargin {
      padding-left: 5px;
      font-size: 20px;
    }
-
    h3 {
      font-size: 20px;
    }
-
-
    #action {
-
      text-align: center;
    }
  }
-/* tweet button */
- #tweet1{
-  display: flex;
-  list-style-type: none;
-  justify-content: space-between;
-}
 
-.twitter-share-button{
-  margin-top: 10px;
-}
+ /* tweet button */
 
-#jasonedit{
-  margin-left: -40px
-}
+ #tweet1 {
+   display: flex;
+   list-style-type: none;
+   justify-content: space-between;
+ }
 
- /* Edit Mode */
+ .twitter-share-button {
+   margin-top: 10px;
+ }
+
+ #jasonedit {
+   margin-left: -40px
+ }
+
+ .statusButtons {
+   grid-template-rows: 1fr 1fr;
+ }
+
+ .statusButtons button {
+   width: 5em;
+   height: 5em;
+ }
+
+ .editButtons button {
+   width: 5em;
+   height: 3em;
+ }
+
+ .qtyNum {
+   padding-top: .17em;
+   padding-left: .7em;
+   color: #212529;
+ }
+
+ .contAvail {
+   background-color: rgb(202, 255, 195);
+ }
+
+ .contUnavail {
+   background-color: rgb(255, 198, 198);
+ }
+
+ .uBtn {
+   display: none;
+ }
