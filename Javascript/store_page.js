@@ -1,12 +1,4 @@
-//preload
-/*
-$(window).on('load', function() { 
-    $('#status').fadeOut(); 
-    $('#preloader').delay(350).fadeOut('slow'); 
-    $('body').delay(350).css({'overflow':'visible'});
-  })
-  
-*/
+
 
 storelists();
 
@@ -209,28 +201,3 @@ function setCurrentStore(storeName) {
 function redirectToShop() {
     window.location = "shoping_page.html";
 }
-
-/**
-     * [window.on("load")]
-     * Normally this will fadeout the loading page when the window is fully loaded
-     * but because the loading page went by too quickly I have to add a delay function
-     */
-    $(window).on("load", function () {
-        delay(function () {
-            $(".loader-wrapper").fadeOut("slow");
-        }, 2000);
-    });
-
-    /**
-     * [delay FUNCTION]
-     * delays anything done within it, 1000 = 1 second
-     * credit: CMS
-     * link: https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing
-     */
-    var delay = (function () {
-        var timer = 0;
-        return function (callback, ms) {
-            clearTimeout(timer);
-            timer = setTimeout(callback, ms);
-        };
-    })();
