@@ -124,9 +124,7 @@
     }
 
     .additembutton:hover {
-        background-color: rgb(70, 107, 228);
         border-radius: 5px;
-
     }
 
     .backbutton:hover {
@@ -395,7 +393,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(12, 8, 226);
+        background-color: rgba(15, 19, 231, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -410,7 +408,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(15, 19, 231, 0.658);
+        border: 2px solid rgb(12, 8, 226);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -423,7 +421,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(250, 121, 1);
+        background-color: rgba(231, 112, 15, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -438,7 +436,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(231, 112, 15, 0.658);
+        border: 2px solid rgb(250, 121, 1);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -451,7 +449,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(117, 114, 110);
+        background-color: rgba(77, 73, 72, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -466,7 +464,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(77, 73, 72, 0.658);
+        border: 2px solid rgb(117, 114, 110);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -480,7 +478,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(130, 1, 250);
+        background-color: rgba(109, 15, 231, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -496,7 +494,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(109, 15, 231, 0.658);
+        border: 2px solid rgb(130, 1, 250);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -653,7 +651,6 @@
     }
 
     .additembutton:hover {
-        background-color: rgb(70, 107, 228);
         border-radius: 5px;
     }
 
@@ -904,7 +901,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(12, 8, 226);
+        background-color: rgba(15, 19, 231, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -919,7 +916,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(15, 19, 231, 0.658);
+        border: 2px solid rgb(12, 8, 226);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -932,7 +929,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(250, 121, 1);
+        background-color: rgba(231, 112, 15, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -947,7 +944,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(231, 112, 15, 0.658);
+        border: 2px solid rgb(250, 121, 1);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -960,7 +957,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(117, 114, 110);
+        background-color: rgba(77, 73, 72, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -975,7 +972,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(77, 73, 72, 0.658);
+        border: 2px solid rgb(117, 114, 110);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -989,7 +986,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        border: 2px solid rgb(130, 1, 250);
+        background-color: rgba(110, 19, 230, 0.658);
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -1005,7 +1002,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        background-color: rgba(109, 15, 231, 0.658);
+        border: 2px solid rgb(130, 1, 250);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
