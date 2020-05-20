@@ -1,246 +1,300 @@
-var shoppingMode= true;
-let count = [];
-let unavilableCount = [];
-
-/*
-function countItem() {
-    $(document).ready(function () {
-        firebase.auth().onAuthStateChanged(function (user) {
-
-            db.collection("Items").onSnapshot(function (doc) {
-                doc.forEach(function (item) {
-                    count.push(item.get("name"));
-                    console.log(count);
-                    console.log(count.length);
-                    //  document.getElementById('count').innerHTML = "Find Total available "
-                    //     + "<span style='color: blue;'>" + count.length + "</span>" + " items";
-                });
-            });
-            db.collection("unavailable").onSnapshot(function (doc) {
-                doc.forEach(function (item) {
-
-                    console.log(item.get("name"));
-
-                    unavilableCount.push(item.get("name"));
-                    console.log(unavilableCount);
-                    console.log(unavilableCount.length);
-                    //document.getElementById('unavilableCount').innerHTML = "Find Total unavailable "
-                    //    + "<span style='color: red;'>" + unavilableCount.length + "</span>" + " items";
-                });
-            });
-        });
-    })
-}
-
-countItem();
-*/
-
-let array = [];
-
 $(document).ready(() => {
-
     function displayList() {
-        $(document).ready(function () {
+        firebase.auth().onAuthStateChanged(function (user) {
+            db.doc("Users/" + user.uid).get().then(function (userDoc) {
+                let currentStore = userDoc.get("currentStore");
+                let shoppingList = userDoc.get("shoppingList");
+                let listHTML = "";
+                $('#storename').prepend('<h3>You are shopping at <br><b>' + currentStore + '</b><br>With List:<br><b id="theListName">' + userDoc.get("shoppingList") + '</b></h3>');
 
-            firebase.auth().onAuthStateChanged(function (user) {
-                db.doc("Users/" + user.uid).get().then(function (userDoc) {
-                    let currentStore = userDoc.get("currentStore");
-                    let shoppingList = userDoc.get("shoppingList");
-                    let listHTML = "";
-                    $('#storename').prepend('<h3>' + 'Your Store : ' + currentStore + '</h3>');
+                db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
+                    let item = userList.docs;
+                    for (i = 0; i < item.length; i++) {
 
-                    db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-                        let item = userList.docs;
-                        for (i = 0; i < item.length; i++) {
-
-                            listHTML = 
-                            '<tr id="itemContainer' + i + '">'+
-                                '<td data-th="Product">' +
-                                    //The item image
-                                    '<image id="image' + i + '" width="100px "height="100" >' +
-                                        //Item Name
-                                    '<h4 class="nomargin">' +
-                                        '<span id="itemName' + i + '">' + item[i].get("name") + '</span>'+
-                                    '</h4> ' +
-                                '</td>' +
-                                '<td data-th="">' +
-                                '</td>' +
-                                '<td class="actions" id="action">' +
-                                    // available or qty button
-                                    '<button class="btn btn-success" id="remove' + i + '">' +
-                                        '<i class="fa fa-check"></i></button>' +
-                                '</td>' +
-                                    // unavailable of delete button
-                                '<td class="actions" id="action">' +
-                                    '<button class="btn btn-danger" id="add' + i + '" >' +
-                                    '   <i class="fas fa-times"></i>' +
-                                    '</button>' +
-                                '</td>' +
+                        listHTML =
+                            '<tr id="itemContainer' + i + '">' +
+                            '<td data-th="Product">' +
+                            //The item image
+                            '<image id="image' + i + '" width="100px "height="100" >' +
+                            //Item Name
+                            '<h4 class="nomargin">' +
+                            '<span id="itemName' + i + '"class="saveItem">' + item[i].get("name") + '</span>' +
+                            '</h4> ' +
+                            '</td>' +
+                            //Edit qty buttons
+                            '<td class="editButtons">' +
+                            '<button class="btn btn-primary" id="increase' + i + '">' +
+                            '<i class="fa fa-plus"></i>' +
+                            '</button>' +
+                            //item qty
+                            '<h1 id="qtyNum' + i + '" class="qtyNum">' +
+                            item[i].get("qty") +
+                            '</h1>' +
+                            '<button class="btn btn-primary" id="decrease' + i + '" >' +
+                            '<i class="fas fa-minus"></i>' +
+                            '</button>' +
+                            '</td>' +
+                            // unavailable of delete button
+                            '<td class="statusButtons">' +
+                            '<button class="btn btn-success" id="remove' + i + '">' +
+                            '<i class="fa fa-check"></i>' +
+                            '</button>' +
+                            '<button class="btn btn-danger" id="add' + i + '" >' +
+                            '<i class="fas fa-times"></i>' +
+                            '</button>' +
+                            '</td>' +
                             '</tr>';
 
-                            let itemName = item[i].get("name");
-                            let containerName = "#itemContainer" + i;
-                            let nameId = '#itemName' + i;
+                        let itemName = item[i].get("name");
+                        let containerName = "#itemContainer" + i;
+                        let nameId = '#itemName' + i;
+                        let increaseId = '#increase' + i;
+                        let decreaseId = '#decrease' + i;
+                        let qtyNum = '#qtyNum' + i;
+                        let imageId = '#image' + i;
 
-                            let str = itemName.toString();
+                        let str = itemName.toString();
 
-                            $('#itemList').append(listHTML);
-                            listHTML = "";
-                            $(document).on('click', "#remove" + i, () => {
-                                $(containerName).css("background-color", "green");
-                                $(nameId).removeClass('unavailable');
-                                console.log("removing " + itemName + " from " + currentStore + " unavailable list");
-                                removeItemFromUnavailable(itemName);
-                            });
+                        $('#itemList').append(listHTML);
+                        listHTML = "";
 
+                        //
+                        $(document).on('click', "#remove" + i, () => {
+                            $(containerName).addClass("contAvail");
+                            $(containerName).removeClass("contUnavail");
+                            $(nameId).removeClass('unavailable');
+                            console.log("removing " + itemName + " from " + currentStore + " unavailable list");
+                            removeItemFromUnavailable(itemName);
+                        });
+                        //
 
-                            $(document).on('click', "#add" + i, () => {
-                                $(containerName).css("background-color", "red");
-                                $(nameId).addClass('unavailable');
-                                console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-                                addItemToUnavailable(itemName);
-                            });
-
-                            // We could host these images in firebase, but we have a read limit so we hardcode them here
-                            if ((str === "Apple")) {
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/apple.jpg');
+                        $(document).on('click', increaseId, () => {
+                            let currentNum = parseInt($(qtyNum).text(), 10)
+                            if (currentNum === 0) {
+                                appendImage(str, imageId);
+                                // console.log(" fixing " + str + imageId);
                             }
-                            if ((str === "Beans")) {
 
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Beans.jpg');
+                            $(qtyNum).text(parseInt($(qtyNum).text(), 10) + 1);
+                        });
+
+                        $(document).on('click', decreaseId, () => {
+                            let currentNum = parseInt($(qtyNum).text(), 10)
+                            if (currentNum - 1 > 0) {
+                                $(qtyNum).text(parseInt($(qtyNum).text(), 10) - 1);
+                            } else if (currentNum === 1) {
+                                $(qtyNum).text(parseInt($(qtyNum).text(), 10) - 1);
+                                deleteImage(imageId);
+                                // console.log('delete ' + imageId);
                             }
-                            if ((str === "Canned Vegetables")) {
+                        });
 
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
-                            }
-                            if ((str === "Detergent")) {
+                        $(document).on('click', "#add" + i, () => {
+                            $(".uBtn").css('display', 'block');
+                            $(containerName).removeClass("contAvail");
+                            $(containerName).addClass("contUnavail");
+                            $(nameId).addClass('unavailable');
+                            console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                            addItemToUnavailable(itemName);
+                        });
 
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Detergent.jpg');
-                            }
-                            if ((str === "Disinfectant Wipes")) {
+                        let booleanVariable = userDoc.get("DoomsDayMode");
+                                
+                        console.log(booleanVariable);   
 
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
-                            }
-                            if ((str === "Eggs")) {
+                    if (booleanVariable){
+                        appendImageDoomsday(str, imageId);
 
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Eggs.jpg');
-                            }
-                            if ((str === "Face Masks")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
-                            }
-                            if ((str === "Ground Beef")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
-                            }
-                            if ((str === "Hand Sanitizer")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Hand Sanitizer.jpg');
-                            }
-                            if ((str === "Orange")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Orange.jpg');
-                            }
-                            if ((str === "Pasta")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Pasta.jpg');
-                            }
-                            if ((str === "Potato")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Potato.jpg');
-                            }
-                            if ((str === "Rice")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Rice.jpg');
-                            }
-                            if ((str === "Soap")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Soap.jpg');
-                            }
-                            if ((str === "Toilet Paper")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Toilet Paper.jpg');
-                            }
-                            if ((str === "Tylenol")) {
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Tylenol.jpg');
-                            }
-                            if ((str === "Uno Card Game")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
-                            }
-                            if ((str === "Vitamin")) {
-
-                                $('#image' + [i]).attr('src', 'CSS/itemimage/Vitamin.jpg');
-                            }
-                        }
-                        console.log(array);
+                    }
+                    else{
+                        appendImage(str, imageId);
+                    }
+                        
+                        appendImage(str, imageId);
+                        
+                    }
 
 
-                    });
                 });
             });
         });
+
     }
     displayList();
-    $(document).on('click', '#editMode', () => {
-        shoppingMode = !shoppingMode;
-        if (!shoppingMode) {
-            $('.editing').css('display', 'default');
-        } else {
-            $('.editing').css('display', 'none');
-        }
-    })
-
 });
 
-function edit() {
-    
+function deleteImage(imageId) {
+    $(imageId).attr('src', 'CSS/itemimage/deleted.jpg');
+    // console.log('delete '+imageId);
+}
+function saveListToProfile() {
+    if (confirm('Are you sure? Anything set to 0 will be deleted from your list.')) {
+        deleteListByName($('#theListName').text());
+        let itemNames = $('.saveItem').toArray();
+        let itemQty = $('.qtyNum').toArray();
+        for (i = 0; i < itemNames.length; i++) {
+            // console.log(itemNames[i].innerHTML + $('#theListName').text() + itemQty[i].innerHTML)
+            saveItemToList(itemNames[i].innerHTML, $('#theListName').text().trim(), itemQty[i].innerHTML);
+            // if (i + 1 === itemNames.length) {
+            //     resolve("success");
+            // }
+        }
+        alert('List Saved');
+    } else {
+        reject("nope");
+    }
+
+}
+
+// Function that appends images to list items
+// We could host these images in firebase, but we have a read limit so we hardcode them here
+function appendImage(str, imageId) {
+    if ((str === "Apple")) {
+        $(imageId).attr('src', 'CSS/itemimage/apple.jpg');
+    }
+    if ((str === "Beans")) {
+        $(imageId).attr('src', 'CSS/itemimage/Beans.jpg');
+    }
+    if ((str === "Canned Vegetables")) {
+        $(imageId).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
+    }
+    if ((str === "Detergent")) {
+        $(imageId).attr('src', 'CSS/itemimage/Detergent.jpg');
+    }
+    if ((str === "Disinfectant Wipes")) {
+        $(imageId).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
+    }
+    if ((str === "Eggs")) {
+        $(imageId).attr('src', 'CSS/itemimage/Eggs.jpg');
+    }
+    if ((str === "Face Masks")) {
+        $(imageId).attr('src', 'CSS/itemimage/Face Masks.jpeg');
+    }
+    if ((str === "Ground Beef")) {
+        $(imageId).attr('src', 'CSS/itemimage/Ground Beef.jpg');
+    }
+    if ((str === "Hand Sanitizer")) {
+        $(imageId).attr('src', 'CSS/itemimage/Hand Sanitizer.jpg');
+    }
+    if ((str === "Orange")) {
+        $(imageId).attr('src', 'CSS/itemimage/Orange.jpg');
+    }
+    if ((str === "Pasta")) {
+        $(imageId).attr('src', 'CSS/itemimage/Pasta.jpg');
+    }
+    if ((str === "Potato")) {
+        $(imageId).attr('src', 'CSS/itemimage/Potato.jpg');
+    }
+    if ((str === "Rice")) {
+        $(imageId).attr('src', 'CSS/itemimage/Rice.jpg');
+    }
+    if ((str === "Soap")) {
+        $(imageId).attr('src', 'CSS/itemimage/Soap.jpg');
+    }
+    if ((str === "Toilet Paper")) {
+        $(imageId).attr('src', 'CSS/itemimage/Toilet Paper.jpg');
+    }
+    if ((str === "Tylenol")) {
+        $(imageId).attr('src', 'CSS/itemimage/Tylenol.jpg');
+    }
+    if ((str === "Uno Card Game")) {
+        $(imageId).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
+    }
+    if ((str === "Vitamin")) {
+        $(imageId).attr('src', 'CSS/itemimage/Vitamin.jpg');
+    }
 
 }
 
 
-function nomallistimage(){
-
-    
-    if (array.includes("Apple")) {
-        $('#image'+[i]).attr('src', 'CSS/itemimage/apple.jpg');
+function appendImageDoomsday(str, imageId) {
+    if ((str === "Baseball Bat with Nail")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/baseball bat with nails.jpg');
     }
-     if (array.includes("Beans")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Beans.jpg');
+    if ((str === "Map")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/map.jpg');
     }
-     if (array.includes("Canned Vegetables")){
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
+    if ((str === "Canned Beans")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/canned beans.jpeg');
     }
-     if (array.includes("Detergent")) {
+    if ((str === "Canned Vegetables")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/canned vegetables.jpg');
+    }
+    if ((str === "Dog best friend")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/dog best friend.png');
+    }
+    if ((str === "Flashlight")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/flashlight.jpg');
+    }
+    if ((str === "Grenade")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/grenade.jpg');
+    }
+    if ((str === "Guy That Always Freaking Out")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/guy that always freaking out.jpg');
+    }
+    if ((str === "Machete")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/machete');
+    }
+    if ((str === "Pistol Ammo")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/pistol ammo.jpg');
+    }
+    if ((str === "Pistol")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/pistol.jpg');
+    }
+    if ((str === "Prison made into Fortress")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/prison made into fortress.jpg');
+    }
+    if ((str === "Rock and Roll soundtrack")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/rock and roll soundtrack.jpg');
+    }
+    if ((str === "Rocket Launcher")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/rocket launcher.jpg');
+    }
+    if ((str === "Rockets")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/rockets.jpeg');
+    }
+    if ((str === "Rope")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/rope.jpg');
+    }
+    if ((str === "SlingShot ammo")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/slingshot ammo.jpg');
+    }
 
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Detergent.jpg');
-    } 
-      if (array.includes("Disinfectant Wipes")) {
+    if ((str === "SlingShot")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/slingshot.jpg');
+    }
 
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
-    } 
-      if (array.includes("Eggs")) {
+    if ((str === "Spam")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/spam.jpg');
+    }
 
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Eggs.jpg');
-    } 
-      if (array.includes("Face Masks")){
+    if ((str === "Sudden Betrayal")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/sudden betrayal.jpg');
+    }
+    if ((str === "Survival Kit")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/surviving kit.jpg');
+    }
+    if ((str === "Tragic Back Story")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/Tragic Backstories.jpg');
+    }
+    if ((str === "Zombie-Spray-Away")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/zombie spray away.jpg');
+    }
+    if ((str === "Zombie Truck")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/zombie truck.jpg');
+    }
+}
 
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
-    } 
-      if (array.includes("Ground Beef")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
-    } 
-     if (array.includes("Hand Sanitizer")) {
 
 
 function createUnavailableList(editListFlag) {
     var unavailableListName = new Date().toString().substring(0, 25).trim();
     deleteListByName(unavailableListName);
     var unavailableItems = $('.unavailable').toArray();
-
+    if (unavailableItems.length === 0) {
+        alert("You must mark something unavailable to create a list from it.")
+        return;
+    }
     new Promise((resolve, reject) => {
         for (i = 0; i < unavailableItems.length; i++) {
             console.log(unavailableItems[i].innerHTML);
@@ -260,9 +314,12 @@ function createUnavailableList(editListFlag) {
             }, {
                 merge: true
             }).then((success) => {
+
                 if (editListFlag) {
+                    console.log("Go to item Page");
                     window.location = 'itemlist_page.html';
                 } else {
+                    console.log
                     window.location = 'store_page.html';
                 }
             })
@@ -272,98 +329,3 @@ function createUnavailableList(editListFlag) {
 
 
 }
-
-
-
-
-
-/*
-function edit(){
-    $('#itemList').empty();
-    firebase.auth().onAuthStateChanged(function (user) {
-
-        db.doc("Users/" + user.uid).get().then(function (userDoc) {
-
-            let shoppingList = userDoc.get("shoppingList");
-
-            let listHTML = "";
-
-            db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-                let item = userList.docs;
-                for (i = 0; i < item.length; i++) {
-
-                    listHTML += '<tr><td data-th="Product"><div class="row"><button>&#10060;&nbsp;</button><a href="https://placeholder.com">'
-                    + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
-
-
-                    let itemName = item[i].get("name");
-                    console.log(itemName);
-                    listHTML += '<button id="remove' + i + '">&#9989;</button></td><td class="actions" data-th=""><button id="add' + i + '">&#10060;</button></li>';
-
-
-                    $('#itemList').append(listHTML);
-                    listHTML = "";
-                    $(document).on('click', "#remove" + i, () => {
-                        console.log("removing " + itemName + " from " + currentStore + " unavailable list");
-                        removeItemFromUnavailable(itemName);
-                    });
-                    $(document).on('click', "#add" + i, () => {
-
-                        console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-                        addItemToUnavailable(itemName);
-                    });
-                }
-            });
-        });
-    });
-
-
-}
-*/
-
-/*
-let id = 0;
-firebase.auth().onAuthStateChanged(function (user) {
-    db.doc("Users/" + user.uid).get().then(function (userDoc) {
-        db.collection('Users/' + user.uid + '/' + userDoc.get('shoppingList')).get().then(function (userlist) {
-
-            userlist.forEach(function (item) {
-                //$('#products').append('<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td data-th="Quantity"><input type="number" class="form-control text-center" value="1"></td><td data-th="Price" class="text-center">' + item.get("size") + '</td><td class="actions" data-th=""><button class="btn btn-info btn-sm" id="green"' + id + ' ><i class="fa fa-refresh"></i></button><button class="btn btn-danger btn-sm" id="red"' + id + '><i class="fa fa-trash-o"></i></button></td></tr>');
-
-                $('#products').append('<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com/"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td id="availableBtnArea" class="text-center"><a class="btn btn-success" id="avaliableBtn">Avaliable</a></td><td id="unavailableBtnArea" class="text-center"><a class="btn btn-danger" id="unavaliableBtn">Unavaliable</a></td><td class="actions" data-th=""></td></tr>');
-
-                id++
-
-
-            })
-        });
-    });
-});
-
-*/
-
-
-
-
-
-/*
-let unavailablestate = false;
-
-function toggleOffByInput() {
-    if (unavailablestate) {
-        $('#itemUnavailable').empty();
-        $('#products').empty();
-        db.collection("unavailable").onSnapshot(function (doc) {
-            doc.forEach(function (item) {
-                $('#products').append('<tr><td data-th="Product"><div class="row"><span>&#10060;&nbsp;</span><a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td data-th="Quantity"><input type="number" class="form-control text-center" value="1"></td><td data-th="Price" class="text-center">' + item.get("size") + '</td><td class="actions" data-th=""></td></tr>');
-            });
-        });
-
-        $("#itemUnavailable").append('<a href="itemlist_page.html" id="warning-button" class="btn btn-warning">Create List</a></li><li class="table-button3"><a href="store_page.html" id="success-button" class="btn btn-success">Shop with this</a>')
-
-    }
-    //$('#myonoffswitch').prop('checked', false).change()
-
-    unavailablestate = true;
-}
-*/

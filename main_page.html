@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="CSS/main_page.css">
+    <link rel="stylesheet" type="text/css" href="CSS/loading.css">
     <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
+
+    
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -20,6 +23,7 @@
     <!--JS for this page-->
     <script src="Javascript/main_page.js"></script>
     <script src="Javascript/proto.js"></script>
+    <script src="Javascript/loading.js"></script>
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -46,6 +50,16 @@
         </div>
     </nav>
 
+ <!-- Preloader -->
+
+ <div id="preloader">
+    <div id="loader"></div>
+  </div>
+
+      
+
+
+
     <!--Image header-->
     <header class="masthead text-white text-center">
         <div class="overlay"></div>
@@ -60,15 +74,12 @@
 
     <!--Main body-->
     <div class="card" id="mainCard">
-        <div class="spacer">
-            <br>
-        </div>
         <h3><span id="userName"></span></h3>
         <!-- <div>
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div> -->
-        <h4 class="heading1">Your Lists!</h4>
+        <h4 class="heading1"><span id="heading1span">Your Lists!</span></h4>
         <div class="card-body">
             <div class="card" id="listCard">
                 <div class="card">
@@ -94,6 +105,8 @@
         </footer>
         </div>
     </div>
+    <div class="halfSpacer">
+    </div>
     <div class="card" id="userIndiLists">
     </div>
 
@@ -102,8 +115,13 @@
         manageUser();
         getUserDisplayName();
         getUserLists(false);
-        //doomsDayMode(false);
     </script>
+
+    <!-- Credits to Red Stapler
+      Link: https://redstapler.co/add-loading-animation-to-website/ -->
+      <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+      </div>
 
     <!----Bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
