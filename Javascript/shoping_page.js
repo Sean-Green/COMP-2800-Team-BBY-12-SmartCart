@@ -115,16 +115,29 @@ function deleteImage(imageId){
     $(imageId).attr('src', 'CSS/itemimage/deleted.jpg');
     // console.log('delete '+imageId);
 }
+
 function saveListToProfile() {
-    if (confirm('Are you sure? Anything set to 0 will be deleted from your list.')) {
-        deleteListByName($('#theListName').text());
-        let itemNames = $('.saveItem').toArray();
-        let itemQty = $('.qtyNum').toArray();
-        for (i = 0; i < itemNames.length; i++) {
-            // console.log(itemNames[i].innerHTML + $('#theListName').text() + itemQty[i].innerHTML)
-            saveItemToList(itemNames[i].innerHTML, $('#theListName').text().trim(), itemQty[i].innerHTML);
+    new Promise((resolve, reject) => {
+        if (confirm('Are you sure? Anything set to 0 will be deleted from your list.')) {
+            deleteListByName($('#theListName').text());
+            let itemNames = $('.saveItem').toArray();
+            let itemQty = $('.qtyNum').toArray();
+            for (i = 0; i < itemNames.length; i++) {
+                // console.log(itemNames[i].innerHTML + $('#theListName').text() + itemQty[i].innerHTML)
+                saveItemToList(itemNames[i].innerHTML, $('#theListName').text().trim(), itemQty[i].innerHTML);
+                if (i + 1 === itemNames.length) {
+                    resolve("success");
+                }
+            }
+        } else {
+            reject("nope");
         }
-    }
+    }).then((success) => {
+        window.location = "main_page.html"
+    }).catch((reject) => {
+        console.log(reject);
+    })
+
 }
 
 // Function that appends images to list items
