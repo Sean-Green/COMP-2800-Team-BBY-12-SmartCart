@@ -48,15 +48,11 @@
 /** Card css*/
 #mainCard {
     text-align: center;
-    /**width: fit-content; */
-    /**height: fit-content;*/
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-#mainBody {
-    background-color: lightgreen;
-}
+
 #teamCard {
     border: solid 2px green;
     margin-bottom: 5px;
@@ -68,7 +64,11 @@
     align-self: center;
     border-radius: 3em;
 }
-#teamText {
+#teamText0,
+#teamText1,
+#teamText2,
+#teamText3,
+#teamText4 {
     text-align: left;
 }
 #teamIN {

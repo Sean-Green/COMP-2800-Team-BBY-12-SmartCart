@@ -22,6 +22,10 @@
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/shoping_page.css">
     <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
+
+
+
+
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -79,23 +83,38 @@
 
     <!--middel body-->
     <section>
-        <div class="container">
+        <div class="screen ">
 
 
             <br>
             <div class="alert alert-info" role="alert">
-                <div id="storename"></div>
+                <div id="storename"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
             </div>
-
-            <button class="btn btn-success" onclick="edit()">Edit</button>
-            <table id="cart" class="table table-hover table-condensed">
-                <thead>
+            <!-- <ul id="tweet1">
+                <li>
+                    <button id="jasonedit" class="btn btn-success" onclick="edit()">Edit</button>
+                </li>
+                <div class="alert alert-info" role="alert">
+                     <div id="storename"><h3></h3></div> 
+                </div>
+                <li>
+                    <div>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </li>
+            </ul> -->
+            
+            
+            <table id="cart" class="table table-condensed">
+                <thead class="thead">
                     <tr>
 
                         <th class="product">Product</th>
-                        <th class="space"></th>
-                        <th class="quantity">available</th>
-                        <th class="text-center">unavailable</th>
+                        <!-- <th class="space"></th> -->
+                        <th class="quantity">Quantity</span></th>
+                        <th class="text-center">Availability</th>
                     </tr>
                 </thead>
 
@@ -113,15 +132,16 @@
         </table>
 
         <ul class="mybuttons">
-            <li class="table-button1">
-                <a onclick="createUnavailableList(true)" id="warning-button" class="btn btn-warning">Save Unavailable List</a>
+            <li class="table-button1 uBtn">
+                <a onclick="createUnavailableList(true)" id="warning-button" class="doneBtn uBtn btn btn-warning">Save Unavailable List</a>
+            </li>
+            <li class="table-button3 uBtn">
+                <a onclick="createUnavailableList(false)" id="success-button" class="doneBtn uBtn btn btn-success">Shop with Unavailable List</a>
             </li>
             <li class="table-button2">
-                <a href="main_page.html" id="primary-button" class="btn btn-primary">Done shopping</a>
+                <a onclick='saveListToProfile()' id="primary-button" class="doneBtn btn btn-primary">Done shopping</a>
             </li>
-            <li class="table-button3">
-                <a onclick="createUnavailableList(false)" id="success-button" class="btn btn-success">Shop with Unavailable List</a>
-            </li>
+            
         </ul>
 
 
