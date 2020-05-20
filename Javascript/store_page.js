@@ -34,7 +34,7 @@ function storelists() {
 
                                     +
                                     '<div class="d-flex justify-content-between align-stores-center"><div class="btn-group">'
-                                    +'<button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
+                                    + '<button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal'
                                     // set modal id#
 
                                     +
@@ -44,6 +44,15 @@ function storelists() {
                                     idNum + '"class="list-group list-group-flush">'
 
 
+                                    let shoppingname = store.get("name")
+                                    let imageId = '#image' + idNum;
+                                    let str = shoppingname.toString();
+    
+    
+    
+                                   console.log(str);
+                                   console.log(imageId);
+    
 
 
 
@@ -71,7 +80,7 @@ function storelists() {
                                 }
                                 if (itemCount / shoppingList.length === 1) {
                                     $('#storeCard' + idNum).addClass('fullyStocked');
-                                } else if (itemCount / shoppingList.length === 0){
+                                } else if (itemCount / shoppingList.length === 0) {
                                     $('#storeCard' + idNum).addClass('notStocked');
                                 } else {
                                     $('#storeCard' + idNum).addClass('halfStocked');
@@ -86,14 +95,13 @@ function storelists() {
                                 })
 
                                 console.log(idNum++);
-                                // we could also get these images from the database,
-                                // but because we have a read write limit we have chosen to hard code them
-                                $('#image0').attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
-                                $('#image1').attr('src', 'CSS/storeimage/IGA Richmond.jpg');
-                                $('#image2').attr('src', 'CSS/storeimage/Safeway Langley.jpg');
-                                $('#image3').attr('src', 'CSS/storeimage/Superstore.png');
-                                $('#image4').attr('src', 'CSS/storeimage/T&T Supermarket.png');
-                                $('#image5').attr('src', 'CSS/storeimage/Walmart.png');
+
+
+
+
+                                storeName(str, imageId);
+                                //storeNameDoomsday(str, imageId)
+
                             });
 
                         })
@@ -109,6 +117,56 @@ function storelists() {
         });
     })
 }
+
+function storeName(str, imageId) {
+
+    // we could also get these images from the database,
+    // but because we have a read write limit we have chosen to hard code them
+
+    if ((str === "Abbotsford Supermarket")) {
+        $(imageId).attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
+    } 
+    if ((str === "IGA Richmond")) {
+        $(imageId).attr('src', 'CSS/storeimage/IGA Richmond.jpg');
+    } 
+    if ((str === "Safeway Langley")) {
+        $(imageId).attr('src', 'CSS/storeimage/Safeway Langley.jpg');
+    } 
+    if ((str === "Superstore")) {
+        $(imageId).attr('src', 'CSS/storeimage/Superstore.png');
+    } 
+    if ((str === "T&T Supermarket")) {
+        $(imageId).attr('src', 'CSS/storeimage/T&T Supermarket.png');
+    }
+    if ((str === "Walmart Supercentre")) {
+        $(imageId).attr('src', 'CSS/storeimage/Walmart.png');
+    }
+
+}
+
+function storeNameDoomsday(str, imageId) {
+
+    if ((str === "Abbotsford Supermarket")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/1.png');
+    } 
+    if ((str === "IGA Richmond")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/2.jpg');
+    } 
+    if ((str === "Safeway Langley")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/3.jpg');
+    } 
+    if ((str === "Superstore")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/4.jpg');
+    } 
+    if ((str === "T&T Supermarket")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/5.jpg');
+    } 
+    if ((str === "Walmart Supercentre")) {
+        $(imageId).attr('src', 'CSS/Doomsday image/6.jpg');
+    }
+
+}
+
 // Giving shopping list a name
 function setCurrentStore(storeName) {
     firebase.auth().onAuthStateChanged(function (user) {
