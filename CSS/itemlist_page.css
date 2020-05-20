@@ -725,8 +725,8 @@
         border: 2px solid lightgreen;
         padding: 2px;
         border-radius: 5px;
-        min-height: 250px;
-        max-height: 400px;
+        min-height: 300px;
+        max-height: 500px;
         overflow: scroll;
         /* overflow: auto; */
         box-shadow: 
@@ -735,7 +735,7 @@
 
         display: grid;
         grid-template-columns: (2, 1fr);
-        grid-template-rows: 15% 85%;
+        grid-template-rows: 60px 80%;
         grid-template-areas:
             "one three"
             "four two"
