@@ -5,7 +5,7 @@ $(document).ready(() => {
                 let currentStore = userDoc.get("currentStore");
                 let shoppingList = userDoc.get("shoppingList");
                 let listHTML = "";
-                $('#storename').prepend('<h3>' + currentStore + '</h3>');
+                $('#storename').prepend('<h3>You are shopping at <br><b>' + currentStore + '</b><br>With List:<br><b id="theListName">' + userDoc.get("shoppingList")+'</b></h3>');
 
                 db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
                     let item = userList.docs;
@@ -18,7 +18,7 @@ $(document).ready(() => {
                                 '<image id="image' + i + '" width="100px "height="100" >' +
                                     //Item Name
                                 '<h4 class="nomargin">' +
-                                    '<span id="itemName' + i + '">' + item[i].get("name") + '</span>'+
+                                    '<span id="itemName' + i + '"class="saveItem">' + item[i].get("name") + '</span>'+
                                 '</h4> ' +
                             '</td>' +
                             //Edit qty buttons
@@ -27,7 +27,7 @@ $(document).ready(() => {
                                     '<i class="fa fa-plus"></i>'+
                                 '</button>' +
                                 //item qty
-                                '<h1 id="qtyNum' + i + '"class="qtyNum">'+
+                                '<h1 id="qtyNum' + i + '" class="qtyNum">'+
                                     item[i].get("qty")+
                                 '</h1>' +
                                 '<button class="btn btn-primary" id="decrease' + i + '" >' +
@@ -51,6 +51,7 @@ $(document).ready(() => {
                         let increaseId = '#increase' + i;
                         let decreaseId = '#decrease' + i;
                         let qtyNum = '#qtyNum' + i;
+                        let imageId = '#image' + i;
 
                         let str = itemName.toString();
 
@@ -68,25 +69,37 @@ $(document).ready(() => {
                         //
 
                         $(document).on('click', increaseId, () => {
+                            let currentNum = parseInt($(qtyNum).text(), 10)
+                            if (currentNum === 0) {
+                                appendImage(str, imageId);
+                                // console.log(" fixing " + str + imageId);
+                            }
+                            
                             $(qtyNum).text(parseInt($(qtyNum).text(), 10) + 1);
                         });
 
                         $(document).on('click', decreaseId, () => {
-                            if ($(qtyNum).text() !== '0') {
-                                $(qtyNum).text(parseInt($(qtyNum).text(), 10) - 1);
-                            } else {
-
+                            let currentNum = parseInt($(qtyNum).text(), 10)
+                            if (currentNum - 1 > 0) {
+                                $(qtyNum).text(parseInt($(qtyNum).text(), 10) - 1);                                
+                            } else if(currentNum === 1) {                                
+                                $(qtyNum).text(parseInt($(qtyNum).text(), 10) - 1); 
+                                deleteImage(imageId);
+                                // console.log('delete ' + imageId);
                             }
                         });
 
-                        $(document).on('click', "#add" + i, () => {
+                        $(document).on('click', "#add" + i, () => {                            
+                            $(".uBtn").css('display', 'block');
                             $(containerName).removeClass("contAvail");
                             $(containerName).addClass("contUnavail");
                             $(nameId).addClass('unavailable');
                             console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
                             addItemToUnavailable(itemName);
                         });
-                        appendImage(str, i);
+
+                        appendImage(str, imageId);
+                    
                     }
 
 
@@ -96,114 +109,94 @@ $(document).ready(() => {
 
     }
     displayList();
-
 });
 
+function deleteImage(imageId){
+    $(imageId).attr('src', 'CSS/itemimage/deleted.jpg');
+    // console.log('delete '+imageId);
+}
+function saveListToProfile() {
+    if (confirm('Are you sure? Anything set to 0 will be deleted from your list.')) {
+        deleteListByName($('#theListName').text());
+        let itemNames = $('.saveItem').toArray();
+        let itemQty = $('.qtyNum').toArray();
+        for (i = 0; i < itemNames.length; i++) {
+            // console.log(itemNames[i].innerHTML + $('#theListName').text() + itemQty[i].innerHTML)
+            saveItemToList(itemNames[i].innerHTML, $('#theListName').text().trim(), itemQty[i].innerHTML);
+        }
+    }
+}
 
 // Function that appends images to list items
 // We could host these images in firebase, but we have a read limit so we hardcode them here
-function appendImage(str, i) {
+function appendImage(str, imageId) {
     if ((str === "Apple")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/apple.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/apple.jpg');
     }
     if ((str === "Beans")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Beans.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Beans.jpg');
     }
     if ((str === "Canned Vegetables")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
     }
     if ((str === "Detergent")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Detergent.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Detergent.jpg');
     }
     if ((str === "Disinfectant Wipes")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
+        $(imageId).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
     }
     if ((str === "Eggs")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Eggs.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Eggs.jpg');
     }
     if ((str === "Face Masks")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
+        $(imageId).attr('src', 'CSS/itemimage/Face Masks.jpeg');
     }
     if ((str === "Ground Beef")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Ground Beef.jpg');
     }
     if ((str === "Hand Sanitizer")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Hand Sanitizer.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Hand Sanitizer.jpg');
     }
     if ((str === "Orange")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Orange.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Orange.jpg');
     }
     if ((str === "Pasta")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Pasta.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Pasta.jpg');
     }
     if ((str === "Potato")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Potato.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Potato.jpg');
     }
     if ((str === "Rice")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Rice.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Rice.jpg');
     }
     if ((str === "Soap")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Soap.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Soap.jpg');
     }
     if ((str === "Toilet Paper")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Toilet Paper.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Toilet Paper.jpg');
     }
     if ((str === "Tylenol")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Tylenol.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Tylenol.jpg');
     }
     if ((str === "Uno Card Game")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Uno Card Game.jpg');
     }
     if ((str === "Vitamin")) {
-        $('#image' + [i]).attr('src', 'CSS/itemimage/Vitamin.jpg');
+        $(imageId).attr('src', 'CSS/itemimage/Vitamin.jpg');
     }
 
 
 }
 
 
-function nomallistimage(){
-
-    
-    if (array.includes("Apple")) {
-        $('#image'+[i]).attr('src', 'CSS/itemimage/apple.jpg');
-    }
-     if (array.includes("Beans")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Beans.jpg');
-    }
-     if (array.includes("Canned Vegetables")){
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Canned Vegetables.jpg');
-    }
-     if (array.includes("Detergent")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Detergent.jpg');
-    } 
-      if (array.includes("Disinfectant Wipes")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Disinfectant Wipes.jpeg');
-    } 
-      if (array.includes("Eggs")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Eggs.jpg');
-    } 
-      if (array.includes("Face Masks")){
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Face Masks.jpeg');
-    } 
-      if (array.includes("Ground Beef")) {
-
-        $('#image'+[i]).attr('src', 'CSS/itemimage/Ground Beef.jpg');
-    } 
-     if (array.includes("Hand Sanitizer")) {
-
-
 function createUnavailableList(editListFlag) {
     var unavailableListName = new Date().toString().substring(0, 25).trim();
     deleteListByName(unavailableListName);
     var unavailableItems = $('.unavailable').toArray();
-
+    if (unavailableItems.length === 0){
+        alert("You must mark something unavailable to create a list from it.")
+        return;
+    }
     new Promise((resolve, reject) => {
         for (i = 0; i < unavailableItems.length; i++) {
             console.log(unavailableItems[i].innerHTML);
@@ -223,9 +216,12 @@ function createUnavailableList(editListFlag) {
             }, {
                 merge: true
             }).then((success) => {
+                
                 if (editListFlag) {
+                    console.log("Go to item Page");
                     window.location = 'itemlist_page.html';
                 } else {
+                    console.log
                     window.location = 'store_page.html';
                 }
             })
@@ -235,98 +231,3 @@ function createUnavailableList(editListFlag) {
 
 
 }
-
-
-
-
-
-/*
-function edit(){
-    $('#itemList').empty();
-    firebase.auth().onAuthStateChanged(function (user) {
-
-        db.doc("Users/" + user.uid).get().then(function (userDoc) {
-
-            let shoppingList = userDoc.get("shoppingList");
-
-            let listHTML = "";
-
-            db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
-                let item = userList.docs;
-                for (i = 0; i < item.length; i++) {
-
-                    listHTML += '<tr><td data-th="Product"><div class="row"><button>&#10060;&nbsp;</button><a href="https://placeholder.com">'
-                    + '<img src="https://via.placeholder.com/100"></a><h4 class="nomargin"><span id="itemName' + i + '">' + item[i].get("name") + '</span></h4></div></td><td data-th="">';
-
-
-                    let itemName = item[i].get("name");
-                    console.log(itemName);
-                    listHTML += '<button id="remove' + i + '">&#9989;</button></td><td class="actions" data-th=""><button id="add' + i + '">&#10060;</button></li>';
-
-
-                    $('#itemList').append(listHTML);
-                    listHTML = "";
-                    $(document).on('click', "#remove" + i, () => {
-                        console.log("removing " + itemName + " from " + currentStore + " unavailable list");
-                        removeItemFromUnavailable(itemName);
-                    });
-                    $(document).on('click', "#add" + i, () => {
-
-                        console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-                        addItemToUnavailable(itemName);
-                    });
-                }
-            });
-        });
-    });
-
-
-}
-*/
-
-/*
-let id = 0;
-firebase.auth().onAuthStateChanged(function (user) {
-    db.doc("Users/" + user.uid).get().then(function (userDoc) {
-        db.collection('Users/' + user.uid + '/' + userDoc.get('shoppingList')).get().then(function (userlist) {
-
-            userlist.forEach(function (item) {
-                //$('#products').append('<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td data-th="Quantity"><input type="number" class="form-control text-center" value="1"></td><td data-th="Price" class="text-center">' + item.get("size") + '</td><td class="actions" data-th=""><button class="btn btn-info btn-sm" id="green"' + id + ' ><i class="fa fa-refresh"></i></button><button class="btn btn-danger btn-sm" id="red"' + id + '><i class="fa fa-trash-o"></i></button></td></tr>');
-
-                $('#products').append('<tr><td data-th="Product"><div class="row"><a href="https://placeholder.com/"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td id="availableBtnArea" class="text-center"><a class="btn btn-success" id="avaliableBtn">Avaliable</a></td><td id="unavailableBtnArea" class="text-center"><a class="btn btn-danger" id="unavaliableBtn">Unavaliable</a></td><td class="actions" data-th=""></td></tr>');
-
-                id++
-
-
-            })
-        });
-    });
-});
-
-*/
-
-
-
-
-
-/*
-let unavailablestate = false;
-
-function toggleOffByInput() {
-    if (unavailablestate) {
-        $('#itemUnavailable').empty();
-        $('#products').empty();
-        db.collection("unavailable").onSnapshot(function (doc) {
-            doc.forEach(function (item) {
-                $('#products').append('<tr><td data-th="Product"><div class="row"><span>&#10060;&nbsp;</span><a href="https://placeholder.com"><img src="https://via.placeholder.com/100"></a><h4 class="nomargin">' + item.get("name") + '</h4></div></td><td data-th=""></td><td data-th="Quantity"><input type="number" class="form-control text-center" value="1"></td><td data-th="Price" class="text-center">' + item.get("size") + '</td><td class="actions" data-th=""></td></tr>');
-            });
-        });
-
-        $("#itemUnavailable").append('<a href="itemlist_page.html" id="warning-button" class="btn btn-warning">Create List</a></li><li class="table-button3"><a href="store_page.html" id="success-button" class="btn btn-success">Shop with this</a>')
-
-    }
-    //$('#myonoffswitch').prop('checked', false).change()
-
-    unavailablestate = true;
-}
-*/

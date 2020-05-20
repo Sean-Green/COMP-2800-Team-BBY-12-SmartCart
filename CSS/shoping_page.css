@@ -328,7 +328,7 @@
 }
 .qtyNum{
   padding-top:.17em;
-  text-align: center;
+  padding-left: .7em;
   color: #212529;
 }
 .contAvail{
@@ -336,4 +336,8 @@
 }
 .contUnavail{
   background-color: rgb(255, 198, 198);
+}
+
+.uBtn{
+  display: none;
 }
