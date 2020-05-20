@@ -70,6 +70,10 @@ function getUserDisplayName() {
 
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
+   // console.log("saving " + itemName + listName + qty);
+   if (parseInt(qty, 10) === 0){
+      return;
+   }
    var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (userDoc) { //read
@@ -77,7 +81,7 @@ function saveItemToList(itemName, listName, qty) {
             path = "Doomsday/";
          }
          db.doc(path + itemName).get().then(function (item) { //read
-            console.log(item.data());
+            // console.log(item.data());
 
             var userLists = userDoc.get("listNames");
             var nameExists = false;
@@ -104,7 +108,7 @@ function saveItemToList(itemName, listName, qty) {
                "name": item.get("name"),
                "size": item.get("size"),
                "units": item.get("units"),
-               "qty": qty
+               "qty": parseInt(qty, 10)
             }, {
                merge: true
             })
