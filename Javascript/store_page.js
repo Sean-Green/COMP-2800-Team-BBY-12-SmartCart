@@ -164,7 +164,7 @@ function storeName(str, imageId) {
 function storeNameDoomsday(str, imageId) {
 
     if ((str === "Abbotsford Supermarket")) {
-        $(imageId).attr('src', 'CSS/Doomsday image/1.png');
+        $(imageId).attr('src', 'CSS/Doomsday image/6.jpg');
     } 
     if ((str === "IGA Richmond")) {
         $(imageId).attr('src', 'CSS/Doomsday image/2.jpg');
@@ -179,7 +179,7 @@ function storeNameDoomsday(str, imageId) {
         $(imageId).attr('src', 'CSS/Doomsday image/5.jpg');
     } 
     if ((str === "Walmart Supercentre")) {
-        $(imageId).attr('src', 'CSS/Doomsday image/6.jpg');
+        $(imageId).attr('src', 'CSS/Doomsday image/1.png');
     }
 
 }

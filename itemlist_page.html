@@ -48,11 +48,11 @@
     </div>
   </nav>
 
- <!-- Preloader -->
+  <!-- Preloader -->
 
- <div id="preloader">
-  <div id="loader"></div>
-</div>
+  <div id="preloader">
+    <div id="loader"></div>
+  </div>
 
 
   <!-- Add List Page-->
@@ -72,7 +72,8 @@
     <section id="listnamecontainer">
       <article id="listname1">
         <div id="goshopbuttondiv">
-          <a class="button backbutton" href="main_page.html">BACK</a>
+          <a class="button btn-warning backbutton" href="main_page.html">Back
+          </a>
         </div>
       </article>
       <article id="listname2">
@@ -80,58 +81,97 @@
       </article>
       <article id="listname3">
         <div id="editbuttondiv">
-          <button class="button editbutton">EDIT</button>
+          <button class="button btn-success editbutton">Name</button>
         </div>
       </article>
     </section>
     <div class="halfSpacer">
     </div>
     <!-- Content Section -->
-      <div id="listcontainer">
-        <!-- Labels -->
-        <section id="labelname1">
-          <article>Item</article>
-        </section>
-        <section id="labelname3">
-          <article>Quantity</article>
-        </section>
-        <!-- Each Items, Weight, Availability -->
-        <section id="listitemcontainer">
-          <ul id="listarea1" class="font list3">
-            <li id="input1">
-              <select id="inputItem">
-              </select>
-            </li>
-          </ul>
-        </section>
-        <section id="listquantitycontainer">
-          <ul id="listarea3" class="font list3">
-            <li id="input3"><input type='number' id="inputQuantity" class="theinput" min="0" max="100000"
-                placeholder="1"></li>
-          </ul>
-        </section>
+    <div id="listcontainer">
+      <!-- Labels -->
+      <section id="labelname1">
+        <article>Item</article>
+      </section>
+      <section id="labelname3">
+        <article>Quantity</article>
+      </section>
+      <!-- Each Items, Weight, Availability -->
+      <section id="listitemcontainer">
+        <ul id="listarea1" class="font list3">
+
+          <li id="input1">
+
+            <select id="inputItem">
+            </select>
+          </li>
+
+        </ul>
+      </section>
+      <section id="listquantitycontainer">
+        <ul id="listarea3" class="font list3">
+          <li id="input3"><input type='number' id="inputQuantity" class="theinput" min="0" max="100000" placeholder="1">
+          </li>
+        </ul>
+      </section>
+    </div>
+    <!-- spacer-->
+    <div class="halfSpacer">
+    </div>
+    <!-- Add Item and Done Button -->
+    <div id="twobuttoncontainer">
+      <div id="addnewlistbutton">
+        <article>
+          <button id="theaddbutton" class="button btn-primary additembutton">Add Item</button>
+        </article>
       </div>
-      <!-- spacer-->
-      <div class="halfSpacer">
+      <div id="donebutton">
+        <article id="containerforshopbutton">
+          <a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO
+              SHOP</span></a>
+        </article>
       </div>
-      <!-- Add Item and Done Button -->
-      <div id="twobuttoncontainer">
-        <div id="addnewlistbutton">
-          <article>
-            <button id="theaddbutton" class="button additembutton">ADD ITEM</button>
-          </article>
+    </div>
+    <!----Bootstrap-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Javascript/itemlist_page.js"></script>
+
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+
+                <!-- Team profile page - short description who we are -->
+                <a href="about_us_page.html">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <!-- Team profile page - contact information -->
+                Contact
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <!-- Team profile page - Terms of Use -->
+                Terms of Use
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <!-- Team profile page - Privacy Policy -->
+                Privacy Policy
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
+          </div>
         </div>
-        <div id="donebutton">
-          <article id="containerforshopbutton">
-            <a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO
-                SHOP</span></a>
-          </article>
-        </div>
       </div>
-        <!----Bootstrap-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="Javascript/itemlist_page.js"></script>
-    </body>
+    </footer>
+
+</body>
+
 </html>

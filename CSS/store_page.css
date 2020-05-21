@@ -65,6 +65,9 @@ footer.footer {
   padding-bottom: 30px;
 }
 
+.footer a {
+  color: #1b421c;
+}
 
 /* header */
 
