@@ -349,7 +349,7 @@ footer.footer {
     border-radius: 1em;
 }
 
-@media only screen and (min-width: 430px) {
+@media only screen and (min-width: 800px) {
     body {
       background-color: blue;
     }
