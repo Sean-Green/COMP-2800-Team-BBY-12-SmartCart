@@ -201,11 +201,10 @@
  }
 
  ul.mybuttons {
-   padding: 0px;
    list-style: none;
    display: grid;
    grid-template-columns: 1fr 1fr ;
-   grid-template-rows: 1fr1fr;
+   grid-template-rows: 1fr 1fr;
    justify-content: center;
    gap: 1px 1px;
  }
@@ -218,7 +217,12 @@
  #warning-button, #primary-button, #success-button, #danger-button {
    padding-left: auto;
    padding-right: auto;
-   width: 300px;
+   width: 162px;
+   height: 62;
+ }
+
+ #danger-button, #primary-button{
+    padding-top: 17px;
  }
 
  /* li.table-button2 {
@@ -238,7 +242,17 @@
  }
 
  /* mobie view 0~426px  */
-
+ @media only screen and (min-width: 800px) {
+  ul.mybuttons {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap: 1px 1px;
+  }
+ 
+ }
  @media only screen and (max-width: 426px) {
 
   .thead{
@@ -252,24 +266,25 @@
      grid-template-columns: 1fr;
      grid-template-rows: 1fr 1fr 1fr 1fr;
    }
-   li.table-button1 {
+   /* li.table-button1 {
      margin-left: 10%;
      margin-bottom: 20px;
-   }
+   } */
 
-   #warning-button, #primary-button, #success-button {
+   #warning-button, #primary-button, #success-button, #danger-button {
      padding-left: auto;
      padding-right: auto;
      width: 300px;
+     height: 40px;
    }
-   li.table-button2 {
+   /* li.table-button2 {
      margin-left: 10%;
      margin-bottom: 20px;
    }
    li.table-button3 {
      margin-left: 10%;
      margin-bottom: 20px;
-   }
+   } */
    th.product {
      width: 30%
    }
