@@ -1,27 +1,4 @@
-/**
-     * [window.on("load")]
-     * Normally this will fadeout the loading page when the window is fully loaded
-     * but because the loading page went by too quickly I have to add a delay function
-     */
-    $(window).on("load", function () {
-      delay(function () {
-          $(".loader-wrapper").fadeOut("slow");
-      }, 800);
-  });
 
-  /**
-   * [delay FUNCTION]
-   * delays anything done within it, 1000 = 1 second
-   * credit: CMS
-   * link: https://stackoverflow.com/questions/1909441/how-to-delay-the-keyup-handler-until-the-user-stops-typing
-   */
-  var delay = (function () {
-      var timer = 0;
-      return function (callback, ms) {
-          clearTimeout(timer);
-          timer = setTimeout(callback, ms);
-      };
-  })();
 
 // Function that creates a new document in the users collection
 function manageUser() {
@@ -192,39 +169,36 @@ function listSnapShots() {
          $("#userIndiLists").html("");
 
          for (i = 0; i < userIndividualLists.length; i++) {
-            let nameOfLists = userIndividualLists[i];
+
+            let listName = userIndividualLists[i];
+            let listID = 'listing' + i;
+
             db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
 
-               console.log("this is list name " + nameOfLists);
-
-               let userItemArray = userListItems.docs;
-         
-               let itemCardMat = '<div id="newOne' + i + '">' + nameOfLists + '<div id="listing' + i + '"></div></div>'
-               console.log(itemCardMat);
-                  //'<div class="card" id="mainListCard"><h4 class="heading1">' + nameOfLists + '</h4>' +
-                  //'<div class="card-body"><div class="card" class="listingCard">' +
-                  //'<div class="card"><ul class="list-group list-group-flush" class="ulList" id="listing' + i + '"></ul>'
-                  //</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
-                  //'<span>EDIT LISTS</span></div></div></div></div></div>';
-
+               console.log(listName);
+               let itemCardMat = '<div class="card" id="mainListCard">' +
+                  '<h4 class="heading1">' + listName + '</h4>' +
+                  '<div class="card-body"><div class="card" class="listingCard">' +
+                  '<ul class="list-group list-group-flush" class="ulList" id="' + listID + '"></ul>' +
+                  '</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
+                  '<span>EDIT LIST</span></div></div></div></div><div class="halfSpacer"></div>';
                $("#userIndiLists").append(itemCardMat);
-               console.log(userItemArray.length);
-
                let itemCardMat2 = "";
-               for (j = 0; j < userItemArray.length; j++) {
-                  let itemName = userItemArray[j].get("name");
-                  itemCardMat2 += itemName;
-                  //'<li class="list-group-item" id="theList' + j + '"><div><span><button class="listNameBtn" id="listName' + j + '">' + itemName + '</button></span></div>'
-                  console.log("this is name " + itemName)
+
+               for (j = 0; j < userListItems.docs.length; j++) {
+                  let itemName = userListItems.docs[j].get("name");
+                  itemCardMat2 += '<li class="list-group-item" id="theList"><div><span>' + itemName + '</span></div>'
+                  console.log(itemCardMat2);
                }
-               $("#listing" + i).append(itemCardMat2);
-            
+
+               console.log(listID);
+               let appension = itemCardMat2 + "";
+               console.log(appension);
+               $('#' + listID).append(appension);
+
             })
          }
       })
    })
 }
 listSnapShots();
-//'<li class="list-group-item" id="myList"><div><span id="itemName' + i + '">' + userItemArray + '</span></div>'
-
-//'<li class="list-group-item" id="myList"><div><span id="itemName' + j + '">' + itemName + '</span></div>'
