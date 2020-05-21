@@ -60,11 +60,12 @@ header.masthead {
 
 /** Main Card CSS*/
 #mainCard {
+    border-radius: 1em;
     text-align: center;
     /**width: fit-content; */
     /**height: fit-content;*/   
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-right: 5px;
     display: block;
     background: rgb(1,240,201);
     background: radial-gradient(circle, rgba(1,240,201,1) 0%, rgba(20,204,9,1) 100%);
@@ -73,6 +74,7 @@ header.masthead {
         0 -6px 6px -6px black;
 }
 #listCard {
+    border-radius: 1em;
     text-align: center;
     height: fit-content;
     /** width: fit-content; */
@@ -86,10 +88,12 @@ header.masthead {
     margin-bottom: 0px;
 }
 #heading1span {
-    border: black solid 1px;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: black;
+    /* border: black solid 1px; */
+    
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+    /* border-radius: 5px; */
+    /* background-color: black; */
     color: white;
     padding-top: 5px;
     margin-bottom: 0px;
@@ -98,6 +102,7 @@ header.masthead {
     color: black;
 }
 #myList {
+    border-radius: 1em;
     display: flex;
     justify-content: center;
 }
@@ -278,6 +283,8 @@ header.masthead {
 
 /* user list card css */
 #mainListCard {
+    border-radius: 1em;
+    margin: 5px;
     background-color: rgb(99, 181, 196);
     text-align: center;
     box-shadow: 
@@ -301,7 +308,7 @@ header.masthead {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: rgba(17, 0, 255, 0.548);
+    background-color: rgba(8, 0, 128, 0.164);
     border-radius: 3px;
     transition: all 0.3s;
 }
@@ -329,4 +336,7 @@ header.masthead {
 .btn-listEdit:hover::after {
     opacity: 1;
     transform: scale(1,1);
+}
+.card{
+    border-radius: 1em;
 }
