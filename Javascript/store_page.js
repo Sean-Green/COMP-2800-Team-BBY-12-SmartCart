@@ -199,5 +199,5 @@ function setCurrentStore(storeName) {
 
 // Redirecting the lists to the list page.
 function redirectToShop() {
-    window.location = "shoping_page.html";
+    window.location = "shopping_page.html";
 }
