@@ -56,100 +56,8 @@
    background-color: #1b421c;
  }
 
- #shoppingHeader {
-   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
- }
-
- ul.countbutton {
-   padding: 5px;
-   list-style: none;
-   display: flex;
- }
-
- .onoffswitch {
-   position: relative;
-   width: 123px;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
- }
-
- .onoffswitch-checkbox {
-   display: none;
- }
-
- .onoffswitch-label {
-   display: block;
-   overflow: hidden;
-   cursor: pointer;
-   border: 2px solid #999999;
-   border-radius: 23px;
- }
-
- .onoffswitch-inner {
-   display: block;
-   width: 200%;
-   margin-left: -100%;
-   transition: margin 0.3s ease-in 0s;
- }
-
- .onoffswitch-inner:before, .onoffswitch-inner:after {
-   display: block;
-   float: left;
-   width: 50%;
-   height: 35px;
-   padding: 0;
-   line-height: 35px;
-   font-size: 14px;
-   color: white;
-   font-family: Trebuchet, Arial, sans-serif;
-   font-weight: bold;
-   box-sizing: border-box;
- }
-
- .onoffswitch-inner:before {
-   content: "Available";
-   padding-left: 8px;
-   background-color: #34A7C1;
-   color: #FFFFFF;
- }
-
- .onoffswitch-inner:after {
-   content: "Unavailable";
-   padding-right: 8px;
-   background-color: #F03E3E;
-   color: #FFFFFF;
-   text-align: right;
- }
-
- .onoffswitch-switch {
-   display: block;
-   width: 18px;
-   margin: 8.5px;
-   background: #FFFFFF;
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   right: 84px;
-   border: 2px solid #999999;
-   border-radius: 23px;
-   transition: all 0.3s ease-in 0s;
- }
-
- .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
-   margin-left: 0;
- }
-
- .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
-   right: 0px;
- }
-
- h1, h2 {
-   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-   font-weight: 700;
-   color: white;
- }
-
+ /** footer - padding and font */
+ 
  footer.footer {
    padding-top: 10px;
    padding-bottom: 30px;
@@ -179,6 +87,24 @@
    opacity: 0.3;
  }
 
+
+ /** header - image and font */
+ #shoppingHeader {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+ul.countbutton {
+  padding: 5px;
+  list-style: none;
+  display: flex;
+}
+
+h1, h2 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
  /* table  */
 .thead{
 
@@ -201,27 +127,31 @@
  }
 
  ul.mybuttons {
-   padding: 0px;
    list-style: none;
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr;
+   grid-template-columns: 1fr 1fr ;
+   grid-template-rows: 1fr 1fr;
    justify-content: center;
    gap: 1px 1px;
  }
 
- li.table-button1 {
+ /* li.table-button1 {
    margin-left: 10%;
    margin-bottom: 20px;
- }
+ } */
 
- #warning-button, #primary-button, #success-button {
+ #warning-button, #primary-button, #success-button, #danger-button {
    padding-left: auto;
    padding-right: auto;
-   width: 300px;
+   width: 162px;
+   height: 62;
  }
 
- li.table-button2 {
+ #danger-button, #primary-button{
+    padding-top: 17px;
+ }
+
+ /* li.table-button2 {
    margin-left: 20%;
    margin-bottom: 20px;
  }
@@ -229,7 +159,7 @@
  li.table-button3 {
    margin-left: 20%;
    margin-bottom: 20px;
- }
+ } */
 
  h4.nomargin {
    padding-left: 20px;
@@ -238,7 +168,17 @@
  }
 
  /* mobie view 0~426px  */
-
+ @media only screen and (min-width: 800px) {
+  ul.mybuttons {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap: 1px 1px;
+  }
+ 
+ }
  @media only screen and (max-width: 426px) {
 
   .thead{
@@ -250,26 +190,27 @@
      list-style: none;
      display: grid;
      grid-template-columns: 1fr;
-     grid-template-rows: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr 1fr 1fr;
    }
-   li.table-button1 {
+   /* li.table-button1 {
      margin-left: 10%;
      margin-bottom: 20px;
-   }
+   } */
 
-   #warning-button, #primary-button, #success-button {
+   #warning-button, #primary-button, #success-button, #danger-button {
      padding-left: auto;
      padding-right: auto;
      width: 300px;
+     height: 40px;
    }
-   li.table-button2 {
+   /* li.table-button2 {
      margin-left: 10%;
      margin-bottom: 20px;
    }
    li.table-button3 {
      margin-left: 10%;
      margin-bottom: 20px;
-   }
+   } */
    th.product {
      width: 30%
    }

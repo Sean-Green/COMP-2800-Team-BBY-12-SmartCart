@@ -25,28 +25,28 @@ function storelists() {
                                 unavail = unavailItems.docs;
                                 //Append store card HTML
                                 pageHTML = 
-                                    '<div class="col-md-4">' +
-                                        '<div id="storeCard' + idNum + '" class="">' +
-                                            '<div class="imgContain" >' +
-                                                '<image id="image' + idNum + '" padding="1em" object-fit="scale-down" width="100%"  >' +
-                                            '</div>' +
-                                            '<title>' + store.get("name") + '</title>' +
-                                            '<div  class="card-body">' +
-                                                // set store name and store id num
-                                                '<h4 id="storeName' + idNum + '">' + store.get("name") + '</h4>' +
-                                                '<p class="card-text">' + store.get("address") + '</p>'  +
-                                                '<div class="d-flex justify-content-between align-stores-center">' +
-                                                '<div class="btn-group">' + 
-                                                    '<button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal' +
-                                                        idNum + '">Click for Details</button>' +
-                                                    '<div class="modal fade" id="myModal' + idNum + '" role="dialog">' +
-                                                        '<div class="modal-dialog">' +
-                                                            '<div class="modal-content">' +
-                                                                '<div class="modal-header">' +
-                                                                    '<h3 id="UnavailableCount' + idNum + '" class="modal-title">Unavailable Items</h3>' +
-                                                                '</div>' +
-                                                                '<div class="modal-body">' +
-                                                                    '<ul id="itemList' + idNum + '"class="list-group list-group-flush">';
+                                            '<div class="col-md-4">' +
+                                                '<div id="storeCard' + idNum + '" class="">' +
+                                                    '<div class="imgContain" >' +
+                                                        '<image id="image' + idNum + '" padding="1em" object-fit="scale-down" width="100%"  >' +
+                                                    '</div>' +
+                                                    '<title>' + store.get("name") + '</title>' +
+                                                    '<div  class="card-body">' +
+                                                        // set store name and store id num
+                                                        '<h4 id="storeName' + idNum + '">' + store.get("name") + '</h4>' +
+                                                        '<p class="card-text">' + store.get("address") + '</p>'  +
+                                                        '<div class="d-flex justify-content-between align-stores-center">' +
+                                                        '<div class="btn-group">' + 
+                                                            '<button type="button" class="detailsbtn btn btn-sm btn-outline-secondary" data-toggle="modal"data-target="#myModal' +
+                                                                idNum + '">Click for Details</button>' +
+                                                            '<div class="modal fade" id="myModal' + idNum + '" role="dialog">' +
+                                                                '<div class="modal-dialog">' +
+                                                                    '<div class="modal-content">' +
+                                                                        '<div class="modal-header">' +
+                                                                            '<h3 id="UnavailableCount' + idNum + '" class="modal-title">Unavailable Items</h3>' +
+                                                                        '</div>' +
+                                                                        '<div class="modal-body">' +
+                                                                            '<ul id="itemList' + idNum + '"class="list-group list-group-flush">';
 
                                 let shoppingname = store.get("name")
                                 let imageId = '#image' + idNum;
@@ -108,18 +108,13 @@ function storelists() {
 
                                 console.log(idNum++);
 
-                                let booleanVariable = userDoc.get("DoomsDayMode");
-
-                                console.log(booleanVariable);
-
-                                if (booleanVariable) {
+                                //Check for Doomsday mode easter egg and append appropriate image.
+                                let doomsDay = userDoc.get("DoomsDayMode");
+                                if (doomsDay) {
                                     storeNameDoomsday(str, imageId)
-
                                 } else {
                                     storeName(str, imageId);
-                                }
-                                
-                                
+                                }                                                            
                                 
                             });
 
