@@ -42,14 +42,14 @@
     <!-- Link javascript-->
     <script src="Javascript/shopping_page.js"></script>
     <script src="Javascript/proto.js"></script>
-    
+
     <script src="Javascript/loading.js"></script>
 
 </head>
 
 <body>
 
-      
+
     <!--top var - dropdown menu -->
     <nav class="navbar sticky-top" id="navbarPrimary">
         <div id="logo">
@@ -69,11 +69,11 @@
             </div>
         </div>
     </nav>
- <!-- Preloader -->
+    <!-- Preloader -->
 
- <div id="preloader">
-    <div id="loader"></div>
-  </div>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
 
 
     <!--header-->
@@ -97,25 +97,16 @@
 
             <br>
             <div class="alert alert-info" role="alert">
-                <div id="storename"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-            </div>
-            <!-- <ul id="tweet1">
-                <li>
-                    <button id="jasonedit" class="btn btn-success" onclick="edit()">Edit</button>
-                </li>
-                <div class="alert alert-info" role="alert">
-                     <div id="storename"><h3></h3></div> 
+                <div id="storename">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                        data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!"
+                        data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html"
+                        data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
-                <li>
-                    <div>
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </li>
-            </ul> -->
-            
-            
+            </div>
+
+
             <table id="cart" class="table table-condensed">
                 <thead class="thead">
                     <tr>
@@ -132,40 +123,39 @@
                 <tbody id="itemList">
                 </tbody>
 
+
+                <tfoot>
+                    <tr class="visible-xs"></tr>
+
+                </tfoot>
+            </table>
+
         </div>
-
-        <tfoot>
-            <tr class="visible-xs"></tr>
-
-        </tfoot>
-        </table>
-
         <ul class="mybuttons">
             <li class="table-button1 uBtn">
-                <p onclick="createUnavailableList(true)" id="warning-button" class="doneBtn uBtn btn btn-warning">Save Unavailable as List</a>
+                <p onclick="createUnavailableList(true)" id="warning-button" class="doneBtn uBtn btn btn-warning">Save
+                    Unavailable as List</a>
             </li>
             <li class="table-button3 uBtn">
-                <p onclick="createUnavailableList(false)" id="success-button" class="doneBtn uBtn btn btn-success">Shop with Unavailable Items</a>
+                <p onclick="createUnavailableList(false)" id="success-button" class="doneBtn uBtn btn btn-success">Shop
+                    with Unavailable Items</a>
             </li>
             <li class="table-button2">
-                <p onclick='saveListToProfile()' id="primary-button" class="doneBtn btn btn-primary">Save Current List</a>
+                <p onclick='saveListToProfile()' id="primary-button" class="doneBtn btn btn-primary">Save Current
+                    List</a>
             </li>
             <li class="table-button2">
                 <a href='main_page.html' id="primary-button" class="doneBtn btn btn-primary">Done Shopping</a>
             </li>
-            
-        </ul>
-
-
         </ul>
 
     </section>
 
     <!-- Credits to Red Stapler
       Link: https://redstapler.co/add-loading-animation-to-website/ -->
-      <div class="loader-wrapper">
+    <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
-      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -186,7 +176,7 @@
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
                             <!-- Team profile page - Terms of Use -->
-                           Terms of Use
+                            Terms of Use
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
