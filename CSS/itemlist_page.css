@@ -7,30 +7,30 @@
     }
 
     .halfSpacer {
-        margin: 5px;
-        padding: 5px;
+        margin: 0px;
+        padding: 0px;
     }
 
     .spacer {
-        margin: 10px;
-        padding: 10px;
+        margin: 0px;
+        padding: 0px;
     }
 
 
 
     #listnamecontainer {
-        background-color: white;
+        /* background-color: rgba(142, 205, 216, 0.548); */
         padding: 3px;
-        border: 3px;
+        /* border: 2px; */
         margin: 10px;
         border-radius: 5px;
         display: flex;
         justify-content: space-between;
-        border-style: solid;
-        border-color: lightgreen;
-        box-shadow: 
+        /* border-style: solid; */
+        /* border-color: rgb(109, 194, 209); */
+        /* box-shadow: 
         0 8px 6px -6px black,
-        0 -6px 6px -6px black;
+        0 -6px 6px -6px black; */
     }
 
     #inputItem {
@@ -39,12 +39,13 @@
         border: solid 2px black;
         border-radius: 3px;
         overflow: scroll;
+        /* margin-left: 15%; */
         width: 150px;
         height: 40px;
     }
     #input1 {
         padding-bottom: 10px;
-        align-items: center;
+        text-align: center !important;
     }
     #input1 > select {
         font-size: small;
@@ -60,6 +61,8 @@
         border: solid 2px black;
         width: 125px;
     }
+
+    
 
     #input3 {
         padding-bottom: 10px;
@@ -81,10 +84,12 @@
     }
 
     .goshopbutton {
-        color: rgb(169, 175, 168);
+        color: rgb(67, 182, 47);
         border: none;
+        margin: 3px;
         background-color: inherit;
-        padding: 14px 28px;
+        padding: 15px 20px;
+
         font-size: 15px;
         cursor: pointer;
         display: inline-block;
@@ -125,6 +130,7 @@
         display: block;
         text-align: center;
         margin-top: 3px;
+        padding: 18px 20px;
     }
 
     .additembutton:hover {
@@ -138,12 +144,13 @@
     }
 
     .editbutton {
-        color: orange;
+        /* color: rgba(236, 232, 14, 0.514); */
+        /* width: 5em; */
         /* opacity: 0; */
     }
 
     .editbutton:hover {
-        background-color: rgb(247, 115, 54);
+        background-color: rgb(0, 136, 11);
         color: white;
         border-radius: 5px;
     }
@@ -164,11 +171,11 @@
         font-size: 20px;
         cursor: pointer;
         display: inline-block;
-        color: rgb(230, 124, 228);
+        color: rgb(160, 57, 158);
     }
 
     .editbutton1:hover {
-        background-color: rgb(233, 32, 116);
+        background-color: rgb(133, 16, 65);
         color: white;
         border-radius: 5px;
     }
@@ -203,6 +210,7 @@
     #contentcontainer {
         background-color: white;
         margin: 20px;
+        margin-bottom: 10px;
         padding: 15px;
         border-radius: 10px;
         border-style: solid;
@@ -212,16 +220,19 @@
 
 
     #listcontainer {
-        border: 2px solid lightgreen;
+        background-color: rgba(243, 253, 255, 0.548);
+
+        border: 2px solid rgb(109, 194, 209);
         padding: 2px;
+        margin: 5px;
         border-radius: 5px;
         overflow: scroll;
         min-height: 200px;
         max-height: 500px;
         overflow: auto;
-        box-shadow: 
+        /* box-shadow: 
         0 8px 6px -6px black,
-        0 -6px 6px -6px black;
+        0 -6px 6px -6px black; */
 
         display: grid;
         grid-template-columns: 45% 15% 40%;
@@ -336,17 +347,19 @@
 
 
     #twobuttoncontainer {
+        
+        /* background-color: rgba(142, 205, 216, 0.548); */
         display: flex;
         justify-content: space-around;
-        padding: 1px;
+        /* padding: 1px;
         border: 2px;
-        border-color: lightgreen;
         margin: 1px;
         border-style: solid;
-        border-radius: 5px;
-        box-shadow: 
+        border-color: rgb(109, 194, 209);
+        border-radius: 1em; */
+        /* box-shadow: 
         0 8px 6px -6px black,
-        0 -6px 6px -6px black;
+        0 -6px 6px -6px black; */
 
     }
 
@@ -398,7 +411,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        background-color: rgba(15, 19, 231, 0.658);
+        /* background-color: rgba(236, 232, 14, 0.514); */
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -413,7 +426,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        border: 2px solid rgb(12, 8, 226);
+        border: 2px solid rgb(180, 153, 0);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -426,7 +439,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        background-color: rgba(231, 112, 15, 0.658);
+        /* background-color: rgba(231, 112, 15, 0.37); */
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -441,7 +454,7 @@
         z-index: 1;
         opacity: 0;
         transition: all 0.3s;
-        border: 2px solid rgb(250, 121, 1);
+        border: 2px solid rgb(15, 131, 0);
         border-radius: 3px;
         transform: scale(1.2, 1.2);
     }
@@ -454,7 +467,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        background-color: rgba(77, 73, 72, 0.658);
+        /* background-color: rgba(77, 73, 72, 0.972)8); */
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
@@ -483,7 +496,7 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        background-color: rgba(109, 15, 231, 0.658);
+        /* background-color: rgba(109, 15, 231, 0.658); */
         border-radius: 3px;
         box-shadow: 0 0 3px #000;
         transition: all 0.3s;
