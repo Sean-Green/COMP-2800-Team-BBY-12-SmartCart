@@ -28,9 +28,6 @@
 </head>
 
 <body>
-
-   
-    
   <!-- Nav bar from Maha -->
   <nav class="navbar sticky-top" id="navbarPrimary">
     <div id="logo">
@@ -90,39 +87,23 @@
     <div class="halfSpacer">
     </div>
     <!-- Content Section -->
-    <!--<div id="contentcontainer">-->
       <div id="listcontainer">
         <!-- Labels -->
         <section id="labelname1">
-          <!-- backup code in case modification for template shift -->
-          <!-- <article><span class="fakedelete removebutton">&#10060;</span>Item</article> -->
           <article>Item</article>
         </section>
-        <!-- <section id="labelname2">
-          <article>Weight</article>
-        </section> -->
         <section id="labelname3">
           <article>Quantity</article>
         </section>
         <!-- Each Items, Weight, Availability -->
         <section id="listitemcontainer">
           <ul id="listarea1" class="font list3">
-            <!-- <li id="input1"><input type='text' id="inputItem" class="theinput" size="7" placeholder="Item"></li> -->
             <li id="input1">
               <select id="inputItem">
-                <!-- <option value="Empty">Select Item</option> -->
               </select>
             </li>
           </ul>
         </section>
-        <!-- <section id="listweightcontainer">
-          <ul id="listarea2" class="font list2">
-            <li id="input2"><input type='text' id="inputWeight" class="theinput" size="7" placeholder="Weight"></li>
-            <li id="input2">
-              <article id="inputWeight" class="theinput">weight</article>
-            </li>
-          </ul>
-        </section>-->
         <section id="listquantitycontainer">
           <ul id="listarea3" class="font list3">
             <li id="input3"><input type='number' id="inputQuantity" class="theinput" min="0" max="100000"
@@ -139,29 +120,53 @@
           <article>
             <button id="theaddbutton" class="button additembutton">ADD ITEM</button>
           </article>
-          <!-- <article> -->
-          <!-- <button id ="thesavelistbutton" class="button savelistbutton">SAVE LIST</button> -->
-          <!-- <input type="button" value="SAVE LIST" onclick="saveItemToList('Beans', 'List of Apples', 3)"> -->
-          <!-- </article> -->
         </div>
         <div id="donebutton">
           <article id="containerforshopbutton">
-            <!-- <a class="goshopbutton" href="store_page.html"><i class="fa fa-search"></i></a> -->
-            <!-- <a class="goshopbutton"><i class="fa fa-search"></i></a> -->
             <a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO
                 SHOP</span></a>
           </article>
         </div>
-      </div>
-      <!-- Credits to Red Stapler
-      Link: https://redstapler.co/add-loading-animation-to-website/ -->
-      <div class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
       </div>
         <!----Bootstrap-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="Javascript/itemlist_page.js"></script>
-    </body>
+    
+    
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                  <ul class="list-inline mb-2">
+                      <li class="list-inline-item">
+
+                          <!-- Team profile page - short description who we are -->
+                          <a href="about_us_page.html">About</a>
+                      </li>
+                      <li class="list-inline-item">&sdot;</li>
+                      <li class="list-inline-item">
+                          <!-- Team profile page - contact information -->
+                          Contact
+                      </li>
+                      <li class="list-inline-item">&sdot;</li>
+                      <li class="list-inline-item">
+                          <!-- Team profile page - Terms of Use -->
+                         Terms of Use
+                      </li>
+                      <li class="list-inline-item">&sdot;</li>
+                      <li class="list-inline-item">
+                          <!-- Team profile page - Privacy Policy -->
+                          Privacy Policy
+                      </li>
+                  </ul>
+                  <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+    
+      </body>
 </html>

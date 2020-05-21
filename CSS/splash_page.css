@@ -218,10 +218,15 @@ h1:after {
 footer.footer {
   padding-top: 20px;
   padding-bottom: 30px;
+  
 }
 
 .footer {
   font-size: 20px;
+}
+
+.footer a {
+  color: #1b421c;
 }
 
 /*

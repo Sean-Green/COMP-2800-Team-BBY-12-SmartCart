@@ -71,7 +71,8 @@
             </div>
         </div>
     </header>
-
+    <div class="halfSpacer">
+    </div>
     <!--Main body-->
     <div class="card" id="mainCard">
         <h3><span id="userName"></span></h3>
@@ -92,7 +93,7 @@
                 </div>
                 <div id="listButtonArea">
                     <a id="createListBtn"></a>
-                    <div class="btn btn-edit" id="editListsBtn"><span>EDIT LISTS</span></div>
+                    <div class="btn-edit" id="editListsBtn"><span>EDIT LISTS</span></div>
                 </div>
             </div>
         <footer>
@@ -115,6 +116,7 @@
         manageUser();
         getUserDisplayName();
         getUserLists(false);
+        doomsDayMode(false);
     </script>
 
     <!-- Credits to Red Stapler
@@ -127,6 +129,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+
+                            <!-- Team profile page - short description who we are -->
+                            <a href="about_us_page.html">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - contact information -->
+                            Contact
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - Terms of Use -->
+                           Terms of Use
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <!-- Team profile page - Privacy Policy -->
+                            Privacy Policy
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
 </body>
 
 </html>
