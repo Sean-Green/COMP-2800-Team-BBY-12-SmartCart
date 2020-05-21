@@ -348,3 +348,48 @@ footer.footer {
 .card{
     border-radius: 1em;
 }
+
+@media only screen and (min-width: 430px) {
+    body {
+      background-color: blue;
+    }
+
+    #mainCard {
+        border-radius: 1em;
+        text-align: center;
+        width: 600px; 
+        height: fit-content; 
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        background: rgb(1,240,201);
+        background: radial-gradient(circle, rgba(1,240,201,1) 0%, rgba(20,204,9,1) 100%);
+        box-shadow: 
+            0 8px 6px -6px black,
+            0 -6px 6px -6px black;
+    }
+
+    #mainListCard {
+        border-radius: 1em;
+        width: fit-content; 
+        height: fit-content; 
+        margin: 5px;
+        background-color: rgb(99, 181, 196);
+        text-align: center;
+        box-shadow: 
+            0 8px 6px -6px black,
+            0 -6px 6px -6px black;
+    }
+
+    #userIndiLists {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    #totalBody {
+        display: flex;
+        flex-direction: column;
+    }
+
+  }
