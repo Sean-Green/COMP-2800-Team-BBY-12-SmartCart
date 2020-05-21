@@ -16,6 +16,8 @@
         padding: 10px;
     }
 
+
+
     #listnamecontainer {
         background-color: white;
         padding: 3px;
@@ -520,7 +522,14 @@
     }
 
 
+ footer.footer {
+   padding-top: 10px;
+   padding-bottom: 30px;
+ }
 
+ .footer a {
+    color: #1b421c;
+  }
 
     @media only screen and (max-width: 500px) {
         .customListStyle {

@@ -79,6 +79,14 @@
     padding-top: 1.5em;
 }
 
+footer.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+  
+.footer a {
+    color: #1b421c;
+  }
 /** Footer */
 #footerNote {
     font-size: x-small;
