@@ -246,7 +246,7 @@ $(document).ready(function () {
         //increment the quantity instead of adding an same item again on the item list
         if (uniquecheck === true) {
             //resets the go shopping button to require item list to be saved
-            $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+            $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
             validshopping = 0;
             for (let repeat = 0; repeat < userinputquantity; repeat++) {
                 //get the current value from the array quantityholder[id](global) which is created when we added the item
@@ -272,7 +272,7 @@ $(document).ready(function () {
             }
             //else the item is a unique item, add button will add the new item to the list
         } else {
-            $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+            $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
             validshopping = 0;
             //if maha's code is fully loaded then run the following code
             if (databasestatus == true) {
@@ -373,7 +373,7 @@ $(document).ready(function () {
      */
     $(document).on('click', ".editbutton1", function () {
         //when you press done it will require you to save the item list page again
-        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
         //change item list name with new input name
         if (namechecker[0] === true) {
@@ -387,7 +387,7 @@ $(document).ready(function () {
         }
         //delete the done button and replace with edit button
         $('.editbutton1').remove();
-        $("#editbuttondiv").html("<button class=editbutton>EDIT</button>");
+        $("#editbuttondiv").html("<button class='editbutton btn-success'>Name</button>");
         $(".editbutton").addClass("button");
         array[0] = $("#listname2").text();
         //set add checker back to true to allow adds
@@ -403,7 +403,7 @@ $(document).ready(function () {
     //function that removes the whole line of item on the item list page
     $(document).on('click', ".removebutton", function () {
         //require user to save list again
-        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
         //gets the id number of the clicked item
         let clickedid = $(this).attr('id').replace(/button/, '');
@@ -431,7 +431,7 @@ $(document).ready(function () {
     //function that increments our quantity item.
     $(document).on('click', ".incrementbutton", function () {
         //reset to require user to save list again
-        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
         //Obtains the ID number based from the idname you clicked
         let clickedid = $(this).attr('id').replace(/button/, '');
@@ -471,7 +471,7 @@ $(document).ready(function () {
      */
     //function that decrement our quantity item.
     $(document).on('click', ".decrementbutton", function () {
-        $("#containerforshopbutton").html('<a class="goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
+        $("#containerforshopbutton").html('<a class="btn-success goshopbutton"><span id="goshopstatus1">[CLICK TO SAVE]</span><span id="goshopstatus2"> GO SHOP</span></a>')
         validshopping = 0;
         //Obtains the ID number based from the idname you clicked
         let clickedid = $(this).attr('id').replace(/button/, '');
@@ -559,12 +559,12 @@ $(document).ready(function () {
                 //setting validshopping to 1 will make it so that the next time they click go shop button it will not run the code here
                 validshopping = 1;
                 //change button to go shopping mode
-                $("#containerforshopbutton").html('<a class="goshopbutton" href="store_page.html"><span id="goshopstatus3">[READY]</span><span id="goshopstatus4"> GO SHOP</span></a>')
+                $("#containerforshopbutton").html('<a class="btn-success goshopbutton" href="store_page.html"><span id="goshopstatus3">[READY]</span><span id="goshopstatus4"> GO SHOP</span></a>')
                 //added basic hover css on the go shopping button
                 $(".goshopbutton").hover(function () {
                     $(this).css("background-color", "rgb(84, 218, 66)");
                 }, function () {
-                    $(this).css("background-color", "white");
+                    // $(this).css("background-color", "white");
                 });
                 $(".goshopbutton").css("color", "green");
                 //added alert to prompt the user that they have successfully saved their list to database
