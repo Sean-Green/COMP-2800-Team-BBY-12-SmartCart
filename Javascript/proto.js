@@ -218,9 +218,9 @@ function addItemToUnavailable(itemName) {
 function createFullList(listName) {
    //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
+      // READ get().then() WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.`
-      db.doc("Items/" + itemName).onSnapshot(function (item) {
+      db.doc("Items/" + itemName).get().then(function (item) {
          console.log(item.data());
          // Save list under user listNames array
          db.doc("Users/" + user.uid).set({

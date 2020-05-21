@@ -177,7 +177,7 @@ $(document).ready(function () {
      * if the doomsday button is activated, it will replace the normal items with the doomsday items
      */
     firebase.auth().onAuthStateChanged(function (user) {
-        db.doc("Users/" + user.uid).onSnapshot((snapshot) => {
+        db.doc("Users/" + user.uid).get().then((snapshot) => {
             let path = "Items";
             if (snapshot.get("DoomsDayMode")) {
                 path = "Doomsday";
