@@ -46,11 +46,10 @@ function storelists() {
                                     idNum + '"class="list-group list-group-flush">'
 
 
+                                    //get store name as a variable and trans to string
                                     let shoppingname = store.get("name")
                                     let imageId = '#image' + idNum;
                                     let str = shoppingname.toString();
-    
-    
     
                                    console.log(str);
                                    console.log(imageId);
@@ -98,15 +97,19 @@ function storelists() {
 
                                 console.log(idNum++);
     
+
+                                //get boolean variable for doomsdaymode  
                                 let booleanVariable = userDoc.get("DoomsDayMode");
                                 
                                     console.log(booleanVariable);   
 
                                 if (booleanVariable){
+                                    //print out proper doomsday image if doomsday mode true
                                     storeNameDoomsday(str, imageId)
 
                                 }
                                 else{
+                                     //print out proper nomal image if doomsday mode true
                                     storeName(str, imageId);
                                 }
                                 
@@ -129,16 +132,12 @@ function storelists() {
 }
 
 
-
-
-
-
-
+    // we could also get these images from the database,
+    // but because we have a read write limit we have chosen to hard code them
+    // Read storename and convert to string - line 49
 
 function storeName(str, imageId) {
 
-    // we could also get these images from the database,
-    // but because we have a read write limit we have chosen to hard code them
 
     if ((str === "Abbotsford Supermarket")) {
         $(imageId).attr('src', 'CSS/storeimage/Abbotsford Supermarket.jpg');
@@ -160,6 +159,12 @@ function storeName(str, imageId) {
     }
 
 }
+
+
+
+    // we could also get these images from the database,
+    // but because we have a read write limit we have chosen to hard code them
+    // Read storename and convert to string - line 49
 
 function storeNameDoomsday(str, imageId) {
 

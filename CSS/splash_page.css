@@ -62,6 +62,11 @@ body {
 
 /* header */
 
+/* Credit: Bootstrap Landing Page Example, Elie Alloun
+Link: https://codepen.io/ElieAln/pen/xyJoaZ 
+Detail: All css code is for the loading screen and is from the website above
+*/
+
 header.masthead {
   background-size: cover;
   height: 95%;
@@ -213,7 +218,7 @@ h1:after {
   font-size: 24px;
 }
 
-/** footer */
+/** footer padding and font*/
 
 footer.footer {
   padding-top: 20px;
@@ -295,7 +300,6 @@ li#follow {
   .features-icons h2 {
     font-size: 25px;
   }
-  /* icon size  */
   .features-icons .features-icons-item .features-icons-icon i {
     font-size: 60px;
   }
