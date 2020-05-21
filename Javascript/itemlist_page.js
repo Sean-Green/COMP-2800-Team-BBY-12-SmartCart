@@ -5,7 +5,7 @@ $(document).ready(function () {
     //||******Declare and Instantiate Global Variables********||
     //||******************************************************||
     //||******************************************************||
-    
+
     /**
      * [saveliststatus]
      * true if using a saved item list
