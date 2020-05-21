@@ -78,3 +78,32 @@
 #teamMem {
     padding-top: 1.5em;
 }
+
+/** Footer */
+#footerNote {
+    font-size: x-small;
+}
+
+#doomsDayBtn {
+    border: none;
+    background-color: rgb(35, 192, 14);
+}
+
+/** Doomsday CSS */
+#doomsDayL {
+    border: black solid 2px;
+    border-radius: 5px;
+    background-color: red;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.hidden{
+    display: none;
+}
+#doomExplosion {
+    position: absolute;
+    margin: auto;
+    width: 75%;
+}
