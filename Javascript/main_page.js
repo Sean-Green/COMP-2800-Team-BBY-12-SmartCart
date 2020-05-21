@@ -1,5 +1,3 @@
-
-
 // Function that creates a new document in the users collection
 function manageUser() {
    firebase.auth().onAuthStateChanged(function (user) {
@@ -150,15 +148,34 @@ function doomsDayState() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then((snapshot) => {
          if (snapshot.get("DoomsDayMode")) {
-            $("#createListBtn").html('<a class="btn btn-danger">Create A New Doomsday List</a>');
-            $("#footerNote").html("To go back to normal mode, visit About Us page.")
+            $("#createListBtn").html('<div class="btn-doom"><span>CREATE A NEW LIST</span></div>');
+            $("#footerNote").html("<p> To go back to normal mode: <span><button id='normBtn'>Click Here</button></span></p>");
          } else {
-            $("#createListBtn").html('<div class="btn btn-create"><span>CREATE A NEW LIST</span></div>');
+            $("#createListBtn").html('<div class="btn-create"><span>CREATE A NEW LIST</span></div>');
+            $("#footerNote").html("<p class='hidden'> To go back to normal mode: <span><button id='normBtn'>Click Here</button></span></p>");
          }
       })
    })
 }
 doomsDayState();
+
+// Back to normal from doomsday mode
+function normalMode() {
+   $(document).on("click", "#normBtn", function () {
+      firebase.auth().onAuthStateChanged(function (user) {
+         db.doc("Users/" + user.uid).get().then((snapshot) => {
+            let doomTest = !snapshot.get("DoomsDayMode");
+            db.doc("Users/" + user.uid).set({
+               DoomsDayMode: doomTest
+            }, {
+               merge: true
+            })
+            doomsDayState();
+         })
+      })
+   })
+}
+normalMode();
 
 
 // Function to print user's list contents
@@ -170,32 +187,40 @@ function listSnapShots() {
 
          for (i = 0; i < userIndividualLists.length; i++) {
 
-            let listName = userIndividualLists[i];
+            let itemListName = userIndividualLists[i];
             let listID = 'listing' + i;
+            let ID = i;
 
             db.collection("Users/" + user.uid + "/" + userIndividualLists[i]).get().then((userListItems) => {
 
-               console.log(listName);
+               // appending the main body and name title to an element
+               console.log(itemListName);
                let itemCardMat = '<div class="card" id="mainListCard">' +
-                  '<h4 class="heading1">' + listName + '</h4>' +
+                  '<h4 class="heading1">' + itemListName + '</h4>' +
                   '<div class="card-body"><div class="card" class="listingCard">' +
                   '<ul class="list-group list-group-flush" class="ulList" id="' + listID + '"></ul>' +
-                  '</div><div id="listButtonArea"><div class="btn btn-edit" id="editListsBtn">' +
-                  '<span>EDIT LIST</span></div></div></div></div><div class="halfSpacer"></div>';
+                  '</div><div id="listButtonArea"><div id="listButton' + ID + '"class="btn-listEdit"' +
+                  '<span>EDIT THIS LIST</span></div></div></div></div><div class="halfSpacer"></div>';
                $("#userIndiLists").append(itemCardMat);
                let itemCardMat2 = "";
 
+               // looping to get all the items 
                for (j = 0; j < userListItems.docs.length; j++) {
                   let itemName = userListItems.docs[j].get("name");
                   itemCardMat2 += '<li class="list-group-item" id="theList"><div><span>' + itemName + '</span></div>'
                   console.log(itemCardMat2);
                }
-
+               // appending the lists to an element
                console.log(listID);
                let appension = itemCardMat2 + "";
                console.log(appension);
                $('#' + listID).append(appension);
 
+               // makes the Edit this list button take the user to the corresponding list
+               $(document).on("click", "#listButton" + ID, function () {
+                  console.log("THIS IS IT" + itemListName);
+                  setShoppingList(itemListName);
+               })
             })
          }
       })
