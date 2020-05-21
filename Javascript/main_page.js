@@ -148,7 +148,7 @@ function doomsDayState() {
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then((snapshot) => {
          if (snapshot.get("DoomsDayMode")) {
-            $("#createListBtn").html('<a class="btn-doom">Create A New Doomsday List</a>');
+            $("#createListBtn").html('<div class="btn-doom"><span>CREATE A NEW LIST</span></div>');
             $("#footerNote").html("<p> To go back to normal mode: <span><button id='normBtn'>Click Here</button></span></p>");
          } else {
             $("#createListBtn").html('<div class="btn-create"><span>CREATE A NEW LIST</span></div>');

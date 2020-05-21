@@ -599,6 +599,4 @@ $(document).ready(function () {
      * make the border in our textbox for the item list name a bit rounder
      */
     $('.theinput').css('border-radius', '3px');
-
-    
 });
