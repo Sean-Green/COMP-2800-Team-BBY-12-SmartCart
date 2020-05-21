@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/loading.css">
     <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
 
-    
+
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -50,13 +50,13 @@
         </div>
     </nav>
 
- <!-- Preloader -->
+    <!-- Preloader -->
 
- <div id="preloader">
-    <div id="loader"></div>
-  </div>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
 
-      
+
 
 
 
@@ -74,41 +74,46 @@
     <div class="halfSpacer">
     </div>
     <!--Main body-->
-    <div class="card" id="mainCard">
-        <h3><span id="userName"></span></h3>
-        <!-- <div>
+    <div id="totalBody">
+        <div class="card" id="mainCard">
+            <h3><span id="userName"></span></h3>
+            <!-- <div>
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div> -->
-        <h4 class="heading1"><span id="heading1span">Your Lists!</span></h4>
-        <div class="card-body">
-            <div class="card" id="listCard">
-                <div class="card">
-                    <ul class="list-group list-group-flush" class="ulList">
-                        <li class="list-group-item" id="myList">
-                            <a><span id="listName"></span></a>
-                            <a><span id="doomsDaySpan"></span></a>
-                        </li>
-                    </ul>
+            <h4 class="heading1"><span id="heading1span">Your Lists!</span></h4>
+            <div class="card-body">
+                <div class="card" id="listCard">
+                    <div class="card">
+                        <ul class="list-group list-group-flush" class="ulList">
+                            <li class="list-group-item" id="myList">
+                                <a><span id="listName"></span></a>
+                                <a><span id="doomsDaySpan"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="listButtonArea">
+                        <a id="createListBtn"></a>
+                        <div class="btn-edit" id="editListsBtn"><span>EDIT LISTS</span></div>
+                    </div>
                 </div>
-                <div id="listButtonArea">
-                    <a id="createListBtn"></a>
-                    <div class="btn-edit" id="editListsBtn"><span>EDIT LISTS</span></div>
-                </div>
+                <footer>
+                    <p id="footerNote">
+                    </p>
+                    <div>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                            data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!"
+                            data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html"
+                            data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </footer>
             </div>
-        <footer>
-            <p id="footerNote">
-            </p>
-            <div>
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I&#39;m shopping with #SmartCartShoppingApp ! Thanks, Team 12-BBY!" data-url="https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html" data-show-count="false">Tweet</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </footer>
         </div>
-    </div>
-    <div class="halfSpacer">
-    </div>
-    <div class="card" id="userIndiLists">
+        <div class="halfSpacer">
+        </div>
+        <div class="card" id="userIndiLists">
+        </div>
     </div>
 
     <!--Function calls from js pages-->
@@ -121,9 +126,9 @@
 
     <!-- Credits to Red Stapler
       Link: https://redstapler.co/add-loading-animation-to-website/ -->
-      <div class="loader-wrapper">
+    <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
-      </div>
+    </div>
 
     <!----Bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -150,7 +155,7 @@
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
                             <!-- Team profile page - Terms of Use -->
-                           Terms of Use
+                            Terms of Use
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">

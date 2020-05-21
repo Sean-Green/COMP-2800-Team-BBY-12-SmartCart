@@ -214,8 +214,8 @@ function listSnapShots() {
                   '<div class="card-body"><div class="card" class="listingCard">' +
                   '<ul class="list-group list-group-flush" class="ulList" id="' + listID + '"></ul>' +
                   '</div><div id="listButtonArea"><div id="listButton' + ID + '"class="btn-listEdit"' +
-                  '<span>Edit this List</span></div><div id="shopButton' + ID + '"class="btn-listEdit"' +
-                  '<span>Shop with List</span></div></div></div></div><div class="halfSpacer"></div>';
+                  '<span>EDIT THIS LIST</span></div><div id="shopButton' + ID + '"class="btn-listEdit"' +
+                  '<span>SHOP WITH LIST</span></div></div></div></div><div class="halfSpacer"></div>';
                $("#userIndiLists").append(itemCardMat);
                let itemCardMat2 = "";
 
