@@ -2,50 +2,59 @@
 //                      JavaScript for the Shopping Page
 /////////////////////////////////////////////////////////////////////////////////////////
 $(document).ready(() => {
+
+    // This builds the Store page List of items
     function displayList() {
         firebase.auth().onAuthStateChanged(function (user) {
+            
+            // get the users document in firebase so we can grab the current list
             db.doc("Users/" + user.uid).get().then(function (userDoc) {
                 let currentStore = userDoc.get("currentStore");
                 let shoppingList = userDoc.get("shoppingList");
                 let listHTML = "";
-                $('#storename').prepend('<h3>You are shopping at <br><b>' + currentStore + '</b><br>With List:<br><b id="theListName">' + userDoc.get("shoppingList") + '</b></h3>');
 
+                // Append these details to the UI
+                $('#storename').prepend('<h3>You are shopping at <br><b>' + currentStore + '</b><br>With List:<br><b id="theListName">' + userDoc.get("shoppingList") + '</b></h3>');
+                
+                //Get the actual user list, append it to the UI, item by item
                 db.collection('Users/' + user.uid + '/' + shoppingList).get().then(userList => {
                     let item = userList.docs;
                     for (i = 0; i < item.length; i++) {
 
                         listHTML =
                             '<tr id="itemContainer' + i + '">' +
-                            '<td data-th="Product">' +
-                            //The item image
-                            '<image id="image' + i + '" width="100px "height="100" >' +
-                            //Item Name
-                            '<h4 class="nomargin">' +
-                            '<span id="itemName' + i + '"class="saveItem">' + item[i].get("name") + '</span>' +
-                            '</h4> ' +
-                            '</td>' +
-                            //Edit qty buttons
-                            '<td class="editButtons">' +
-                            '<button class="btn btn-primary" id="increase' + i + '">' +
-                            '<i class="fa fa-plus"></i>' +
-                            '</button>' +
-                            //item qty
-                            '<h1 id="qtyNum' + i + '" class="qtyNum">' +
-                            item[i].get("qty") +
-                            '</h1>' +
-                            '<button class="btn btn-primary" id="decrease' + i + '" >' +
-                            '<i class="fas fa-minus"></i>' +
-                            '</button>' +
-                            '</td>' +
-                            // unavailable of delete button
-                            '<td class="statusButtons">' +
-                            '<button class="btn btn-success" id="remove' + i + '">' +
-                            '<i class="fa fa-check"></i>' +
-                            '</button>' +
-                            '<button class="btn btn-danger" id="add' + i + '" >' +
-                            '<i class="fas fa-times"></i>' +
-                            '</button>' +
-                            '</td>' +
+                                '<td data-th="Product">' +
+                                    //The item image
+                                    '<image id="image' + i + '" width="100px "height="100" >' +
+                                    //Item Name
+                                    '<h4 class="nomargin">' +
+                                        '<span id="itemName' + i + '"class="saveItem">' 
+                                            + item[i].get("name") + 
+                                        '</span>' +
+                                    '</h4> ' +
+                                '</td>' +
+                                //Edit qty buttons
+                                '<td class="editButtons">' +
+                                    '<button class="btn btn-primary" id="increase' + i + '">' +
+                                        '<i class="fa fa-plus"></i>' +
+                                    '</button>' +
+                                    //item qty
+                                    '<h1 id="qtyNum' + i + '" class="qtyNum">' +
+                                        item[i].get("qty") +
+                                    '</h1>' +
+                                    '<button class="btn btn-primary" id="decrease' + i + '" >' +
+                                        '<i class="fas fa-minus"></i>' +
+                                    '</button>' +
+                                '</td>' +
+                                // unavailable of delete button
+                                '<td class="statusButtons">' +
+                                    '<button class="btn btn-success" id="remove' + i + '">' +
+                                        '<i class="fa fa-check"></i>' +
+                                    '</button>' +
+                                '<button class="btn btn-danger" id="add' + i + '" >' +
+                                    '<i class="fas fa-times"></i>' +
+                                '</button>' +
+                                '</td>' +
                             '</tr>';
 
                         let itemName = item[i].get("name");
@@ -61,7 +70,7 @@ $(document).ready(() => {
                         $('#itemList').append(listHTML);
                         listHTML = "";
 
-                        //
+                        // Mark items as available in the database and reflect it in the UI
                         $(document).on('click', "#remove" + i, () => {
                             $(containerName).addClass("contAvail");
                             $(containerName).removeClass("contUnavail");
@@ -69,8 +78,18 @@ $(document).ready(() => {
                             console.log("removing " + itemName + " from " + currentStore + " unavailable list");
                             removeItemFromUnavailable(itemName);
                         });
-                        //
 
+                        // Mark items as unavailable in the database and reflect it in the ui
+                        $(document).on('click', "#add" + i, () => {
+                            $(".uBtn").css('display', 'block');
+                            $(containerName).removeClass("contAvail");
+                            $(containerName).addClass("contUnavail");
+                            $(nameId).addClass('unavailable');
+                            console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
+                            addItemToUnavailable(itemName);
+                        });
+
+                        // Increase the marked qty in the UI only.
                         $(document).on('click', increaseId, () => {
                             let currentNum = parseInt($(qtyNum).text(), 10)
                             if (currentNum === 0) {
@@ -81,6 +100,7 @@ $(document).ready(() => {
                             $(qtyNum).text(parseInt($(qtyNum).text(), 10) + 1);
                         });
 
+                        //Decrease the marked qty in the ui only, if qty == 0  mark it as deleted
                         $(document).on('click', decreaseId, () => {
                             let currentNum = parseInt($(qtyNum).text(), 10)
                             if (currentNum - 1 > 0) {
@@ -92,30 +112,10 @@ $(document).ready(() => {
                             }
                         });
 
-                        $(document).on('click', "#add" + i, () => {
-                            $(".uBtn").css('display', 'block');
-                            $(containerName).removeClass("contAvail");
-                            $(containerName).addClass("contUnavail");
-                            $(nameId).addClass('unavailable');
-                            console.log("adding " + itemName + "  to " + currentStore + " unavailable list");
-                            addItemToUnavailable(itemName);
-                        });
-
-                        let booleanVariable = userDoc.get("DoomsDayMode");
-                                
-                        console.log(booleanVariable);   
-
-                    if (booleanVariable){
-                        appendImageDoomsday(str, imageId);
-
-                    }
-                    else{
+                        //Append the appropriate image to this item.
                         appendImage(str, imageId);
-                    }
-                        
-                        appendImage(str, imageId);
-                        
-                    }
+
+                        }
 
 
                 });
@@ -126,21 +126,19 @@ $(document).ready(() => {
     displayList();
 });
 
+//Sets the imageId passed to it to a deleted image.
 function deleteImage(imageId) {
     $(imageId).attr('src', 'CSS/itemimage/deleted.jpg');
-    // console.log('delete '+imageId);
 }
+
+// Using the item quantity's in the UI as well as the names, update the users saved list.
 function saveListToProfile() {
     if (confirm('Are you sure? Anything set to 0 will be deleted from your list.')) {
         deleteListByName($('#theListName').text());
         let itemNames = $('.saveItem').toArray();
         let itemQty = $('.qtyNum').toArray();
         for (i = 0; i < itemNames.length; i++) {
-            // console.log(itemNames[i].innerHTML + $('#theListName').text() + itemQty[i].innerHTML)
             saveItemToList(itemNames[i].innerHTML, $('#theListName').text().trim(), itemQty[i].innerHTML);
-            // if (i + 1 === itemNames.length) {
-            //     resolve("success");
-            // }
         }
         alert('List Saved');
     } else {
@@ -206,11 +204,6 @@ function appendImage(str, imageId) {
     if ((str === "Vitamin")) {
         $(imageId).attr('src', 'CSS/itemimage/Vitamin.jpg');
     }
-
-}
-
-
-function appendImageDoomsday(str, imageId) {
     if ((str === "Baseball Bat with Nail")) {
         $(imageId).attr('src', 'CSS/Doomsday image/baseball bat with nails.jpg');
     }
@@ -286,10 +279,13 @@ function appendImageDoomsday(str, imageId) {
     if ((str === "Zombie Truck")) {
         $(imageId).attr('src', 'CSS/Doomsday image/zombie truck.jpg');
     }
+
 }
 
-
-
+// Create an unavailable list and go shopping with it, 
+// if the boolean handed to it is true, take us to the itemlist page
+// if false take us to the store page.
+// Called by 'Create list from Unavailable' and 'Go shopping with unavailable' buttons.
 function createUnavailableList(editListFlag) {
     var unavailableListName = new Date().toString().substring(0, 25).trim();
     deleteListByName(unavailableListName);
@@ -305,7 +301,7 @@ function createUnavailableList(editListFlag) {
             if (i + 1 === unavailableItems.length) {
                 setTimeout(() => {
                     resolve("success");
-                }, 500);
+                }, 1000);
             }
         }
 
