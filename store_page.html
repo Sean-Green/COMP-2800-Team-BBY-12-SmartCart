@@ -2,7 +2,7 @@
 
 
 <head>
-    
+
 
     <!--Meta tag-->
     <meta charset="UTF-8">
@@ -40,13 +40,27 @@
 
     <!-- Link javascript-->
     <script src="Javascript/store_page.js"></script>
-    
-    <script src="Javascript/loading.js"></script>
+
+    <script>
+        /**
+Credit: Hariom Singh
+Link: https://stackoverflow.com/questions/52399940/how-to-add-preloader-loadeing-gif-to-my-website/
+Detail: All css code is for the loading screen and is from the website above
+*/
+
+        $(window).on('load', function () {
+            $('#status').fadeOut();
+            $('#preloader').delay(1000).fadeOut('slow');
+            $('body').delay(100).css({
+                'overflow': 'visible'
+            });
+        })
+    </script>
 
 </head>
 
 <body>
-   
+
 
 
     <!--top var - dropdown menu -->
@@ -74,9 +88,9 @@
 
     <div id="preloader">
         <div id="loader"></div>
-      </div>
-      
-      
+    </div>
+
+
 
     <!--search store-->
     <header class="masthead text-white text-center">
@@ -123,9 +137,9 @@
 
     <!-- Credits to Red Stapler
       Link: https://redstapler.co/add-loading-animation-to-website/ -->
-      <div class="loader-wrapper">
+    <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
-      </div>
+    </div>
 
 
 
