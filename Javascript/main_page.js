@@ -125,6 +125,20 @@ function setShoppingList(listName) {
    })
 }
 
+// Giving shopping list a name and redirect to store page
+function setShoppingListShop(listName) {
+   firebase.auth().onAuthStateChanged(function (user) {
+      let shopListName = listName;
+      db.doc("Users/" + user.uid).set({
+         shoppingList: shopListName
+      }, {
+         merge: true
+      }).then((success) => {
+         window.location = "store_page.html"
+      })
+   })
+}
+
 
 // Redirecting the lists to the list page.
 function redirect() {
@@ -200,7 +214,8 @@ function listSnapShots() {
                   '<div class="card-body"><div class="card" class="listingCard">' +
                   '<ul class="list-group list-group-flush" class="ulList" id="' + listID + '"></ul>' +
                   '</div><div id="listButtonArea"><div id="listButton' + ID + '"class="btn-listEdit"' +
-                  '<span>EDIT THIS LIST</span></div></div></div></div><div class="halfSpacer"></div>';
+                  '<span>Edit this List</span></div><div id="shopButton' + ID + '"class="btn-listEdit"' +
+                  '<span>Shop with List</span></div></div></div></div><div class="halfSpacer"></div>';
                $("#userIndiLists").append(itemCardMat);
                let itemCardMat2 = "";
 
@@ -220,6 +235,11 @@ function listSnapShots() {
                $(document).on("click", "#listButton" + ID, function () {
                   console.log("THIS IS IT" + itemListName);
                   setShoppingList(itemListName);
+               })
+               // makes the Edit this list button take the user to the corresponding list
+               $(document).on("click", "#shopButton" + ID, function () {
+                  console.log("THIS IS IT" + itemListName);
+                  setShoppingListShop(itemListName);
                })
             })
          }
