@@ -7,5 +7,7 @@ Authors :
    Donggyun Kim
    Maha Rehal
    
-   
+   To use you:
+   - can simply download and start at the splash page 
+   - OR visit the link below to use the live hosted version
    Host Link : https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html
