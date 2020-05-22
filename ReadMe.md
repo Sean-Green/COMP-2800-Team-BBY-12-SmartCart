@@ -11,6 +11,12 @@ Authors :
    Maha Rehal
    
 To use you:
-   - can simply download and start at the splash page 
-   - OR visit the link below to use the live hosted version
+   - dont't need to do anything but clone the app to you machine
+   - start at the splash page 
+   - OR visit the link below to use the live hosted version 
+   - If you want to develop your own version:
+      + create a free firebase fireStore app 
+      + change the firebase_config.js file to match your new app
+      + add an Items collection to the database
+      + add a Store collection to the database
    Host Link : https://donggyunkim.z9.web.core.windows.net/COMP-2800-Team-BBY-12-SmartCart/splash_page.html
