@@ -120,6 +120,7 @@ function setShoppingList(listName) {
    })
 }
 
+
 // Giving shopping list a name and redirect to store page
 function setShoppingListShop(listName) {
    firebase.auth().onAuthStateChanged(function (user) {
@@ -171,6 +172,7 @@ function doomsDayState() {
    })
 }
 doomsDayState();
+
 
 // Back to normal mode from doomsday mode
 function normalMode() {
