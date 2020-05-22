@@ -1,682 +1,486 @@
 /*** MEDIA QUERIES ***/
-
 /* for screen size less than 500px (Mobile View) */
-@media only screen and (max-width: 500px){
 
-    #inputQuantity{
-        height: 18px !important;
-    }
-
-    .halfSpacer {
-        margin: 5px;
-        padding: 5px;
-    }
-
-    .spacer{
-        margin: 10px;
-        padding: 10px;
-    }
-
-    #listnamecontainer{
-        background-color:white;
-        padding: 3px;
-        border: 3px;
-        margin: 10px;
-        border-radius: 5px;
-        display: flex;
-        justify-content: space-between;
-        border-style: solid;
-        border-color: lightgreen;
-    }
-
-    #inputItem {
-        padding: 6px 8px 6px 0px;
-        border: solid 1px green;
-        border-radius: 3px;
-        overflow:scroll;
-        
-    }
-    #inputWeight {
-        padding: 6px 8px 8px 0px;
-    }
-
-    input[type=number] {
-        padding: 14.75px;
-        border: solid 1px green;
-    }
-
-    #listname1{
-        flex-grow: 0;
-    }
-
-    #listname2span{
-        font-size:20px;
-        padding: 14px 28px;
-        display: inline-block;
-        font-weight: bold;
-    }
-
-    #inputWeight{
-        visibility: hidden;
-    }
-
-    .goshopbutton{
-        color: rgb(169, 175, 168);
-        border:none;
-        background-color:inherit;
-        padding: 14px 28px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block; 
-    }
-
-    .goshopbutton:hover {
-        background-color:rgb(144, 146, 144);
-        color: rgb(200, 200, 200);
-        border-radius: 5px;
-    }
-
-    #goshopstatus1{
-        font-size:10px;
-        display: block;
-        text-align: center;
-    }
-
-    #goshopstatus2{
-        font-size:23px;
-        display: block;
-        text-align: center;
-    }
-
-    #goshopstatus3{
-        font-size:10px;
-        display: block;
-        text-align: center;
-    }
-
-    #goshopstatus4{
-        font-size:23px;
-        display: block;
-        text-align: center;
-    }
-
-    #theaddbutton{
-        color: lightskyblue;
-        font-size: 28px;
-        display: block;
-        text-align: center;
-        margin-top:3px;
-    }
-
-    .additembutton:hover {
-        background-color:rgb(70, 107, 228);
-        border-radius: 5px;
-        
-    }
-
-    .backbutton:hover {
-        background-color:rgb(146, 155, 179);
-        color: white;
-        border-radius: 5px;
-    }
-
-    .editbutton{
-        color: orange;
-        /* opacity: 0; */
-    }
-
-    .editbutton:hover {
-        background-color:rgb(247, 115, 54);
-        color: white;
-        border-radius: 5px;
-    }
-
-    .button {
-        border:none;
-        background-color:inherit;
-        padding: 14px 28px;
-        font-size:20px;
-        cursor: pointer;
-        display:inline-block;
-    }
-
-    .editbutton1{
-        border: none;
-        background-color: inherit;
-        padding: 14px 28px;
-        font-size:20px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(230, 124, 228);
-    }
-
-    .editbutton1:hover{
-        background-color: rgb(233, 32, 116);
-        color: white;
-        border-radius: 5px;
-    }
-
-
-    #contentcontainer{
-        background-color: white;
-        margin: 20px;
-        padding: 30px;
-        border-radius: 10px;
-        border-style: solid;
-        border-color:  rgb(71, 163, 71);
-    }
-
-    /* .editbutton2{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(228, 70, 49);
-        font-weight: bold;
-    }
-
-    .editbutton2:hover{
-        background-color: rgb(226, 89, 89);
-        color: white;
-        border-radius: 5px;
-    } */
-
-    #contentcontainer{
-        background-color: white;
-        margin: 20px;
-        padding: 15px;
-        border-radius: 10px;
-        border-style: solid;
-        border-color:  rgb(71, 163, 71);
-    }
-
-    
-
-    #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        min-height: 200px;
-        max-height: 500px;
-        overflow:auto;
-
-        display: grid;
-        grid-template-columns: 45% 20% 35%;
-        grid-template-rows: 15% 40% 40%;
-        grid-template-areas:
-        "one two three"
-        "four five six"
-        "seven eight nine";
-    }
-
-    .customListStyle {
-        padding: 3px;
-        margin: 3px;
-    }
-
-    .fakedelete{
-        opacity: 0;
-    }
-
-    /* .removebutton{
-        display: none;
-    } */
-
-    /* .incrementbutton{
-        display: none;
-    } */
-
-    /* .decrementbutton{
-        display: none;
-    } */
-
-    #labelname1{
-        grid-area: one;
-        font-weight: bold;
-    }
-
-    #labelname2{
-        grid-area: two;
-        font-weight: bold;
-    }
-
-    #labelname3{
-        grid-area: three;
-        font-weight: bold;
-    }
-
-
-    ul{
-        list-style-type: none;
-        padding: 0;
-        
-    }
-
-    #listitemcontainer{
-        grid-area: four;
-        grid-gap:10px 10px;
-    }
-
-    #listweightcontainer{
-        grid-area: five;
-        grid-gap:10px 10px;
-    }
-
-    #listquantitycontainer{
-        grid-area: six;
-        grid-gap:10px 10px;
-    }
-
-    .font{
-        font-size: 12px;
-    }
-
-    #listarea1 > li {
-        text-align: justify;
-    }
-
-    #labelname1 > article {
-        text-align: center;
-    }
-
-    #listarea2 > li {
-        text-align: center;
-    }
-
-    #labelname2 > article {
-        text-align: center;
-    }
-
-    #listarea3 > li {
-        text-align: center;
-    }
-
-    #labelname3 > article {
-        text-align: center;
-    }
-
-
-    #twobuttoncontainer{
-        display:flex;
-        justify-content: space-around;
-        padding: 1px;
-        border: 2px;
-        border-color: lightgreen;
-        margin: 1px;
-        border-style: solid;
-        border-radius: 5px;
-        
-    }
-
-    
-
-    .donebutton{
-        color: rgb(9, 184, 9);
-    }
-
-    .donebutton:hover {
-        background-color:rgb(37, 122, 15);
-        border-radius: 5px;
-    }
-    span{
-        font-weight: bold;
-    }
-
-    #newlistname {
-        border: 0;
-        /* height: 60px;
-        width: 140px; 
-        text-align: center; */
-    }
-
-    #thesavelistbutton {
-        color: rgb(162, 113, 240);
-    }
-
-    #thesavelistbutton:hover {
-        background-color:rgb(253, 49, 94);
-        color: pink;
-        border-radius: 5px;
-    }
-    
+#inputQuantity {
+    height: 18px !important;
 }
 
-/* for screen size between 400 to 1024px (Tablet View) 
-@media screen and (min-width: 451px) and (max-width: 700px) {
-
-    
+.halfSpacer {
+    margin: 0px;
+    padding: 0px;
 }
-*/
-    
-/* when screen size is greater than 501px (Desktop View) */
-@media screen and (min-width: 501px){
 
-    .halfSpacer {
-        margin: 5px;
-        padding: 5px;
-    }
+.spacer {
+    margin: 0px;
+    padding: 0px;
+}
 
-    .spacer{
-        margin: 10px;
-        padding: 10px;
-    }
+#listnamecontainer {
+    padding: 3px;
+    margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
 
-    #inputWeight{
-        visibility: hidden;
-    }
+#inputItem {
+    display: flex;
+    padding: 6px 8px 6px 0px;
+    border: solid 2px black;
+    border-radius: 3px;
+    overflow: scroll;
+    width: 150px;
+    height: 40px;
+}
 
-    #listnamecontainer{
-        background-color:white;
-        padding: 3px;
-        border: 3px;
-        margin: 10px;
-        border-radius: 5px;
-        display: flex;
-        justify-content: space-between;
-        border-style: solid;
-        border-color: lightgreen;
-    }
-    #inputItem {
-        padding: 6px 8px 6px 0px;
-        border: solid 1px green;
-        border-radius: 3px;
-        overflow:scroll;
-        
-    }
-    #inputWeight {
-        padding: 6px 8px 8px 0px;
-    }
+#input1 {
+    padding-bottom: 10px;
+    text-align: center !important;
+}
 
-    input[type=number] {
-        padding: 7px;
-        border: solid 1px green;
-    }
+#input1>select {
+    font-size: small;
+}
 
+#inputWeight {
+    padding: 6px 8px 8px 0px;
+}
 
-    #listname1{
-        flex-grow: 0;
-    }
+input[type=number] {
+    font-size: small;
+    padding: 18px;
+    border: solid 2px black;
+    width: 125px;
+}
 
-    #listname2span{
-        font-size:20px;
-        padding: 14px 28px;
-        display: inline-block;
-        font-weight: bold;
+#input3 {
+    padding-bottom: 10px;
+}
 
-    }
+#listname1 {
+    flex-grow: 0;
+}
 
-    #goshopstatus1{
-        font-size:14px;
-        display: block;
-        text-align: center;
-    }
+#listname2span {
+    font-size: 20px;
+    padding: 14px 28px;
+    display: inline-block;
+    font-weight: bold;
+}
 
-    #goshopstatus2{
-        font-size:50px;
-        display: block;
-        text-align: center;
-    }
+#inputWeight {
+    visibility: hidden;
+}
 
-    #goshopstatus3{
-        font-size:14px;
-        display: block;
-        text-align: center;
-    }
+.goshopbutton {
+    color: rgb(67, 182, 47);
+    border: none;
+    margin: 3px;
+    background-color: inherit;
+    padding: 15px 20px;
 
-    #goshopstatus4{
-        font-size:50px;
-        display: block;
-        text-align: center;
-    }
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-block;
+}
 
-    .goshopbutton{
-        color: rgb(169, 175, 168);
-        border:none;
-        background-color:inherit;
-        padding: 14px 28px;
-        font-size:40px;
-        cursor: pointer;
-        display:inline-block;
-       
-    }
+.goshopbutton:hover {
+    background-color: rgb(144, 146, 144);
+    color: rgb(200, 200, 200);
+    border-radius: 5px;
+}
 
-    .goshopbutton:hover {
-        background-color:rgb(144, 146, 144);
-        color: rgb(200, 200, 200);
-        border-radius: 5px;
-    }
+#goshopstatus1 {
+    font-size: 10px;
+    display: block;
+    text-align: center;
+}
 
-    .backbutton:hover {
-        background-color:rgb(146, 155, 179);
-        color: white;
-        border-radius: 5px;
-    }
+#goshopstatus2 {
+    font-size: 23px;
+    display: block;
+    text-align: center;
+}
 
-    #theaddbutton{
-        color: lightskyblue;
-        font-size: 56px;
-        margin-top: 5px;
-    }
+#goshopstatus3 {
+    font-size: 10px;
+    display: block;
+    text-align: center;
+}
 
-    .additembutton:hover {
-        background-color:rgb(70, 107, 228);
-        border-radius: 5px;
-    }
+#goshopstatus4 {
+    font-size: 23px;
+    display: block;
+    text-align: center;
+}
 
-    .editbutton{
-        color: orange;
-        /* opacity: 0; */
-    }
+#theaddbutton {
+    font-size: 28px;
+    display: block;
+    text-align: center;
+    margin-top: 3px;
+    padding: 18px 20px;
+}
 
-    .editbutton:hover {
-        background-color:rgb(247, 115, 54);
-        color: white;
-        border-radius: 5px;
-    }
+.additembutton:hover {
+    border-radius: 5px;
+}
 
-    .button {
-        border:none;
-        background-color:inherit;
-        padding: 14px 28px;
-        font-size:20px;
-        cursor: pointer;
-        display:inline-block;
-    }
+.backbutton:hover {
+    background-color: rgb(146, 155, 179);
+    color: white;
+    border-radius: 5px;
+}
 
-    .editbutton1{
-        border: none;
-        background-color: inherit;
-        padding: 14px 28px;
-        font-size:20px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(230, 124, 228);
-    }
+.editbutton:hover {
+    background-color: rgb(0, 136, 11);
+    color: white;
+    border-radius: 5px;
+}
 
-    .editbutton1:hover{
-        background-color: rgb(233, 32, 116);
-        color: white;
-        border-radius: 5px;
-    }
+.button {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
 
-    /* .editbutton2{
-        border: none;
-        background-color: inherit;
-        padding: 4px 8px;
-        font-size:15px;
-        cursor: pointer;
-        display:inline-block;
-        color: rgb(228, 70, 49);
-        font-weight: bold;
-    }
+.editbutton1 {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(160, 57, 158);
+}
 
-    .editbutton2:hover{
-        background-color: rgb(226, 89, 89);
-        color: white;
-        border-radius: 5px;
-    } */
+.editbutton1:hover {
+    background-color: rgb(133, 16, 65);
+    color: white;
+    border-radius: 5px;
+}
 
 
+#contentcontainer {
+    background-color: white;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(71, 163, 71);
+}
 
-    #contentcontainer{
-        background-color: white;
-        margin: 20px;
-        padding: 15px;
-        border-radius: 10px;
-        border-style: solid;
-        border-color:  rgb(71, 163, 71);
-    }
+#contentcontainer {
+    background-color: white;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(71, 163, 71);
+}
 
-    #listcontainer{
-        border: 2px solid lightgreen;
-        padding: 2px;
-        border-radius: 5px;
-        overflow:scroll;
-        min-height: 200px;
-        max-height: 500px;
-        overflow:auto;
+#listcontainer {
+    background-color: rgba(243, 253, 255, 0.548);
 
-        display: grid;
-        grid-template-columns: 34% 37% 37%;
-        grid-template-rows: 15% 40% 40%;
-        grid-template-areas:
+    border: 2px solid rgb(109, 194, 209);
+    padding: 2px;
+    margin: 5px;
+    border-radius: 5px;
+    overflow: scroll;
+    min-height: 200px;
+    max-height: 500px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 45% 15% 40%;
+    grid-template-rows: 45px 85%;
+    grid-template-areas:
         "one two three"
-        "four five six"
-        "seven eight nine";
-    }
+        "four five six";
+}
+
+.customListStyle {
+    padding: 5px;
+    margin: 3px;
+    font-size: large;
+    margin-bottom: 15px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.fakedelete {
+    opacity: 0;
+}
+
+#labelname1 {
+    grid-area: one;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 5px;
+}
+
+#labelname2 {
+    grid-area: two;
+    font-weight: bold;
+    display: none;
+}
+
+#listarea2 {
+    display: none;
+}
+
+#labelname3 {
+    grid-area: three;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+
+}
+
+#listitemcontainer {
+    grid-area: four;
+    grid-gap: 10px 10px;
+}
+
+#listweightcontainer {
+    grid-area: five;
+    grid-gap: 10px 10px;
+}
+
+#listquantitycontainer {
+    grid-area: six;
+    grid-gap: 10px 10px;
+}
+
+.font {
+    font-size: 12px;
+}
+
+#listarea1>li {
+    text-align: justify;
+}
+
+#listarea1 {
+    padding-left: 1em;
+}
+
+#labelname1>article {
+    text-align: center;
+}
+
+#listarea2>li {
+    text-align: center;
+}
+
+#labelname2>article {
+    text-align: center;
+}
+
+#listarea3>li {
+    text-align: center;
+    padding-right: 1em;
+}
+
+#labelname3>article {
+    text-align: center;
+}
+
+#twobuttoncontainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.donebutton {
+    color: rgb(9, 184, 9);
+}
+
+.donebutton:hover {
+    background-color: rgb(37, 122, 15);
+    border-radius: 5px;
+}
+
+span {
+    font-weight: bold;
+}
+
+#newlistname {
+    border: 0;
+}
+
+#thesavelistbutton {
+    color: rgb(162, 113, 240);
+}
+
+#thesavelistbutton:hover {
+    background-color: rgb(253, 49, 94);
+    color: pink;
+    border-radius: 5px;
+}
+
+/* CSS Buttons */
+.backbutton,
+.editbutton,
+.goshopbutton,
+#theaddbutton {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.backbutton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #000;
+    transition: all 0.3s;
+}
+
+.backbutton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(180, 153, 0);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.editbutton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #000;
+    transition: all 0.3s;
+}
+
+.editbutton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(15, 131, 0);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.goshopbutton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #000;
+    transition: all 0.3s;
+}
+
+.goshopbutton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(117, 114, 110);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+#theaddbutton::before {
+    content: '';
+    font-size: 56px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #000;
+    transition: all 0.3s;
+}
+
+#theaddbutton::after {
+    content: '';
+    font-size: 56px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(167, 154, 180);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.backbutton:hover::before,
+.editbutton:hover::before,
+.goshopbutton:hover::before,
+#theaddbutton:hover::before {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+.backbutton:hover::after,
+.editbutton:hover::after,
+.goshopbutton:hover::after,
+#theaddbutton:hover::after {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+footer.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.footer a {
+    color: #1b421c;
+}
+
+@media only screen and (max-width: 500px) {
     .customListStyle {
-        padding: 3px;
-        margin: 3px;
+        font-size: medium;
     }
+}
 
-    .fakedelete{
-        opacity: 0;
-    }
-
-    /* .removebutton{
-        display: none;
-    }
-
-    .incrementbutton{
-        display: none;
-    }
-
-    .decrementbutton{
-        display: none;
-    } */
-
-    #labelname1{
-        grid-area: one;
-        font-weight: bold;
-    }
-
-    #labelname2{
-        grid-area: two;
-        font-weight: bold;
-    }
-
-    #labelname3{
-        grid-area: three;
-        font-weight: bold;
-    }
-
-    ul{
-        list-style-type: none;
-        padding: 0;
-        
-    }
-
-    #listitemcontainer{
-        grid-area: four;
-        grid-gap:10px 10px;
-    }
-
-    #listweightcontainer{
-        grid-area: five;
-        grid-gap:10px 10px;
-    }
-
-    #listavailabiltycontainer{
-        grid-area: six;
-        grid-gap:10px 10px;
-    }
-
-    .font{
-        font-size: 12px;
-    }
-
-    #listarea1 > li {
-        text-align: left;
-    }
-
-    #listarea1 {
-        padding-left: 100px;
-    }
-
-    #labelname1 > article {
-        text-align: center;
-    }
-
-    #listarea2 > li {
-        text-align: center;
-    }
-
-    #labelname2 > article {
-        text-align: center;
-    }
-
-    #listarea3 > li {
-        text-align: center;
-    }
-
-    #labelname3 > article {
-        text-align: center;
-    }
-
-    #twobuttoncontainer{
-        display:flex;
-        justify-content: space-around;
-        padding: 1px;
-        border: 2px;
-        border-color: lightgreen;
-        margin: 1px;
-        border-style: solid;
-        border-radius: 5px;
-        
-    }
-
-    
-
-    .donebutton{
-        color: rgb(9, 184, 9);
-    }
-
-    .donebutton:hover {
-        background-color:rgb(37, 122, 15);
-        border-radius: 5px;
-    }
-
-    span{
-        font-weight: bold;
-    }
-
-    #newlistname {
-        border: 0;
-        /* height: 60px;
-        width: 140px; 
-        text-align: center; */
-    }
-
-    #thesavelistbutton {
-        color: rgb(162, 113, 240);
-    }
-
-    #thesavelistbutton:hover {
-        background-color:rgb(253, 49, 94);
-        color: pink;
-        border-radius: 5px;
+@media only screen and (max-width: 430px) {
+    .customListStyle {
+        font-size: small;
     }
 }

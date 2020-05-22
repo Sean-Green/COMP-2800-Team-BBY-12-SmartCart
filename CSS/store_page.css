@@ -9,6 +9,7 @@
   letter-spacing: 1px;
   font-size: xx-large;
 }
+
 /** navbar dropdown css*/
 .dropdownButton {
   background-color: green;
@@ -50,17 +51,22 @@
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+/** font family and size */
 h1, h2 {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: white;
 }
 
+/** footer padding and font */
 footer.footer {
   padding-top: 10px;
   padding-bottom: 30px;
 }
 
+.footer a {
+  color: #1b421c;
+}
 
 /* header */
 
@@ -162,4 +168,26 @@ header.masthead .overlay {
   padding:3em;
   color: aliceblue;
   background-color: green;
+}
+
+.fullyStocked{
+  background-image: linear-gradient(rgb(222, 255, 212), rgb(255, 255, 255));
+  border-radius: .25em;
+  box-shadow: 0em 0em .25em .1em rgb(112, 138, 86);
+  margin-bottom: 40px;
+}
+.halfStocked{
+  background-image: linear-gradient(rgb(255, 251, 212), rgb(255, 255, 255) );
+  border-radius: .25em;
+  box-shadow: 0em 0em .25em .1em rgb(138, 130, 86);
+  margin-bottom: 40px;
+}
+.notStocked{
+  background-image: linear-gradient( rgb(255, 212, 212), rgb(255, 255, 255));
+  border-radius: .25em;
+  box-shadow: 0em 0em .25em .1em rgb(138, 86, 86);
+  margin-bottom: 40px;
+}
+.imgContain {
+  padding: 1em;
 }

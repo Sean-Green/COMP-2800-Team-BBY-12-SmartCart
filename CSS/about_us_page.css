@@ -48,15 +48,11 @@
 /** Card css*/
 #mainCard {
     text-align: center;
-    /**width: fit-content; */
-    /**height: fit-content;*/
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-#mainBody {
-    background-color: lightgreen;
-}
+
 #teamCard {
     border: solid 2px green;
     margin-bottom: 5px;
@@ -68,7 +64,11 @@
     align-self: center;
     border-radius: 3em;
 }
-#teamText {
+#teamText0,
+#teamText1,
+#teamText2,
+#teamText3,
+#teamText4 {
     text-align: left;
 }
 #teamIN {
@@ -77,4 +77,41 @@
 }
 #teamMem {
     padding-top: 1.5em;
+}
+
+footer.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+  
+.footer a {
+    color: #1b421c;
+  }
+/** Footer */
+#footerNote {
+    font-size: x-small;
+}
+
+#doomsDayBtn {
+    border: none;
+    background-color: rgb(35, 192, 14);
+}
+
+/** Doomsday CSS */
+#doomsDayL {
+    border: black solid 2px;
+    border-radius: 5px;
+    background-color: red;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.hidden{
+    display: none;
+}
+#doomExplosion {
+    position: absolute;
+    margin: auto;
+    width: 75%;
 }

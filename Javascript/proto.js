@@ -70,6 +70,10 @@ function getUserDisplayName() {
 
 /* Saves an item to a list if the itemName exists in DB */
 function saveItemToList(itemName, listName, qty) {
+   // console.log("saving " + itemName + listName + qty);
+   if (parseInt(qty, 10) === 0){
+      return;
+   }
    var path = "Items/";
    firebase.auth().onAuthStateChanged(function (user) {
       db.doc("Users/" + user.uid).get().then(function (userDoc) { //read
@@ -77,7 +81,7 @@ function saveItemToList(itemName, listName, qty) {
             path = "Doomsday/";
          }
          db.doc(path + itemName).get().then(function (item) { //read
-            console.log(item.data());
+            // console.log(item.data());
 
             var userLists = userDoc.get("listNames");
             var nameExists = false;
@@ -104,7 +108,7 @@ function saveItemToList(itemName, listName, qty) {
                "name": item.get("name"),
                "size": item.get("size"),
                "units": item.get("units"),
-               "qty": qty
+               "qty": parseInt(qty, 10)
             }, {
                merge: true
             })
@@ -116,23 +120,32 @@ function saveItemToList(itemName, listName, qty) {
 //Delete list by name string
 function deleteListByName(listName) {
    listName += "";
+   console.log("/" + listName + "/")
    firebase.auth().onAuthStateChanged(function (user) {
       //Delete the listName from the array
       db.doc("Users/" + user.uid).get().then(function (userDoc) {
          //copy the listName array, skip the list to be deleted
          var userLists = userDoc.get("listNames");
          var amendedLists = [];
-         for (i = 0, j = 0; i < userLists.length; i++) {
-            if (userLists[i] != listName) {
-               amendedLists[j++] = userLists[i]
+         new Promise((resolve, reject) => {
+            for (i = 0, j = 0; i < userLists.length; i++) {
+               if (userLists[i] !== listName) {
+                  amendedLists[j++] = userLists[i];
+               }
+               if (i + 1 === userLists.length){
+                  resolve("success");
+               }
             }
-         }
-         //update the array in the db
-         db.doc("Users/" + user.uid).set({
-            "listNames": amendedLists
-         }, {
-            merge: true
+         }).then((success) => {
+            //update the array in the db
+            db.doc("Users/" + user.uid).set({
+               "listNames": amendedLists
+            }, {
+               merge: true
+            });
          });
+
+
          //Delete the list
          db.collection("Users/" + user.uid + "/" + listName).get().then((listItems) => {
             var item = listItems.docs;
@@ -205,9 +218,9 @@ function addItemToUnavailable(itemName) {
 function createFullList(listName) {
    //get user info, we need this for the user.uid
    firebase.auth().onAuthStateChanged(function (user) {
-      // READ onSnapshot WORKS ON DOCS AND COLLECTIONS 
+      // READ get().then() WORKS ON DOCS AND COLLECTIONS 
       // First grab a snapshot of the item specified.`
-      db.doc("Items/" + itemName).onSnapshot(function (item) {
+      db.doc("Items/" + itemName).get().then(function (item) {
          console.log(item.data());
          // Save list under user listNames array
          db.doc("Users/" + user.uid).set({

@@ -1,15 +1,17 @@
-/** Navbar and logo css*/
+/* Navbar and logo */
 #navbarPrimary {
     display: flex;
     justify-content: space-between;
     background-color: black;
 }
+
 #logoName {
     color: green;
     letter-spacing: 1px;
     font-size: xx-large;
 }
-/** navbar dropdown css*/
+
+/* navbar dropdown */
 .dropdownButton {
     background-color: green;
     color: white;
@@ -17,11 +19,13 @@
     font-size: 16px;
     border-radius: 5px;
     border: none;
-}  
+}
+
 .dropdown {
     position: relative;
     float: right;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -30,44 +34,56 @@
     z-index: 1;
     right: 0;
 }
+
 .dropdown-content a {
     color: white;
     padding: 10px 10px;
     text-decoration: none;
     display: block;
 }
+
 .dropdown-content a:hover {
     background-color: darkgrey;
 }
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 .dropdown:hover .dropdownButton {
     background-color: #1b421c;
 }
 
-/** Header */
+/* Header */
 header.masthead {
     position: relative;
     background: url("image/splash-back.jpeg") no-repeat center center;
     background-size: cover;
     padding-top: 30px;
 }
+
 #mainPageTitle {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-
-/** Card css*/
+/* Main Card */
 #mainCard {
+    border-radius: 1em;
     text-align: center;
     /**width: fit-content; */
     /**height: fit-content;*/
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-right: 5px;
     display: block;
+    background: rgb(1, 240, 201);
+    background: radial-gradient(circle, rgba(1, 240, 201, 1) 0%, rgba(20, 204, 9, 1) 100%);
+    box-shadow:
+        0 8px 6px -6px black,
+        0 -6px 6px -6px black;
 }
+
 #listCard {
+    border-radius: 1em;
     text-align: center;
     height: fit-content;
     /** width: fit-content; */
@@ -76,58 +92,329 @@ header.masthead {
     display: block;
     border: lightgreen solid;
 }
-#heading1 {
+
+.heading1 {
     padding-top: 5px;
     margin-bottom: 0px;
 }
+
+#heading1span {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: white;
+    padding-top: 5px;
+    margin-bottom: 0px;
+}
+
 #userName {
     color: black;
 }
 
-/** Buttons css */
-#locationButtons {
-    margin: 10px;
+#myList {
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
 }
-#listButton {
-    margin: 10px;
+
+/* Spacer CSS */
+.halfSpacer {
+    margin: 5px;
+    padding: 5px;
 }
-#removeButton { 
-    margin:none;
+
+/* Footer */
+#footerNote {
+    font-size: x-small;
+}
+
+.hidden {
+    display: none;
+}
+
+footer.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.footer a {
+    color: #1b421c;
+}
+
+/* Buttons */
+#listButtonArea {
+    display: flex;
+    padding-top: 10px;
+    margin: 10px;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+#removeButton {
+    margin: none;
     padding: none;
 }
+
 .listNameBtn {
     text-decoration: none;
     border: none;
     background-color: white;
 }
 
-/** Footer */
-#footerNote {
-    font-size: x-small;
-}
-#doomsDayBtn {
-    background-color: white;
-    text-decoration: underline;
+#normBtn {
     border: none;
-    padding: none;
-    margin: none;
+    background-color: transparent;
+    color: red;
 }
 
-/** Doomsday css */
-#doomsDayL {
-    border: black solid 2px;
+.btn-create,
+.btn-edit,
+.btn-doom {
+    padding: 20px;
     border-radius: 5px;
-    background-color: red;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
-.hidden{
-    display: none;
+
+/* Bootstrap button CSS */
+/* create list, edit list, remove list, doomsday button */
+.btn-create,
+.btn-edit,
+.btn-remove,
+.btn-doom {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
 }
-#doomExplosion {
+
+.btn-create::before {
+    content: '';
     position: absolute;
-    margin: auto;
-    width: 75%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 255, 0, 0.548);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.btn-create::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(30, 207, 30);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.btn-edit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(236, 14, 14, 0.514);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.btn-edit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(233, 27, 27);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.btn-remove::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(245, 11, 3, 0.514);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.btn-remove::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(238, 24, 24);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.btn-doom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255, 0, 0, 0.548);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.btn-doom::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(250, 8, 8);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.btn-create:hover::before,
+.btn-edit:hover::before,
+.btn-remove:hover::before,
+.btn-doom:hover::before {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+.btn-create:hover::after,
+.btn-edit:hover::after,
+.btn-remove:hover::after,
+.btn-doom:hover::after {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+/* user list card css */
+#mainListCard {
+    border-radius: 1em;
+    margin: 5px;
+    background-color: rgb(99, 181, 196);
+    text-align: center;
+    box-shadow:
+        0 8px 6px -6px black,
+        0 -6px 6px -6px black;
+}
+
+.btn-listEdit {
+    padding: 20px;
+}
+
+.btn-listEdit {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.btn-listEdit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(8, 0, 128, 0.164);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.btn-listEdit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 2px solid rgb(32, 8, 250);
+    border-radius: 3px;
+    transform: scale(1.2, 1.2);
+}
+
+.btn-listEdit:hover::before {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+.btn-listEdit:hover::after {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.card {
+    border-radius: 1em;
+}
+
+/* CSS for the main page desktop view */
+@media only screen and (min-width: 800px) {
+    body {
+        background-color: blue;
+    }
+
+    #mainCard {
+        border-radius: 1em;
+        text-align: center;
+        width: 600px;
+        height: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        background: rgb(1, 240, 201);
+        background: radial-gradient(circle, rgba(1, 240, 201, 1) 0%, rgba(20, 204, 9, 1) 100%);
+        box-shadow:
+            0 8px 6px -6px black,
+            0 -6px 6px -6px black;
+    }
+
+    #mainListCard {
+        border-radius: 1em;
+        width: fit-content;
+        height: fit-content;
+        margin: 5px;
+        background-color: rgb(99, 181, 196);
+        text-align: center;
+        box-shadow:
+            0 8px 6px -6px black,
+            0 -6px 6px -6px black;
+    }
+
+    #userIndiLists {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    #totalBody {
+        display: flex;
+        flex-direction: column;
+    }
 }

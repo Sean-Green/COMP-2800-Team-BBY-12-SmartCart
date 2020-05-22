@@ -1,13 +1,10 @@
 <html>
 
-
 <head>
-
 
     <!--Meta tag-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
     <!----Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -21,28 +18,47 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
     <!----Link css-->
     <link rel="stylesheet" type="text/css" href="CSS/store_page.css">
     <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
+    <link rel="stylesheet" type="text/css" href="CSS/loading.css">
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
     <!-- The firebase configuration for our project-->
     <script type='text/javascript' src="Javascript/firebase_config.js"></script>
-
 
     <!-- Link javascript-->
     <script src="Javascript/store_page.js"></script>
 
+    <script>
+        /**
+        Credit: Hariom Singh
+        Link: https://stackoverflow.com/questions/52399940/how-to-add-preloader-loadeing-gif-to-my-website/
+        Detail: All css code is for the loading screen and is from the website above
+        */
+        // The store page takes longer to load so it has its own loader function.
+        $(window).on('load', function () {
+            $('#status').fadeOut();
+            $('#preloader').delay(1000).fadeOut('slow');
+            $('body').delay(100).css({
+                'overflow': 'visible'
+            });
+        })
+    </script>
+
 </head>
 
 <body>
+
+
 
     <!--top var - dropdown menu -->
     <nav class="navbar sticky-top" id="navbarPrimary">
@@ -57,14 +73,23 @@
                 <a href="main_page.html">My Lists</a>
                 <a href="itemlist_page.html">Edit List</a>
                 <a href="store_page.html">Stores</a>
-                <a href="shoping_page.html">Shopping Mode</a>
+                <a href="shopping_page.html">Shopping Mode</a>
                 <a href="about_us_page.html">About Us</a>
                 <a href="splash_page.html" on click="logout">Logout</a>
             </div>
         </div>
     </nav>
 
-    <!--search store-->
+
+    <!-- Preloader -->
+
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+
+
+
+    <!--header: introduction-->
     <header class="masthead text-white text-center">
         <div class="overlay"></div>
         <div class="container">
@@ -79,11 +104,6 @@
                             <div class="col-12 col-md-12">
 
 
-                                <!-- Search form
-                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                                -->
-
-
                             </div>
                         </div>
                     </form>
@@ -94,7 +114,6 @@
 
 
     <!--store list-->
-
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -105,10 +124,6 @@
         </div>
 
     </div>
-    </div>
-
-
-
     <!-- Footer -->
     <footer class="footer bg-light">
         <div class="container">
@@ -123,17 +138,17 @@
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
                             <!-- Team profile page - contact information -->
-                            <a href="#">Contact</a>
+                            Contact
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
                             <!-- Team profile page - Terms of Use -->
-                            <a href="#">Terms of Use</a>
+                            Terms of Use
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
                             <!-- Team profile page - Privacy Policy -->
-                            <a href="#">Privacy Policy</a>
+                            Privacy Policy
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights

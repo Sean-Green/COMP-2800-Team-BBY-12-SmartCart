@@ -1,0 +1,252 @@
+ /** Navbar and logo css*/
+
+ #navbarPrimary {
+   display: flex;
+   justify-content: space-between;
+   background-color: black;
+ }
+
+ #logoName {
+   color: green;
+   letter-spacing: 1px;
+   font-size: xx-large;
+ }
+
+ /** navbar dropdown css*/
+
+ .dropdownButton {
+   background-color: green;
+   color: white;
+   padding: 10px;
+   font-size: 16px;
+   border-radius: 5px;
+   border: none;
+ }
+
+ .dropdown {
+   position: relative;
+   float: right;
+ }
+
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: green;
+   min-width: 160px;
+   z-index: 1;
+   right: 0;
+ }
+
+ .dropdown-content a {
+   color: white;
+   padding: 10px 10px;
+   text-decoration: none;
+   display: block;
+ }
+
+ .dropdown-content a:hover {
+   background-color: darkgrey;
+ }
+
+ .dropdown:hover .dropdown-content {
+   display: block;
+ }
+
+ .dropdown:hover .dropdownButton {
+   background-color: #1b421c;
+ }
+
+ /** footer - padding and font */
+ 
+ footer.footer {
+   padding-top: 10px;
+   padding-bottom: 30px;
+ }
+
+ .footer a {
+  color: #1b421c;
+}
+ /* header */
+
+ header.masthead {
+   position: relative;
+   background: url("image/splash-back.jpeg") no-repeat center center;
+   background-size: cover;
+   padding-top: 30px;
+ }
+
+ /* header overlay  */
+
+ header.masthead .overlay {
+   position: absolute;
+   background-color: #212529;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   opacity: 0.3;
+ }
+
+
+ /** header - image and font */
+ #shoppingHeader {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+ul.countbutton {
+  padding: 5px;
+  list-style: none;
+  display: flex;
+}
+
+h1, h2 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+ /* table  */
+.thead{
+
+  font-size: 25px;
+}
+ th.product {
+   width: 50%
+ }
+
+ th.space {
+   width: 10%
+ }
+
+ th.quantity {
+   width: 20%
+ }
+
+ th.text-center {
+   width: 10%
+ }
+
+ ul.mybuttons {
+   list-style: none;
+   display: grid;
+   grid-template-columns: 1fr 1fr ;
+   grid-template-rows: 1fr 1fr;
+   justify-content: center;
+   gap: 1px 1px;
+ }
+
+
+ #warning-button, #primary-button, #success-button, #danger-button {
+   padding-left: auto;
+   padding-right: auto;
+   width: 162px;
+   height: 62;
+ }
+
+
+ /* mobie view 0~426px  */
+ @media only screen and (min-width: 800px) {
+  #danger-button, #primary-button{
+    padding-top: 17px;
+ }
+
+  ul.mybuttons {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap: 1px 1px;
+  }
+ 
+ }
+ @media only screen and (max-width: 426px) {
+
+  .thead{
+
+    font-size: 15px;
+  }
+
+   ul.mybuttons {
+     list-style: none;
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr 1fr 1fr;
+   }
+
+
+   #warning-button, #primary-button, #success-button, #danger-button {
+     padding-left: auto;
+     padding-right: auto;
+     width: 300px;
+     height: 40px;
+   }
+
+   th.product {
+     width: 30%
+   }
+   th.quantity {
+     width: 5%
+   }
+   th.space {
+     padding: 8.5%;
+   }
+   h4.nomargin {
+     padding-left: 5px;
+     font-size: 20px;
+   }
+   h3 {
+     font-size: 20px;
+   }
+   #action {
+     text-align: center;
+   }
+ }
+
+ /* tweet button */
+
+ #tweet1 {
+   display: flex;
+   list-style-type: none;
+   justify-content: space-between;
+ }
+
+ .twitter-share-button {
+   margin-top: 10px;
+ }
+
+ #jasonedit {
+   margin-left: -40px
+ }
+
+ .statusButtons {
+   grid-template-rows: 1fr 1fr;
+ }
+
+ .statusButtons button {
+   width: 5em;
+   height: 5em;
+ }
+
+ .editButtons button {
+   width: 5em;
+   height: 3em;
+ }
+
+ .qtyNum {
+   padding-top: .17em;
+   padding-left: .7em;
+   color: #212529;
+ }
+
+ .contAvail {
+   background-color: rgb(202, 255, 195);
+ }
+
+ .contUnavail {
+   background-color: rgb(255, 198, 198);
+ }
+
+ .uBtn {
+   display: none;
+ }

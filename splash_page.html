@@ -2,25 +2,28 @@
 
 <head>
 
-    <!--Meta tag-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+  <!--Meta tag-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
   <!--jquery-->
   <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
   <!-- Add Firebase products that you want to use -->
   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
   <!-- The firebase configuration for our project-->
   <script type='text/javascript' src="Javascript/firebase_config.js"></script>
-  
   <script src="Javascript/login.js"></script>
+  <script src="Javascript/splash_page.js"></script>
+
   <!----Bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -39,12 +42,12 @@
   <link rel="icon" type="image/png" href="CSS/image/SCfavicon.png">
 
 
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-
 
   <!-- header-->
   <header class="masthead text-white text-center">
@@ -53,25 +56,33 @@
     <div onclick="" class="container">
       <div class="row">
         <div class="col-xl-8 mx-auto">
-          <img alt="logo" src="CSS/image/logo.png">
+          <img class="logo" alt="logo" src="CSS/image/logo.png">
           <div id="firebaseui-auth-container"></div>
-          <h3 class="mb-5">SmartCart </h3>
-          <h2 class="mb-5"> Unique and powerful suite to track your grocery</h2>
+          <div id="main" class="is-loading">
+            <h1>
+              SmartCart
+            </h1>
+          </div>
+
+          <div id="main2" class="is-loading">
+            <h1>
+              Unique and powerful suite to track your grocery
+            </h1>
+          </div>
+
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
+
             <!-- Div that will become our login on script call-->
             <div class="form-row">
               <div class="col-12 col-md-12">
 
-                <!--link registration page-->
+                <div onClick="callForLogin()" class="btn btn-block btn-primary">
 
-            
-                  <div onClick="callForLogin()" class="btn btn-block btn-lg btn-primary">
+                  Get Started!
 
-                    Get Started!
-
-                  </div>
+                </div>
 
               </div>
             </div>
@@ -79,8 +90,6 @@
         </div>
       </div>
     </div>
-
-
 
   </header>
 
@@ -109,7 +118,8 @@
               </div>
             </div>
             <h2>Find the store</h2>
-            <p class="lead mb-0">Ready to use with your own content, or customize the list!</p>
+            <p class="lead mb-0">
+              We have a store for you here. You just have to choose!</p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -120,15 +130,88 @@
               </div>
             </div>
             <h2>Easy to Use</h2>
-            <p class="lead mb-0">Ready to use with your own content, or customize the list!</p>
+            <p class="lead mb-0">
+              It is not difficult! Easy and concise UI will make your mind comfortable.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer bg-light">
+
+  <!-- Image Showcases -->
+  <section class="showcase">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+
+        <div class="col-lg-6 order-lg-2  showcase-img"
+          style="background-image: url('CSS/image/list.jpg');">
+
+        </div>
+        <div class="col-lg-6 order-lg-1 showcase-text">
+          <h2>Create your list!</h2>
+          <p class="lead mb-0">
+            Create your own list anywhere! All lists can be easily managed with one touch.</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 showcase-img" 
+        style="background-image: url('CSS/image/store.jpg');">
+
+        </div>
+        <div class="col-lg-6 my-auto showcase-text">
+          <h2>Find the store!</h2>
+          <p class="lead mb-0">
+            We have a store for you here. You just have to choose.</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2
+         showcase-img" style="background-image: url('CSS/image/shopping.jpg');">
+
+        </div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2>Easy to Use &amp; Customize</h2>
+          <p class="lead mb-0">It is not difficult! Easy and concise UI will make your mind comfortable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section class="testimonials text-center bg-light">
+    <div class="container">
+      <h5 class="mb-5">What people are saying...</h2>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="CSS/image/randomperson1.jpg" alt="">
+            <h5>Abdurahman Cotton.</h5>
+            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="CSS/image/randomperson3.jpg" alt="">
+            <h5>Alayah Iles</h5>
+            <p class="font-weight-light mb-0">"SmartCart is amazing. I've been using it to create lots of super nice
+              landing pages."</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="CSS/image/randomperson2.jpg" alt="">
+            <h5>Rebeca Mays</h5>
+            <p class="font-weight-light mb-0">"Thanks so much for tracking grocery available to us!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer bg-light" id="contact">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
@@ -141,24 +224,37 @@
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
               <!-- Team profile page - contact information -->
-              <a href="#">Contact</a>
+             Contact
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
               <!-- Team profile page - Terms of Use -->
-              <a href="#">Terms of Use</a>
+              Terms of Use
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
               <!-- Team profile page - Privacy Policy -->
-              <a href="#">Privacy Policy</a>
+             Privacy Policy
             </li>
           </ul>
           <p class="text-muted small mb-4 mb-lg-0">&copy; Team 12 - SmartCart 2020. All Rights Reserved.</p>
         </div>
+        
+        <!-- social media post
+        <div class="col-sm-4 pr-3 pl-3">
+          <ul class="social">
+            <li id="follow">Follow us : </li>
+            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+-->
       </div>
     </div>
   </footer>
+
 
 </body>
 
