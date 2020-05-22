@@ -219,7 +219,7 @@ footer.footer {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: rgba(236, 232, 14, 0.514);
+    background-color: rgba(236, 14, 14, 0.514);
     border-radius: 3px;
     transition: all 0.3s;
 }
@@ -234,7 +234,7 @@ footer.footer {
     z-index: 1;
     opacity: 0;
     transition: all 0.3s;
-    border: 2px solid rgb(233, 233, 27);
+    border: 2px solid rgb(233, 27, 27);
     border-radius: 3px;
     transform: scale(1.2, 1.2);
 }
