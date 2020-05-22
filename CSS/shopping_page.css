@@ -147,9 +147,6 @@ h1, h2 {
    height: 62;
  }
 
- #danger-button, #primary-button{
-    padding-top: 17px;
- }
 
  /* li.table-button2 {
    margin-left: 20%;
@@ -169,6 +166,10 @@ h1, h2 {
 
  /* mobie view 0~426px  */
  @media only screen and (min-width: 800px) {
+  #danger-button, #primary-button{
+    padding-top: 17px;
+ }
+
   ul.mybuttons {
     list-style: none;
     display: grid;
